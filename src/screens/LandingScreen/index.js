@@ -36,9 +36,9 @@ export default class ButtonExample extends Component {
         if(!this.state.loading && !this.state.showSplash){
           return <Text></Text>
         }
-          if(this.state.loading && this.state.showSplash){
-            return <SplashScreen/>
-          }
+        if(this.state.loading && this.state.showSplash){
+          return <SplashScreen/>
+        }
         
       return (
         <LinearGradient colors={['#FF7C6E', '#F5317F']} style={styles.linearGradient}>
