@@ -28,7 +28,7 @@ export default class ButtonExample extends Component {
       };
     render() {
         return (
-            <Container>
+            <Container style={{flex:1,backgroundColor:"#fff"}}>
                 <HeaderComponent navigator={this.props.navigator}/>
                 <Content>
                     <ScrollView>

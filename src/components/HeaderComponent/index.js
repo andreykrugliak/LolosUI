@@ -8,7 +8,7 @@ return(
     <Header style={styles.header}>
     <Left>
       <Button transparent onPress={()=>{
-        props.navigator.pop()
+        props.navigator.pop({animationType:"slide-horizontal"})
         }}>
         <Icon style={styles.backArrow} name='arrow-back'/>
       </Button>

@@ -43,7 +43,8 @@ import {
           <Title style={{height:10,backgroundColor:'#F6F6F6'}}></Title>
             <Button text={'Log In'} onPress={()=>{
                   this.props.navigator.push({
-                    screen:'app.TextInputs'
+                    screen:'app.TextInputs',
+                    animationType:"slide-horizontal"
                   })
                   
                   }}/>
