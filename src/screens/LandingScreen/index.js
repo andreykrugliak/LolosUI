@@ -53,7 +53,8 @@ export default class ButtonExample extends Component {
             <View style={{marginTop:164}}>
               <Button text={`PERSONA "A"`} onPress={()=>{
                 this.props.navigator.push({
-                  screen:'app.Login'
+                  screen:'app.Login',
+                  animationType:"slide-horizontal"
                 })
                 
                 }}>

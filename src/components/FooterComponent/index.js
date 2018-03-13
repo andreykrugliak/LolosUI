@@ -8,7 +8,8 @@ export const FooterComponent =(props)=>{
                 
                 <Button transparent full style={styles.ButtonContainer} onPress={()=>{
                     props.navigator.push({
-                      screen:'app.HomePage'
+                      screen:'app.HomePage',
+                      animationType:"slide-horizontal"
                     })
                     
                     }}>
