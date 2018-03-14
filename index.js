@@ -5,7 +5,7 @@ import { registerScreens } from '@screens/index';
 registerScreens();
 Navigation.startSingleScreenApp({
     screen:{
-        screen:'app.LandingScreen',
+        screen:'app.HomePage',
     },
     animationType: 'slide-down',
 })

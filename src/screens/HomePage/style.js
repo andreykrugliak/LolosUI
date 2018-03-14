@@ -23,9 +23,10 @@ export default StyleSheet.create({
         height:20,
         width:20,
         position:"absolute",
-        right:8,
+        right:4,
         top:4,
-        backgroundColor:"#50C2A8"
+        backgroundColor:"#50C2A8",
+        opacity:1
     },
     cardImage:{
         height: 371,
@@ -38,7 +39,8 @@ export default StyleSheet.create({
         top:-6
     },
     menuIcon:{
-        color: '#000'
+        height:20,
+        width:20,
     },
     headerStyle:{
         backgroundColor:"#FFFFFF",
@@ -48,8 +50,8 @@ export default StyleSheet.create({
         marginRight:35
     },
     notificationIcon:{
-        color:'#000',
-        fontSize:30,
+        height:20,
+        width:20,
     },
     cardWelcomeText:{
         color:'#FF4273', 

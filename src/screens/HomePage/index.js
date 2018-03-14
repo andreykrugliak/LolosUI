@@ -9,12 +9,12 @@ const initialLayout = {
   };
 
   const images ={
-      Image1:require('@images/HomePage/cart.png'),
-      Image2:require('@images/HomePage/secon-tab.png'),
-      Image3:require('@images/HomePage/home-active.png'),
-      Image4:require('@images/HomePage/shopping-cart.png'),
-      Image5:require('@images/HomePage/tabs.png'),
-      Image6:require('@images/HomePage/fhome.png'),
+      Image1:require('@images/HomePage/ActiveCart.png'),
+      Image2:require('@images/HomePage/ActiveTabs.png'),
+      Image3:require('@images/HomePage/ActiveHome.png'),
+      Image4:require('@images/HomePage/DeactiveCart.png'),
+      Image5:require('@images/HomePage/DeactiveTabs.png'),
+      Image6:require('@images/HomePage/DeactiveHome.png'),
   }
   const FirstRoute = () => <Content>
   <View style={[styles.middlePart,{ flex:1}]}>
@@ -76,7 +76,7 @@ const ThirdRoute = () => <Content>
       constructor(props){
         super(props)
         this.state = {
-            index: 0,
+            index: 2,
             routes: [
                 { key: '0',icon: images.Image4, iconSelected: images.Image1 },
                 { key: '1', icon: images.Image5, iconSelected: images.Image2},
@@ -86,15 +86,18 @@ const ThirdRoute = () => <Content>
       }
     
     _renderIcon = ({route}) => {
-        return <Image style={{width: 50, height: 50}} source={route.key == (this.state.index).toString()? route.iconSelected:route.icon}/>; 
+        return <Image  source={route.key == (this.state.index).toString()? route.iconSelected : route.icon}/>; 
     };
-    _renderIndicator = ({route}) => {
-        // return <Image style={{width: 60, height: 60}} source={route.iconSelected}/>;
-    }
     
     _handleIndexChange = index => this.setState({ index });
 
-    _renderHeader = props => <TabBar style={{backgroundColor:"#fff"}} labelStyle={{fontSize: 10, color: '#000'}} {...props} renderIcon = {this._renderIcon} renderIndicator={this._renderIndicator} />;
+    _renderHeader = props => <TabBar 
+        style={{backgroundColor:"#fff",height:73}}
+        labelStyle={{fontSize: 10, color: '#000'}} 
+        {...props} 
+        renderIcon = {this._renderIcon} 
+        indicatorStyle={{ height: 0 }}
+         />;
 
     _renderScene = SceneMap({
         '0': FirstRoute,
@@ -104,11 +107,11 @@ const ThirdRoute = () => <Content>
     
         render() {
             return (
-                <Container>
+                <Container style={{flex:1}}>
                 <Header style={styles.headerStyle}>
                     <Left style={styles.headerLeftSide}>
                         <Button transparent>
-                            <Icon style={styles.menuIcon} name='ios-menu'></Icon>
+                            <Image source={require('@images/HomePage/MenuBlack.png')}></Image>
                         </Button>
                     </Left>
                     <Body>
@@ -116,13 +119,13 @@ const ThirdRoute = () => <Content>
                     </Body>
                     <Right>
                         <Button transparent >
-                            <Badge style={styles.badgeStyle}>
+                            <Badge style={[styles.badgeStyle]}>
                                 <View>
                                     <Text style={styles.badgeText}>1</Text>
                                 </View>
                             </Badge>  
-                            <Icon style={styles.notificationIcon} name="ios-notifications-outline">
-                            </Icon>
+                            <Image source={require('@images/HomePage/NOTIFICATIONWhite.png')}>
+                            </Image>
                         </Button>
                     </Right>
                 </Header>
