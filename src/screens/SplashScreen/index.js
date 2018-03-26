@@ -24,11 +24,12 @@ export default class ButtonExample extends Component {
                      </Animated.View> */}
                      <Animated.Image
                         style={[this.initialPosition.getLayout(),{
-                        width: 289,
-                        height: 141,
-                        marginHorizontal:35
+                        width: 125,
+                        resizeMode:"contain",
+                        height: 125,
+                        alignSelf:"center"
                     }]}
-                        source={require('@images/SplashScreen/image.png')}
+                        source={require('@images/SplashScreen/image2.png')}
                     />
                 </View>
         </Container>
