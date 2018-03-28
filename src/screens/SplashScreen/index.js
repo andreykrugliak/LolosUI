@@ -1,38 +1,70 @@
-import {Container, Content} from 'native-base';
+import {Container,Button, Content} from 'native-base';
 import React, { Component } from 'react';
-import { Image, View, Easing, Animated, TouchableWithoutFeedback, Dimensions} from 'react-native';
+import { Image, View, Easing, Animated, TouchableWithoutFeedback, Dimensions, Text} from 'react-native';
 import styles from './style'
 const windowHeight = Dimensions.get('window').height;
+const windowWidth = Dimensions.get('window').width;
+import LinearGradient from 'react-native-linear-gradient';
 export default class ButtonExample extends Component {
     
     componentWillMount(){
         this.initialPosition = new Animated.ValueXY({ x : 0, y : windowHeight-141 });
         Animated.spring(this.initialPosition,{
-            toValue :{ x : 0, y : ((windowHeight / 2)-100)},
+            toValue :{ x : 0, y : ((windowHeight)-200)},
             
             easing:Easing.bounce
         }).start();
     }
     render() {        
       return (
-        <Container>
-                <View style={{flex:1}}>
-                    {/* <Animated.View
-                        style={[this.initialPosition.getLayout(),{height:50,width:50,backgroundColor:"#f00"}]}
-                    >
+          <Container>
+              <Animated.View style={[this.initialPosition.getLayout(),{width:windowWidth,backgroundColor:"transparent"}]}>
 
-                     </Animated.View> */}
-                     <Animated.Image
-                        style={[this.initialPosition.getLayout(),{
-                        width: 125,
-                        resizeMode:"contain",
-                        height: 125,
-                        alignSelf:"center"
-                    }]}
-                        source={require('@images/SplashScreen/image2.png')}
-                    />
-                </View>
-        </Container>
+                  <Text style={styles.ShoppingText}>Shopping online made fun</Text>
+
+                  <LinearGradient style={styles.linerButton} colors={['#F5317F', '#FF7C6E']} >
+                        <Button onPress={()=>{
+                  this.props.navigator.push({
+                    screen:'app.Onboarding',
+                    animationType:"slide-horizontal"
+                  })
+                  
+                  }} style={styles.ButtonView}>
+                            <Text style={styles.ButtonText}>Crete Account</Text>
+                        </Button>
+                  </LinearGradient>
+
+                  <Button onPress={()=>{
+                  this.props.navigator.push({
+                    screen:'app.LoginScreen',
+                    animationType:"slide-horizontal"
+                  })
+                  
+                  }}style={[styles.ButtonView,{marginHorizontal:30},{marginTop:10},{backgroundColor:'#FFFFFF'}]} >
+                      <Text style={styles.ButtonText2}>
+                          Log In
+                      </Text>
+                  </Button>
+              </Animated.View>
+          </Container>
+        // <Container>
+        //         <View style={{flex:1}}>
+        //             {/* <Animated.View
+        //                 style={[this.initialPosition.getLayout(),{height:50,width:50,backgroundColor:"#f00"}]}
+        //             >
+
+        //              </Animated.View> */}
+        //              <Animated.Image
+        //                 style={[/**this.initialPosition.getLayout()*/{
+        //                 width: windowWidth,
+        //                 //resizeMode:"contain",
+        //                 height: windowHeight,
+        //                 //alignSelf:"center"
+        //             }]}
+        //                 source={require('@images/SplashScreen/splash.png')}
+        //             />
+        //         </View> */
+        // </Container>
       );
     }
   }
