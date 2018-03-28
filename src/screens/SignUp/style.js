@@ -33,12 +33,30 @@ export default StyleSheet.create({
         borderRadius:0,
         justifyContent:'center',
         alignItems:'center',
-        zIndex:1
+       
     },
     buttonText:{
-        color:'#CCCCCC',
+        //color:'#CCCCCC',
         fontFamily:'lato',
         fontSize:20,
         fontWeight:'900'
+    },
+    crossImage:{
+        height:26,
+        width:26,
+        
+    },
+    datePickerContainer:{
+        height:60,
+        backgroundColor:'#f0f0f0',
+        marginHorizontal:24,
+        marginTop:53,
+        justifyContent:'space-between',
+        alignItems:'center',
+        flexDirection:'row'
+    },
+    imageContainer:{
+        position:'absolute',
+        right:20
     }
 })

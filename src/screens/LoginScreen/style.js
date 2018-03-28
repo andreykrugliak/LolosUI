@@ -1,4 +1,6 @@
 import {StyleSheet } from 'react-native'
+import { ifIphoneX } from 'react-native-iphone-x-helper'
+
 export default StyleSheet.create({
     container:{
         flex:1,
@@ -8,7 +10,7 @@ export default StyleSheet.create({
         height:68,
         width:200,
         alignSelf:'center',
-        marginTop:20,
+        ...ifIphoneX({marginTop:50},{marginTop:20}),
         resizeMode:'contain'
     },
     shoppingText:{

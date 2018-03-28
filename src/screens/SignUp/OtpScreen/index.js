@@ -38,7 +38,12 @@ export default class OtpScreen extends Component{
                 </View>
                 <Text style={styles.retry}>Send me again</Text>
                 
-                <Button style={[styles.buttonContainer]}>
+                <Button onPress={()=>{
+                    this.props.navigator.push({
+                        screen:'app.HomePage',
+                        animationType:"slide-horizontal"
+                    })
+                }} style={[styles.buttonContainer]}>
                         <Text style={[styles.buttonText]}>Done</Text>
                 </Button>
                 </View>

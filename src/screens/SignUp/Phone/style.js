@@ -54,7 +54,8 @@ export default StyleSheet.create({
         marginLeft:10,
         height:60,
         width:windowWidth-163,
-        backgroundColor:'#F6F6F6'
+        backgroundColor:'#F6F6F6',
+        flexDirection:'row'
     },
     buttonText:{
         fontSize:20,
@@ -68,7 +69,19 @@ export default StyleSheet.create({
         position:'absolute',
         left:0,
         right:0,
-        bottom:0
+        bottom:0,
+        borderRadius:0
         
+    },
+    crossImage:{
+        height:26,
+        width:26,
+       
+    },
+    imageContainer:{
+        position:'absolute',
+        right:10,
+        top:20
+    
     }
 })

@@ -22,15 +22,11 @@ export default class ButtonExample extends Component {
   componentDidMount(){
     setTimeout(()=>{
       this.setState({
-        //loading:true,
+        
         showSplash:true
       })
     },1000)
-    // setTimeout(()=>{
-    //   this.setState({
-    //     loading:false
-    //   })
-    // })
+   
   }
   _splashScreen(){
     
@@ -42,38 +38,12 @@ export default class ButtonExample extends Component {
   }
     render() {
        
-        // if(this.state.showSplash && this.state.loading){
-        //   return <SplashScreen/>
-        // }
         
       return (
         <ImageBackground style={styles.container} source={require('@images/SplashScreen/splash.png')}>
             {this._splashScreen()}
         </ImageBackground>
-        // <LinearGradient colors={['#FF7C6E', '#F5317F']} style={styles.linearGradient}>
-        //   <View style={styles.allItems}>
-        //   <ImageLogoComponent/>
-        //     <View style={{marginTop:46}}>
-        //       <Text style={[styles.titleText,styles.transparentText]}>Main Title Goe's here</Text>
-        //     </View>
-        //     <View>
-        //       <Text style={[styles.descriptionText,styles.transparentText]}>Description Will Be Here</Text>
-        //     </View>
-        //     <View style={{marginTop:164}}>
-        //       <Button text={`PERSONA "A"`} onPress={()=>{
-        //         this.props.navigator.push({
-        //           screen:'app.Login',
-        //           animationType:"slide-horizontal"
-        //         })
-                
-        //         }}>
-        //       </Button>
-        //     </View>
-        //     <View style={{marginTop:12}}>
-        //       <Text style={[styles.personaText,styles.transparentText]}>Persona "B"</Text>
-        //     </View>
-        //   </View>
-        // </LinearGradient>
+        
       );
     }
   }

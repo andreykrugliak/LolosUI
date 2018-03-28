@@ -15,6 +15,7 @@
     "react-native-datepicker": "^1.6.0",
     "react-native-device-info": "^0.21.3",
     "react-native-gesture-handler": "^1.0.0-alpha.41",
+    "react-native-iphone-x-helper": "^1.0.2",
     "react-native-linear-gradient": "^2.4.0",
     "react-native-navigation": "^1.1.316",
     "react-native-swiper": "^1.5.13",

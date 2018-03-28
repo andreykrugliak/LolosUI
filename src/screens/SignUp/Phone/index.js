@@ -3,7 +3,7 @@ import React,{Component} from 'react'
 import { StyleSheet,
   Text,
   View,
-  StatusBarIOS,Image
+  StatusBarIOS,Image,TouchableOpacity
 } from 'react-native'
 import CountryPicker, {
   getAllCountries
@@ -46,9 +46,26 @@ export default class Phone extends Component{
     }
     
   }
+
+  countryPicker(){
+    
+      <CountryPicker
+        
+          countryList={NORTH_AMERICA}
+          onChange={value => {
+            this.setState({ cca2: value.cca2, callingCode: value.callingCode })
+            
+          }}
+        
+          cca2={this.state.cca2}
+          translation="eng"
+          
+        />
+    
+  }
   render() {
     return (
-        <View style={{flex:1}}>
+        <View style={{flex:1,backgroundColor:'#fff'}}>
             <LoloLogoComponent navigator={this.props.navigator} />
             <Text style={styles.phoneNum}>Enter your mobile number</Text>
             <Text style={styles.alert}>Will send you a confirmation code</Text>
@@ -56,9 +73,9 @@ export default class Phone extends Component{
         <View style={styles.inputContainer}>
       <View style={styles.countryContainer}>
        
-       <View style={{height:60,width:105,flexDirection:'row',justifyContent:'space-around',alignItems:"center",backgroundColor:'#F0F0F0'}}>
+       <TouchableOpacity onPress={() => this.picker.openModal() } style={{height:60,width:105,flexDirection:'row',justifyContent:'space-around',alignItems:"center",backgroundColor:'#F0F0F0'}}>
         <CountryPicker
-        
+          ref={ref => (this.picker = ref)}
           countryList={NORTH_AMERICA}
           onChange={value => {
             this.setState({ cca2: value.cca2, callingCode: value.callingCode })
@@ -71,12 +88,23 @@ export default class Phone extends Component{
         />
         {<Text style={{fontFamily:'lato',fontSize:18,color:'#000000',marginTop:5}}>+{this.state.callingCode}</Text>}
         <Image style={styles.triangle} source={require('@images/LoginScreen/triangle.png')}/>
-        </View> 
+        </TouchableOpacity> 
           
         
       </View>
       <View style={styles.input}>
-        <Input keyboardType = { "phone-pad" }  onChangeText={(text) => this.setState({text,color:'white',disabled:false,backgroundColor:'#FF4273'})}/>
+            <Input value={this.state.text} style={{marginTop:7}} keyboardType = { "phone-pad" }  onChangeText={(text) => this.setState({text,color:'white',disabled:false,backgroundColor:'#FF4273'})}/>
+            <TouchableOpacity style={styles.imageContainer} 
+                                    onPress={()=>{
+                                        this.setState({
+                                        text:'',
+                                        
+                                    })
+                                }}>
+
+              <Image style={styles.crossImage} source={require('@images/LoginScreen/cross.png')}/>
+                        
+            </TouchableOpacity>
       </View>
       </View>
       <Button onPress={()=>{

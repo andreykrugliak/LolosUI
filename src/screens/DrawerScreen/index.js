@@ -10,12 +10,26 @@ export default class DrawerScreen extends Component{
         return(
             <View style={styles.flex}>
             <View style={styles.header}>
-                <Image style={styles.leftIcon} source={require('@images/DrawerScreen/left.png')}/>
+                <TouchableOpacity onPress={()=>{this.props.navigator.toggleDrawer({
+      
+      side: 'left',
+      
+  to:'close',
+  
+      
+})}} style={styles.leftIconContainer}>
+                    <Image style={styles.leftIcon} source={require('@images/DrawerScreen/left.png')}/>
+                </TouchableOpacity>
+                
                 <Text style={styles.headerText}>LOLO'S</Text>
-                <Image style={styles.rightIcon} source={require('@images/DrawerScreen/right.png')}/>
+                <TouchableOpacity style={styles.rightIconContainer}>
+                    <Image style={styles.rightIcon} source={require('@images/DrawerScreen/right.png')}/>
+                </TouchableOpacity>
+                
             </View>
 
-            <Image style={styles.imageBg} source={require('@images/DrawerScreen/bg.png')}/>
+            {/* <Image style={styles.imageBg} source={require('@images/DrawerScreen/bg.jpg')}/> */}
+            
                 <View style={styles.drawerContainer}>
                 <TouchableOpacity>
                     <Text style={styles.drawerInnerText}>My Profile</Text>

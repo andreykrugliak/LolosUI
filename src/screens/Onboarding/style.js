@@ -3,7 +3,8 @@ let windowWidth= Dimensions.get('window').width
 let windowHeight= Dimensions.get('window').height
 export default StyleSheet.create({
     container:{
-        //flex:1,
+        zIndex:1000,
+        backgroundColor:'white',
         height:windowHeight
         //zIndex:1000,
     },

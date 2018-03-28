@@ -10,7 +10,7 @@ export default class ButtonExample extends Component {
     componentWillMount(){
         this.initialPosition = new Animated.ValueXY({ x : 0, y : windowHeight-141 });
         Animated.spring(this.initialPosition,{
-            toValue :{ x : 0, y : ((windowHeight)-200)},
+            toValue :{ x : 0, y : ((windowHeight)-220)},
             
             easing:Easing.bounce
         }).start();

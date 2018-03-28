@@ -2,6 +2,10 @@ import React,{Component} from 'react';
 import {Container, Header, Content, Footer, FooterTab, Button, Text, Icon, Body, Right, Left, Card, Badge, CardItem} from 'native-base';
 import {View,Dimensions,Image} from 'react-native';
 import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
+import Swiper from 'react-native-swiper';
+var WindowWidth = Dimensions.get('window').width
+var WindowHeight = Dimensions.get('window').height
+
 import styles from './style'
 const initialLayout = {
     height: 0,
@@ -16,25 +20,72 @@ const initialLayout = {
       Image5:require('@images/HomePage/DeactiveTabs.png'),
       Image6:require('@images/HomePage/DeactiveHome.png'),
   }
-  const FirstRoute = () => <Content>
-  <View style={[styles.middlePart,{ flex:1}]}>
-      <Card>
-          <CardItem>
-              <Left>
-                  <Body>
-                      <Text style={styles.cardWelcomeText}>Welcome!</Text>
-                      <Text style={styles.cardMessage}>to a world of new opportunities</Text>
-                  </Body>
-              </Left>
-          </CardItem>
-          <CardItem cardBody>
-              <Image source={require('@images/HomePage/image.jpg')} style={styles.cardImage}/>
-          </CardItem>
-      </Card>            
-  </View>
-</Content>;
+  const FirstRoute = () =>  {
+  
+    return (
+        <Swiper style={styles.wrapper} showsPagination={false} showsButtons={false} loop={false} > 
 
+            <View style={styles.slide1}>
+                <Image style={[styles.topImage]}
+                    source={require('@images/HomePage/em_10.png')}/>
+                <Text style={styles.titleSlide1}>Congratulations</Text>
+                <Text style={[styles.tagLine]}>your first 20 lolo’s are on their way, Stay Tune…</Text>
+                <View style={[styles.swipeTextView]}>
+                    <Image style={[styles.leftArrow]} 
+                    source = {require('@images/HomePage/Arrow.png')}/>
+                    <Text style={[styles.swipeText]}>swipe</Text>
+                    <Image style={[styles.rightArrow]}
+                    source = {require('@images/HomePage/Arrow.png')}/>
+                </View>
+            </View>
 
+            <View style={styles.slide1}>
+                <Text style={styles.title}>Invite Freinds</Text>
+                <Text style={[styles.tagLine]}>on each freind get rewarded with 20 lolo’s</Text>
+                <Image style={[styles.freindsSmile]} 
+                    source={require('@images/HomePage/lolofreinds.png')}/>
+                <Text style={[styles.baseLine]}>2 invites per day</Text>
+                <Button style={[styles.inviteFreinds]}>
+                    <Text style={[styles.buttonTextInvite]}>Invite Freinds</Text>
+                </Button>
+            </View> 
+
+            <View style={styles.slide1}>
+                <Text style={styles.tagLine}>you can see and manage all your lolo’s in your</Text>
+                <Text style={styles.titleSWallte}>Smart Wallet</Text>
+                <Image  style={{alignSelf:'center',height:180,marginTop:40}}
+                source={require('@images/HomePage/emojis1.png')}/>
+                <Button style={[styles.lookButton]}>
+                        <Text style={[styles.buttonTextInvite]}>Take a Look</Text>
+                </Button>
+            </View>
+
+            <View style={styles.slide1}>
+                <Text style={styles.title}>Buy Online</Text>
+                <Text style={styles.tagLine}>just like the grownups do in our awesome marketplace </Text>
+                <Image style={[styles.giftImg]}
+                source={require('@images/HomePage/lologift.png')}/>
+                <Button style={[styles.checkButton]}>
+                        <Text style={[styles.buttonTextInvite]}>Check It Out</Text>
+                </Button>
+            </View>
+
+            <View style={styles.slide1}>
+            <Text style={styles.title}>Help Our Mailman</Text>
+            <Text style={styles.tagLine}>set up address before you shop in our marketplace </Text>
+            <Image style={[styles.manImg]}
+                source={require('@images/HomePage/lolomailman.png')}/>
+            <Button style={[styles.setUpButton]}>
+                    <Text style={[styles.buttonTextInvite]}>Set Up Address</Text>
+                </Button>
+            </View>
+            </Swiper>
+    )
+}
+    
+  
+
+     
   export default class TabViewExample extends React.Component {
     static navigatorStyle = {
         navBarHidden:true
@@ -71,12 +122,18 @@ const initialLayout = {
         '2':FirstRoute
     });
     
+  
         render() {
+            console.log('width:',WindowWidth)
+            console.log('Height :',WindowHeight)
             return (
                 <Container style={{flex:1}}>
                 <Header style={styles.headerStyle}>
                     <Left style={styles.headerLeftSide}>
-                        <Button transparent>
+                        <Button onPress={()=>{this.props.navigator.toggleDrawer({
+                            side: 'left',
+                            to:'open',
+                        })}} transparent>
                             <Image source={require('@images/HomePage/MenuBlack.png')}></Image>
                         </Button>
                     </Left>
@@ -95,9 +152,10 @@ const initialLayout = {
                         </Button>
                     </Right>
                 </Header>
-                <TabViewAnimated
                 
+                <TabViewAnimated
                 style={{flex: 1}}
+                swipeEnabled={false}
                 navigationState={this.state}
                 renderScene={this._renderScene}
                 renderFooter={this._renderHeader}
