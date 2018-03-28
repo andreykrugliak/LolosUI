@@ -53,7 +53,7 @@ const initialLayout = {
             <View style={styles.slide1}>
                 <Text style={styles.tagLine}>you can see and manage all your lolo’s in your</Text>
                 <Text style={styles.titleSWallte}>Smart Wallet</Text>
-                <Image  style={{alignSelf:'center',height:180,marginTop:40}}
+                <Image  style={[styles.emojiGroup]}
                 source={require('@images/HomePage/emojis1.png')}/>
                 <Button style={[styles.lookButton]}>
                         <Text style={[styles.buttonTextInvite]}>Take a Look</Text>
@@ -130,10 +130,12 @@ const initialLayout = {
                 <Container style={{flex:1}}>
                 <Header style={styles.headerStyle}>
                     <Left style={styles.headerLeftSide}>
-                        <Button onPress={()=>{this.props.navigator.toggleDrawer({
-                            side: 'left',
-                            to:'open',
-                        })}} transparent>
+                        <Button transparent onPress={()=>{
+                            this.props.navigator.toggleDrawer({
+                                side:'left',
+                                to:'open'
+                            })
+                        }}>
                             <Image source={require('@images/HomePage/MenuBlack.png')}></Image>
                         </Button>
                     </Left>
