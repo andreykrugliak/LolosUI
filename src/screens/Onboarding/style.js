@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet,Platform, Dimensions} from 'react-native';
 let windowWidth= Dimensions.get('window').width
 let windowHeight= Dimensions.get('window').height
 export default StyleSheet.create({
@@ -10,10 +10,11 @@ export default StyleSheet.create({
     },
     logo:{
         height:68,
-        marginHorizontal:88,
+        //marginHorizontal:88,
         resizeMode:'contain',
         marginTop:68,
-        width:200
+        width:200,
+        alignSelf:'center'
     },
     shoppingText:{
         color:'#000000',
@@ -54,15 +55,24 @@ export default StyleSheet.create({
         bottom:176
     },
     footerImage:{
-       
+        
         position:'absolute',
         bottom:0,
-      
-        left:0,
-        right:0,
-        height:80,
-        width:windowWidth
+        width:windowWidth,
+        ...Platform.select({
+            ios:{
+                height:0.21066666666*windowWidth,
+            },
+            android:{
+                resizeMode:'contain',
+                height:0.3*windowWidth,
+            }
+        })
+        
+       
+        
     },
+   
     
     wallet:{
         position:'absolute',

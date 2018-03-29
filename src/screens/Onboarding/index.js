@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import {View , Image,Text,TouchableOpacity, ImageBackground} from 'react-native'
+import {View , Image,Text,TouchableOpacity,Dimensions, ImageBackground} from 'react-native'
 import styles from './style'
 import Swiper from 'react-native-swiper';
 import {Button} from 'native-base'
+let windowWidth= Dimensions.get('window').width
 export default class Onboarging extends Component {
     static navigatorStyle = {
       navBarHidden:true
@@ -14,7 +15,8 @@ export default class Onboarging extends Component {
                 <Text style={styles.loloText}>Earn Lolo's</Text>
                 <Text style={styles.featureText}>with special features inside app</Text>
                 <Image style={styles.arrowImage} source={require('@images/Onboarding/ArrowImage.png')}/>
-            <Image style={styles.footerImage} source={require('@images/Onboarding/footer.png')}/>
+                <Image style={styles.footerImage} source={require('@images/Onboarding/footer.png')}/>
+            
         </View>
         )
     }

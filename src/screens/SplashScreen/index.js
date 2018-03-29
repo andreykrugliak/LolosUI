@@ -1,9 +1,10 @@
 import {Container,Button, Content} from 'native-base';
 import React, { Component } from 'react';
-import { Image, View, Easing, Animated, TouchableWithoutFeedback, Dimensions, Text} from 'react-native';
+import { Image, View, Easing, Animated, TouchableWithoutFeedback,TouchableOpacity, Dimensions, Text} from 'react-native';
 import styles from './style'
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
+
 import LinearGradient from 'react-native-linear-gradient';
 export default class ButtonExample extends Component {
     
@@ -23,7 +24,7 @@ export default class ButtonExample extends Component {
                   <Text style={styles.ShoppingText}>Shopping online made fun</Text>
 
                   <LinearGradient style={styles.linerButton} colors={['#F5317F', '#FF7C6E']} >
-                        <Button onPress={()=>{
+                        <TouchableOpacity onPress={()=>{
                   this.props.navigator.push({
                     screen:'app.Onboarding',
                     animationType:"slide-horizontal"
@@ -31,7 +32,7 @@ export default class ButtonExample extends Component {
                   
                   }} style={styles.ButtonView}>
                             <Text style={styles.ButtonText}>Crete Account</Text>
-                        </Button>
+                        </TouchableOpacity>
                   </LinearGradient>
 
                   <Button onPress={()=>{

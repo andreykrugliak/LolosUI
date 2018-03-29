@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions} from 'react-native'
+import {StyleSheet, Platform,Dimensions} from 'react-native'
 let windowWidth= Dimensions.get('window').width
 let windowHeight=Dimensions.get('window').height
 export default StyleSheet.create({
@@ -63,19 +63,25 @@ export default StyleSheet.create({
         backgroundColor:'white',
         height:windowHeight-80,
         shadowOffset:{  width: 1,  height: 1  },
-shadowColor: 'black',
-shadowOpacity: 1.0,
+        shadowColor: 'black',
+        shadowOpacity: 1.0,
         //borderRightWidth:1,
         
     },
     footerImage:{
-        height:120,
-        width:windowWidth,
         position:'absolute',
-        left:0,
-        right:0,
         bottom:0,
-        //resizeMode:'stretch'
+        width:windowWidth,
+        ...Platform.select({
+            ios:{
+                height:0.30*windowWidth,
+            },
+            android:{
+                resizeMode:'contain',
+                height:0.36*windowWidth,
+            }
+        })
+        
 
     },
     line:{

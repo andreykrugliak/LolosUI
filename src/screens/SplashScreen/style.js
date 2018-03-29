@@ -17,7 +17,9 @@ export default StyleSheet.create({
         height:60,
         marginHorizontal:30,
         marginTop:20,
-        borderRadius:3
+        
+        borderRadius:3,
+        
     },
     ButtonView:{
         backgroundColor:'transparent',

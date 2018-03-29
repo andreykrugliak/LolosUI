@@ -56,42 +56,47 @@ export default StyleSheet.create({
         overflow:"hidden"
     },
     titleSlide1:{
-        marginTop:149,
-        fontSize:34,
+        marginTop:WindowHeight<= iphone5s?125:WindowHeight <= android?120:149,
+        fontSize:WindowHeight <= android?25:34,
         fontFamily:"Patua One",
         textAlign:"center",
         color: "#FF4273"
     },
+    emojiGroup:{
+        alignSelf:'center',
+        height:180,
+        marginTop:WindowHeight<= iphone5s?20:WindowHeight <= android?35:40
+    },
     title:{
-        marginTop:33,
-        fontSize:34,
+        marginTop:WindowHeight<= iphone5s?20:33,
+        fontSize:WindowHeight <= android?24:34,
         fontFamily:"Patua One",
         textAlign:"center",
         color: "#FF4273"
     },
     titleSWallte:{
         marginTop:22,
-        fontSize:34,
+        fontSize:WindowHeight <= android?24:34,
         fontFamily:"Patua One",
         textAlign:"center",
         color: "#FF4273"   
     },
         tagLine:{
         paddingHorizontal:20,
-        marginTop:22,
+        marginTop:WindowHeight<= iphone5s?15:22,
         color: "#000000",	
         textAlign:'center',
         fontFamily:"Lato",	
-        fontSize:22
+        fontSize:WindowHeight <= android? 15:22
     },
     giftImg:{
-        marginTop:63,
+        marginTop:WindowHeight<= iphone5s?30:WindowHeight <= android?43:63,
         alignSelf:'center',
         height:160,
         width:190,
     },
     manImg:{
-        marginTop:54,
+        marginTop:WindowHeight<= iphone5s?25:WindowHeight <= android?38:54,
         alignSelf:'center',
         height:150,
         width:130,
@@ -107,16 +112,16 @@ export default StyleSheet.create({
         
     },
     freindsSmile:{   
-        marginTop:50,
+        marginTop:WindowHeight <= android?30:50,
         alignSelf:'center',
-        height:90,
-        width:166,
+        height:95,
+        width:173,
     },
     baseLine:{
-        marginTop:50,
+        marginTop:WindowHeight<= iphone5s? 30:WindowHeight <= android?45:50,
         color:"#9B9B9B",	
         fontFamily:"Lato",
-        fontSize:14,		
+        fontSize:WindowHeight <= android?12:14,		
         textAlign: "center"
     },
     inviteFreinds:{
@@ -145,7 +150,7 @@ export default StyleSheet.create({
         backgroundColor: "#FFFFFF",
     },
     checkButton:{
-        marginTop:32.07,
+        marginTop:WindowHeight<= iphone5s?13:WindowHeight <= android?20:32.07,
         marginHorizontal:73,
         height:60,
         width:189,
@@ -158,7 +163,7 @@ export default StyleSheet.create({
         backgroundColor: "#FFFFFF",
     },
     setUpButton:{
-        marginTop:52,
+        marginTop:WindowHeight<= iphone5s?26:WindowHeight <= android?35:52,
         marginHorizontal:73,
         height:60,
         width:189,
@@ -171,13 +176,13 @@ export default StyleSheet.create({
         backgroundColor: "#FFFFFF",
     },
     buttonTextInvite:{
-        fontSize:18,
+        fontSize:WindowHeight <= android?14:18,
         color:"#FF4273",
         textAlign:'center',
         fontFamily:"Lato"
     },
     swipeTextView:{
-       marginTop:134,
+       marginTop: WindowHeight <= android?90:134,
         flexDirection:'row',
         alignSelf:'center',
         justifyContent:'center',

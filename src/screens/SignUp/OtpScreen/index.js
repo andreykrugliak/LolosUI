@@ -27,7 +27,7 @@ export default class OtpScreen extends Component{
                 <Text style={styles.codeHeader}>Enter your code</Text>
 
                 <View style={styles.textInput}>
-                    <Input value={this.state.text} style={{marginLeft:16}} keyboardType = { "phone-pad" } onChangeText={(text) => this.setState({text})}/>
+                    <Input value={this.state.text} style={{marginLeft:16}}  returnKeyType='done' keyboardType = { "numeric" } onChangeText={(text) => this.setState({text})}/>
                     <TouchableOpacity onPress={()=>{
                         this.setState({
                             text:''

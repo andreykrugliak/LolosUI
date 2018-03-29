@@ -3,7 +3,7 @@ import React,{Component} from 'react'
 import { StyleSheet,
   Text,
   View,
-  StatusBarIOS,Image,TouchableOpacity
+  StatusBarIOS,Image,TouchableOpacity,TouchableWithoutFeedback
 } from 'react-native'
 import CountryPicker, {
   getAllCountries
@@ -11,7 +11,7 @@ import CountryPicker, {
 import {Input,Button} from 'native-base'
 import styles from './style'
 import { LoloLogoComponent } from '../../../components/LolologoComponent/index';
-const NORTH_AMERICA = ['CA','AF',"AL",'IN', 'MX', 'US','AF','AX']
+const COUNTRY_LIST = ['CA','AF',"AL",'DZ','IN', 'MX', 'US','AF','AX']
 
 export default class Phone extends Component{
 
@@ -21,17 +21,17 @@ export default class Phone extends Component{
   constructor(props) {
     //StatusBarIOS.setHidden(true)
     super(props)
-    let userLocaleCountryCode = '91'
+    let userLocaleCountryCode = '1'
     const userCountryData = getAllCountries()
-      .filter(country => NORTH_AMERICA.includes(country.cca2))
+      .filter(country => COUNTRY_LIST.includes(country.cca2))
       .filter(country => country.cca2 === userLocaleCountryCode)
       .pop()
     console.log(userCountryData)
     let callingCode = null
     let cca2 = userLocaleCountryCode
     if (!cca2 || !userCountryData) {
-      cca2 = 'IN'
-      callingCode = '91'
+      cca2 = 'US'
+      callingCode = '1'
     } else {
       callingCode = userCountryData.callingCode
     }
@@ -51,7 +51,7 @@ export default class Phone extends Component{
     
       <CountryPicker
         
-          countryList={NORTH_AMERICA}
+          
           onChange={value => {
             this.setState({ cca2: value.cca2, callingCode: value.callingCode })
             
@@ -76,7 +76,7 @@ export default class Phone extends Component{
        <TouchableOpacity onPress={() => this.picker.openModal() } style={{height:60,width:105,flexDirection:'row',justifyContent:'space-around',alignItems:"center",backgroundColor:'#F0F0F0'}}>
         <CountryPicker
           ref={ref => (this.picker = ref)}
-          countryList={NORTH_AMERICA}
+          
           onChange={value => {
             this.setState({ cca2: value.cca2, callingCode: value.callingCode })
             
@@ -93,7 +93,9 @@ export default class Phone extends Component{
         
       </View>
       <View style={styles.input}>
-            <Input value={this.state.text} style={{marginTop:7}} keyboardType = { "phone-pad" }  onChangeText={(text) => this.setState({text,color:'white',disabled:false,backgroundColor:'#FF4273'})}/>
+            
+                <Input  value={this.state.text} style={{marginTop:7}}  returnKeyType='done' keyboardType="numeric"  onChangeText={(text) => this.setState({text,color:'white',disabled:false,backgroundColor:'#FF4273'})}/>
+            
             <TouchableOpacity style={styles.imageContainer} 
                                     onPress={()=>{
                                         this.setState({
