@@ -48,7 +48,7 @@ export default class Onboarging extends Component {
                 <Image style={styles.threeSmile} source={require('@images/Onboarding/three.png')}/>
                 <Text style={styles.startText}>Let’s start!</Text>
                 <Text style={styles.featureText}>Sign up now and get your first 20 lolo’s</Text>
-                <Button onPress={()=>{
+                <TouchableOpacity onPress={()=>{
                   this.props.navigator.push({
                     screen:'app.SignUp',
                     animationType:"slide-horizontal"
@@ -56,7 +56,7 @@ export default class Onboarging extends Component {
                   
                   }} style={styles.buttonView}>
                     <Text style={styles.buttonText}>Sign Up</Text>
-                </Button>
+                </TouchableOpacity>
                 <View style={styles.footerTextView}>
                         <Text style={styles.footerText}>By signing up, you agree to the </Text> 
                             <TouchableOpacity>

@@ -49,9 +49,9 @@ export default class SignUp extends Component{
                         date={this.state.date}
                         mode="date"
                         placeholder=" "
-                        format="DD MMM YYYY"
-                        minDate="01-01-1950"
-                        maxDate="31-12-2015"
+                        format="DD MMMM YYYY"
+                        minDate="01 JANUARY 1950"
+                        maxDate="31 DECEMBER 2015"
                         confirmBtnText="confirm"
                         cancelBtnText="cancel"
                         onDateChange={(date) => {

@@ -6,12 +6,15 @@ export default StyleSheet.create({
     },
     touchable:{
         position:'absolute',
-        left:32,
-        top:52
+        left:12,
+        top:22
     },
     backImage:{
         height:16,
         width:8,
+        marginTop:30,
+        marginLeft:20,
+        
         
     },
     loloImage:{

@@ -125,7 +125,7 @@ export default StyleSheet.create({
         textAlign: "center"
     },
     inviteFreinds:{
-        marginTop:15,
+        marginTop:50,
         marginHorizontal:73,
         height:60,
         width:189,

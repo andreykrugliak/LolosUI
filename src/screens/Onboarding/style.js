@@ -1,18 +1,21 @@
 import {StyleSheet,Platform, Dimensions} from 'react-native';
-let windowWidth= Dimensions.get('window').width
-let windowHeight= Dimensions.get('window').height
+
+
+let WindowWidth= Dimensions.get('window').width
+let WindowHeight= Dimensions.get('window').height
+const iphone5s = 568
 export default StyleSheet.create({
     container:{
         zIndex:1000,
         backgroundColor:'white',
-        height:windowHeight
+        height:WindowHeight
         //zIndex:1000,
     },
     logo:{
         height:68,
         //marginHorizontal:88,
         resizeMode:'contain',
-        marginTop:68,
+        marginTop:WindowHeight<= iphone5s?58:68,
         width:200,
         alignSelf:'center'
     },
@@ -20,30 +23,30 @@ export default StyleSheet.create({
         color:'#000000',
         fontFamily:'lato',
         fontWeight:'900',
-        fontSize:18,
+        fontSize:WindowHeight<= iphone5s?14:18,
         alignSelf:'center',
-        marginTop:13
+        marginTop:WindowHeight<= iphone5s?10:13
     },
     homeLogo:{
         height:40,
         width:40,
         resizeMode:'contain',
         alignSelf:'center',
-        marginTop:82
+        marginTop:WindowHeight<= iphone5s?62:82
     },
     loloText:{
         color:'#FF4273',
-        fontSize:34,
+        fontSize:WindowHeight<= iphone5s?24:34,
         alignSelf:'center',
         fontFamily:"PatuaOne-Regular",
-        marginTop:24
+        marginTop:WindowHeight<= iphone5s?20:24
     },
     featureText:{
         color:'#000000',
         fontFamily:"lato",
         textAlign:'center',
-        fontSize:22,
-        marginHorizontal:32,
+        fontSize:WindowHeight<= iphone5s?18:22,
+        
         flexWrap:'wrap'
     },
     arrowImage:{
@@ -52,20 +55,20 @@ export default StyleSheet.create({
         width:24,
         resizeMode:'contain',
         position:'absolute',
-        bottom:176
+        bottom:WindowHeight<= iphone5s?140:176
     },
     footerImage:{
         
         position:'absolute',
         bottom:0,
-        width:windowWidth,
+        width:WindowWidth,
         ...Platform.select({
             ios:{
-                height:0.21066666666*windowWidth,
+                height:0.21066666666*WindowWidth,
             },
             android:{
                 resizeMode:'contain',
-                height:0.3*windowWidth,
+                height:0.3*WindowWidth,
             }
         })
         
@@ -77,9 +80,8 @@ export default StyleSheet.create({
     wallet:{
         position:'absolute',
         alignSelf:'center',
-        
         resizeMode:'contain',
-        bottom:78,
+        bottom:WindowHeight<= iphone5s?40:78,
         height:165
     },
     smiley:{
@@ -87,20 +89,20 @@ export default StyleSheet.create({
         width:120,
         alignSelf:'center',
         position:'absolute',
-        bottom:105
+        bottom:WindowHeight<= iphone5s?80:105
     },
     threeSmile:{
         height:50,
         alignSelf:'center',
         width:123,
-        marginTop:77
+        marginTop:WindowHeight<= iphone5s?67:77
     },
     startText:{
         color:'#FF4273',
-        fontSize:34,
+        fontSize:WindowHeight<= iphone5s?28:34,
         alignSelf:'center',
         fontFamily:"PatuaOne-Regular",
-        marginTop:24
+        marginTop:WindowHeight<= iphone5s?20:24
     },
     buttonView:{
         justifyContent:'center',
@@ -111,9 +113,9 @@ export default StyleSheet.create({
         borderWidth:1,
         height:60,
         backgroundColor:'white',
-        width:windowWidth-186,
+        width:WindowWidth-186,
         position:'absolute',
-        bottom:133
+        bottom:WindowHeight<= iphone5s?112:133
     },
     buttonText:{
         color:'#FF4273',

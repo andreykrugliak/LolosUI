@@ -2,19 +2,26 @@ import { AppRegistry, Dimensions } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { registerScreens } from '@screens/index';
 let windowWidth = Dimensions.get('window').width
+
 registerScreens();
 Navigation.startSingleScreenApp({
     screen:{
-        screen:'app.Phone',
+        screen:'app.LandingScreen',
     },
     drawer:{
         left:{
             screen:'app.DrawerScreen',
-            fixedWidth:windowWidth*3
+            //fixedWidth:windowWidth*2,
+           
         },
         style: {
-            leftDrawerWidth: 100,
+            leftDrawerWidth: 80,
+            
           }
     },
     animationType: 'slide-down',
+    
+   appStyle:{
+       orientation: 'portrait'
+    }
 })

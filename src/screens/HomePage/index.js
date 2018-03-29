@@ -23,7 +23,7 @@ const initialLayout = {
   const FirstRoute = () =>  {
   
     return (
-        <Swiper style={styles.wrapper} showsPagination={false} showsButtons={false} loop={false} > 
+        <Swiper style={styles.wrapper} showsPagination={false} showsButtons={false} loop={true} > 
 
             <View style={styles.slide1}>
                 <Image style={[styles.topImage]}
