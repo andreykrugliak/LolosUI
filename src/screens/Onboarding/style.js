@@ -21,7 +21,7 @@ export default StyleSheet.create({
     },
     shoppingText:{
         color:'#000000',
-        fontFamily:'lato',
+        fontFamily:'Lato-Regular',
         fontWeight:'900',
         fontSize:WindowHeight<= iphone5s?14:18,
         alignSelf:'center',
@@ -119,7 +119,7 @@ export default StyleSheet.create({
     },
     buttonText:{
         color:'#FF4273',
-        fontFamily:'lato',
+        fontFamily:'Lato-Regular',
         fontSize:18,
         fontWeight:"900"
     },
@@ -136,7 +136,7 @@ export default StyleSheet.create({
     },
     footerText:{
         
-        fontFamily:'lato',
+        fontFamily:'Lato-Regular',
         fontSize:14,
     }
 })

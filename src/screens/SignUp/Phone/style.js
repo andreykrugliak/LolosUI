@@ -6,13 +6,13 @@ export default StyleSheet.create({
         marginTop:52,
         textAlign:'center',
         color:'black',
-        fontFamily:'lato',
+        fontFamily:'Lato-Regular',
         fontSize:22
     },
     alert:{
         marginTop:3,
         color:'#9B9B9B',
-        fontFamily:'lato',
+        fontFamily:'Lato-Regular',
         fontSize:14,
         textAlign:'center'
     },
@@ -60,7 +60,7 @@ export default StyleSheet.create({
     buttonText:{
         fontSize:20,
        
-        fontFamily:'lato'
+        fontFamily:'Lato-Regular'
     },
     buttonContainer:{
         justifyContent:'center',

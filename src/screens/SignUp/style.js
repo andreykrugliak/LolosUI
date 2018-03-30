@@ -9,12 +9,12 @@ export default StyleSheet.create({
         marginTop:52,
         textAlign:'center',
         color:'black',
-        fontFamily:'lato',
+        fontFamily:'Lato-Regular',
         fontSize:22
     },
     bdayAlert:{
         color:'#9B9B9B',
-        fontFamily:'lato',
+        fontFamily:'Lato-Regular',
         fontSize:14,
         textAlign:'center'
     },
@@ -37,7 +37,7 @@ export default StyleSheet.create({
     },
     buttonText:{
         //color:'#CCCCCC',
-        fontFamily:'lato',
+        fontFamily:'Lato-Regular',
         fontSize:20,
         fontWeight:'900'
     },

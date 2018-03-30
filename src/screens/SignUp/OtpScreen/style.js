@@ -8,7 +8,7 @@ export default StyleSheet.create({
     codeHeader:{
         color:'#000000',
         fontSize:22,
-        fontFamily:'lato',
+        fontFamily:'Lato-Regular',
         marginTop:180,
         alignSelf:'center'
     },
@@ -30,13 +30,13 @@ export default StyleSheet.create({
         color:'#FF4273',
         marginTop:18,
         alignSelf:'center',
-        fontFamily:'lato',
+        fontFamily:'Lato-Regular',
         fontSize:16
     },
     buttonText:{
         fontSize:20,
        color:'white',
-        fontFamily:'lato'
+        fontFamily:'Lato-Regular'
     },
     buttonContainer:{
         justifyContent:'center',

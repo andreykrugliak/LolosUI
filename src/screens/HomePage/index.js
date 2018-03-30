@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
-import {Container, Header, Content, Footer, FooterTab, Button, Text, Icon, Body, Right, Left, Card, Badge, CardItem} from 'native-base';
-import {View,Dimensions,Image} from 'react-native';
+import {Container, Header, Content, Footer, FooterTab, Button, Text, Icon, Body, Right, Left,Title, Card, Badge, CardItem} from 'native-base';
+import {View,Dimensions,Image,TouchableOpacity} from 'react-native';
 import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
 import Swiper from 'react-native-swiper';
 var WindowWidth = Dimensions.get('window').width
@@ -45,9 +45,9 @@ const initialLayout = {
                 <Image style={[styles.freindsSmile]} 
                     source={require('@images/HomePage/lolofreinds.png')}/>
                 <Text style={[styles.baseLine]}>2 invites per day</Text>
-                <Button style={[styles.inviteFreinds]}>
+                <TouchableOpacity style={[styles.inviteFreinds]}>
                     <Text style={[styles.buttonTextInvite]}>Invite Freinds</Text>
-                </Button>
+                </TouchableOpacity>
             </View> 
 
             <View style={styles.slide1}>
@@ -55,9 +55,9 @@ const initialLayout = {
                 <Text style={styles.titleSWallte}>Smart Wallet</Text>
                 <Image  style={[styles.emojiGroup]}
                 source={require('@images/HomePage/emojis1.png')}/>
-                <Button style={[styles.lookButton]}>
+                <TouchableOpacity style={[styles.lookButton]}>
                         <Text style={[styles.buttonTextInvite]}>Take a Look</Text>
-                </Button>
+                </TouchableOpacity>
             </View>
 
             <View style={styles.slide1}>
@@ -65,9 +65,9 @@ const initialLayout = {
                 <Text style={styles.tagLine}>just like the grownups do in our awesome marketplace </Text>
                 <Image style={[styles.giftImg]}
                 source={require('@images/HomePage/lologift.png')}/>
-                <Button style={[styles.checkButton]}>
+                <TouchableOpacity style={[styles.checkButton]}>
                         <Text style={[styles.buttonTextInvite]}>Check It Out</Text>
-                </Button>
+                </TouchableOpacity>
             </View>
 
             <View style={styles.slide1}>
@@ -75,9 +75,9 @@ const initialLayout = {
             <Text style={styles.tagLine}>set up address before you shop in our marketplace </Text>
             <Image style={[styles.manImg]}
                 source={require('@images/HomePage/lolomailman.png')}/>
-            <Button style={[styles.setUpButton]}>
+            <TouchableOpacity style={[styles.setUpButton]}>
                     <Text style={[styles.buttonTextInvite]}>Set Up Address</Text>
-                </Button>
+                </TouchableOpacity>
             </View>
             </Swiper>
     )
@@ -139,9 +139,11 @@ const initialLayout = {
                             <Image source={require('@images/HomePage/MenuBlack.png')}></Image>
                         </Button>
                     </Left>
-                    <Body>
-                        <Text style={styles.headerText}>Header Title</Text>
+
+                    <Body style={styles.centerLogo}>
+                        <Title style={styles.headerText}>LOLO'S</Title>
                     </Body>
+
                     <Right>
                         <Button transparent >
                             <Badge style={[styles.badgeStyle]}>

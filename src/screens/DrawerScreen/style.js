@@ -1,4 +1,5 @@
 import {StyleSheet, Platform,Dimensions} from 'react-native'
+import { isIphoneX, ifIphoneX } from 'react-native-iphone-x-helper'
 let windowWidth= Dimensions.get('window').width
 let windowHeight=Dimensions.get('window').height
 export default StyleSheet.create({
@@ -7,20 +8,39 @@ export default StyleSheet.create({
         backgroundColor:'white'
     },
     header:{
-        height:80,
-        alignItems:'center',
-        justifyContent:'center',
-        borderBottomColor:'black',
-        borderBottomWidth:1
+        ...ifIphoneX({
+            height:106,
+            
+            
+        },{
+            height:80,
+            alignItems:'center',
+       justifyContent:'center',
+        }),
+        
+        
+        borderBottomColor:'#fff',
+        borderBottomWidth:StyleSheet.hairlineWidth
     },
     headerText:{
         fontSize:16,
         fontFamily:'lato-bold',
-        color:'#000000'
+        color:'#000000',
+        ...ifIphoneX({
+            marginTop:56,
+            textAlign:'center',
+            zIndex:0
+        })
 
     },
     leftIconContainer:{
-        top:30,
+        ...ifIphoneX({
+            top:56,
+            zIndex:1
+        },{
+            top:30,
+        
+        }),
         left:24,
         position:'absolute',
     },
@@ -30,51 +50,36 @@ export default StyleSheet.create({
        
 
     },
-    rightIcon:{
-        height:24,
-        width:24,
-        
-    },
-    rightIconContainer:{
-        position:'absolute',
-        right:27,
-        top:30
-    },
-    imageBg:{
-        //marginHorizontal:20,
-        height:windowHeight-80,
-        width:windowWidth,
-        opacity:0.5,
-        position:'absolute',
-        top:80
-       // marginTop:20,
-        
-       
-    },
+    
     drawerInnerText:{
         marginLeft:21,
         color:'#000000',
-        fontFamily:'lato',
+        fontFamily:'Lato-Regular',
         fontSize:16,
         marginTop:23
     },
     drawerContainer:{
         width:windowWidth,
         backgroundColor:'white',
-        height:windowHeight-80,
-        shadowOffset:{  width: 1,  height: 1  },
-        shadowColor: 'black',
-        shadowOpacity: 1.0,
-        //borderRightWidth:1,
+        ...ifIphoneX({
+            height:windowHeight-106
+        },{
+            height:windowHeight-80,
+        })
+        
+        
         
     },
     footerImage:{
         position:'absolute',
         bottom:0,
-        width:windowWidth,
+        left:0,
+        right:0,
+        width:windowWidth-60,
         ...Platform.select({
             ios:{
-                height:0.30*windowWidth,
+                height:0.25*windowWidth,
+                //resizeMode:'contain'
             },
             android:{
                 resizeMode:'contain',
@@ -90,15 +95,6 @@ export default StyleSheet.create({
         width:windowWidth,
         marginTop:21
     },
-    footerBg:{
-        height:70,
-        
-        position:'absolute',
-        bottom:0,
-        left:0,
-        right:0,
-        opacity:0.5,
-        zIndex:1
-    }
+    
 
 })

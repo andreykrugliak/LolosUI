@@ -16,7 +16,7 @@ export default StyleSheet.create({
     shoppingText:{
         textAlign:'center',
         color:'#000000',
-        fontFamily:'lato',
+        fontFamily:'Lato-Regular',
         fontSize:18,
         fontWeight:'900',
         marginTop:13
@@ -60,13 +60,13 @@ export default StyleSheet.create({
     },
     buttonText:{
         color:'#FFF',
-        fontFamily:'lato',
+        fontFamily:'Lato-Regular',
         fontSize:20,
         fontWeight:'900'
     },
     forgetPassword:{
         color:'#FF4273',
-        fontFamily:'lato',
+        fontFamily:'Lato-Regular',
         fontSize:16,
         position:'absolute',
         bottom:91,

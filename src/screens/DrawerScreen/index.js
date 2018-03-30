@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import {Text,View,Image, ImageBackground, TouchableOpacity} from 'react-native'
+import {Text,View,Image, ImageBackground, TouchableOpacity, SafeAreaView} from 'react-native'
 import styles from './style'
 
 export default class DrawerScreen extends Component{
@@ -9,26 +9,23 @@ export default class DrawerScreen extends Component{
     render(){
         return(
             <View style={styles.flex}>
+            
             <View style={styles.header}>
                 <TouchableOpacity onPress={()=>{this.props.navigator.toggleDrawer({
-      
-      side: 'left',
-      
-  to:'close',
-  
-      
-})}} style={styles.leftIconContainer}>
+                                        side: 'left',
+                                        to:'close',
+                                        })}} 
+                                        style={styles.leftIconContainer}>
+                                        
                     <Image style={styles.leftIcon} source={require('@images/DrawerScreen/left.png')}/>
                 </TouchableOpacity>
                 
                 <Text style={styles.headerText}>LOLO'S</Text>
-                <TouchableOpacity style={styles.rightIconContainer}>
-                    <Image style={styles.rightIcon} source={require('@images/DrawerScreen/right.png')}/>
-                </TouchableOpacity>
+              
                 
             </View>
 
-            {/* <Image style={styles.imageBg} source={require('@images/DrawerScreen/bg.jpg')}/> */}
+            
             
                 <View style={styles.drawerContainer}>
                 <TouchableOpacity>

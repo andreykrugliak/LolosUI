@@ -1,4 +1,4 @@
-import {StyleSheet,Dimensions} from 'react-native'
+import {StyleSheet,Dimensions,Platform} from 'react-native'
 var WindowWidth = Dimensions.get('window').width
 var WindowHeight = Dimensions.get('window').height
 const iphone5s = 568
@@ -6,7 +6,9 @@ const android = 640
 export default StyleSheet.create({
     headerText:{
         color:"#000",
-        fontSize:22,
+        fontSize:16,
+       
+        fontFamily:'Lato-Regular',
         fontWeight:"bold",
     },
     middlePart:{
@@ -86,7 +88,7 @@ export default StyleSheet.create({
         marginTop:WindowHeight<= iphone5s?15:22,
         color: "#000000",	
         textAlign:'center',
-        fontFamily:"Lato",	
+        fontFamily:'Lato-Regular',	
         fontSize:WindowHeight <= android? 15:22
     },
     giftImg:{
@@ -120,7 +122,7 @@ export default StyleSheet.create({
     baseLine:{
         marginTop:WindowHeight<= iphone5s? 30:WindowHeight <= android?45:50,
         color:"#9B9B9B",	
-        fontFamily:"Lato",
+        fontFamily:'Lato-Regular',
         fontSize:WindowHeight <= android?12:14,		
         textAlign: "center"
     },
@@ -193,7 +195,8 @@ export default StyleSheet.create({
         fontSize:18,
         color:'#FF4273',
         marginHorizontal:19,
-        textAlign:'center'
+        textAlign:'center',
+        fontFamily:'Lato-Regular'
     },
     leftArrow:{
         height:24,
@@ -217,7 +220,7 @@ export default StyleSheet.create({
         height:80
     },
     headerLeftSide:{
-        marginRight:35
+       // marginRight:35
     },
     notificationIcon:{
         height:20,
@@ -239,4 +242,9 @@ export default StyleSheet.create({
     footerLine:{
         backgroundColor:"#64B7E3",
         height:5},
+    
+        centerLogo:{
+            
+            ...Platform.OS === 'ios'?{}: {paddingLeft:WindowWidth/4 }
+        }
 })

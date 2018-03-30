@@ -86,7 +86,7 @@ export default class Phone extends Component{
           translation="eng"
           
         />
-        {<Text style={{fontFamily:'lato',fontSize:18,color:'#000000',marginTop:5}}>+{this.state.callingCode}</Text>}
+        {<Text style={{fontFamily:'Lato-Regular',fontSize:18,color:'#000000',marginTop:5}}>+{this.state.callingCode}</Text>}
         <Image style={styles.triangle} source={require('@images/LoginScreen/triangle.png')}/>
         </TouchableOpacity> 
           

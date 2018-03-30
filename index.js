@@ -11,17 +11,20 @@ Navigation.startSingleScreenApp({
     drawer:{
         left:{
             screen:'app.DrawerScreen',
-            //fixedWidth:windowWidth*2,
+            fixedWidth:0.75*(windowWidth*3),
            
         },
         style: {
-            leftDrawerWidth: 80,
-            
-          }
+            leftDrawerWidth: 75,
+            //drawerShadow:false
+          },
+          
+          disableOpenGesture: true
     },
     animationType: 'slide-down',
     
    appStyle:{
        orientation: 'portrait'
-    }
+    },
+    
 })
