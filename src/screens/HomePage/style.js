@@ -3,6 +3,7 @@ var WindowWidth = Dimensions.get('window').width
 var WindowHeight = Dimensions.get('window').height
 const iphone5s = 568
 const android = 640
+const iphone7plus = 736
 export default StyleSheet.create({
     headerText:{
         color:"#000",
@@ -57,7 +58,7 @@ export default StyleSheet.create({
         backgroundColor : '#fff',
         width:WindowWidth-40,
         ...Platform.OS=='ios'?{height:WindowHeight-190}:{height:WindowHeight-220},
-        
+        borderRadius:5,
         //marginBottom:20,
        
         
@@ -73,7 +74,9 @@ export default StyleSheet.create({
     emojiGroup:{
         alignSelf:'center',
         height:180,
-        marginTop:WindowHeight<= iphone5s?20:WindowHeight <= android?35:40
+        position:'absolute',
+        bottom:WindowHeight >=iphone7plus? 110:WindowHeight <= android?70:90,
+        //marginTop:WindowHeight<= iphone5s?20:WindowHeight <= android?35:40
     },
     title:{
         marginTop:WindowHeight<= iphone5s?20:33,
@@ -120,7 +123,7 @@ export default StyleSheet.create({
         
     },
     freindsSmile:{   
-        marginTop:WindowHeight <= android?30:50,
+        marginTop:WindowHeight <= android?50:90,
         alignSelf:'center',
         height:95,
         width:173,
@@ -133,7 +136,8 @@ export default StyleSheet.create({
         textAlign: "center"
     },
     inviteFreinds:{
-        marginTop:50,
+        position:'absolute',
+        bottom:WindowHeight >=iphone7plus? 50:WindowHeight <= android?10: 30,
         marginHorizontal:73,
         height:60,
         width:189,
@@ -145,7 +149,9 @@ export default StyleSheet.create({
         borderRadius:3,	
         backgroundColor: "#FFFFFF",
     },
-    lookButton:{
+    button:{
+        position:'absolute',
+        bottom:WindowHeight >=iphone7plus? 50:WindowHeight <= android?10: 30,
         marginHorizontal:73,
         height:60,
         width:189,
@@ -157,32 +163,7 @@ export default StyleSheet.create({
         borderRadius:3,	
         backgroundColor: "#FFFFFF",
     },
-    checkButton:{
-        marginTop:WindowHeight<= iphone5s?13:WindowHeight <= android?20:32.07,
-        marginHorizontal:73,
-        height:60,
-        width:189,
-        justifyContent:'center',
-        alignItems:'center',
-        borderWidth: 2,
-        alignSelf:'center',
-        borderColor: "#FF4273",	
-        borderRadius:3,	
-        backgroundColor: "#FFFFFF",
-    },
-    setUpButton:{
-        marginTop:WindowHeight<= iphone5s?26:WindowHeight <= android?35:52,
-        marginHorizontal:73,
-        height:60,
-        width:189,
-        alignSelf:'center',
-        justifyContent:'center',
-        alignItems:'center',
-        borderWidth: 2,
-        borderColor: "#FF4273",	
-        borderRadius:3,	
-        backgroundColor: "#FFFFFF",
-    },
+
     buttonTextInvite:{
         fontSize:WindowHeight <= android?14:18,
         color:"#FF4273",

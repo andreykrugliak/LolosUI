@@ -85,7 +85,7 @@ const initialLayout = {
                     <Image style={[styles.freindsSmile]} 
                         source={require('@images/HomePage/lolofreinds.png')}/>
                     <Text style={[styles.baseLine]}>2 invites per day</Text>
-                    <TouchableOpacity onPress={()=>{}}style={[styles.inviteFreinds]}>
+                    <TouchableOpacity onPress={()=>{}}style={[styles.button]}>
                         <Text style={[styles.buttonTextInvite]}>Invite Freinds</Text>
                     </TouchableOpacity>
                 </View> 
@@ -99,7 +99,7 @@ const initialLayout = {
                         <Text style={styles.titleSWallte}>Smart Wallet</Text>
                         <Image  style={[styles.emojiGroup]}
                         source={require('@images/HomePage/emojis1.png')}/>
-                        <TouchableOpacity style={[styles.lookButton]}>
+                        <TouchableOpacity style={[styles.button]}>
                                 <Text style={[styles.buttonTextInvite]}>Take a Look</Text>
                         </TouchableOpacity>
                     </View>
@@ -112,7 +112,7 @@ const initialLayout = {
                         <Text style={styles.tagLine}>just like the grownups do in our awesome marketplace </Text>
                         <Image style={[styles.giftImg]}
                         source={require('@images/HomePage/lologift.png')}/>
-                        <TouchableOpacity style={[styles.checkButton]}>
+                        <TouchableOpacity style={[styles.button]}>
                                 <Text style={[styles.buttonTextInvite]}>Check It Out</Text>
                         </TouchableOpacity>
                     </View>
@@ -125,7 +125,7 @@ const initialLayout = {
                         <Text style={styles.tagLine}>set up address before you shop in our marketplace </Text>
                         <Image style={[styles.manImg]}
                             source={require('@images/HomePage/lolomailman.png')}/>
-                        <TouchableOpacity style={[styles.setUpButton]}>
+                        <TouchableOpacity style={[styles.button]}>
                                 <Text style={[styles.buttonTextInvite]}>Set Up Address</Text>
                         </TouchableOpacity>
                     </View>
@@ -213,7 +213,7 @@ const initialLayout = {
     
   
         render() {
-           
+           console.log('height:',WindowHeight)
             return (
 
                
