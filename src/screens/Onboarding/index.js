@@ -12,7 +12,7 @@ export default class Onboarging extends Component {
         return(
             <View style={{flex:1}}>
                 <Image style={styles.homeLogo} source={require('@images/Onboarding/ActiveHome.png')}/>
-                <Text style={styles.loloText}>Earn Lolo's</Text>
+                <Text style={styles.loloText}>Earn lolo's</Text>
                 <Text style={styles.featureText}>with special features inside app</Text>
                 <Image style={styles.arrowImage} source={require('@images/Onboarding/ArrowImage.png')}/>
                 <Image style={styles.footerImage} source={require('@images/Onboarding/footer.png')}/>

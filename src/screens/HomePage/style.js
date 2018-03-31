@@ -36,7 +36,7 @@ export default StyleSheet.create({
     cardImage:{
         height: 371,
         width: null, 
-        flex: 1
+        //flex: 1
     },
     badgeText:{
         fontSize:10,
@@ -52,15 +52,21 @@ export default StyleSheet.create({
         backgroundColor:"#F6F6F6",
     },
     slide1:{
-        margin : 20,
-        flex:1,
-        backgroundColor : '#FFF',
+       
+        width:WindowWidth-40,
+        backgroundColor : '#fff',
+        
+        height:WindowHeight-180,
+        zIndex:1000,
+        
+        marginTop:12,
+        
         overflow:"hidden"
     },
     titleSlide1:{
         marginTop:WindowHeight<= iphone5s?125:WindowHeight <= android?120:149,
         fontSize:WindowHeight <= android?25:34,
-        fontFamily:"Patua One",
+        fontFamily:"PatuaOne-Regular",
         textAlign:"center",
         color: "#FF4273"
     },
@@ -72,14 +78,14 @@ export default StyleSheet.create({
     title:{
         marginTop:WindowHeight<= iphone5s?20:33,
         fontSize:WindowHeight <= android?24:34,
-        fontFamily:"Patua One",
+        fontFamily:"PatuaOne-Regular",
         textAlign:"center",
         color: "#FF4273"
     },
     titleSWallte:{
         marginTop:22,
         fontSize:WindowHeight <= android?24:34,
-        fontFamily:"Patua One",
+        fontFamily:"PatuaOne-Regular",
         textAlign:"center",
         color: "#FF4273"   
     },
@@ -189,7 +195,7 @@ export default StyleSheet.create({
         alignSelf:'center',
         justifyContent:'center',
         alignItems:'center',
-        flex:1
+        //flex:1
     },
     swipeText:{
         fontSize:18,
@@ -246,5 +252,13 @@ export default StyleSheet.create({
         centerLogo:{
             
             ...Platform.OS === 'ios'?{}: {paddingLeft:WindowWidth/4 }
+        },
+
+        swiper:{
+           // flex:1,
+            height:WindowHeight-160,
+            width:WindowWidth,
+            backgroundColor:'#f6f6f6'
+            
         }
 })

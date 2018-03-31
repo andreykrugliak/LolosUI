@@ -46,7 +46,7 @@ export default StyleSheet.create({
         fontFamily:"lato",
         textAlign:'center',
         fontSize:WindowHeight<= iphone5s?18:22,
-        
+        marginHorizontal:35,
         flexWrap:'wrap'
     },
     arrowImage:{

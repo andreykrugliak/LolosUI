@@ -13,11 +13,13 @@
     "react-native-animatable": "^1.2.4",
     "react-native-country-picker-modal": "^0.5.1",
     "react-native-datepicker": "^1.6.0",
+    "react-native-deck-swiper": "^1.4.9",
     "react-native-device-info": "^0.21.3",
     "react-native-gesture-handler": "^1.0.0-alpha.41",
     "react-native-iphone-x-helper": "^1.0.2",
     "react-native-linear-gradient": "^2.4.0",
     "react-native-navigation": "^1.1.316",
+    "react-native-snap-carousel": "^3.6.0",
     "react-native-swiper": "^1.5.13",
     "react-native-tab-view": "0.0.74"
   },
