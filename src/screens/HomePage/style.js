@@ -53,13 +53,13 @@ export default StyleSheet.create({
     },
     slide1:{
        
-        width:WindowWidth-40,
+        
         backgroundColor : '#fff',
+        width:WindowWidth-40,
+        ...Platform.OS=='ios'?{height:WindowHeight-190}:{height:WindowHeight-220},
         
-        height:WindowHeight-180,
-        zIndex:1000,
-        
-        marginTop:12,
+        //marginBottom:20,
+       
         
         overflow:"hidden"
     },
@@ -255,10 +255,10 @@ export default StyleSheet.create({
         },
 
         swiper:{
-           // flex:1,
-            height:WindowHeight-160,
+            flex:1,
+            height:WindowHeight,
             width:WindowWidth,
-            backgroundColor:'#f6f6f6'
-            
+            backgroundColor:'#f6f6f6', 
+           
         }
 })

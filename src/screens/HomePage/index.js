@@ -27,37 +27,40 @@ const initialLayout = {
 
   const FirstRoute=()=>{
         return(
-        
-        <Swiper
-          
-          infinite
-          onSwiped={this.onSwiped}
-          onTapCard={this.swipeLeft}
-          cards={['1', '2', '3','4','5']}
-          cardIndex={0}
-          cardVerticalMargin={0}
-         cardHorizonyalMargin={0}
-          renderCard={renderCard}
-          //onSwipedAll={this.onSwipedAllCards}
-         //stackSize={3}
-          //stackSeparation={15}
-          //style={styles.swiper}
-         animateOverlayLabelsOpacity={false}
-         animateCardOpacity={false}
-        >
-          
+            
+                <Swiper
+                
+                        backgroundColor='#f0f0f0'
+                        infinite
+                        onSwiped={this.onSwiped}
+                        onTapCard={this.swipeLeft}
+                        cards={['1', '2', '3','4','5']}
+                        cardIndex={0}
+                        cardVerticalMargin={20}
+                        //cardHorizonyalMargin={20}
+                        renderCard={renderCard}
+                        //onSwipedAll={this.onSwipedAllCards}
+                        //stackSize={3}
+                        //stackSeparation={15}
+                        //style={styles.swiper}
+                        
+                        animateOverlayLabelsOpacity={false}
+                        animateCardOpacity={false}
+                >
+                
         </Swiper>
-    
-
+       
+       
         )}
 
 
        const renderCard = (cardIndex) => {
-           // console.log(cardIndex)
+        
             switch(cardIndex)
             {
                 case '1':{
                     return(
+                        
                     <View style={styles.slide1}>
                     <Image style={[styles.topImage]}
                         source={require('@images/HomePage/em_10.png')}/>
@@ -71,6 +74,7 @@ const initialLayout = {
                         source = {require('@images/HomePage/Arrow.png')}/>
                     </View>
                 </View>
+                
                     )};
         
                 case '2':{
@@ -81,7 +85,7 @@ const initialLayout = {
                     <Image style={[styles.freindsSmile]} 
                         source={require('@images/HomePage/lolofreinds.png')}/>
                     <Text style={[styles.baseLine]}>2 invites per day</Text>
-                    <TouchableOpacity style={[styles.inviteFreinds]}>
+                    <TouchableOpacity onPress={()=>{}}style={[styles.inviteFreinds]}>
                         <Text style={[styles.buttonTextInvite]}>Invite Freinds</Text>
                     </TouchableOpacity>
                 </View> 
@@ -144,11 +148,7 @@ const initialLayout = {
       constructor(props){
         super(props)
         this.state = {
-    cards: ['1', '2', '3','4','5'],
-      swipedAllCards: false,
-      swipeDirection: '',
-      isSwipingBack: false,
-      cardIndex: 0,
+         
             index: 2,
             routes: [
                 { key: '0',icon: images.Image4, iconSelected: images.Image1 },
@@ -217,7 +217,7 @@ const initialLayout = {
             return (
 
                
-                <Container style={{height:WindowHeight,flex:1,zIndex:2000,backgroundColor:'#f6f6f6',width:WindowWidth}}>
+                <View style={{height:WindowHeight,flex:1,width:WindowWidth}}>
                 <Header style={styles.headerStyle}>
                     <Left style={styles.headerLeftSide}>
                         <Button transparent onPress={()=>{
@@ -249,16 +249,16 @@ const initialLayout = {
                
                   
                 <TabViewAnimated
-                //style={{height:WindowHeight,backgroundColor:'white'}}
+             
                 swipeEnabled={false}
                 navigationState={this.state}
                 renderScene={this._renderScene}
                 renderFooter={this._renderHeader}
                 onIndexChange={this._handleIndexChange}
-                //initialLayout={initialLayout}
+                initialLayout={initialLayout}
                 ></TabViewAnimated>
         
-            </Container>
+            </View>
                 
             );
         }
