@@ -1,6 +1,11 @@
 import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
+    container:{
+        flex:1,
+        backgroundColor:'white',
+        zIndex:1000,
+    },
     linearGradient: {
         flex: 1,
     },

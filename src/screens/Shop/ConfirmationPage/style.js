@@ -1,0 +1,84 @@
+import {StyleSheet} from 'react-native'
+export default StyleSheet.create({
+    back:{
+      position:'absolute',
+        top:49,
+        left:32,
+        height:24,
+        width:24,
+        zIndex:1,
+        opacity:1,
+    },
+    image:{
+        width:375,
+        height:250,
+    },
+    total:{
+        marginTop:50,
+        fontFamily:'lato',
+        fontSize:22,
+        color:'#000',
+        textAlign:'center',
+     
+        //borderWidth:1,
+    },
+    totalNo:{
+        marginTop:15,
+        color:'#FF4273',
+        fontFamily:'lato',
+        fontSize:80,
+        textAlign:'center',
+        fontWeight:'900',
+        //borderWidth:1,
+       
+    },
+    emojys:{
+        marginTop:20,
+        flexDirection:'row',
+        alignSelf:'center',
+        //borderWidth:1,
+    },
+    emoj:{
+        height:26.12,
+        width:26.5,
+        marginLeft:5,
+    },
+    footer:{
+        marginTop:37,
+        alignSelf:'center',
+        marginBottom:39,
+    },
+    send:{
+        textAlign:'center',
+        color:'#9B9B9B',
+        fontSize:14,
+        fontFamily:'lato',
+     
+    },
+    
+    button:{
+        flex:1,
+        position:'absolute',
+        bottom:0,
+        right:0,
+        left:0,
+        marginTop:36,
+    },
+    line:{
+        height:10,
+        backgroundColor:'#fff',
+        shadowOpacity:3,
+        shadowOffset:{width:0,height:1}
+    },
+    btnBackground:{
+        backgroundColor:'#F0F0F0',
+        height:70,
+        alignItems:'center',
+        justifyContent:'center',
+    },
+    buy:{
+        fontFamily:'lato',
+        color:'#fff',
+        fontWeight:'bold'
+    },
+})

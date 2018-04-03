@@ -1,7 +1,12 @@
 import React,{Component} from 'react';
-import {Container, Header, Content, Footer, FooterTab, Button, Text, Icon, Body, Right, Left, Card, Badge, CardItem} from 'native-base';
-import {View,Dimensions,Image} from 'react-native';
+import {Container, Header, Content, Footer, FooterTab, Button, Text, Icon, Body, Right, Left,Title, Card, Badge, CardItem} from 'native-base';
+import {View,Dimensions,Image,TouchableOpacity} from 'react-native';
 import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
+import Swiper from 'react-native-deck-swiper'
+var WindowWidth = Dimensions.get('window').width
+var WindowHeight = Dimensions.get('window').height
+import Carousel from 'react-native-snap-carousel';
+
 import styles from './style'
 const initialLayout = {
     height: 0,
@@ -16,25 +21,116 @@ const initialLayout = {
       Image5:require('@images/HomePage/DeactiveTabs.png'),
       Image6:require('@images/HomePage/DeactiveHome.png'),
   }
-  const FirstRoute = () => <Content>
-  <View style={[styles.middlePart,{ flex:1}]}>
-      <Card>
-          <CardItem>
-              <Left>
-                  <Body>
-                      <Text style={styles.cardWelcomeText}>Welcome!</Text>
-                      <Text style={styles.cardMessage}>to a world of new opportunities</Text>
-                  </Body>
-              </Left>
-          </CardItem>
-          <CardItem cardBody>
-              <Image source={require('@images/HomePage/image.jpg')} style={styles.cardImage}/>
-          </CardItem>
-      </Card>            
-  </View>
-</Content>;
 
 
+
+
+  const FirstRoute=()=>{
+        return(
+            
+                <Swiper
+                
+                        backgroundColor='#f0f0f0'
+                        infinite
+                        onSwiped={this.onSwiped}
+                        onTapCard={this.swipeLeft}
+                        cards={['1', '2', '3','4','5']}
+                        cardIndex={0}
+                        cardVerticalMargin={20}
+                        //cardHorizonyalMargin={20}
+                        renderCard={renderCard}
+                        //onSwipedAll={this.onSwipedAllCards}
+                        //stackSize={3}
+                        //stackSeparation={15}
+                        //style={styles.swiper}
+                        
+                        animateOverlayLabelsOpacity={false}
+                        animateCardOpacity={false}
+                >
+                
+        </Swiper>
+       
+       
+        )}
+
+
+       const renderCard = (cardIndex) => {
+        
+            switch(cardIndex)
+            {
+                case '1':{
+                    return(
+                        
+                    <View style={styles.slide1}>
+                    <Image style={[styles.topImage]}
+                        source={require('@images/HomePage/em_10.png')}/>
+                    <Text style={styles.titleSlide1}>Congratulations</Text>
+                    <Text style={[styles.tagLine]}>your first 20 lolo’s are on their way, Stay Tune…</Text>
+                    <View style={[styles.swipeTextView]}>
+                        <Image style={[styles.leftArrow]} 
+                        source = {require('@images/HomePage/Arrow.png')}/>
+                        <Text style={[styles.swipeText]}>swipe</Text>
+                        <Image style={[styles.rightArrow]}
+                        source = {require('@images/HomePage/Arrow.png')}/>
+                    </View>
+                </View>
+                
+                    )};
+        
+                case '2':{
+                    return(
+                <View style={styles.slide1}>
+                    <Text style={styles.title}>Invite Freinds</Text>
+                    <Text style={[styles.tagLine]}>on each freind get rewarded with 20 lolo’s</Text>
+                    <Image style={[styles.freindsSmile]} 
+                        source={require('@images/HomePage/lolofreinds.png')}/>
+                    <Text style={[styles.baseLine]}>2 invites per day</Text>
+                    <TouchableOpacity onPress={()=>{}}style={[styles.button]}>
+                        <Text style={[styles.buttonTextInvite]}>Invite Freinds</Text>
+                    </TouchableOpacity>
+                </View> 
+                    )};
+        
+                case '3':{
+                    return(
+        
+                    <View style={styles.slide1}>
+                        <Text style={styles.tagLine}>you can see and manage all your lolo’s in your</Text>
+                        <Text style={styles.titleSWallte}>Smart Wallet</Text>
+                        <Image  style={[styles.emojiGroup]}
+                        source={require('@images/HomePage/emojis1.png')}/>
+                        <TouchableOpacity style={[styles.button]}>
+                                <Text style={[styles.buttonTextInvite]}>Take a Look</Text>
+                        </TouchableOpacity>
+                    </View>
+                    )};
+        
+                case '4':{
+                    return(
+                    <View style={styles.slide1}>
+                        <Text style={styles.title}>Buy Online</Text>
+                        <Text style={styles.tagLine}>just like the grownups do in our awesome marketplace </Text>
+                        <Image style={[styles.giftImg]}
+                        source={require('@images/HomePage/lologift.png')}/>
+                        <TouchableOpacity style={[styles.button]}>
+                                <Text style={[styles.buttonTextInvite]}>Check It Out</Text>
+                        </TouchableOpacity>
+                    </View>
+        
+                    )};
+                case '5':{
+                    return(
+                    <View style={styles.slide1}>
+                        <Text style={styles.title}>Help Our Mailman</Text>
+                        <Text style={styles.tagLine}>set up address before you shop in our marketplace </Text>
+                        <Image style={[styles.manImg]}
+                            source={require('@images/HomePage/lolomailman.png')}/>
+                        <TouchableOpacity style={[styles.button]}>
+                                <Text style={[styles.buttonTextInvite]}>Set Up Address</Text>
+                        </TouchableOpacity>
+                    </View>
+                    )};
+            }}
   export default class TabViewExample extends React.Component {
     static navigatorStyle = {
         navBarHidden:true
@@ -65,24 +161,68 @@ const initialLayout = {
         indicatorStyle={{ height: 0 }}
          />;
 
+
+
     _renderScene = SceneMap({
         '0': FirstRoute,
         '1': FirstRoute,
-        '2':FirstRoute
+        '2': FirstRoute
     });
+ 
+        
+          onSwipedAllCards = () => {
+            this.setState({
+              swipedAllCards: true
+            })
+          };
+        
+          swipeBack = () => {
+            if (!this.state.isSwipingBack) {
+              this.setIsSwipingBack(true, () => {
+                this.swiper.swipeBack(() => {
+                  this.setIsSwipingBack(false)
+                })
+              })
+            }
+          };
+        
+          setIsSwipingBack = (isSwipingBack, cb) => {
+            this.setState(
+              {
+                isSwipingBack: isSwipingBack
+              },
+              cb
+            )
+          };
+        
+          swipeLeft = () => {
+            this.swiper.swipeLeft()
+          };
+        
     
+  
         render() {
+           console.log('height:',WindowHeight)
             return (
-                <Container style={{flex:1}}>
+
+               
+                <View style={{height:WindowHeight,flex:1,width:WindowWidth}}>
                 <Header style={styles.headerStyle}>
                     <Left style={styles.headerLeftSide}>
-                        <Button transparent>
+                        <Button transparent onPress={()=>{
+                            this.props.navigator.toggleDrawer({
+                                side:'left',
+                                to:'open'
+                            })
+                        }}>
                             <Image source={require('@images/HomePage/MenuBlack.png')}></Image>
                         </Button>
                     </Left>
-                    <Body>
-                        <Text style={styles.headerText}>Header Title</Text>
+
+                    <Body style={styles.centerLogo}>
+                        <Title style={styles.headerText}>LOLO'S</Title>
                     </Body>
+
                     <Right>
                         <Button transparent >
                             <Badge style={[styles.badgeStyle]}>
@@ -95,9 +235,11 @@ const initialLayout = {
                         </Button>
                     </Right>
                 </Header>
+               
+                  
                 <TabViewAnimated
-                
-                style={{flex: 1}}
+             
+                swipeEnabled={false}
                 navigationState={this.state}
                 renderScene={this._renderScene}
                 renderFooter={this._renderHeader}
@@ -105,8 +247,10 @@ const initialLayout = {
                 initialLayout={initialLayout}
                 ></TabViewAnimated>
         
-            </Container>
+            </View>
                 
             );
         }
   }
+
+

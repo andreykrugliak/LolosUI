@@ -1,0 +1,100 @@
+import {StyleSheet, Platform,Dimensions} from 'react-native'
+import { isIphoneX, ifIphoneX } from 'react-native-iphone-x-helper'
+let windowWidth= Dimensions.get('window').width
+let windowHeight=Dimensions.get('window').height
+export default StyleSheet.create({
+    flex:{
+        zIndex:1000,
+        backgroundColor:'white'
+    },
+    header:{
+        ...ifIphoneX({
+            height:106,
+            
+            
+        },{
+            height:80,
+            alignItems:'center',
+       justifyContent:'center',
+        }),
+        
+        
+        borderBottomColor:'#fff',
+        borderBottomWidth:StyleSheet.hairlineWidth
+    },
+    headerText:{
+        fontSize:16,
+        fontFamily:'lato-bold',
+        color:'#000000',
+        ...ifIphoneX({
+            marginTop:56,
+            textAlign:'center',
+            zIndex:0
+        })
+
+    },
+    leftIconContainer:{
+        ...ifIphoneX({
+            top:56,
+            zIndex:1
+        },{
+            top:30,
+        
+        }),
+        left:24,
+        position:'absolute',
+    },
+    leftIcon:{
+        height:24,
+        width:24,
+       
+
+    },
+    
+    drawerInnerText:{
+        marginLeft:21,
+        color:'#000000',
+        fontFamily:'Lato-Regular',
+        fontSize:16,
+        marginTop:23
+    },
+    drawerContainer:{
+        width:windowWidth,
+        backgroundColor:'white',
+        ...ifIphoneX({
+            height:windowHeight-106
+        },{
+            height:windowHeight-80,
+        })
+        
+        
+        
+    },
+    footerImage:{
+        position:'absolute',
+        bottom:0,
+        left:0,
+        right:0,
+        width:windowWidth-60,
+        ...Platform.select({
+            ios:{
+                height:0.25*windowWidth,
+                //resizeMode:'contain'
+            },
+            android:{
+                resizeMode:'contain',
+                height:0.36*windowWidth,
+            }
+        })
+        
+
+    },
+    line:{
+        backgroundColor:'#F0F0F0',
+        height:1,
+        width:windowWidth,
+        marginTop:21
+    },
+    
+
+})
