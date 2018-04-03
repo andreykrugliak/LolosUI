@@ -15,6 +15,8 @@ import ProductPage from './Shop/productPage/index'
 import ConfirmationPage from './Shop/ConfirmationPage/index'
 import FiltersShop from './Shop/FiltersShop/index'
 import ShopSeach from './Shop/ShopSearch/index'
+import InviteFriendsContact from './InviteFriends/Contact'
+import InviteFriendsSucess from './InviteFriends/Sucess'
 
 export function registerScreens(params){
     Navigation.registerComponent('app.SplashScreen',()=>SplashScreen);
@@ -33,4 +35,6 @@ export function registerScreens(params){
     Navigation.registerComponent('app.ConfirmationPage',()=>ConfirmationPage)
     Navigation.registerComponent('app.FiltersShop',()=>FiltersShop)
     Navigation.registerComponent('app.ShopSeach',()=>ShopSeach)
+    Navigation.registerComponent('app.InviteFriendsContact',()=>InviteFriendsContact)
+    Navigation.registerComponent('app.InviteFriendsSucess',()=>InviteFriendsSucess)
 }
