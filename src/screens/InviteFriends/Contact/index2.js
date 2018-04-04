@@ -1,5 +1,5 @@
 import React,{Component} from "react"
-import {Text,View,TextInput,Image,ScrollView,TouchableHighlight, TouchableOpacity} from "react-native"
+import {Text,View,TextInput,Image,ScrollView,TouchableHighlight, TouchableOpacity,FlatList} from "react-native"
 import Touchable from 'react-native-platform-touchable'
 import styles from "./style"
 import { HeaderComponent } from "@components/InviteFriends/HeaderComponent.js";
@@ -15,8 +15,9 @@ export default class InviteFriends extends Component{
     constructor(props){
         super(props)
         this.state={
-            textInputRef:'',
+            searchKey:'',
             contacts:[],
+            search:false,
             data: {
                 A: ['AAAAA','aaaaa','aaaaa'],
                 B: ['bbbbb','bbbbb','bbbbb'],
@@ -46,30 +47,60 @@ export default class InviteFriends extends Component{
                 Z: ['ZZZZZ','ZZZZZZ','ZZZZZ'],
             }
         }
-        this.title="hhh"
     }
+
+    _handleSearch(text){
+        this.setState({
+            searchKey:text
+        })
+
+        if(this.state.searchKey){
+            let length=this.state.searchKey.length
+            if(length>1){
+                this.setState({search:true})
+            }
+        }
+
+        if(this.state.searchKey<=1){
+            this.setState({search:false})
+        }
+    }
+    
+    _keyExtractor = (item, index) => index;
+
+    _renderItems({item,index}){
+        return(
+            <View style={{height:60,justifyContent:'center',marginLeft:14,}}>
+            <Text style={{fontSize:24,marginVertical:14}}>{item}</Text>
+            <View style={{backgroundColor:'#f0f0f0',height:1,marginRight:14}}></View>
+          </View>
+        )
+    }
+
     componentDidMount()
-    {
-        
+    {    
         Contacts.getAll((err,contacts) => {
+            console.log(contacts)
+            // this.setState({contacts:contacts})
             let nameArray = contacts.map((data, index) => {
-                return data.givenName 
-            })            
-            this.state.contacts.push(nameArray)
+                this.state.contacts.push(data.givenName+" "+data.familyName)
+                //this.setState({data:{label:data.givenName[0],key:data.givenName}})
+            })  
+            //this.setState({data:{l:"l",L:["ll","ll"]}})          
+            
         })
         console.log('nameArray : ',this.state.contacts);
     }
 
     render(){
-       
         return(
         <View style={{ flex : 1 }}>
             <HeaderComponent navigator={this.props.navigator}/>
             <View style={{ shadowOpacity:0.3, shadowOffset:{height:1,width:0},}}>
                 <View style={styles.searchBox}>
-                    <TextInput placeholder={'Search…'} onChangeText={(text)=>{
-                                this.setState({textInputRef:text})
-                                }} style={styles.textInput}/>
+                    <TextInput placeholder={'Search…'} 
+                               onChangeText={(text)=>this._handleSearch(text)} 
+                                style={styles.textInput}/>
                     <TouchableOpacity
                     onPress={()=>{
                         this.props.navigator.push({
@@ -80,36 +111,52 @@ export default class InviteFriends extends Component{
                     </TouchableOpacity>
                 </View>
             </View>
-            <AlphabetListView
+            <View style={{flex:1}}>
+            {
+                this.state.search?
+                <FlatList
+                data={this.state.contacts}
+                keyExtractor={this._keyExtractor}
+                renderItem={this._renderItems}/>
+                :
+                <AlphabetListView
                 data={this.state.data}
+                //enableEmptySection={true}
                 cell={Cell}
                 cellHeight={30}
                 sectionListItem={SectionItem}
                 sectionHeaderHeight={45}
-                sectionHeader={sectionHeader}
+                //sectionHeader={sectionHeader}
             />
+            }
+            </View>
+
+
+            
         </View>
 
 )}}
 
- class sectionHeader extends Component{
-     
-     render(){
-         console.log(this.props)
-         return(
-             <View style={{height:45}}>
-                <Text style={{fontSize:12,color:'#000',marginLeft:14}}>
-                    {this.title}
-                </Text>
-             </View>
-         )
-     }
- }
+//  class sectionHeader extends InviteFriends{
+//         constructor(props){
+//             super(props)
+//         } 
+
+//      render(){
+//          console.log(this.props)
+//          return(
+//              <View style={{height:45}}>
+//                 <Text style={{fontSize:12,color:'#000',marginLeft:14}}>
+//                     {this.props.title}
+//                 </Text>
+//              </View>
+//          )
+//      }
+//  }
 
 
   class SectionItem extends Component {
     render(){
-        
       return (
         <View style={{backgroundColor:'#fff',paddingHorizontal:2}}>
             <Text style={{color:'blue'}}>{this.props.title}</Text>
@@ -120,6 +167,7 @@ export default class InviteFriends extends Component{
   
   class Cell extends Component {
     render() {
+      
       return (
         <View style={{height:60,justifyContent:'center',marginLeft:14,}}>
           <Text style={{fontSize:24,marginVertical:14}}>{this.props.item}</Text>
