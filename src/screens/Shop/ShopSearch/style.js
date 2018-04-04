@@ -44,10 +44,8 @@ export default StyleSheet.create({
     textInput:{
         flex:1,
         fontSize:18,
-        color:'#9B9B9B',
+        color:'#000',
         fontFamily:'lato',
-        // marginTop:18,
-        // marginBottom:20,
         marginLeft:16
     },
     iconSearch:{
@@ -81,11 +79,99 @@ export default StyleSheet.create({
     recentViewed:{
         paddingTop:25,
     },
+    
     productImages:{
         backgroundColor:'#F0F0F0',
     },
     img:{
+        marginRight:10,
+        width:100,
         height:100,
-        width:100
-    }
+        marginVertical:10,
+    },
+    cancel:{
+        color:'#4A90E2',
+        fontSize:16,
+        fontFamily:'lato',
+        marginLeft:15
+    },
+
+
+
+    FlatListcontainer:{
+        paddingTop:10,
+        paddingLeft:10,
+        paddingRight:10,   
+    },
+    card:{
+        flexDirection:'row',
+        padding:7,
+        backgroundColor:'#fff',
+        borderRadius:2,  
+    },
+    productIcon:{
+        height:100,
+        width:100,
+        marginRight:19,
+        //borderWidth:1,
+    },
+    detail:{
+        flexWrap: 'wrap',
+        flex:1,
+    },
+    title:{
+        marginRight:10,
+        fontSize:12,
+        color:'#000',
+        fontFamily:'Lato',
+    },
+    label:{
+        width:70,
+        height:24,
+        backgroundColor:'#FF4273', 
+        marginTop:7,   
+        alignItems:'center',
+        justifyContent:'center',
+        borderRadius:2,
+    },
+    labelText:{
+        fontSize:13,
+        color:'#fff',
+        fontFamily:'Patua One',
+    },
+    extraInfo:{
+        marginTop:5,
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-between',
+        //borderWidth:1,
+    },
+    shippingText:{
+        fontSize:10,
+        color:'#9B9B9B',
+        fontFamily:'Lato',
+        fontWeight:'bold'
+    },
+    extraInfoLabel:{
+        //borderWidth:1,
+        borderRadius:20,
+        height:24,
+        width:81,
+        backgroundColor:'#F0F0F0',
+        alignItems:'center',
+        //justifyContent:'center',
+        flexDirection:'row',   
+    },
+    extraInfoIcon:{
+        height:16,
+        width:12,
+        marginLeft:5
+    },
+    superHotText:{
+        //paddingLeft:4,
+        fontSize:10,
+        color:'#000',
+        fontFamily:'Patua One',
+        marginLeft:7
+     },
 })

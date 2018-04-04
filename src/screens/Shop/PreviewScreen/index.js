@@ -89,7 +89,7 @@ export default class PreviewScreen extends Component{
         return(
             <View style={styles.container}>
                 <View style={[styles.card,{shadowOpacity:0.3,shadowOffset:{width:0,height:1}}]}>
-                    <Image style={styles.productIcon} resizeMode={'stretch'} source={require('@images/Ecommerce/back.png')}/>
+                    <Image style={styles.productIcon} resizeMode={'stretch'} source={require('@images/Shop/image.jpg')}/>
                     <View style={styles.detail}>
                         <Text style={styles.title}>
                             {item.title}
@@ -102,7 +102,7 @@ export default class PreviewScreen extends Component{
                         <View style={styles.extraInfo}>
                             <Text style={styles.shippingText}>Free Shipping</Text>
                             <View style={styles.extraInfoLabel}>
-                                <Image style={styles.extraInfoIcon} source={require('@images/Ecommerce/superhot.png')} />
+                                <Image style={styles.extraInfoIcon} source={require('@images/Shop/superhot.png')} />
                                 <Text style={styles.superHotText}>{item.label}</Text>
                             </View>
                         </View>
@@ -117,9 +117,9 @@ export default class PreviewScreen extends Component{
             <View style={{backgroundColor:'#F6F6F6',flex:1}}>
                 <View style={{flex:1}}>
                     <View style={styles.header}>
-                        <Image style={styles.leftButton} source={require('@images/Ecommerce/ic_search.png')}/> 
+                        <Image style={styles.leftButton} source={require('@images/Shop/ic_search.png')}/> 
                         <Text style={styles.headerText}>MARKET PLACE</Text>
-                        <Image  style={styles.rightButton} source={require('@images/Ecommerce/ic_settings.png')}/>
+                        <Image  style={styles.rightButton} source={require('@images/Shop/ic_settings.png')}/>
                     </View>
 
                     <View style={{flex:1}}>

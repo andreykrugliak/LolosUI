@@ -18,7 +18,7 @@ export default class ConfirmationPage extends Component{
         return(
 
             <View style={{flex:1}}>
-                <Image style={[styles.back,{tintColor:'#fff'}]} source={require('@images/Ecommerce/back.png')}/>
+                <Image style={[styles.back,{tintColor:'#fff'}]} source={require('@images/Shop/back.png')}/>
                 <Image style={styles.image} source={require('@images/HomePage/image.jpg')}/>
                 <Text style={styles.total}>Total lolo's</Text>
                 <Text style={styles.totalNo}>127</Text>

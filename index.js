@@ -6,11 +6,11 @@ let windowWidth = Dimensions.get('window').width
 registerScreens();
 Navigation.startSingleScreenApp({
     screen:{
-        screen:'app.ShopSeach',
+        screen:'app.ConfirmationPage',
     },
     drawer:{
         left:{
-            screen:'app.DrawerScreen',
+            screen:'app.ConfirmationPage',
             fixedWidth:0.75*(windowWidth*3),
            
         },

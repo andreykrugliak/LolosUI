@@ -3,7 +3,9 @@ deviceWidth=Dimensions.get("window").width
 
 export default StyleSheet.create({
     container:{
-        padding:10,   
+        paddingTop:10,
+        paddingLeft:10,
+        paddingRight:10,   
     },
     card:{
         flexDirection:'row',

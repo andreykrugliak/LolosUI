@@ -16,7 +16,7 @@ export default class ProductPage extends Component{
     render(){
         return(
             <ScrollView style={{backgroundColor:'#F0F0F0'}}>
-                <Image style={[styles.back,{tintColor:'#fff'}]} source={require('@images/Ecommerce/back.png')}/>
+                <Image style={[styles.back,{tintColor:'#fff'}]} source={require('@images/Shop/back.png')}/>
                 {/* <Image style={styles.Image} resizeMode={'cover'}  source={require('@images/HomePage/image.jpg')}/> */}
                
                 <ProductSwiper 
@@ -36,7 +36,7 @@ export default class ProductPage extends Component{
 
                 
                 <View style={styles.extraInfoLabel}>
-                    <Image style={styles.extraInfoIcon} source={require('@images/Ecommerce/popular.png')} />
+                    <Image style={styles.extraInfoIcon} source={require('@images/Shop/popular.png')} />
                     <Text style={styles.superHotText}>POPULAR</Text>
                 </View>
 
@@ -55,7 +55,7 @@ export default class ProductPage extends Component{
                         <View style={styles.line}></View>
                         <View style={styles.shipping}>
                             <Text style={styles.shippingText}>Free Shipping</Text>
-                            <Image style={styles.down} source={require('@images/Ecommerce/down-arrow.png')}/>
+                            <Image style={styles.down} source={require('@images/Shop/down-arrow.png')}/>
                         </View>
                         <Text style={styles.shippingSubText}>To israyal via allexpress standart shipping</Text>
                     </View>

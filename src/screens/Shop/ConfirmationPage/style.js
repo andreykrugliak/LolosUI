@@ -19,8 +19,6 @@ export default StyleSheet.create({
         fontSize:22,
         color:'#000',
         textAlign:'center',
-     
-        //borderWidth:1,
     },
     totalNo:{
         marginTop:15,
@@ -29,14 +27,11 @@ export default StyleSheet.create({
         fontSize:80,
         textAlign:'center',
         fontWeight:'900',
-        //borderWidth:1,
-       
     },
     emojys:{
         marginTop:20,
         flexDirection:'row',
         alignSelf:'center',
-        //borderWidth:1,
     },
     emoj:{
         height:26.12,
@@ -46,23 +41,19 @@ export default StyleSheet.create({
     footer:{
         marginTop:37,
         alignSelf:'center',
-        marginBottom:39,
     },
     send:{
         textAlign:'center',
         color:'#9B9B9B',
         fontSize:14,
-        fontFamily:'lato',
-     
+        fontFamily:'lato',  
     },
-    
     button:{
         flex:1,
         position:'absolute',
         bottom:0,
         right:0,
         left:0,
-        marginTop:36,
     },
     line:{
         height:10,
