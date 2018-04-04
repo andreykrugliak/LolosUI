@@ -87,7 +87,6 @@ export default StyleSheet.create({
          flexDirection:'row',
          paddingHorizontal:27,
          justifyContent:'space-between',
-   
      },
      leftButton:{
          height:16,

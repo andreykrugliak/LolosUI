@@ -53,6 +53,57 @@ const initialLayout = {
        
         )}
 
+        const wallet=()=>{
+            return(
+                <ScrollView style={{flex:1,paddingBottom:150}}>
+                    <Text style={styles.date}>12.12.17</Text>
+                    <Text style={styles.currentWalletText}>Current in my Wallet</Text>
+                    <Text style={styles.currentWalletNum}>34</Text>
+                    <Image style={styles.twoSmiley} source={require('@images/InviteFriends/2smiley.png')}/>
+                      
+                        <View style={{flexDirection:'row',marginTop:55,justifyContent:'space-between',marginHorizontal:24}}>
+                            <View style={styles.box}>
+                                <View style={styles.soonBox}>
+                                    <Text style={styles.soonText}>Soon</Text>
+                                </View>
+                                <Text style={styles.requestText}>Request lolo's</Text>
+                            </View>   
+                            <View style={styles.box}>
+                            <View style={styles.soonBox}>
+                                    <Text style={styles.soonText}>Soon</Text>
+                                </View>
+                                <Text style={styles.requestText}>Give lolo's</Text>
+                            </View>  
+                        </View> 
+                        <View style={[styles.backGround,{ marginTop:25}]}>
+                            </View> 
+                        <View style={{height:150}}>
+                            <Image style={styles.smileyIcon} source={require('@images/HomePage/wallet/smiley.png')}/>
+                            <Image style={styles.greenIcon} source={require('@images/HomePage/wallet/greenIcon.png')}/>
+                            <View style={styles.flexColumn}>
+                                    <Text style={styles.days}>2 DAYS AGO</Text>
+                                    <Text style={styles.age}>+ 18</Text>
+                                    <Text style={styles.sendText}>Recived from Mom</Text>
+                            </View>
+                        </View>
+                        <View style={styles.backGround}>
+                            </View> 
+                        <View style={{height:150}}>
+                            <Image style={styles.sadIcon} source={require('@images/HomePage/wallet/sadIcon.png')}/>
+                            <Image style={styles.redIcon} source={require('@images/HomePage/wallet/redIcon.png')}/>
+                            <View style={styles.flexColumn}>
+                                    <Text  style={styles.days}>27.11.17</Text>
+                                    <Text style={styles.age}>- 42</Text>
+                                    <Text style={styles.sendText}>Bought Item</Text>
+                            </View>
+                        </View>
+                        <View style={styles.backGround}>
+                            </View> 
+                  
+                </ScrollView>
+            )
+        }
+
 
        const renderCard = (cardIndex) => {
         

@@ -10,11 +10,15 @@ import Phone from './SignUp/Phone/index'
 import LoginScreen from './LoginScreen/index'
 import OtpScreen from './SignUp/OtpScreen/index'
 import DrawerScreen from './DrawerScreen/index'
-import PreviewScreen from './Shop/PreviewScreen/index'
-import ProductPage from './Shop/productPage/index'
-import ConfirmationPage from './Shop/ConfirmationPage/index'
-import FiltersShop from './Shop/FiltersShop/index'
-import ShopSeach from './Shop/ShopSearch/index'
+import PreviewScreen from './Shop/PreviewScreen'
+import ProductPage from './Shop/productPage'
+import ConfirmationPage from './Shop/ConfirmationPage'
+import FiltersShop from './Shop/FiltersShop'
+import ShopSeach from './Shop/ShopSearch'
+import InviteFriendsHome from './InviteFriends/Contact/index'
+import InviteFriendsContactSearch from './InviteFriends/Contact/index2'
+import InviteFriendsInvite from './InviteFriends/Contact/index3'
+import InviteFriendsSucess from './InviteFriends/Sucess'
 
 export function registerScreens(params){
     Navigation.registerComponent('app.SplashScreen',()=>SplashScreen);
@@ -33,4 +37,8 @@ export function registerScreens(params){
     Navigation.registerComponent('app.ConfirmationPage',()=>ConfirmationPage)
     Navigation.registerComponent('app.FiltersShop',()=>FiltersShop)
     Navigation.registerComponent('app.ShopSeach',()=>ShopSeach)
+    Navigation.registerComponent('app.InviteFriendsHome',()=>InviteFriendsHome)
+    Navigation.registerComponent('app.InviteFriendsContactSearch',()=>InviteFriendsContactSearch)
+    Navigation.registerComponent('app.InviteFriendsInvite',()=>InviteFriendsInvite)
+    Navigation.registerComponent('app.InviteFriendsSucess',()=>InviteFriendsSucess)
 }

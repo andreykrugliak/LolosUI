@@ -227,18 +227,144 @@ export default StyleSheet.create({
     },
     footerLine:{
         backgroundColor:"#64B7E3",
-        height:5},
-    
-        centerLogo:{
-            
-            ...Platform.OS === 'ios'?{}: {paddingLeft:WindowWidth/4 }
-        },
+        height:5
+    },
+    centerLogo:{
+        
+        ...Platform.OS === 'ios'?{}: {paddingLeft:WindowWidth/4 }
+    },
+    swiper:{
+        flex:1,
+        height:WindowHeight,
+        width:WindowWidth,
+        backgroundColor:'#f6f6f6', 
+        
+    },
+    date:{
+        color:'#9B9B9B',
+        marginTop:41,
+        alignSelf:'center',
+        fontSize:14,
+        fontFamily:'Lato-Regular'
+    },
+    currentWalletText:{
+        marginTop:25,
+        color:'black',
+        alignSelf:'center',
+        fontSize:22,
+        fontFamily:'Lato-Regular'
+    },
+    currentWalletNum:{
+        fontFamily:'Lato-Bold',
+        fontSize:150,
+        alignSelf:'center',
+       
+        fontWeight:'900',
+        color:'#FF4273'
+    },
+    twoSmiley:{
+        width:60,
+        height:26,
+        alignSelf:'center',
+        marginTop:0
+    },
+    box:{
+        height:60,
+        width:WindowWidth/2-29,
+        borderColor:'#FF4273',
+        borderWidth:2,
+        borderRadius:3,
+        zIndex:0,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    backGround:{
+        height:5,
+        backgroundColor:'#F0F0F0',
+       
+    },
+    soonBox:{
+        height:24,
+        width:50,
+        zIndex:2,
+        borderRadius:3,
+        position:'absolute',
+        borderColor:'black',
+        backgroundColor:'white',
+        left:11,
+        borderWidth:1,
+        top:-12,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    soonText:{
+        color:'black',
+        fontFamily:'Lato-Regular',
+        fontSize:14
+    },
+    requestText:{
+        color:'#FF4273',
+        fontFamily:'Lato-Regular',
+        fontSize:18
+    },
+    // flexColumn:{
+    //     position:'absolute',
+    //     right:24,
+    //     top:22,
+    //    // justifyContent:'flex-end'
+    // },
+    smileyIcon:{
+        height:98,
+        width:98,
+        position:'absolute',
+        left:85,
+        top:25
+    },
+    greenIcon:{
+        height:46,
+        width:48,
+        position:'absolute',
+        top:52,
+        left:25
+    },
+    sadIcon:{
+        height:98,
+        width:98,
+        position:'absolute',
+        left:25,
+        top:25
+    },
+    redIcon:{
+        height:46,
+        width:48,
+        position:'absolute',
+        top:52,
+        left:134
+    },
+    days:{
+        color:'#9B9B9B',
+        fontFamily:'Lato-Regular',
+        fontSize:14,
+        position:'absolute',
+        right:24,
+        top:23,
+    },
+    age:{
+        color:'black',
+        fontFamily:'Lato',
+        fontWeight:'900',
+        fontSize:26,
+        position:'absolute',
+        right:24,
+        top:58,
+    },
+    sendText:{
+        fontFamily:'Lato-Regular',
+        fontSize:16,
+        color:'black',
+        position:'absolute',
+        right:24,
+        top:86,
+    }
 
-        swiper:{
-            flex:1,
-            height:WindowHeight,
-            width:WindowWidth,
-            backgroundColor:'#f6f6f6', 
-           
-        }
 })
