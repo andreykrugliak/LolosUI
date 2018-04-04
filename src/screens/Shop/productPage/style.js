@@ -3,11 +3,11 @@ const deviceWidth=Dimensions.get("window").width
 export default StyleSheet.create({
     back:{
         position:'absolute',
-          top:49,
-          left:32,
+          top:20,
+          left:15,
           height:24,
-          width:24,
-          zIndex:1,
+          width:12,
+          zIndex:100,
           opacity:1,
       },
     Image:{

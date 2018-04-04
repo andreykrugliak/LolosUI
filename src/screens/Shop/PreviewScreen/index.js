@@ -87,7 +87,14 @@ export default class PreviewScreen extends Component{
 
     _renderItems=({item,index})=>{
         return(
-            <View style={styles.container}>
+            <TouchableOpacity style={styles.container} 
+            onPress={()=>{
+                this.props.navigator.push({
+                  screen:'app.ProductPage',
+                  animationType:"slide-horizontal"
+                })
+                
+                }}>
                 <View style={[styles.card,{shadowOpacity:0.3,shadowOffset:{width:0,height:1}}]}>
                     <Image style={styles.productIcon} resizeMode={'stretch'} source={require('@images/Shop/image.jpg')}/>
                     <View style={styles.detail}>
@@ -108,7 +115,7 @@ export default class PreviewScreen extends Component{
                         </View>
                     </View>
                 </View>
-            </View>
+            </TouchableOpacity>
         )
     }
 
@@ -117,9 +124,23 @@ export default class PreviewScreen extends Component{
             <View style={{backgroundColor:'#F6F6F6',flex:1}}>
                 <View style={{flex:1}}>
                     <View style={styles.header}>
-                        <Image style={styles.leftButton} source={require('@images/Shop/ic_search.png')}/> 
+                        <TouchableOpacity onPress={()=>{
+                            this.props.navigator.push({
+                                screen:'app.ShopSeach'
+                            })
+                        }}>
+                            <Image style={styles.leftButton} source={require('@images/Shop/ic_search.png')}/>
+                        </TouchableOpacity>
+                        
                         <Text style={styles.headerText}>MARKET PLACE</Text>
-                        <Image  style={styles.rightButton} source={require('@images/Shop/ic_settings.png')}/>
+                        <TouchableOpacity onPress={()=>{
+                            this.props.navigator.push({
+                                screen:'app.FiltersShop'
+                            })
+                        }}>
+                            <Image  style={styles.rightButton} source={require('@images/Shop/ic_settings.png')}/>
+                        </TouchableOpacity>
+                        
                     </View>
 
                     <View style={{flex:1}}>

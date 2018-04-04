@@ -119,7 +119,13 @@ export default class ShopSeach extends Component{
         return(
             <View style={styles.container}>
                 <View style={styles.header}>
+                <TouchableOpacity onPress={()=>{
+                    this.props.navigator.pop({
+                        animationType:"slide-horizontal"
+                    })
+                }}>
                     <Image style={styles.back} source={require('@images/DrawerScreen/left.png')}/>
+                    </TouchableOpacity>
                     <Text  style={styles.searchItem}>SEARCH ITEM</Text>
                 </View>
 

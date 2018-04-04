@@ -18,7 +18,14 @@ export default class ConfirmationPage extends Component{
         return(
 
             <View style={{flex:1}}>
-                <Image style={[styles.back,{tintColor:'#fff'}]} source={require('@images/Shop/back.png')}/>
+                <TouchableOpacity style={styles.back}
+                                    onPress={()=>{
+                                        this.props.navigator.pop({animationType:"slide-horizontal"})
+                                        }}>
+                        <Image style={[styles.back,{tintColor:'#fff'}]} source={require('@images/Shop/back.png')}/>
+                </TouchableOpacity>
+               
+                
                 <Image style={styles.image} source={require('@images/HomePage/image.jpg')}/>
                 <Text style={styles.total}>Total lolo's</Text>
                 <Text style={styles.totalNo}>127</Text>
@@ -34,9 +41,13 @@ export default class ConfirmationPage extends Component{
                 
                 <View style={styles.button}>
                     <View style={styles.line}></View>
-                    <View style={styles.btnBackground}>
+                    <TouchableOpacity onPress={()=>{
+                        this.props.navigator.push({
+                            screen:'app.HomePage'
+                        })
+                    }} style={styles.btnBackground}>
                         <Text style={styles.buy}>BUY</Text>
-                    </View>
+                    </TouchableOpacity>
                 </View>
             </View>
         )

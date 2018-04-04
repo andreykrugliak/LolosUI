@@ -2,10 +2,10 @@ import {StyleSheet} from 'react-native'
 export default StyleSheet.create({
     back:{
       position:'absolute',
-        top:49,
-        left:32,
+        top:20,
+        left:15,
         height:24,
-        width:24,
+        width:12,
         zIndex:1,
         opacity:1,
     },
@@ -62,7 +62,7 @@ export default StyleSheet.create({
         shadowOffset:{width:0,height:1}
     },
     btnBackground:{
-        backgroundColor:'#F0F0F0',
+        backgroundColor:'#FF4273',
         height:70,
         alignItems:'center',
         justifyContent:'center',

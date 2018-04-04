@@ -1,12 +1,12 @@
 import React,{Component} from 'react';
 import {Container, Header, Content, Footer, FooterTab, Button, Text, Icon, Body, Right, Left,Title, Card, Badge, CardItem} from 'native-base';
-import {View,Dimensions,Image,TouchableOpacity} from 'react-native';
+import {View,Dimensions,Image,TouchableOpacity,ScrollView} from 'react-native';
 import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
 import Swiper from 'react-native-deck-swiper'
 var WindowWidth = Dimensions.get('window').width
 var WindowHeight = Dimensions.get('window').height
 import Carousel from 'react-native-snap-carousel';
-
+import PreviewScreen from '@screens/Shop/PreviewScreen'
 import styles from './style'
 const initialLayout = {
     height: 0,
@@ -182,6 +182,13 @@ const initialLayout = {
                     </View>
                     )};
             }}
+
+
+           
+
+
+
+
   export default class TabViewExample extends React.Component {
     static navigatorStyle = {
         navBarHidden:true
@@ -215,8 +222,8 @@ const initialLayout = {
 
 
     _renderScene = SceneMap({
-        '0': FirstRoute,
-        '1': FirstRoute,
+        '0': PreviewScreen ,
+        '1': wallet,
         '2': FirstRoute
     });
  
@@ -253,7 +260,7 @@ const initialLayout = {
     
   
         render() {
-           console.log('height:',WindowHeight)
+        
             return (
 
                
@@ -275,7 +282,12 @@ const initialLayout = {
                     </Body>
 
                     <Right>
-                        <Button transparent >
+                        <Button transparent onPress={()=>{
+                            this.props.navigator.toggleDrawer({
+                                side:'right',
+                                to:'open'
+                            })
+                        }}>
                             <Badge style={[styles.badgeStyle]}>
                                 <View>
                                     <Text style={styles.badgeText}>1</Text>

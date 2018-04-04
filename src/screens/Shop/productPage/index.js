@@ -6,8 +6,9 @@ import Swiper from 'react-native-deck-swiper'
 import  ProductSwiper from 'react-native-swiper';
 var WindowWidth = Dimensions.get('window').width
 var WindowHeight = Dimensions.get('window').height
-import styles from './style'
 
+import styles from './style'
+import {RNSlidingButton, SlideDirection} from 'rn-sliding-button';
 export default class ProductPage extends Component{
 
     static navigatorStyle = {
@@ -16,7 +17,13 @@ export default class ProductPage extends Component{
     render(){
         return(
             <ScrollView style={{backgroundColor:'#F0F0F0'}}>
-                <Image style={[styles.back,{tintColor:'#fff'}]} source={require('@images/Shop/back.png')}/>
+                <TouchableOpacity style={styles.back}
+                                onPress={()=>{
+                                    this.props.navigator.pop({animationType:"slide-horizontal"})
+                                    }}>
+                    <Image style={[styles.back,{tintColor:'#fff'}]} source={require('@images/Shop/back.png')}/>
+                </TouchableOpacity>
+               
                 {/* <Image style={styles.Image} resizeMode={'cover'}  source={require('@images/HomePage/image.jpg')}/> */}
                
                 <ProductSwiper 
@@ -24,13 +31,13 @@ export default class ProductPage extends Component{
                     dotStyle={{backgroundColor:'#fff',opacity:0.3,height:10,width:10,borderRadius:10}}
                     activeDotStyle={{backgroundColor:'#fff',height:10,width:10,borderRadius:10,}}>
                     <View style={{flex:1}}>
-                        <Image style={{ height:undefined,width:undefined,resizeMode:'cover',flex:1}} source={require('@images/HomePage/image.jpg')}/> 
+                        <Image style={{ height:WindowWidth,width:WindowWidth,resizeMode:'stretch',flex:1}} source={require('@images/HomePage/image.jpg')}/> 
                     </View>
                     <View style={{flex:1}}>
-                        <Image style={{ height:undefined,width:undefined,resizeMode:'stretch',flex:1}} source={require('@images/HomePage/image.jpg')}/> 
+                        <Image style={{ height:WindowWidth,width:WindowWidth,resizeMode:'stretch',flex:1}} source={require('@images/HomePage/image.jpg')}/> 
                     </View>
                     <View style={{flex:1}}>
-                        <Image style={{ height:undefined,width:undefined,resizeMode:'cover',flex:1}} source={require('@images/HomePage/image.jpg')}/> 
+                        <Image style={{ height:WindowWidth,width:WindowWidth,resizeMode:'stretch',flex:1}} source={require('@images/HomePage/image.jpg')}/> 
                     </View>
                 </ProductSwiper>
 
@@ -90,9 +97,23 @@ export default class ProductPage extends Component{
                     </View>
 
                     <View style={styles.titleView}>
-                        <View style={styles.slideBuy}></View>
+                    <RNSlidingButton
+                        style={styles.slideBuy}
+                       height={58}
+                        onSlidingSuccess={()=>{
+                            this.props.navigator.push({
+                                screen:'app.ConfirmationPage'
+                            })
+                        }}
+                        slideDirection={SlideDirection.RIGHT}>
+                        <View style={{justifyContent:'center',alignItems:'center',height:56,width:WindowWidth/2.47,backgroundColor:'white',borderColor:'#F5317F',borderRadius:40,borderWidth:2}}>
+                            <Text style={{color:'#FF4273',fontFamily:'Lato-Bold',fontSize:14}}>SLIDE TO BUY  >></Text>
+                        </View>
+                        </RNSlidingButton>
+                        
                     </View>
                 </View>
+                   
             </ScrollView>
         )
     }

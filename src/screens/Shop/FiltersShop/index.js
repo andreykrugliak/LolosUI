@@ -16,7 +16,14 @@ export default class FilterShop extends Component{
         return(
             <View style={{flex:1}}>
                 <View style={styles.header}>
+                <TouchableOpacity onPress={()=>{
+                    this.props.navigator.pop({
+                        animationType:"slide-horizontal"
+                    })
+                }}>
                     <Image style={styles.back} source={require('@images/DrawerScreen/left.png')}/>
+                </TouchableOpacity>
+                    
                     <Text  style={styles.filter}>FILTER</Text>
                 </View>
 
