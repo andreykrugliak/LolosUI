@@ -1,4 +1,5 @@
-import {StyleSheet} from 'react-native'
+import {StyleSheet,Platform,Dimensions} from 'react-native'
+let windowHeight = Dimensions.get('window').height
 export default StyleSheet.create({
     container:{
         flex:1,
@@ -109,5 +110,15 @@ export default StyleSheet.create({
         height:16,
         width:16,
         
+    },
+    sectionList:{
+        alignItems:'center',
+        justifyContent:'center',
+        marginRight:4,
+        width:30,
+        //overflow:'visible',
+        paddingTop:Platform.OS === 'ios'?0:80,
+       // flexWrap:'wrap',
+       // height:windowHeight,
     }
 })

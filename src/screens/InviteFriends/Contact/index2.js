@@ -1,10 +1,12 @@
 import React,{Component} from "react"
-import {Text,View,TextInput,Image,ScrollView,TouchableHighlight, TouchableOpacity} from "react-native"
+import {Text,View,TextInput,Image,ScrollView,TouchableHighlight,Dimensions,Platform, TouchableOpacity,FlatList} from "react-native"
 import Touchable from 'react-native-platform-touchable'
 import styles from "./style"
 import { HeaderComponent } from "@components/InviteFriends/HeaderComponent.js";
 import AlphabetListView from 'react-native-alphabetlistview'
 import Contacts from 'react-native-contacts'
+import {groupBy,flatMap,map,values,assign} from 'lodash'
+let windowHeight = Dimensions.get('window').height
 
 
 export default class InviteFriends extends Component{
@@ -15,10 +17,11 @@ export default class InviteFriends extends Component{
     constructor(props){
         super(props)
         this.state={
-            textInputRef:'',
+            searchKey:'',
             contacts:[],
+            search:false,
             data: {
-                A: ['AAAAA','aaaaa','aaaaa'],
+                A: ['aaaa'],
                 B: ['bbbbb','bbbbb','bbbbb'],
                 C: ['ccccc','ccccc','ccccc'],
                 D: ['DDDDDD','DDDDD','DDDDD'],
@@ -44,86 +47,146 @@ export default class InviteFriends extends Component{
                 X: ['some','entries','are here'],
                 Y: ['some','entries','are here'],
                 Z: ['ZZZZZ','ZZZZZZ','ZZZZZ'],
+            },
+            contactData:[],
+            
+            sortData:undefined,
+            
+        }
+    }
+
+    _handleSearch(text){
+        this.setState({
+            searchKey:text
+        })
+
+        if(this.state.searchKey){
+            let length=this.state.searchKey.length
+            if(length>1){
+                this.setState({search:true})
             }
         }
-        this.title="hhh"
+
+        if(this.state.searchKey<=1){
+            this.setState({search:false})
+        }
     }
+    
+    _keyExtractor = (item, index) => index;
+
+    _renderItems({item,index}){
+        return(
+            <View style={{height:60,justifyContent:'center',marginLeft:14,}}>
+            <Text style={{fontSize:24,marginVertical:14}}>{item}</Text>
+            <View style={{backgroundColor:'#f0f0f0',height:1,marginRight:14}}></View>
+          </View>
+        )
+    }
+
     componentDidMount()
-    {
-        
-        Contacts.getAll((err,contacts) => {
-            let nameArray = contacts.map((data, index) => {
-                return data.givenName 
-            })            
-            this.state.contacts.push(nameArray)
-        })
-        console.log('nameArray : ',this.state.contacts);
+    {   
+        let res=Contacts.getAll((err,contact) => {
+            let nameArray = contact.map((data, index) => {
+
+                this.state.contacts.push(data.givenName+" "+data.familyName)
+                this.state.contactData.push(data)
+            })  
+            let data = _.mapValues(_.groupBy(contact,'givenName[0]'))
+            this.setState({
+                sortData:data.givenName
+            }) 
+       })
+       console.log(this.state.contactData)
     }
 
     render(){
-       
         return(
         <View style={{ flex : 1 }}>
             <HeaderComponent navigator={this.props.navigator}/>
             <View style={{ shadowOpacity:0.3, shadowOffset:{height:1,width:0},}}>
                 <View style={styles.searchBox}>
-                    <TextInput placeholder={'Search…'} onChangeText={(text)=>{
-                                this.setState({textInputRef:text})
-                                }} style={styles.textInput}/>
+                    <TextInput placeholder={'Search…'} 
+                               onChangeText={(text)=>this._handleSearch(text)} 
+                                style={styles.textInput}
+                                underlineColorAndroid="transparent"/>
                     <TouchableOpacity
                     onPress={()=>{
                         this.props.navigator.push({
                         screen:'app.InviteFriendsInvite'
                     })}}
                     style={styles.searchIcon}>
-                        <Image style={styles.icon}  source={require('@images/InviteFriends/search.png')}/>
+                        <Image style={styles.icon} source={require('@images/InviteFriends/search.png')}/>
                     </TouchableOpacity>
                 </View>
             </View>
-            <AlphabetListView
-                data={this.state.data}
-                cell={Cell}
-                cellHeight={30}
-                sectionListItem={SectionItem}
-                sectionHeaderHeight={45}
-                sectionHeader={sectionHeader}
-            />
+            <View style={{flex:1}}>
+            {
+                this.state.search?
+                <FlatList
+                data={this.state.contacts}
+                keyExtractor={this._keyExtractor}
+                renderItem={this._renderItems}/>
+                :
+                this.state.data?
+                <View style={{flex:1}}>
+                    <AlphabetListView
+                    data={this.state.data}
+                    cell={Cell}
+                    cellHeight={30}
+                    sectionListItem={SectionListItem}
+                    sectionHeaderHeight={45}
+                    headerHeight={20}
+                    sectionListStyle={styles.sectionList}
+                    //sectionHeader={sectionHeader}
+                />
+                </View>
+                :
+                <View></View>
+            }
+            </View>            
         </View>
 
 )}}
 
- class sectionHeader extends Component{
-     
-     render(){
-         console.log(this.props)
-         return(
-             <View style={{height:45}}>
-                <Text style={{fontSize:12,color:'#000',marginLeft:14}}>
-                    {this.title}
-                </Text>
-             </View>
-         )
-     }
- }
+//  class sectionHeader extends InviteFriends{
+//         constructor(props){
+//             super(props)
+//         } 
+
+//      render(){
+//          console.log(this.props)
+//          return(
+//              <View style={{height:45}}>
+//                 <Text style={{fontSize:12,color:'#000',marginLeft:14}}>
+//                     {this.props.title}
+//                 </Text>
+//              </View>
+//          )
+//      }
+//  }
 
 
-  class SectionItem extends Component {
+  class SectionListItem extends InviteFriends {
+
     render(){
-        
       return (
-        <View style={{backgroundColor:'#fff',paddingHorizontal:2}}>
+          
+        <View style={{backgroundColor:'#fff'}}>
             <Text style={{color:'blue'}}>{this.props.title}</Text>
         </View>
       );
     }
   }
   
-  class Cell extends Component {
+  class Cell extends InviteFriends {
     render() {
+        console.log(this.props)
       return (
         <View style={{height:60,justifyContent:'center',marginLeft:14,}}>
           <Text style={{fontSize:24,marginVertical:14}}>{this.props.item}</Text>
-          <View style={{backgroundColor:'#f0f0f0',height:1,marginRight:14}}></View>
+           {this.props.isLast?
+            null:
+           <View style={{backgroundColor:'#f0f0f0',height:1,marginRight:14,}}></View>} 
         </View>
       );
     }
