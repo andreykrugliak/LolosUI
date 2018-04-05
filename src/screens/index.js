@@ -21,6 +21,9 @@ import InviteFriendsInvite from './InviteFriends/Contact/index3'
 import InviteFriendsSucess from './InviteFriends/Sucess'
 import Notifications from './Notifications/index'
 
+import SliderPage from './HomePage/SliderPage/index'
+import Wallet from './HomePage/Wallet/index'
+
 export function registerScreens(params){
     Navigation.registerComponent('app.SplashScreen',()=>SplashScreen);
     Navigation.registerComponent('app.HomePage',()=>HomePage);
@@ -43,5 +46,8 @@ export function registerScreens(params){
     Navigation.registerComponent('app.InviteFriendsInvite',()=>InviteFriendsInvite)
     Navigation.registerComponent('app.InviteFriendsSucess',()=>InviteFriendsSucess)
     Navigation.registerComponent('app.Notifications',()=>Notifications)
+
+    Navigation.registerComponent('app.SliderPage',()=>SliderPage)
+    Navigation.registerComponent('app.Wallet',()=>Wallet)
 
 }
