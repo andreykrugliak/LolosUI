@@ -56,9 +56,14 @@ export default StyleSheet.create({
         
         backgroundColor : '#fff',
         width:WindowWidth-40,
-        ...Platform.OS=='ios'?{height:WindowHeight-190}:{height:WindowHeight-220},
+        ...Platform.OS=='ios'?{height:WindowHeight-190}:{height:WindowHeight-210},
         borderRadius:5,
-      
+        
+            ...Platform.OS === 'ios'?{
+
+            }:{
+                marginTop:75
+            },
         
         
         overflow:"hidden"

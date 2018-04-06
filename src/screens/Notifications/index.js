@@ -49,7 +49,7 @@ export default class Notifications extends Component{
         )}
     render(){
         return(
-            <ScrollView>
+            <ScrollView style={{flex:1,backgroundColor:'white'}}>
                      <View style={styles.container}>
                         <TouchableOpacity style={styles.imageContainer} 
                             onPress={()=>{this.props.navigator.toggleDrawer({

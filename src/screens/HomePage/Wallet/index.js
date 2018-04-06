@@ -7,8 +7,6 @@ var WindowHeight = Dimensions.get('window').height
 import styles from './style'
 
 export default class Wallet extends Component{
-
-
     static navigatorStyle = {
         navBarHidden:true
     };

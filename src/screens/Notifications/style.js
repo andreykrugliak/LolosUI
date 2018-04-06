@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-
+import {StyleSheet, Dimensions} from 'react-native';
+let window = Dimensions.get('window')
 export default StyleSheet.create({
     container: { 
         height:80,
@@ -77,9 +77,14 @@ export default StyleSheet.create({
 
     },
     bodyImage:{
-        marginTop:249,
-        height:93,
-        width:93
+        position:'absolute',
+       
+        bottom:0,
+        alignSelf:'center',
+        width:window.width-185,
+        resizeMode:'contain'
+       
+     
     },
     footerText:{
         color:'#4A90E2',
