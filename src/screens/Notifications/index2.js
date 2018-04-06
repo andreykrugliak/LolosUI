@@ -24,12 +24,12 @@ export default class Notification extends Component{
                         <Text style={styles.headText}>
                                 Your Packages are on it's way
                         </Text>
-                        <Image style={styles.bodyImage} source={require('@images/Notification/emj.png')}></Image>
+                        
                         <Text style={styles.footerText}>
                                 LESHP New USB Gadgets Mini Flexible LED Light Fan DeskTop Clock Time Display
                         </Text>
                 </View>
-
+                <Image style={styles.bodyImage} source={require('@images/notification.png')}></Image>
             </View>
         )
     }

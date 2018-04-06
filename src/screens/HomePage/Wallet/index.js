@@ -64,7 +64,7 @@ export default class Wallet extends Component{
                         <Text style={styles.requestText}>Request lolo's</Text>
                     </View>   
                     <View style={styles.box}>
-                    <View style={styles.soonBox}>
+                        <View style={styles.soonBox}>
                             <Text style={styles.soonText}>Soon</Text>
                         </View>
                         <Text style={styles.requestText}>Give lolo's</Text>
