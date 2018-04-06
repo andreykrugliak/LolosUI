@@ -21,7 +21,11 @@ export default class LoginScreen extends Component{
                     <Input style={{paddingLeft:20}}placeholder="Password"/>
                 </View>
                 <Text style={styles.forgetPassword}>Forgot your password?</Text>
-                <Button style={styles.buttonStyle}>
+                <Button onPress={()=>{
+                    this.props.navigator.push({
+                    screen:'app.HomePage',
+                    passProps:{navigator:this.props.navigator}
+                })}}  style={styles.buttonStyle}>
                     <Text style={styles.buttonText}>
                         Log In
                     </Text>

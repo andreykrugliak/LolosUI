@@ -1,8 +1,7 @@
 import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
-    container: {
-        
+    container: { 
         height:80,
         borderBottomWidth:1,
         borderBottomColor:'rgba(0,0,0,1)'
@@ -16,11 +15,8 @@ export default StyleSheet.create({
         width:30
     },
     backImage:{
-        
         height:20,
         width:20,
-       
-        
     },
     text:{
         alignSelf:'center',
@@ -63,5 +59,37 @@ export default StyleSheet.create({
     forwardImage:{
         height:12,
         width:12
-    }
+    },
+    body:{
+       // justifyContent:'center',
+        alignItems:'center',
+        flex:1,
+    },
+    date:{
+        marginTop:45,
+        color:'#9B9B9B',
+        fontFamily:'Lato',
+        fontSize:14,
+    },
+    headText:{
+        fontSize:22,
+        color:'#000',
+
+    },
+    bodyImage:{
+        marginTop:249,
+        height:93,
+        width:93
+    },
+    footerText:{
+        color:'#4A90E2',
+        fontFamily:'Lato',
+        fontSize:12,
+        textAlign:'center',
+        //top:0,
+        bottom:25,
+        marginHorizontal:37,
+   
+        position:'absolute'
+    },
 })

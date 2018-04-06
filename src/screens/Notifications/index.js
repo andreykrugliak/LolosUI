@@ -26,21 +26,26 @@ export default class Notifications extends Component{
     Notifications=(item)=>{
         
         return(
-        <View style={styles.NotificationBox}>
-        <Text style={styles.mainText}>
-            Welcome to lolo's
-        </Text>
-        <Text style={styles.subText}>
-            We more then happty to have you onboard
-        </Text>
-        <Text style={styles.dateText}>
-           {item.item.date}
-        </Text>
-        <TouchableOpacity style={styles.forwardImageContainer}>
-            <Image style={styles.forwardImage} source={require('@images/forward.png')}/>
+        <TouchableOpacity onPress={()=>{
+            this.props.navigator.push({
+                screen:'app.NoficationScreen',
+              //  animationType:'slide-horizontal'
+            })
+        }}
+        style={styles.NotificationBox}>
+            <Text style={styles.mainText}>
+                Welcome to lolo's
+            </Text>
+            <Text style={styles.subText}>
+                We more then happty to have you onboard
+            </Text>
+            <Text style={styles.dateText}>
+            {item.item.date}
+            </Text>
+            <TouchableOpacity style={styles.forwardImageContainer}>
+                <Image style={styles.forwardImage} source={require('@images/forward.png')}/>
+            </TouchableOpacity>
         </TouchableOpacity>
-        
-</View>
         )}
     render(){
         return(

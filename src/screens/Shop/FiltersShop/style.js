@@ -61,6 +61,22 @@ export default StyleSheet.create({
         borderColor:'#FF4273',
         marginLeft:2,
     },
+    radioButtonFilled:{
+        borderWidth:2,
+        height:20,
+        width:20,
+        borderRadius:20,
+        borderColor:'#FF4273',
+        marginLeft:2,
+        alignItems:'center',
+        justifyContent:'center'
+    },
+    radioFill:{
+        height:10,
+        width:10,
+        borderRadius:5,
+        backgroundColor:'#FF4273',
+    },
     selectionText:{
         fontFamily:'lato',
         fontSize:16,
@@ -72,6 +88,7 @@ export default StyleSheet.create({
         borderWidth:2,
         borderColor:'#FF4273',
         marginLeft:3,
+        borderRadius:2,
     },
     line:{
         height:1,

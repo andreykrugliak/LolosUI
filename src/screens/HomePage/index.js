@@ -25,19 +25,6 @@ const initialLayout = {
   }
 
 
-
-
-
-
-        
-
-
-
-           
-
-
-
-
   export default class TabViewExample extends React.Component {
     static navigatorStyle = {
         navBarHidden:true
