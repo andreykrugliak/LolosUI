@@ -29,7 +29,7 @@ export default class Notifications extends Component{
         <TouchableOpacity onPress={()=>{
             this.props.navigator.push({
                 screen:'app.NoficationScreen',
-              //  animationType:'slide-horizontal'
+                animationType:'slide-horizontal'
             })
         }}
         style={styles.NotificationBox}>

@@ -18,8 +18,9 @@ export default class SliderPage extends Component{
     constructor(props){
         super(props);
         this.renderCard=this.renderCard.bind(this)
+       // props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
     }
-
+   
 
 renderCard(cardIndex){
     
@@ -145,7 +146,8 @@ switch(cardIndex)
             <Button transparent onPress={()=>{
                 this.props.navigator.toggleDrawer({
                     side:'right',
-                    to:'open'
+                    to:'open',
+                    passProps:{navigator:this.props.navigator}
                 })
             }}>
                 <Badge style={[styles.badgeStyle]}>

@@ -32,7 +32,11 @@ export default class DrawerScreen extends Component{
                     <Text style={styles.drawerInnerText}>My Profile</Text>
                 </TouchableOpacity>
                 <View style={styles.line}></View>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>   
+                this.props.navigator.handleDeepLink({
+                link: "sidemenu",
+                payload: {screen:"app.InviteFriendsHome",title:'Bookmarks'}
+                })}>
                     <Text style={styles.drawerInnerText}>Invite Freinds</Text>
                 </TouchableOpacity>
                 <View style={styles.line}></View>

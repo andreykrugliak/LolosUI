@@ -6,9 +6,21 @@ import { HeaderComponent } from "@components/InviteFriends/HeaderComponent.js";
 
 
 export default class InviteFriends extends Component{
+
+   
+
     static navigatorStyle = {
         navBarHidden:true
       };
+
+    componentDidMount(){
+        this.props.navigator.toggleDrawer({
+            side: 'left', 
+            animated: true,
+            to:'closed'
+        })
+    } 
+
     render(){
         return(
             <View style={styles.container}>

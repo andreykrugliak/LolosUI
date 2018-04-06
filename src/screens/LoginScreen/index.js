@@ -24,7 +24,7 @@ export default class LoginScreen extends Component{
                 <Button onPress={()=>{
                     this.props.navigator.push({
                     screen:'app.HomePage',
-                    passProps:{navigator:this.props.navigator}
+                   
                 })}}  style={styles.buttonStyle}>
                     <Text style={styles.buttonText}>
                         Log In

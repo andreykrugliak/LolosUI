@@ -8,12 +8,13 @@ import styles from './style'
 
 export default class Wallet extends Component{
 
+
     static navigatorStyle = {
         navBarHidden:true
     };
     render(){
     return(
-        <View style={{flex:1}}>
+        <View style={{flex:1,zIndex:0}}>
              <Header style={styles.headerStyle}>
             <Left style={styles.headerLeftSide}>
                 <Button transparent onPress={()=>{
@@ -57,18 +58,21 @@ export default class Wallet extends Component{
             <Image style={styles.twoSmiley} source={require('@images/InviteFriends/2smiley.png')}/>
               
                 <View style={{flexDirection:'row',marginTop:55,justifyContent:'space-between',marginHorizontal:24}}>
-                    <View style={styles.box}>
-                        <View style={styles.soonBox}>
+                    <View style={[styles.soonBox,{left:11}]}>
                             <Text style={styles.soonText}>Soon</Text>
-                        </View>
+                    </View>
+                    <View style={styles.box}>
                         <Text style={styles.requestText}>Request lolo's</Text>
-                    </View>   
-                    <View style={styles.box}>
-                    <View style={styles.soonBox}>
+                    </View> 
+                    
+                    <View style={[styles.soonBox,{left:(WindowWidth/2)-7}]}>
                             <Text style={styles.soonText}>Soon</Text>
-                        </View>
+                    </View> 
+                    <View style={styles.box}>
                         <Text style={styles.requestText}>Give lolo's</Text>
                     </View>  
+
+
                 </View> 
                 <View style={[styles.backGround,{ marginTop:25}]}>
                     </View> 

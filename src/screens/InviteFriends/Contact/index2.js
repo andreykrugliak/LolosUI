@@ -53,6 +53,7 @@ export default class InviteFriends extends Component{
             sortData:undefined,
             
         }
+        this.cell=this.cell.bind(this)
     }
 
     _handleSearch(text){
@@ -98,6 +99,23 @@ export default class InviteFriends extends Component{
        })
        console.log(this.state.contactData)
     }
+    cell(item){
+        return (
+            <View style={{height:60,justifyContent:'center',marginLeft:14,}}>
+                <TouchableOpacity onPress={()=>{
+                            this.props.navigator.push({
+                            screen:'app.InviteFriendsInvite',
+                            passProps:{name:item.item}
+                        })}}> 
+                    <Text style={{fontSize:24,marginVertical:14}}>{item.item}</Text>
+                </TouchableOpacity>
+                {this.props.isLast?
+                null:
+                <View style={{backgroundColor:'#f0f0f0',height:1,marginRight:14,}}></View>} 
+            </View>
+            );
+    }
+          
 
     render(){
         return(
@@ -131,7 +149,7 @@ export default class InviteFriends extends Component{
                 <View style={{flex:1}}>
                     <AlphabetListView
                     data={this.state.data}
-                    cell={Cell}
+                    cell={(item)=>this.cell(item)}
                     cellHeight={30}
                     sectionListItem={SectionListItem}
                     sectionHeaderHeight={45}
@@ -178,16 +196,4 @@ export default class InviteFriends extends Component{
     }
   }
   
-  class Cell extends InviteFriends {
-    render() {
-        console.log(this.props)
-      return (
-        <View style={{height:60,justifyContent:'center',marginLeft:14,}}>
-          <Text style={{fontSize:24,marginVertical:14}}>{this.props.item}</Text>
-           {this.props.isLast?
-            null:
-           <View style={{backgroundColor:'#f0f0f0',height:1,marginRight:14,}}></View>} 
-        </View>
-      );
-    }
-  }
+  

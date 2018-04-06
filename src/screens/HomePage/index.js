@@ -26,6 +26,19 @@ const initialLayout = {
 
 
   export default class TabViewExample extends React.Component {
+
+    onNavigatorEvent(event)
+    {
+      if (event.type == 'DeepLink') {
+          if(event.link == 'sidemenu') {
+              this.props.navigator.push({
+              screen:event.payload.screen,
+              title:event.payload.title,
+            })
+        }
+      }
+    }
+
     static navigatorStyle = {
         navBarHidden:true
       };
@@ -40,6 +53,7 @@ const initialLayout = {
             ],
         };
         this._renderScene = this._renderScene.bind(this)
+        this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
       }
     
     _renderIcon = ({route}) => {
@@ -59,19 +73,12 @@ const initialLayout = {
 
 
          _renderScene({route}) {
-           
-            
              switch(route.key){
                  case '0': return <PreviewScreen  navigator={this.props.navigator}/>
                  case '1':return <Walllet navigator={this.props.navigator} />
-                 case '2': return <SliderPage navigator={this.props.navigator} />
-                
+                 case '2': return <SliderPage navigator={this.props.navigator} /> 
              }
-         
         }
-  
- 
-        
           onSwipedAllCards = () => {
             this.setState({
               swipedAllCards: true
@@ -106,14 +113,9 @@ const initialLayout = {
         render() {
         
             return (
-
-               
                 <View style={{height:WindowHeight,flex:1,width:WindowWidth}}>
-              
-               
-                  
+
                 <TabViewAnimated
-             
                 swipeEnabled={false}
                 navigationState={this.state}
                 renderScene={this._renderScene}

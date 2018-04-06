@@ -266,7 +266,7 @@ export default StyleSheet.create({
         width:60,
         height:26,
         alignSelf:'center',
-        marginTop:0
+       // marginTop:0
     },
     box:{
         height:60,
@@ -276,31 +276,33 @@ export default StyleSheet.create({
         borderRadius:3,
         zIndex:0,
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+        flexWrap:"wrap",
     },
     backGround:{
         height:5,
-        backgroundColor:'#F0F0F0',
-       
+        backgroundColor:'#F0F0F0',  
     },
     soonBox:{
+        //flex:1,
         height:24,
         width:50,
-        zIndex:2,
+        zIndex:1,
         borderRadius:3,
         position:'absolute',
         borderColor:'black',
         backgroundColor:'white',
-        left:11,
         borderWidth:1,
         top:-12,
         justifyContent:'center',
         alignItems:'center'
     },
+
     soonText:{
         color:'black',
         fontFamily:'Lato-Regular',
         fontSize:14
+
     },
     requestText:{
         color:'#FF4273',
