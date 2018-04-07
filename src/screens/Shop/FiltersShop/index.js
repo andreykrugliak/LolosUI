@@ -143,9 +143,15 @@ export default class FilterShop extends Component{
                 <View style={styles.line}></View>
 
                 <View style={styles.button}>
-                <View style={styles.btnBackground}>
+                <TouchableOpacity onPress={()=>{
+                    this.props.navigator.push({
+                        screen:'app.HomePage',
+
+                    })
+                }}
+                style={styles.btnBackground}>
                     <Text style={styles.apply}>APPLY</Text>
-                </View>
+                </TouchableOpacity>
             </View>
 
             </View>

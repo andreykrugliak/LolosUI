@@ -18,8 +18,9 @@ export default class SliderPage extends Component{
     constructor(props){
         super(props);
         this.renderCard=this.renderCard.bind(this)
+       // props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
     }
-
+   
 
 renderCard(cardIndex){
     
@@ -55,7 +56,6 @@ switch(cardIndex)
         <TouchableOpacity onPress={()=>{
                     this.props.navigator.push({
                     screen:'app.InviteFriendsHome',
-                    passProps:{navigator:this.props.navigator}
                 })
         }}style={[styles.button]}>
             <Text style={[styles.buttonTextInvite]}>Invite Freinds</Text>
@@ -74,7 +74,7 @@ switch(cardIndex)
             <TouchableOpacity onPress={()=>{
                     this.props.navigator.push({
                     screen:'app.Wallet',
-                    passProps:{navigator:this.props.navigator}
+                    // passProps:{navigator:this.props.navigator}
                 }) }}
                      style={[styles.button]}>
                     <Text style={[styles.buttonTextInvite]}>Take a Look</Text>
@@ -92,7 +92,7 @@ switch(cardIndex)
             <TouchableOpacity onPress={()=>{
                     this.props.navigator.push({
                     screen:'app.PreviewScreen',
-                    passProps:{navigator:this.props.navigator}
+                    // passProps:{navigator:this.props.navigator}
                 })}} 
             
             style={[styles.button]}>
@@ -128,6 +128,7 @@ switch(cardIndex)
         <Header style={styles.headerStyle}>
         <Left style={styles.headerLeftSide}>
             <Button transparent onPress={()=>{
+               
                 this.props.navigator.toggleDrawer({
                     side:'left',
                     to:'open'
@@ -145,8 +146,7 @@ switch(cardIndex)
             <Button transparent onPress={()=>{
                 this.props.navigator.toggleDrawer({
                     side:'right',
-                    to:'open'
-                })
+                    to:'open'                })
             }}>
                 <Badge style={[styles.badgeStyle]}>
                     <View>
@@ -158,7 +158,7 @@ switch(cardIndex)
             </Button>
         </Right>
     </Header>
-        
+        <View style={{flex:1}}>
             <Swiper
                     
                     backgroundColor='#f0f0f0'
@@ -179,6 +179,6 @@ switch(cardIndex)
             >
             
     </Swiper>
-   
+    </View>
     </View>
     )}}

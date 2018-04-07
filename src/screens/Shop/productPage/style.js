@@ -13,14 +13,12 @@ export default StyleSheet.create({
           left:15,
           height:24,
           width:12,
-          zIndex:100,
+          zIndex:1,
           opacity:1,
       },
     Image:{
-        
         height:375,
-        //width:deviceWidth,
-        // resizeMode:'cover'
+        zIndex:0
     },
     extraInfoLabel:{
         position:'absolute',

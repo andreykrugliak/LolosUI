@@ -296,7 +296,7 @@ export default StyleSheet.create({
         borderRadius:3,
         position:'absolute',
         borderColor:'black',
-        backgroundColor:'white',
+        backgroundColor:'white',    
         borderWidth:1,
         top:-12,
         justifyContent:'center',

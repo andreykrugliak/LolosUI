@@ -11,13 +11,12 @@ export default class Notification extends Component{
             <View style={{flex:1}}>
                 <View style={styles.container}>
                         <TouchableOpacity style={styles.imageContainer} 
-                            onPress={()=>{this.props.navigator.toggleDrawer({
-                                side: 'right',
-                                to:'close',
-                                })}}>
+                        onPress={()=>{
+                             this.props.navigator.pop({animationType:"slide-horizontal"})
+                        }}>
                                 <Image style={styles.backImage} source={require('@images/InviteFriends/back.png')}/>
                         </TouchableOpacity>
-                        <Text style={styles.text}>INVITE FREINDS</Text>
+                        <Text style={styles.text}>Notifications</Text>
                 </View>
                 <View style={styles.body}>
                         <Text style={styles.date}>12.12.17</Text>

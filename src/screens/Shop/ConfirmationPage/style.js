@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native'
+import {StyleSheet,Platform} from 'react-native'
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 export default StyleSheet.create({
     back:{
@@ -18,6 +18,7 @@ export default StyleSheet.create({
     image:{
         width:375,
         height:250,
+        zIndex:0
     },
     total:{
         marginTop:50,
@@ -30,7 +31,7 @@ export default StyleSheet.create({
         marginTop:15,
         color:'#FF4273',
         fontFamily:'lato',
-        fontSize:80,
+        fontSize:Platform.ios? 80:40, 
         textAlign:'center',
         fontWeight:'900',
     },
@@ -58,6 +59,7 @@ export default StyleSheet.create({
         flex:1,
         position:'absolute',
         bottom:0,
+        zIndex:0,
         right:0,
         left:0,
     },

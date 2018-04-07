@@ -7,23 +7,21 @@ let windowWidth = Dimensions.get('window').width
 registerScreens();
 Navigation.startSingleScreenApp({
     screen:{
-        screen:'app.InviteFriendsHome',
+        screen:'app.LandingScreen',
     },
     drawer:{
         left:{
             screen:'app.DrawerScreen',
-            fixedWidth:0.75*(windowWidth*3),
-
-            
-           
+           // fixedWidth:0.75*(windowWidth*3),
         },
         right:{
             screen:'app.Notifications',
-            fixedWidth:windowWidth*3
+            fixedWidth:windowWidth*2
+           // fixedWidth:windowWidth*3
         },
         style: {
             leftDrawerWidth: 75,
-            rightDrawerWidth: 100,
+            rightDrawerWidth:windowWidth,
             //drawerShadow:false
           },
           
@@ -31,7 +29,7 @@ Navigation.startSingleScreenApp({
     },
     animationType: 'slide-down',
     
-   appStyle:{
+    appStyle:{
        orientation: 'portrait'
     },
     

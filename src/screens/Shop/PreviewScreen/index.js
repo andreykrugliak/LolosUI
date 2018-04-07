@@ -41,7 +41,7 @@ export default class PreviewScreen extends Component{
                 { key: '3', title: 'Fashion' },
               ],
         })
-        this.__handleIndexChange=this.__handleIndexChange.bind(this)
+        this._handleIndexChange=this._handleIndexChange.bind(this)
         this._renderHeader=this._renderHeader.bind(this)
         this._renderScane=this._renderScane.bind(this)
         this._renderItems=this._renderItems.bind(this)
@@ -68,6 +68,7 @@ export default class PreviewScreen extends Component{
     _renderScane=({routes})=>{
         console.log(routes)
         return(
+
                 <FlatList
                     style={{flex:1}}
                     data={this.state.data}
@@ -78,22 +79,22 @@ export default class PreviewScreen extends Component{
         )
     }
 
-    __handleIndexChange(index){
+    _handleIndexChange(index){
         this.setState({
-            index
+            index:index
         })
         console.log(index)
     }
 
     _renderItems=({item,index})=>{
         return(
-            <TouchableOpacity style={styles.container} 
-            onPress={()=>{
-                this.props.navigator.push({
-                  screen:'app.ProductPage',
-                  animationType:"slide-horizontal"
-                })
-                
+        <View style={[styles.container]}>
+            <TouchableOpacity
+                onPress={()=>{
+                    this.props.navigator.push({
+                    screen:'app.ProductPage',
+                    animationType:"slide-horizontal"
+                    }) 
                 }}>
                 <View style={[styles.card,{shadowOpacity:0.3,shadowOffset:{width:0,height:1}}]}>
                     <Image style={styles.productIcon} resizeMode={'stretch'} source={require('@images/Shop/image.jpg')}/>
@@ -115,7 +116,9 @@ export default class PreviewScreen extends Component{
                         </View>
                     </View>
                 </View>
-            </TouchableOpacity>
+            </TouchableOpacity> 
+        </View>
+           
         )
     }
 
@@ -148,7 +151,7 @@ export default class PreviewScreen extends Component{
                          navigationState={this.state}
                          renderHeader={this._renderHeader}
                          renderScene={this._renderScane}
-                         onIndexChange={this.__handleIndexChange}/>
+                         onIndexChange={this._handleIndexChange}/>
                     </View>
                 </View>
             
