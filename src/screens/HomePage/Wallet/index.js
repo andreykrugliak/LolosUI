@@ -26,7 +26,7 @@ export default class Wallet extends Component{
             </Left>
 
             <Body style={styles.centerLogo}>
-                <Title style={styles.headerText}>LOLO'S</Title>
+                <Title style={styles.headerText}>WALLET</Title>
             </Body>
 
             <Right>

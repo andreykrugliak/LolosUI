@@ -1,4 +1,5 @@
 import {StyleSheet,Dimensions} from 'react-native'
+import { ifIphoneX } from 'react-native-iphone-x-helper';
 deviceWidth=Dimensions.get("window").width
 
 export default StyleSheet.create({
@@ -91,16 +92,19 @@ export default StyleSheet.create({
      leftButton:{
          height:16,
          width:16,
+         ...ifIphoneX({marginTop:25},{})
      },
      headerText:{
          fontFamily:'Lato',
          fontSize:18,
          fontWeight:'bold',
+         ...ifIphoneX({marginTop:25},{})
      },
      rightButton:{
 
          height:18,
-         width:18
+         width:18,
+         ...ifIphoneX({marginTop:25},{})
      },
      tabBar:{
        
