@@ -4,8 +4,7 @@ export default StyleSheet.create({
     container: { 
         height:80,
         borderBottomWidth:1,
-        borderBottomColor:'rgba(0,0,0,1)'
-        
+        borderBottomColor:'rgba(0,0,0,1)' 
     },
     imageContainer:{
         position:'absolute',
@@ -26,6 +25,7 @@ export default StyleSheet.create({
         marginTop:35
     },
     NotificationBox:{
+        flex:1,
         height:70,
         borderBottomWidth:StyleSheet.hairlineWidth
     },

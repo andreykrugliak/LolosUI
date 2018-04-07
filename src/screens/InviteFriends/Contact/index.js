@@ -6,24 +6,14 @@ import { HeaderComponent } from "@components/InviteFriends/HeaderComponent.js";
 
 
 export default class InviteFriends extends Component{
-
-   
-
     static navigatorStyle = {
         navBarHidden:true
       };
 
-    componentDidMount(){
-        this.props.navigator.toggleDrawer({
-            side: 'left', 
-            animated: true,
-            to:'closed'
-        })
-    } 
-
     render(){
         return(
-            <View style={styles.container}>
+            <View style={[styles.container]}>
+
                 <HeaderComponent navigator={this.props.navigator}/>
                 <Text style={styles.headerText}>Earn Money, Easily</Text>
                 <Text style={styles.subText}>by inviting freinds to use lolo’s you earn money, the more freinds you invite, more lolo’s in your wallet</Text>

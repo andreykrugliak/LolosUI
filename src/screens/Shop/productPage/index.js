@@ -21,7 +21,7 @@ export default class ProductPage extends Component{
                                 onPress={()=>{
                                     this.props.navigator.pop({animationType:"slide-horizontal"})
                                     }}>
-                    <Image style={[styles.back,{tintColor:'#fff'}]} source={require('@images/Shop/back.png')}/>
+                    <Image style={[ {height:24,width:12, tintColor:'#fff'}]} source={require('@images/Shop/back.png')}/>
                 </TouchableOpacity>
                
                 {/* <Image style={styles.Image} resizeMode={'cover'}  source={require('@images/HomePage/image.jpg')}/> */}

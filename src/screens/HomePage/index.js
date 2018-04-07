@@ -1,12 +1,12 @@
 import React,{Component} from 'react';
 import {Container, Header, Content, Footer, FooterTab, Button, Text, Icon, Body, Right, Left,Title, Card, Badge, CardItem} from 'native-base';
-import {View,Dimensions,Image,TouchableOpacity,ScrollView} from 'react-native';
-import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
+import {View,Dimensions,Image,TouchableOpacity,ScrollView,Platform} from 'react-native';
+import { TabViewAnimated,TabViewPagerPan,TabViewPagerScroll, TabBar, SceneMap } from 'react-native-tab-view';
 import Swiper from 'react-native-deck-swiper'
 var WindowWidth = Dimensions.get('window').width
 var WindowHeight = Dimensions.get('window').height
 import Carousel from 'react-native-snap-carousel';
-import PreviewScreen from '@screens/Shop/PreviewScreen'
+import PreviewScreen from '@screens/Shop/PreviewScreen/index'
 import SliderPage from '@screens/HomePage/SliderPage'
 import Walllet from '@screens/HomePage/Wallet'
 import styles from './style'
@@ -31,12 +31,30 @@ const initialLayout = {
     {
       if (event.type == 'DeepLink') {
           if(event.link == 'sidemenu') {
+            this.props.navigator.toggleDrawer({
+              side:'left',
+              to:'closed'
+          })
               this.props.navigator.push({
               screen:event.payload.screen,
               title:event.payload.title,
             })
+
         }
+
+        if(event.link == 'Rightmenu') {
+          this.props.navigator.toggleDrawer({
+            side:'right',
+            to:'closed'
+        })
+            this.props.navigator.push({
+            screen:event.payload.screen,
+            title:event.payload.title,
+          })
       }
+    }
+
+
     }
 
     static navigatorStyle = {
@@ -74,7 +92,7 @@ const initialLayout = {
 
          _renderScene({route}) {
              switch(route.key){
-                 case '0': return <PreviewScreen  navigator={this.props.navigator}/>
+                 case '0': return <PreviewScreen   navigator={this.props.navigator}/>
                  case '1':return <Walllet navigator={this.props.navigator} />
                  case '2': return <SliderPage navigator={this.props.navigator} /> 
              }
@@ -108,6 +126,9 @@ const initialLayout = {
             this.swiper.swipeLeft()
           };
         
+          _renderPager = (props) => {
+            return (Platform.OS === 'ios') ? <TabViewPagerScroll {...props} /> : <TabViewPagerPan {...props} />
+           }
     
   
         render() {
@@ -122,6 +143,7 @@ const initialLayout = {
                 renderFooter={this._renderHeader}
                 onIndexChange={this._handleIndexChange}
                 initialLayout={initialLayout}
+                renderPager={this._renderPager}
                 ></TabViewAnimated>
         
             </View>

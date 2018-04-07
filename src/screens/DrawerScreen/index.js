@@ -10,44 +10,44 @@ export default class DrawerScreen extends Component{
         return(
             <View style={styles.flex}>
             
-            <View style={styles.header}>
-                <TouchableOpacity onPress={()=>{this.props.navigator.toggleDrawer({
-                                        side: 'left',
-                                        to:'close',
-                                        })}} 
-                                        style={styles.leftIconContainer}>
-                                        
-                    <Image style={styles.leftIcon} source={require('@images/DrawerScreen/left.png')}/>
-                </TouchableOpacity>
+                <View style={styles.header}>
+                    <TouchableOpacity onPress={()=>{this.props.navigator.toggleDrawer({
+                                            side: 'left',
+                                            to:'close',
+                                            })}} 
+                                            style={styles.leftIconContainer}>
+                                            
+                        <Image style={styles.leftIcon} source={require('@images/DrawerScreen/left.png')}/>
+                    </TouchableOpacity>
+                    
+                    <Text style={styles.headerText}>LOLO'S</Text>
                 
-                <Text style={styles.headerText}>LOLO'S</Text>
-              
-                
-            </View>
+                    
+                </View>
 
-            
-            
                 <View style={styles.drawerContainer}>
-                <TouchableOpacity>
-                    <Text style={styles.drawerInnerText}>My Profile</Text>
-                </TouchableOpacity>
-                <View style={styles.line}></View>
-                <TouchableOpacity onPress={()=>   
-                this.props.navigator.handleDeepLink({
-                link: "sidemenu",
-                payload: {screen:"app.InviteFriendsHome",title:'Bookmarks'}
-                })}>
-                    <Text style={styles.drawerInnerText}>Invite Freinds</Text>
-                </TouchableOpacity>
-                <View style={styles.line}></View>
-                <TouchableOpacity>
-                    <Text style={styles.drawerInnerText}>Shipping Address</Text>
-                </TouchableOpacity>
-                <View style={styles.line}></View>
-                <TouchableOpacity>
-                    <Text style={styles.drawerInnerText}>Log Out</Text>
-                </TouchableOpacity>
-                <View style={styles.line}></View>
+                    <TouchableOpacity>
+                        <Text style={styles.drawerInnerText}>My Profile</Text>
+                    </TouchableOpacity>
+
+                    <View style={styles.line}></View>
+                    <TouchableOpacity onPress={()=>   
+                        this.props.navigator.handleDeepLink({
+                        link: "sidemenu",
+                        payload: {screen:"app.InviteFriendsHome",title:'Bookmarks'}
+                        })}>
+                        <Text style={styles.drawerInnerText}>Invite Freinds</Text>
+                    </TouchableOpacity>
+                    <View style={styles.line}></View>
+                    <TouchableOpacity>
+                        <Text style={styles.drawerInnerText}>Shipping Address</Text>
+                    </TouchableOpacity>
+                    <View style={styles.line}></View>
+                    <TouchableOpacity>
+                        <Text style={styles.drawerInnerText}>Log Out</Text>
+                    </TouchableOpacity>
+                    <View style={styles.line}></View>
+
                 </View>
                 
                 

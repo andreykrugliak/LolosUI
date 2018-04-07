@@ -2,19 +2,17 @@ import {StyleSheet,Dimensions} from 'react-native'
 const deviceWidth=Dimensions.get("window").width
 export default StyleSheet.create({
     back:{
-        position:'absolute',
+          position:'absolute',
           top:20,
           left:15,
           height:24,
           width:12,
-          zIndex:100,
+          zIndex:1,
           opacity:1,
       },
     Image:{
-        
         height:375,
-        //width:deviceWidth,
-        // resizeMode:'cover'
+        zIndex:0
     },
     extraInfoLabel:{
         position:'absolute',

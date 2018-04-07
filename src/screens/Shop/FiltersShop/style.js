@@ -103,7 +103,7 @@ export default StyleSheet.create({
         left:0,
     },
     btnBackground:{
-        backgroundColor:'#F0F0F0',
+        backgroundColor:'#FF4273',
         height:70,
         alignItems:'center',
         justifyContent:'center',

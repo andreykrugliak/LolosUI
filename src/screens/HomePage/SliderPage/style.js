@@ -59,12 +59,6 @@ export default StyleSheet.create({
         ...Platform.OS=='ios'?{height:WindowHeight-190}:{height:WindowHeight-210},
         borderRadius:5,
         
-            ...Platform.OS === 'ios'?{
-
-            }:{
-                marginTop:75
-            },
-        
         
         overflow:"hidden"
     },
@@ -211,6 +205,7 @@ export default StyleSheet.create({
         height:80
     },
     headerLeftSide:{
+    
        // marginRight:35
     },
     notificationIcon:{

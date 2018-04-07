@@ -27,11 +27,10 @@ export default class Notifications extends Component{
         
         return(
         <TouchableOpacity onPress={()=>{
-            this.props.navigator.push({
-                screen:'app.NoficationScreen',
-                animationType:'slide-horizontal'
-            })
-        }}
+            this.props.navigator.handleDeepLink({
+                link: "Rightmenu",
+                payload: {screen:"app.NoficationScreen",title:'Notifications'}
+                })}}
         style={styles.NotificationBox}>
             <Text style={styles.mainText}>
                 Welcome to lolo's
@@ -49,7 +48,7 @@ export default class Notifications extends Component{
         )}
     render(){
         return(
-            <ScrollView style={{flex:1,backgroundColor:'white'}}>
+            <ScrollView style={{backgroundColor:'white',flex:1}}>
                      <View style={styles.container}>
                         <TouchableOpacity style={styles.imageContainer} 
                             onPress={()=>{this.props.navigator.toggleDrawer({
@@ -58,7 +57,7 @@ export default class Notifications extends Component{
                                 })}}>
                                 <Image style={styles.backImage} source={require('@images/InviteFriends/back.png')}/>
                         </TouchableOpacity>
-                        <Text style={styles.text}>INVITE FREINDS</Text>
+                        <Text style={styles.text}>Notifications</Text>
                     </View>
                     <FlatList
                     data={this.state.data}
