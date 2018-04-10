@@ -3,7 +3,6 @@ package com.clickers;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.reactnative.ivpusic.imagepicker.PickerPackage;
 import com.rt2zz.reactnativecontacts.ReactNativeContacts;
 
 import com.BV.LinearGradient.LinearGradientPackage;

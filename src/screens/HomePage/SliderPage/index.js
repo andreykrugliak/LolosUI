@@ -4,7 +4,6 @@ import {View,Dimensions,Image,TouchableOpacity,FlatList} from 'react-native';
 import Swiper from 'react-native-deck-swiper'
 var WindowWidth = Dimensions.get('window').width
 var WindowHeight = Dimensions.get('window').height
-
 import styles from './style'
 
 

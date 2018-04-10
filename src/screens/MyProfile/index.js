@@ -6,7 +6,6 @@ import Swiper from 'react-native-deck-swiper'
 var WindowWidth = Dimensions.get('window').width
 var WindowHeight = Dimensions.get('window').height
 import styles from './style'
-import ImagePicker from 'react-native-image-crop-picker';
 
 
 export default class MyProfile extends Component{

@@ -24,6 +24,7 @@ import Notifications from './Notifications/index2'
 import SliderPage from './HomePage/SliderPage'
 import Wallet from './HomePage/Wallet/index'
 import MyProfile from './MyProfile/index'
+import ShippingAddress from './ShippingAddress/AddressDisplay'
 
 
 export function registerScreens(params){
@@ -52,4 +53,5 @@ export function registerScreens(params){
     Navigation.registerComponent('app.SliderPage',()=>SliderPage)
     Navigation.registerComponent('app.Wallet',()=>Wallet)
     Navigation.registerComponent('app.myProfile',()=>MyProfile)
+    Navigation.registerComponent("app.shippingAddress",()=>ShippingAddress)
 }
