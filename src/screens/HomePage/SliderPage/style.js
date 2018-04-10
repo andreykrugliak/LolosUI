@@ -25,13 +25,15 @@ export default StyleSheet.create({
         width:"auto",
     },
     badgeStyle:{
-        height:20,
-        width:20,
+        height:14,
+        width:14,
+       // borderRadius:7,
         position:"absolute",
-        right:4,
-        top:4,
+        right:10,
+        top:6,
+        zIndex:1,
         backgroundColor:"#50C2A8",
-        opacity:1
+       // opacity:1
     },
     cardImage:{
         height: 371,
@@ -39,9 +41,14 @@ export default StyleSheet.create({
         //flex: 1
     },
     badgeText:{
-        fontSize:10,
-        position:"absolute",
-        top:-6
+        fontSize:9,
+        fontFamily:'lato',
+        color:'#fff',
+        opacity:1,
+        backgroundColor:'transparent',
+        alignSelf:'center'
+       
+      
     },
     wrapper:{
         borderWidth:1, 
@@ -53,7 +60,8 @@ export default StyleSheet.create({
     },
     slide1:{
        
-        
+        borderWidth:1,
+        borderColor:'#f0f0f0',  
         backgroundColor : '#fff',
         width:WindowWidth-40,
         ...Platform.OS=='ios'?{height:WindowHeight-190}:{height:WindowHeight-210},
@@ -64,7 +72,7 @@ export default StyleSheet.create({
     },
     titleSlide1:{
         marginTop:WindowHeight<= iphone5s?125:WindowHeight <= android?120:149,
-        fontSize:WindowHeight <= android?25:34,
+        fontSize:WindowHeight <= android?26:35,
         fontFamily:"PatuaOne-Regular",
         textAlign:"center",
         color: "#FF4273"
@@ -116,12 +124,13 @@ export default StyleSheet.create({
         top:-25,
         right:-28,
         transform: [{ rotate: '215deg'}],
-        height:148,
-        width:148,
+        height:128,
+        width:128,
         
     },
     freindsSmile:{   
-        marginTop:WindowHeight <= android?50:90,
+       // marginTop:WindowHeight <= android?50:90,
+        marginTop:WindowHeight <= android?50:50,
         alignSelf:'center',
         height:95,
         width:173,

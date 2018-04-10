@@ -18,6 +18,7 @@ export default {
         height: 38,
         alignSelf: 'center',
         width: 113,
+        
         backgroundColor: 'rgba(0,0,0,0.5)'
     }
 }

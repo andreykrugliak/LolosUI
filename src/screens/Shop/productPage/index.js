@@ -9,6 +9,7 @@ var WindowHeight = Dimensions.get('window').height
 
 import styles from './style'
 import {RNSlidingButton, SlideDirection} from 'rn-sliding-button';
+import LinearGradient from 'react-native-linear-gradient';
 export default class ProductPage extends Component{
 
     static navigatorStyle = {
@@ -97,19 +98,27 @@ export default class ProductPage extends Component{
                     </View>
 
                     <View style={styles.titleView}>
+
+                    <LinearGradient 
+                    start={{x: 1.04, y: 0.55}} end={{x: -0.04, y: 0.45}}  
+                    locations={[0.00,1.00]}
+                    style={[styles.slideBuy,{ marginVertical:28,justifyContent:'center'}]} colors={['#F5317F', '#FF7C6E']} >
                     <RNSlidingButton
-                        style={styles.slideBuy}
-                       height={58}
+                        style={[styles.slideBuy,{backgroundColor:'transparent'},]}
+                        height={58}
                         onSlidingSuccess={()=>{
                             this.props.navigator.push({
-                                screen:'app.ConfirmationPage'
+                                screen:'app.ConfirmationPage',
+                                animationType:"slide-horizontal"
                             })
                         }}
+                        successfulSlidePercent={40}
                         slideDirection={SlideDirection.RIGHT}>
-                        <View style={{justifyContent:'center',alignItems:'center',height:56,width:WindowWidth/2.47,backgroundColor:'white',borderColor:'#F5317F',borderRadius:40,borderWidth:2}}>
+                        <View style={{justifyContent:'center',alignItems:'center',height:64,width:WindowWidth/2.47,backgroundColor:'white',borderColor:'#F5317F',borderRadius:40,borderWidth:2}}>
                             <Text style={{color:'#FF4273',fontFamily:'Lato-Bold',fontSize:14}}>SLIDE TO BUY  >></Text>
                         </View>
                         </RNSlidingButton>
+                        </LinearGradient>
                         
                     </View>
                 </View>

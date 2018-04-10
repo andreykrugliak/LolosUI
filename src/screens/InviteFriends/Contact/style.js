@@ -1,5 +1,7 @@
 import {StyleSheet,Platform,Dimensions} from 'react-native'
 let windowHeight = Dimensions.get('window').height
+console.log(windowHeight)
+const iphoneSE = 568
 export default StyleSheet.create({
     container:{
         flex:1,
@@ -26,7 +28,7 @@ export default StyleSheet.create({
         width:151,
         resizeMode:'contain',
         alignSelf:'center',
-        marginTop:73
+        marginTop:windowHeight<= iphoneSE? 30:73,
     },
     invite:{
         color:'#9B9B9B',

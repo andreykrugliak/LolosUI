@@ -14,14 +14,15 @@ export default class InviteFriends extends Component{
         return(
             <View style={[styles.container]}>
 
-                <HeaderComponent navigator={this.props.navigator}/>
+                <HeaderComponent title="INVITE FRIENDS" navigator={this.props.navigator}/>
                 <Text style={styles.headerText}>Earn Money, Easily</Text>
                 <Text style={styles.subText}>by inviting freinds to use lolo’s you earn money, the more freinds you invite, more lolo’s in your wallet</Text>
                 <Image source={require('@images/InviteFriends/two.png')} style={styles.image}/>
                 <Text style={styles.invite}>2 invites per day</Text>
                 <TouchableOpacity style={styles.button} onPress={()=>{
                     this.props.navigator.push({
-                        screen:'app.InviteFriendsContactSearch'
+                        screen:'app.InviteFriendsContactSearch',
+                        animationType:"slide-horizontal"
                     })
                 }}>
                     <Text style={styles.buttonText}>Next</Text>

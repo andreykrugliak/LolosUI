@@ -47,8 +47,6 @@ export default StyleSheet.create({
     leftIcon:{
         height:24,
         width:24,
-       
-
     },
     
     drawerInnerText:{
@@ -59,16 +57,15 @@ export default StyleSheet.create({
         marginTop:23
     },
     drawerContainer:{
+    
         width:windowWidth,
         backgroundColor:'white',
         ...ifIphoneX({
             height:windowHeight-106
         },{
             height:windowHeight-80,
-        })
-        
-        
-        
+        }),
+
     },
     footerImage:{
         position:'absolute',
@@ -92,8 +89,10 @@ export default StyleSheet.create({
     line:{
         backgroundColor:'#F0F0F0',
         height:1,
-        width:windowWidth,
-        marginTop:21
+        width:261,
+       // width:windowWidth-20,
+        marginTop:2,
+        marginHorizontal:10,
     },
     
 

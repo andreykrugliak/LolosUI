@@ -20,18 +20,24 @@ export default class DrawerScreen extends Component{
                         <Image style={styles.leftIcon} source={require('@images/DrawerScreen/left.png')}/>
                     </TouchableOpacity>
                     
-                    <Text style={styles.headerText}>LOLO'S</Text>
+                    <Text style={styles.headerText}>Menu</Text>
                 
                     
                 </View>
 
                 <View style={styles.drawerContainer}>
-                    <TouchableOpacity>
+                    <TouchableOpacity  style={{paddingBottom:10}}
+                    onPress={()=>   
+                        this.props.navigator.handleDeepLink({
+                        link: "sidemenu",
+                        payload: {screen:"app.myProfile",title:'MY PROFILE'}
+                        })}>
                         <Text style={styles.drawerInnerText}>My Profile</Text>
                     </TouchableOpacity>
-
                     <View style={styles.line}></View>
-                    <TouchableOpacity onPress={()=>   
+
+                    <TouchableOpacity style={{paddingBottom:10}}
+                     onPress={()=>   
                         this.props.navigator.handleDeepLink({
                         link: "sidemenu",
                         payload: {screen:"app.InviteFriendsHome",title:'Bookmarks'}
@@ -39,11 +45,13 @@ export default class DrawerScreen extends Component{
                         <Text style={styles.drawerInnerText}>Invite Freinds</Text>
                     </TouchableOpacity>
                     <View style={styles.line}></View>
-                    <TouchableOpacity>
+
+                    <TouchableOpacity style={{paddingBottom:10}}>
                         <Text style={styles.drawerInnerText}>Shipping Address</Text>
                     </TouchableOpacity>
                     <View style={styles.line}></View>
-                    <TouchableOpacity>
+
+                    <TouchableOpacity style={{paddingBottom:10}}>
                         <Text style={styles.drawerInnerText}>Log Out</Text>
                     </TouchableOpacity>
                     <View style={styles.line}></View>

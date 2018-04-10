@@ -16,7 +16,8 @@ export default class ConfirmationPage extends Component{
 
     render(){
         return(
-            <View style={{flex:1}}>
+            <View style={{flexGrow:1}}> 
+            <ScrollView >
                 <ImageBackground style={styles.image} source={require('@images/HomePage/image.jpg')}>
                 <TouchableOpacity style={styles.back}
                                     onPress={()=>{
@@ -26,30 +27,29 @@ export default class ConfirmationPage extends Component{
                 </TouchableOpacity>                
                 </ImageBackground>
 
-                <View style={{flex:1}}>
                     <Text style={styles.total}>Total lolo's</Text>
                     <Text style={styles.totalNo}>127</Text>
                     <View style={styles.emojys}>
-                        <Image style={styles.emoj} source={require('@images/Assets/dead.png')}></Image>
-                        <Image style={styles.emoj} source={require('@images/Assets/dead.png')}></Image>
+                        <Image style={styles.emoj} source={require('@images/InviteFriends/2smiley.png')}></Image>
+                        {/* <Image style={styles.emoj} source={require('@images/Assets/dead.png')}></Image> */}
                     </View>
                     <View style={styles.footer}>
                         <Text style={styles.send}>Send To:</Text>
                         <Text style={styles.send}>Pardes Hana, Bilu 11a, Israel</Text>
                     </View>
-                </View>
-
-                
-                <View style={styles.button}>
+                    <View style={styles.button}>
                     <View style={styles.line}></View>
                     <TouchableOpacity onPress={()=>{
                         this.props.navigator.push({
-                            screen:'app.HomePage'
+                            screen:'app.HomePage',
+                            animationType:"slide-horizontal"
                         })
                     }} style={styles.btnBackground}>
-                        <Text style={styles.buy}>BUY</Text>
+                        <Text style={styles.buy}>Buy</Text>
                     </TouchableOpacity>
+           
                 </View>
+            </ScrollView>
             </View>
         )
     }

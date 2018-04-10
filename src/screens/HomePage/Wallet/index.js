@@ -12,7 +12,7 @@ export default class Wallet extends Component{
     };
     render(){
     return(
-        <View style={{flex:1,zIndex:0}}>
+        <View style={{flex:1,zIndex:0,backgroundColor:'#fff'}}>
              <Header style={styles.headerStyle}>
             <Left style={styles.headerLeftSide}>
                 <Button transparent onPress={()=>{

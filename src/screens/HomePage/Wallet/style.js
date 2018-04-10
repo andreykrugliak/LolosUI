@@ -264,7 +264,7 @@ export default StyleSheet.create({
     },
     twoSmiley:{
         width:60,
-        height:26,
+        height:27,
         alignSelf:'center',
        // marginTop:0
     },
@@ -307,7 +307,8 @@ export default StyleSheet.create({
     requestText:{
         color:'#FF4273',
         fontFamily:'Lato-Regular',
-        fontSize:18
+        fontSize:18,
+        fontWeight:'bold'
     },
     // flexColumn:{
     //     position:'absolute',

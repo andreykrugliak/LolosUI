@@ -55,11 +55,13 @@ export default StyleSheet.create({
         height:60,
         width:windowWidth-163,
         backgroundColor:'#F6F6F6',
-        flexDirection:'row'
+        flexDirection:'row',
+        alignItems:'center',
+        borderRadius:3,
     },
     buttonText:{
         fontSize:20,
-       
+        fontWeight:'900',
         fontFamily:'Lato-Regular'
     },
     buttonContainer:{
@@ -81,7 +83,7 @@ export default StyleSheet.create({
     imageContainer:{
         position:'absolute',
         right:10,
-        top:20
+        //top:20
     
     }
 })

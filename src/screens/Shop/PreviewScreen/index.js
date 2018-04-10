@@ -96,7 +96,7 @@ export default class PreviewScreen extends Component{
                     animationType:"slide-horizontal"
                     }) 
                 }}>
-                <View style={[styles.card,{shadowOpacity:0.3,shadowOffset:{width:0,height:1}}]}>
+                <View style={[styles.card,{shadowOpacity:0.3,shadowRadius:2,shadowColor:'rgba(0,0,0,0.20)',shadowOffset:{width:0,height:2}}]}>
                     <Image style={styles.productIcon} resizeMode={'stretch'} source={require('@images/Shop/image.jpg')}/>
                     <View style={styles.detail}>
                         <Text style={styles.title}>
@@ -129,7 +129,8 @@ export default class PreviewScreen extends Component{
                     <View style={styles.header}>
                         <TouchableOpacity onPress={()=>{
                             this.props.navigator.push({
-                                screen:'app.ShopSeach'
+                                screen:'app.ShopSeach',
+                                animationType:"slide-horizontal"
                             })
                         }}>
                             <Image style={styles.leftButton} source={require('@images/Shop/ic_search.png')}/>
@@ -138,7 +139,8 @@ export default class PreviewScreen extends Component{
                         <Text style={styles.headerText}>MARKET PLACE</Text>
                         <TouchableOpacity onPress={()=>{
                             this.props.navigator.push({
-                                screen:'app.FiltersShop'
+                                screen:'app.FiltersShop',
+                                animationType:"slide-horizontal"
                             })
                         }}>
                             <Image  style={styles.rightButton} source={require('@images/Shop/ic_settings.png')}/>

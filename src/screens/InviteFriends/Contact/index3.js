@@ -21,13 +21,14 @@ export default class InviteFriends extends Component{
     render(){
         return(
             <View style={styles.container}>
-                <HeaderComponent navigator={this.props.navigator}/>
+                <HeaderComponent title="INVITE FRIENDS" navigator={this.props.navigator}/>
                 <Text style={styles.inviteText}>Send invite to</Text>
                 <Text style={styles.contactName}>{this.state.name}</Text>
                 <Image source={require('@images/InviteFriends/two.png')} style={styles.image2}/>
                 <TouchableOpacity style={styles.button} onPress={()=>{
                     this.props.navigator.push({
-                        screen:'app.HomePage'
+                        screen:'app.HomePage',
+                        animationType:"slide-horizontal"
                     })
                 }}>
                     <Text style={styles.buttonText}>Next</Text>

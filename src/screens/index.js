@@ -23,6 +23,7 @@ import NotificationsHome from './Notifications/index'
 import Notifications from './Notifications/index2'
 import SliderPage from './HomePage/SliderPage'
 import Wallet from './HomePage/Wallet/index'
+import MyProfile from './MyProfile/index'
 
 
 export function registerScreens(params){
@@ -50,5 +51,5 @@ export function registerScreens(params){
     Navigation.registerComponent('app.NoficationScreen',()=>Notifications)
     Navigation.registerComponent('app.SliderPage',()=>SliderPage)
     Navigation.registerComponent('app.Wallet',()=>Wallet)
-
+    Navigation.registerComponent('app.myProfile',()=>MyProfile)
 }

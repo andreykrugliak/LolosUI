@@ -22,12 +22,14 @@ export default StyleSheet.create({
         fontSize:16,
         color:'black',
         fontFamily:'Lato-Regular',
-        marginTop:35
+        marginTop:35,
+        fontWeight:'bold',
     },
     NotificationBox:{
         flex:1,
         height:70,
-        borderBottomWidth:StyleSheet.hairlineWidth
+        borderBottomWidth:StyleSheet.hairlineWidth,
+        borderBottomColor:'#F0F0F0', 
     },
     mainText:{
         fontSize:16,
@@ -74,7 +76,7 @@ export default StyleSheet.create({
     headText:{
         fontSize:22,
         color:'#000',
-
+        fontFamily:'Lato',
     },
     bodyImage:{
         position:'absolute',

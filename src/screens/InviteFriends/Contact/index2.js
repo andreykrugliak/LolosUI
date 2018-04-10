@@ -105,6 +105,7 @@ export default class InviteFriends extends Component{
                 <TouchableOpacity onPress={()=>{
                             this.props.navigator.push({
                             screen:'app.InviteFriendsInvite',
+                            animationType:"slide-horizontal",
                             passProps:{name:item.item}
                         })}}> 
                     <Text style={{fontSize:24,marginVertical:14}}>{item.item}</Text>
@@ -120,7 +121,7 @@ export default class InviteFriends extends Component{
     render(){
         return(
         <View style={{ flex : 1 }}>
-            <HeaderComponent navigator={this.props.navigator}/>
+            <HeaderComponent title="INVITE FRIENDS" navigator={this.props.navigator}/>
             <View style={{ shadowOpacity:0.3, shadowOffset:{height:1,width:0},}}>
                 <View style={styles.searchBox}>
                     <TextInput placeholder={'Search…'} 
@@ -130,7 +131,8 @@ export default class InviteFriends extends Component{
                     <TouchableOpacity
                     onPress={()=>{
                         this.props.navigator.push({
-                        screen:'app.InviteFriendsInvite'
+                        screen:'app.InviteFriendsInvite',
+                        animationType:"slide-horizontal"
                     })}}
                     style={styles.searchIcon}>
                         <Image style={styles.icon} source={require('@images/InviteFriends/search.png')}/>

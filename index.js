@@ -7,7 +7,7 @@ let windowWidth = Dimensions.get('window').width
 registerScreens();
 Navigation.startSingleScreenApp({
     screen:{
-        screen:'app.LandingScreen',
+        screen:'app.myProfile',
     },
     drawer:{
         left:{
@@ -15,7 +15,7 @@ Navigation.startSingleScreenApp({
            // fixedWidth:0.75*(windowWidth*3),
         },
         right:{
-            screen:'app.Notifications',
+          //  screen:'app.Notifications',
             fixedWidth:windowWidth*2
            // fixedWidth:windowWidth*3
         },

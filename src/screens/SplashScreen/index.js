@@ -23,7 +23,10 @@ export default class ButtonExample extends Component {
 
                   <Text style={styles.ShoppingText}>Shopping online made fun</Text>
 
-                  <LinearGradient style={styles.linerButton} colors={['#F5317F', '#FF7C6E']} >
+                  <LinearGradient 
+                  start={{x: 1.04, y: 0.55}} end={{x: -0.04, y: 0.45}}  
+                  locations={[0.00,1.00]}
+                   style={styles.linerButton} colors={['#F5317F', '#FF7C6E']} >
                         <TouchableOpacity onPress={()=>{
                   this.props.navigator.push({
                     screen:'app.Onboarding',
@@ -31,7 +34,7 @@ export default class ButtonExample extends Component {
                   })
                   
                   }} style={styles.ButtonView}>
-                            <Text style={styles.ButtonText}>Crete Account</Text>
+                            <Text style={styles.ButtonText}>Create Account</Text>
                         </TouchableOpacity>
                   </LinearGradient>
 

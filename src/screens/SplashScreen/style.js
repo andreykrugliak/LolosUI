@@ -17,17 +17,15 @@ export default StyleSheet.create({
         height:60,
         marginHorizontal:30,
         marginTop:20,
-        
         borderRadius:3,
-        
     },
     ButtonView:{
         backgroundColor:'transparent',
-        height:60,
-        
+        height:60, 
         width:windowWidth-60,
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+        borderRadius:3,
     },
     ButtonText:{
         color:'white',

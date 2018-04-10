@@ -1,4 +1,3 @@
-
 import React,{Component} from 'react';
 import {Container, Header, Content, Footer, FooterTab, Button, Text, Icon, Body, Right, Left,Title, Card, Badge, CardItem} from 'native-base';
 import {View,Dimensions,Image,TouchableOpacity,FlatList} from 'react-native';
@@ -29,7 +28,7 @@ switch(cardIndex)
     case '1':{
         return(
             
-        <View style={styles.slide1}>
+        <View style={[styles.slide1,{shadowOpacity:0.3,shadowRadius:2,shadowColor:'rgba(0,0,0,0.20)',shadowOffset:{width:0,height:2}}]}>
         <Image style={[styles.topImage]}
             source={require('@images/HomePage/em_10.png')}/>
         <Text style={styles.titleSlide1}>Congratulations</Text>
@@ -56,6 +55,7 @@ switch(cardIndex)
         <TouchableOpacity onPress={()=>{
                     this.props.navigator.push({
                     screen:'app.InviteFriendsHome',
+                    animationType:"slide-horizontal"
                 })
         }}style={[styles.button]}>
             <Text style={[styles.buttonTextInvite]}>Invite Freinds</Text>
@@ -72,10 +72,13 @@ switch(cardIndex)
             <Image  style={[styles.emojiGroup]}
             source={require('@images/HomePage/emojis1.png')}/>
             <TouchableOpacity onPress={()=>{
-                    this.props.navigator.push({
-                    screen:'app.Wallet',
-                    // passProps:{navigator:this.props.navigator}
-                }) }}
+                this.props._handleIndexChange(1)
+
+                //     this.props.navigator.push({
+                //     screen:'app.Wallet',
+                //     // passProps:{navigator:this.props.navigator}
+                // }) 
+            }}
                      style={[styles.button]}>
                     <Text style={[styles.buttonTextInvite]}>Take a Look</Text>
             </TouchableOpacity>
@@ -92,6 +95,7 @@ switch(cardIndex)
             <TouchableOpacity onPress={()=>{
                     this.props.navigator.push({
                     screen:'app.PreviewScreen',
+                    animationType:"slide-horizontal"
                     // passProps:{navigator:this.props.navigator}
                 })}} 
             
@@ -144,14 +148,19 @@ switch(cardIndex)
 
         <Right>
             <Button transparent onPress={()=>{
-                this.props.navigator.toggleDrawer({
-                    side:'right',
-                    to:'open'                })
+                this.props.navigator.push({
+                    screen:'app.Notifications',
+                    animationType:"slide-horizontal"
+                })
+                // this.props.navigator.toggleDrawer({
+                //     side:'right',
+                //     to:'open',
+                //      })
             }}>
                 <Badge style={[styles.badgeStyle]}>
-                    <View>
+                  
                         <Text style={styles.badgeText}>1</Text>
-                    </View>
+                
                 </Badge>  
                 <Image source={require('@images/HomePage/NOTIFICATIONWhite.png')}>
                 </Image>

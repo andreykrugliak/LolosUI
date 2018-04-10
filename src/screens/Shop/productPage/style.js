@@ -124,9 +124,9 @@ export default StyleSheet.create({
     slideBuy:{
         width:deviceWidth-88,
         // marginHorizontal:44,
-        marginVertical:28,
-        alignSelf:'center',
-        backgroundColor:'#F5317F',
+       
+      
+       // backgroundColor:'#F5317F',
         borderRadius:40,
         height:64,
     },

@@ -8,7 +8,7 @@ export default class Notification extends Component{
 
     render(){
         return(
-            <View style={{flex:1}}>
+            <View style={{flex:1,backgroundColor:'#fff'}}>
                 <View style={styles.container}>
                         <TouchableOpacity style={styles.imageContainer} 
                         onPress={()=>{
@@ -16,7 +16,7 @@ export default class Notification extends Component{
                         }}>
                                 <Image style={styles.backImage} source={require('@images/InviteFriends/back.png')}/>
                         </TouchableOpacity>
-                        <Text style={styles.text}>Notifications</Text>
+                        <Text style={styles.text}>NOTIFICATIONS</Text>
                 </View>
                 <View style={styles.body}>
                         <Text style={styles.date}>12.12.17</Text>

@@ -146,6 +146,7 @@ export default class FilterShop extends Component{
                 <TouchableOpacity onPress={()=>{
                     this.props.navigator.push({
                         screen:'app.HomePage',
+                        animationType:"slide-horizontal"
 
                     })
                 }}

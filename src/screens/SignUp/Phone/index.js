@@ -73,7 +73,7 @@ export default class Phone extends Component{
         <View style={styles.inputContainer}>
       <View style={styles.countryContainer}>
        
-       <TouchableOpacity onPress={() => this.picker.openModal() } style={{height:60,width:105,flexDirection:'row',justifyContent:'space-around',alignItems:"center",backgroundColor:'#F0F0F0'}}>
+       <TouchableOpacity onPress={() => this.picker.openModal() } style={{height:60,width:105,flexDirection:'row',justifyContent:'space-around',alignItems:"center",backgroundColor:'#F0F0F0',borderRadius:3}}>
         <CountryPicker
           ref={ref => (this.picker = ref)}
           
@@ -94,7 +94,7 @@ export default class Phone extends Component{
       </View>
       <View style={styles.input}>
             
-                <Input  value={this.state.text} style={{marginTop:7}}  returnKeyType='done' keyboardType="numeric"  onChangeText={(text) => this.setState({text,color:'white',disabled:false,backgroundColor:'#FF4273'})}/>
+            <Input  value={this.state.text} style={{marginTop:7}}  returnKeyType='done' keyboardType="numeric"  onChangeText={(text) => this.setState({text,color:'white',disabled:false,backgroundColor:'#FF4273'})}/>
             
             <TouchableOpacity style={styles.imageContainer} 
                                     onPress={()=>{
@@ -111,7 +111,8 @@ export default class Phone extends Component{
       </View>
       <Button onPress={()=>{
         this.props.navigator.push({
-          screen:'app.OtpScreen'
+          screen:'app.OtpScreen',
+          animationType:"slide-horizontal"
         })
       }} disabled={this.state.text.length<=0?true:false} style={[styles.buttonContainer,this.state.text.length<=0?{backgroundColor:'#F0F0F0'}:{backgroundColor:'#FF4273'}]}>
           <Text style={[styles.buttonText,this.state.text.length<=0?{color:'#CCCCCC'}:{color:'white'}]}>Next</Text>

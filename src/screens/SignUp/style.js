@@ -22,8 +22,7 @@ export default StyleSheet.create({
         width: windowWidth-48,
         alignSelf:'center',
         marginTop:53,
-        height:60,
-        
+        height:60,        
     },
     buttonContainer:{
         width:windowWidth,
@@ -53,7 +52,9 @@ export default StyleSheet.create({
         marginTop:53,
         justifyContent:'space-between',
         alignItems:'center',
-        flexDirection:'row'
+        flexDirection:'row',
+        //borderWidth:1,
+        borderRadius:3
     },
     imageContainer:{
         position:'absolute',

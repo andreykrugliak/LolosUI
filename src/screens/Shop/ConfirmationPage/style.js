@@ -10,14 +10,15 @@ export default StyleSheet.create({
         opacity:1,
     },
     image:{
-        width:375,
+       // width:375,
+        flex:1,
         height:250,
         zIndex:0
     },
     total:{
         marginTop:50,
         fontFamily:'lato',
-        fontSize:22,
+        fontSize:18,
         color:'#000',
         textAlign:'center',
     },
@@ -25,7 +26,9 @@ export default StyleSheet.create({
         marginTop:15,
         color:'#FF4273',
         fontFamily:'lato',
-        fontSize:Platform.ios? 80:40, 
+        //fontSize:20,
+        fontSize:80,
+       // fontSize:Platform.OS === 'ios'?80:40, 
         textAlign:'center',
         fontWeight:'900',
     },
@@ -35,11 +38,12 @@ export default StyleSheet.create({
         alignSelf:'center',
     },
     emoj:{
-        height:26.12,
-        width:26.5,
+        width:60,
+        height:27,
         marginLeft:5,
     },
     footer:{
+        paddingBottom:105,
         marginTop:37,
         alignSelf:'center',
     },
@@ -50,7 +54,7 @@ export default StyleSheet.create({
         fontFamily:'lato',  
     },
     button:{
-        flex:1,
+       //flex:1,
         position:'absolute',
         bottom:0,
         zIndex:0,

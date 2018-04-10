@@ -27,6 +27,8 @@ const initialLayout = {
 
   export default class TabViewExample extends React.Component {
 
+
+ 
     onNavigatorEvent(event)
     {
       if (event.type == 'DeepLink') {
@@ -94,7 +96,7 @@ const initialLayout = {
              switch(route.key){
                  case '0': return <PreviewScreen   navigator={this.props.navigator}/>
                  case '1':return <Walllet navigator={this.props.navigator} />
-                 case '2': return <SliderPage navigator={this.props.navigator} /> 
+                 case '2': return <SliderPage _handleIndexChange={this._handleIndexChange} navigator={this.props.navigator} /> 
              }
         }
           onSwipedAllCards = () => {

@@ -12,9 +12,8 @@ let customStyles = {
     position:'absolute',
     left:20,
     bottom:15,
-   
-    
-      borderWidth: 0
+    //borderRadius:3,
+    borderWidth: 0
     }
   };
 export default class SignUp extends Component{
