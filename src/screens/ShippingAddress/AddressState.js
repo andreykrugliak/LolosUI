@@ -1,15 +1,13 @@
 import React,{Component} from 'react';
 import {Container, Header, Content, Footer, FooterTab, Button,Input, Text, Icon, Body, Right, Left,Title, Card, Badge, CardItem} from 'native-base';
 import {View,Dimensions,Image,TouchableOpacity,FlatList} from 'react-native';
-import CountryPicker, {
-    getAllCountries
-} from 'react-native-country-picker-modal'
+
 import { HeaderComponent } from "@components/InviteFriends/HeaderComponent.js";
 var WindowWidth = Dimensions.get('window').width
 var WindowHeight = Dimensions.get('window').height
 import styles from './style'
 
-export default class Country extends Component{
+export default class State extends Component{
 
     static navigatorStyle={
         navBarHidden:true
@@ -18,7 +16,7 @@ export default class Country extends Component{
     constructor(props){
         super(props)
         this.state={
-            Country:'United State'
+            stateText:''
         }
     }
 
@@ -28,16 +26,16 @@ export default class Country extends Component{
                 <HeaderComponent title="SHIPPING ADDRESS" navigator={this.props.navigator}/>
 
                 <Text style={[styles.bodyText,{marginTop:29}]}>
-                    Country
+                    State/Province/Country
                 </Text>
 
                 <View style={styles.inputContainer}>
                     <View style={styles.input}>
-                    <Input value={this.state.Country} style={{marginLeft:16}} returnKeyType='done' onChangeText={(text) => this.setState({Country:text})}/>
+                    <Input value={this.state.stateText} style={{marginLeft:16}} returnKeyType='done' onChangeText={(text) => this.setState({stateText:text})}/>
                     <TouchableOpacity style={styles.imageContainer} 
                         onPress={()=>{
                             this.setState({
-                            Country:'',
+                            stateText:'',
                             
                         }) }}>
                         <Image style={styles.crossImage} source={require('@images/LoginScreen/cross.png')}/>     
@@ -47,7 +45,7 @@ export default class Country extends Component{
 
                 <Button onPress={()=>{
                             this.props.navigator.push({
-                                screen:'app.shippingAddressShow',
+                                screen:'app.HomePage',
                                 animationType:"slide-horizontal"
                             })
                          }}style={[styles.buttonContainer]}>

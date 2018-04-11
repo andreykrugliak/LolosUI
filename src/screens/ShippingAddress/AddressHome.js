@@ -27,11 +27,20 @@ export default class AddressHome extends Component{
 
                  <Image style={[styles.emoj,{bottom:WindowWidth-52-108}]} source={require('@images/HomePage/lolomailman.png')}/>
 
-                 <View  style={styles.buttonContainer}>        
-                    <View style={styles.button}>
-                        <Text style={styles.buttonText}>We Good!</Text>
+                 <TouchableOpacity
+                 onPress={()=>{
+                            this.props.navigator.push({
+                                screen:'app.shippingAddressStreet',
+                                animationType:"slide-horizontal"
+                            })
+                         }}
+                  
+                   style={styles.btnGoodContainer}>
+     
+                    <View style={styles.btnGood}>
+                        <Text style={styles.btnGoodText}>Next</Text>
                     </View>
-                </View>
+                </TouchableOpacity>
 
             </View>
         )

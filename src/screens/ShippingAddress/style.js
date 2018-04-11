@@ -37,17 +37,15 @@ export default StyleSheet.create({
        alignSelf:'center',
        position:'absolute',
        bottom:32,
-       //top:50,
-       
    },
-   buttonContainer:{
+   btnGoodContainer:{
        flex:1,
        position:'absolute',
        bottom:65,
         borderWidth:1,
         alignSelf:'center'
    },
-   button:{
+   btnGood:{
        height:60,
        width:WindowWidth-186,
       // marginHorizontal:93,
@@ -64,10 +62,61 @@ export default StyleSheet.create({
       //top:557,
      //  right:92,
    },
-   buttonText:{
+   btnGoodText:{
        color:'#FF4273',
        fontSize:18,
        fontWeight:'bold',
        zIndex:1,
    },
+   inputContainer:{
+        flexDirection:'row',
+        alignSelf:'center',
+        marginTop:72
+    },
+    input:{
+        flex:1,
+        height:60,
+        marginHorizontal:24,
+        backgroundColor:'#F6F6F6',
+        flexDirection:'row',
+        alignItems:'center',
+        borderRadius:3,
+    },
+    crossImage:{
+        height:26,
+        width:26,
+    },
+    imageContainer:{
+        position:'absolute',
+        right:10,
+    },
+   buttonText:{
+        fontSize:20,
+        color:'#CCCCCC',
+        fontFamily:'Lato-Regular',
+        fontWeight:'900'
+    },
+    buttonContainer:{
+        justifyContent:'center',
+        alignItems:'center',
+        height: 70,
+        position:'absolute',
+        left:0,
+        right:0,
+        bottom:0,
+    // backgroundColor:'#FF4273',
+        backgroundColor:'#F0F0F0',
+        borderRadius:0
+    },
+    editIcon:{
+        height:60,
+        width:60,
+        borderRadius:40,
+        backgroundColor:'#FF4273',
+        justifyContent:'center',
+        alignItems:'center',
+        position:'absolute',
+        right:30,
+        bottom:30
+    }
 })

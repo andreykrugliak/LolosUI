@@ -31,13 +31,20 @@ export default class ShippingAddress extends Component{
                     West Chicago, IL60185
                 </Text>
                 
-                <View  style={styles.buttonContainer}>
+                <TouchableOpacity
+                onPress={()=>{
+                            this.props.navigator.push({
+                                screen:'app.HomePage',
+                                animationType:"slide-horizontal"
+                            })
+                         }}
+                  style={styles.btnGoodContainer}>
                     <Image style={styles.emoj} source={require('@images/HomePage/lolomailman.png')}/>
         
-                    <View style={styles.button}>
-                        <Text style={styles.buttonText}>We Good!</Text>
+                    <View style={styles.btnGood}>
+                        <Text style={styles.btnGoodText}>We Good!</Text>
                     </View>
-                </View>
+                </TouchableOpacity>
 
             </View>
         )

@@ -18,7 +18,7 @@ export default class Country extends Component{
     constructor(props){
         super(props)
         this.state={
-            Country:'United State'
+            cityText:'United State'
         }
     }
 
@@ -28,26 +28,25 @@ export default class Country extends Component{
                 <HeaderComponent title="SHIPPING ADDRESS" navigator={this.props.navigator}/>
 
                 <Text style={[styles.bodyText,{marginTop:29}]}>
-                    Country
+                    City
                 </Text>
 
                 <View style={styles.inputContainer}>
                     <View style={styles.input}>
-                    <Input value={this.state.Country} style={{marginLeft:16}} returnKeyType='done' onChangeText={(text) => this.setState({Country:text})}/>
+                    <Input value={this.state.cityText} style={{marginLeft:16}} returnKeyType='done' onChangeText={(text) => this.setState({cityText:text})}/>
                     <TouchableOpacity style={styles.imageContainer} 
                         onPress={()=>{
                             this.setState({
-                            Country:'',
+                            cityText:'',
                             
                         }) }}>
-                        <Image style={styles.crossImage} source={require('@images/LoginScreen/cross.png')}/>     
                     </TouchableOpacity>
                     </View>
                 </View>
 
                 <Button onPress={()=>{
                             this.props.navigator.push({
-                                screen:'app.shippingAddressShow',
+                                screen:'app.HomePage',
                                 animationType:"slide-horizontal"
                             })
                          }}style={[styles.buttonContainer]}>

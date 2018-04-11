@@ -26,6 +26,19 @@ import Wallet from './HomePage/Wallet/index'
 import MyProfile from './MyProfile/index'
 import ShippingAddressShow from './ShippingAddress/AddressShow'
 import ShippingAddressHome from './ShippingAddress/AddressHome'
+import ShippingAddressCountry from './ShippingAddress/AddressCountry'
+import ShippingAddressState from './ShippingAddress/AddressState'
+import ShippingAddressCity from './ShippingAddress/AddressCity'
+import ShippingAddressStreet from './ShippingAddress/AddressStreet'
+import ShippingAddressZip from './ShippingAddress/AddressZip'
+import ShippingAddressApt from './ShippingAddress/AddressApt'
+import ShippingAddressEdit from './ShippingAddress/AddressEdit'
+
+
+
+
+
+
 
 
 export function registerScreens(params){
@@ -56,4 +69,18 @@ export function registerScreens(params){
     Navigation.registerComponent('app.myProfile',()=>MyProfile)
     Navigation.registerComponent("app.shippingAddressShow",()=>ShippingAddressShow)
     Navigation.registerComponent("app.shippingAddressHome",()=>ShippingAddressHome)
+    Navigation.registerComponent("app.shippingAddressCountry",()=>ShippingAddressCountry)
+    Navigation.registerComponent("app.shippingAddressState",()=>ShippingAddressState)
+    Navigation.registerComponent("app.shippingAddressCity",()=>ShippingAddressCity)
+    Navigation.registerComponent("app.shippingAddressStreet",()=>ShippingAddressStreet)
+    Navigation.registerComponent("app.shippingAddressZip",()=>ShippingAddressZip)
+    Navigation.registerComponent("app.shippingAddressApt",()=>ShippingAddressApt)
+    Navigation.registerComponent("app.shippingAddressEdit",()=>ShippingAddressEdit)
+    
+    
+
+    
+    
+    
+    
 }
