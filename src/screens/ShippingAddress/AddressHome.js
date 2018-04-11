@@ -21,16 +21,24 @@ export default class AddressHome extends Component{
                      Where To?
                  </Text>
 
-                 <Text numberOfLines={3} style={[styles.bodyText,{marginTop:20,paddingHorizontal:40}]}>
-                     when You buy Stuff,we need to make sure you get them,for that we need your address
+                <View>
+                 <Text style={[styles.bodyText,{marginTop:20,textAlign:'center'}]}>
+                     when You buy Stuff,we need to 
                  </Text>
+                 <Text  style={[styles.bodyText,{marginTop:0,paddingHorizontal:40}]}>
+                     make sure you get them,for
+                 </Text>
+                 <Text style={[styles.bodyText,{marginTop:0,paddingHorizontal:40}]}>
+                     that we need your address
+                 </Text>
+                 </View>
 
                  <Image style={[styles.emoj,{bottom:WindowWidth-52-108}]} source={require('@images/HomePage/lolomailman.png')}/>
 
                  <TouchableOpacity
                  onPress={()=>{
                             this.props.navigator.push({
-                                screen:'app.shippingAddressStreet',
+                                screen:'app.shippingAddressCountry',
                                 animationType:"slide-horizontal"
                             })
                          }}

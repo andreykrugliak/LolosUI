@@ -16,7 +16,22 @@ export default class Street extends Component{
     constructor(props){
         super(props)
         this.state={
-            streetText:''
+            streetText:'',
+            color:'#CCCCCC',
+            bgColor:'#F0F0F0'
+        }
+    }
+
+    _handleInput(text){
+        this.setState({
+            streetText:text
+        })
+        if(this.state.streetText){
+            this.setState({
+                disabled:false,
+                color:'#fff',
+                bgColor:'#FF4273'
+            })
         }
     }
 
@@ -31,7 +46,7 @@ export default class Street extends Component{
 
                 <View style={styles.inputContainer}>
                     <View style={styles.input}>
-                    <Input value={this.state.streetText} style={{marginLeft:16}} returnKeyType='done' onChangeText={(text) => this.setState({streetText:text})}/>
+                    <Input value={this.state.streetText} style={{marginLeft:16}} returnKeyType='done' onChangeText={(text) =>{this._handleInput(text)}}/>
                     <TouchableOpacity style={styles.imageContainer} 
                         onPress={()=>{
                             this.setState({
@@ -44,11 +59,12 @@ export default class Street extends Component{
 
                 <Button onPress={()=>{
                             this.props.navigator.push({
-                                screen:'app.shippingAddressApt',
+                                screen:'app.shippingAddressZip',
                                 animationType:"slide-horizontal"
                             })
-                         }}style={[styles.buttonContainer]}>
-                                <Text style={[styles.buttonText]}>Next</Text>
+                         }}disabled={this.state.disabled}
+                         style={[styles.buttonContainer,{backgroundColor:this.state.bgColor}]}>
+                                <Text style={[styles.buttonText,{color:this.state.color}]}>Next</Text>
                 </Button>
 
             </View>

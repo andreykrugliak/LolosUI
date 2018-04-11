@@ -39,6 +39,7 @@ export default class PreviewScreen extends Component{
                 { key: '1', title: 'Gadgets' },
                 { key: '2', title: 'Mobile' },
                 { key: '3', title: 'Fashion' },
+                { key: '4', title: 'Sports'}
               ],
         })
         this._handleIndexChange=this._handleIndexChange.bind(this)

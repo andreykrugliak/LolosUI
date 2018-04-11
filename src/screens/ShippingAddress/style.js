@@ -8,10 +8,11 @@ export default StyleSheet.create({
    container:{ 
        flex:1,
        backgroundColor:'#fff',
+       zIndex:0,
     //    borderWidth:6,
    },
    headText:{
-      marginTop:86,
+      marginTop:Platform.OS=='android'?66:86,
       alignSelf:'center',
       color:'#FF4273',
       fontSize:34,
@@ -26,7 +27,7 @@ export default StyleSheet.create({
    },
    bodyText:{
        textAlign:'center',
-       marginTop:111,
+       marginTop:Platform.OS=='android'?99: 111,
        fontFamily:'lato',
        color:'#000',
        fontSize:22,
@@ -36,14 +37,16 @@ export default StyleSheet.create({
        width:96,
        alignSelf:'center',
        position:'absolute',
-       bottom:32,
+       bottom:100,
+       zIndex:1, 
    },
-   btnGoodContainer:{
-       flex:1,
+   btnGoodContainer:{  
+      // flex:1,
        position:'absolute',
        bottom:65,
-        borderWidth:1,
-        alignSelf:'center'
+       // borderWidth:1,
+        alignSelf:'center',
+        zIndex:1,
    },
    btnGood:{
        height:60,
@@ -55,12 +58,10 @@ export default StyleSheet.create({
        backgroundColor:'#fff',
        justifyContent:'center',
        alignItems:'center',
-       position:'absolute',
-       //top: 0,
+     //position:'absolute',
        bottom:0,
        alignSelf:'center',
-      //top:557,
-     //  right:92,
+       zIndex:2,
    },
    btnGoodText:{
        color:'#FF4273',
@@ -71,7 +72,7 @@ export default StyleSheet.create({
    inputContainer:{
         flexDirection:'row',
         alignSelf:'center',
-        marginTop:72
+        marginTop:72,
     },
     input:{
         flex:1,
@@ -92,7 +93,7 @@ export default StyleSheet.create({
     },
    buttonText:{
         fontSize:20,
-        color:'#CCCCCC',
+        color:'#fff',
         fontFamily:'Lato-Regular',
         fontWeight:'900'
     },
@@ -104,8 +105,8 @@ export default StyleSheet.create({
         left:0,
         right:0,
         bottom:0,
-    // backgroundColor:'#FF4273',
-        backgroundColor:'#F0F0F0',
+    //backgroundColor:'#FF4273',
+      //  backgroundColor:'#F0F0F0',
         borderRadius:0
     },
     editIcon:{
@@ -118,5 +119,20 @@ export default StyleSheet.create({
         position:'absolute',
         right:30,
         bottom:30
-    }
+    },
+    modalContainer:{
+        backgroundColor:'red'
+    },
+    pickerHead:{
+        elevation:0.3,
+        backgroundColor:'#fff',
+        marginTop:15,
+        color:'#D8D8D8',
+        fontSize:18, 
+        paddingLeft:20,
+        padding:15,
+        shadowOpacity:0.3,
+        shadowOffset:{width:0,height:1}
+    },
+    
 })

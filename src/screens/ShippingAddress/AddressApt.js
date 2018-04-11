@@ -18,7 +18,23 @@ export default class Country extends Component{
     constructor(props){
         super(props)
         this.state={
-            aptText:''
+            aptText:'',
+            disabled:true,
+            color:'#CCCCCC',
+            bgColor:'#F0F0F0'
+        }
+    }
+
+    _handleInput(text){
+        this.setState({
+            aptText:text
+        })
+        if(this.state.aptText){
+            this.setState({
+                disabled:false,
+                color:'#fff',
+                bgColor:'#FF4273'
+            })
         }
     }
 
@@ -33,7 +49,7 @@ export default class Country extends Component{
 
                 <View style={styles.inputContainer}>
                     <View style={styles.input}>
-                    <Input value={this.state.aptText} style={{marginLeft:16}} returnKeyType='done' onChangeText={(text) => this.setState({aptText:text})}/>
+                    <Input value={this.state.aptText} style={{marginLeft:16}} returnKeyType='done' onChangeText={(text) =>{this._handleInput(text)}}/>
                     <TouchableOpacity style={styles.imageContainer} 
                         onPress={()=>{
                             this.setState({
@@ -46,11 +62,13 @@ export default class Country extends Component{
 
                 <Button onPress={()=>{
                             this.props.navigator.push({
-                                screen:'app.shippingAddressCountry',
+                                screen:'app.shippingAddressShow',
                                 animationType:"slide-horizontal"
                             })
-                         }}style={[styles.buttonContainer]}>
-                                <Text style={[styles.buttonText]}>Next</Text>
+                         }}
+                         disabled={this.state.disabled}
+                         style={[styles.buttonContainer,{backgroundColor:this.state.bgColor}]}>
+                                <Text style={[styles.buttonText,{color:this.state.color}]}>Next</Text>
                 </Button>
 
             </View>

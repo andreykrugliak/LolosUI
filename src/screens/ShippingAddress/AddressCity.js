@@ -18,10 +18,24 @@ export default class Country extends Component{
     constructor(props){
         super(props)
         this.state={
-            cityText:'United State'
+            cityText:'',
+            color:'#CCCCCC',
+            bgColor:'#F0F0F0'
         }
     }
 
+    _handleInput(text){
+        this.setState({
+            cityText:text
+        })
+        if(this.state.cityText){
+            this.setState({
+                disabled:false,
+                color:'#fff',
+                bgColor:'#FF4273'
+            })
+        }
+    }
     render(){
         return(
             <View style={styles.container}>
@@ -33,7 +47,7 @@ export default class Country extends Component{
 
                 <View style={styles.inputContainer}>
                     <View style={styles.input}>
-                    <Input value={this.state.cityText} style={{marginLeft:16}} returnKeyType='done' onChangeText={(text) => this.setState({cityText:text})}/>
+                    <Input value={this.state.cityText} style={{marginLeft:16}} returnKeyType='done' onChangeText={(text) =>{this._handleInput(text)}}/>
                     <TouchableOpacity style={styles.imageContainer} 
                         onPress={()=>{
                             this.setState({
@@ -46,11 +60,12 @@ export default class Country extends Component{
 
                 <Button onPress={()=>{
                             this.props.navigator.push({
-                                screen:'app.HomePage',
+                                screen:'app.shippingAddressStreet',
                                 animationType:"slide-horizontal"
                             })
-                         }}style={[styles.buttonContainer]}>
-                                <Text style={[styles.buttonText]}>Next</Text>
+                         }}disabled={this.state.disabled}
+                         style={[styles.buttonContainer,{backgroundColor:this.state.bgColor}]}>
+                                <Text style={[styles.buttonText,{color:this.state.color}]}>Next</Text>
                 </Button>
 
             </View>

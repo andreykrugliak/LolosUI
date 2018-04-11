@@ -16,7 +16,22 @@ export default class State extends Component{
     constructor(props){
         super(props)
         this.state={
-            stateText:''
+            stateText:'',
+            color:'#CCCCCC',
+            bgColor:'#F0F0F0'
+        }
+    }
+
+    _handleInput(text){
+        this.setState({
+            stateText:text
+        })
+        if(this.state.stateText){
+            this.setState({
+                disabled:false,
+                color:'#fff',
+                bgColor:'#FF4273'
+            })
         }
     }
 
@@ -31,7 +46,7 @@ export default class State extends Component{
 
                 <View style={styles.inputContainer}>
                     <View style={styles.input}>
-                    <Input value={this.state.stateText} style={{marginLeft:16}} returnKeyType='done' onChangeText={(text) => this.setState({stateText:text})}/>
+                    <Input value={this.state.stateText} style={{marginLeft:16}} returnKeyType='done' onChangeText={(text) =>{this._handleInput(text)}}/>
                     <TouchableOpacity style={styles.imageContainer} 
                         onPress={()=>{
                             this.setState({
@@ -45,11 +60,12 @@ export default class State extends Component{
 
                 <Button onPress={()=>{
                             this.props.navigator.push({
-                                screen:'app.HomePage',
+                                screen:'app.shippingAddressCity',
                                 animationType:"slide-horizontal"
                             })
-                         }}style={[styles.buttonContainer]}>
-                                <Text style={[styles.buttonText]}>Next</Text>
+                         }}disabled={this.state.disabled}
+                         style={[styles.buttonContainer,{backgroundColor:this.state.bgColor}]}>
+                                <Text style={[styles.buttonText,{color:this.state.color}]}>Next</Text>
                 </Button>
 
             </View>

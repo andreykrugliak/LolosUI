@@ -46,12 +46,25 @@ export default class DrawerScreen extends Component{
                     </TouchableOpacity>
                     <View style={styles.line}></View>
 
-                    <TouchableOpacity style={{paddingBottom:10}}>
+                    <TouchableOpacity 
+                    onPress={()=>   
+                        this.props.navigator.handleDeepLink({
+                        link: "sidemenu",
+                        payload: {screen:"app.shippingAddressHome",title:'SHIPPING ADDESS'}
+                        })}
+                    style={{paddingBottom:10}}>
                         <Text style={styles.drawerInnerText}>Shipping Address</Text>
                     </TouchableOpacity>
                     <View style={styles.line}></View>
 
-                    <TouchableOpacity style={{paddingBottom:10}}>
+                    <TouchableOpacity 
+                    onPress={()=>{
+                        // this.props.navigator.handleDeepLink({
+                        //     link: "logOut",
+                        //     payload: {screen:"app.LandingScreen",title:'LANDING'}
+                        //     })
+                    }}
+                    style={{paddingBottom:10}}>
                         <Text style={styles.drawerInnerText}>Log Out</Text>
                     </TouchableOpacity>
                     <View style={styles.line}></View>

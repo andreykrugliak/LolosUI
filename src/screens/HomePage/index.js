@@ -54,6 +54,14 @@ const initialLayout = {
             title:event.payload.title,
           })
       }
+
+      if(event.link == 'logOut') {
+        
+          this.props.navigator.resetTo({
+          screen:event.payload.screen,
+          title:event.payload.title,
+        })
+    }
     }
 
 
