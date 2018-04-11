@@ -31,7 +31,7 @@ export default StyleSheet.create({
         alignSelf:'center',
         fontSize:16,
         color:'black',
-        fontFamily:'Lato-Regular',
+        fontFamily:'Lato',
         marginTop:35,
         fontWeight:'bold'
     }

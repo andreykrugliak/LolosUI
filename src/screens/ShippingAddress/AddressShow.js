@@ -1,7 +1,6 @@
 import React,{Component} from 'react';
 import {Container, Header, Content, Footer, FooterTab, Button, Text, Icon, Body, Right, Left,Title, Card, Badge, CardItem} from 'native-base';
 import {View,Dimensions,Image,TouchableOpacity,FlatList} from 'react-native';
-import Swiper from 'react-native-deck-swiper'
 import { HeaderComponent } from "@components/InviteFriends/HeaderComponent.js";
 var WindowWidth = Dimensions.get('window').width
 var WindowHeight = Dimensions.get('window').height
@@ -28,14 +27,16 @@ export default class ShippingAddress extends Component{
                 <Text style={styles.bodyText}>
                     44 Shirley Ave.
                 </Text>
-                <Text style={[styles.bodyText,{marginTop:0,paddingTop:4,paddingBottom:64,}]}>
+                <Text style={[styles.bodyText,{marginTop:0,paddingTop:4}]}>
                     West Chicago, IL60185
                 </Text>
                 
-                <Image style={styles.emoj} source={require('@images/HomePage/lolomailman.png')}/>
-     
-                <View style={styles.button}>
-                    <Text style={styles.buttonText}>We Good!</Text>
+                <View  style={styles.buttonContainer}>
+                    <Image style={styles.emoj} source={require('@images/HomePage/lolomailman.png')}/>
+        
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>We Good!</Text>
+                    </View>
                 </View>
 
             </View>

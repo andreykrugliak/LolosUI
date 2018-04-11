@@ -7,7 +7,8 @@ const iphone7plus = 736
 export default StyleSheet.create({
    container:{ 
        flex:1,
-       backgroundColor:'#fff'
+       backgroundColor:'#fff',
+    //    borderWidth:6,
    },
    headText:{
       marginTop:86,
@@ -24,7 +25,7 @@ export default StyleSheet.create({
        paddingTop:4,
    },
    bodyText:{
-       alignSelf:'center',
+       textAlign:'center',
        marginTop:111,
        fontFamily:'lato',
        color:'#000',
@@ -34,6 +35,17 @@ export default StyleSheet.create({
        height:108,
        width:96,
        alignSelf:'center',
+       position:'absolute',
+       bottom:32,
+       //top:50,
+       
+   },
+   buttonContainer:{
+       flex:1,
+       position:'absolute',
+       bottom:65,
+        borderWidth:1,
+        alignSelf:'center'
    },
    button:{
        height:60,
@@ -46,10 +58,11 @@ export default StyleSheet.create({
        justifyContent:'center',
        alignItems:'center',
        position:'absolute',
-       bottom:65,
+       //top: 0,
+       bottom:0,
+       alignSelf:'center',
       //top:557,
-       right:92,
-       zIndex:0, 
+     //  right:92,
    },
    buttonText:{
        color:'#FF4273',
