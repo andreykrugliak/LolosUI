@@ -1,4 +1,5 @@
 import {StyleSheet,Dimensions} from 'react-native'
+import { ifIphoneX } from 'react-native-iphone-x-helper';
 const WindowWidth = Dimensions.get('window').width
 export default StyleSheet.create({
     container:{
@@ -17,6 +18,9 @@ export default StyleSheet.create({
         height:24,
         width:24,
         marginLeft:24,
+        ...ifIphoneX({
+            marginTop:25
+        })
         //borderWidth:1
     },
     searchItem:{
@@ -24,6 +28,9 @@ export default StyleSheet.create({
         fontSize:16,
         fontWeight:'bold',
         color:'#000',
+        ...ifIphoneX({
+            marginTop:25
+        }),
         marginLeft:((deviceWidth-137)/2)-24,
        // borderWidth:1,
     },

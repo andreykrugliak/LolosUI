@@ -203,7 +203,12 @@ export default StyleSheet.create({
     },
     headerStyle:{
         backgroundColor:"#FFFFFF",
-        height:80
+        height:80,
+        // borderBottomColor:'black',
+        // borderBottomWidth:1,
+        shadowOffset:{  width: 1,  height: 1  },
+        shadowColor: 'black',
+        shadowOpacity: 0.2
     },
     headerLeftSide:{
        // marginRight:35

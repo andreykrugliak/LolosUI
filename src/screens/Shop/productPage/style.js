@@ -1,9 +1,15 @@
 import {StyleSheet,Dimensions} from 'react-native'
+import { ifIphoneX } from 'react-native-iphone-x-helper';
 const deviceWidth=Dimensions.get("window").width
 export default StyleSheet.create({
     back:{
-          position:'absolute',
-          top:20,
+        position:'absolute',
+        ...ifIphoneX({
+            top:30
+        },{
+            top:20,
+        }),
+          
           left:15,
           height:24,
           width:12,
