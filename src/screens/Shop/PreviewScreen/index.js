@@ -21,7 +21,7 @@ export default class PreviewScreen extends Component{
                 {
                     id:'1',
                     image:'@images/HomePage/image.jpg',
-                    title:'Binfull Mini Prortable Micro Mobile Phone USB Gadget Fans Tester For iphone 5S',
+                    title:'Elastic sport wristband',
                     price:"357 lolo's",
                     label:'SUPER HOT',
                 },
@@ -33,13 +33,39 @@ export default class PreviewScreen extends Component{
                     label:'SUPER HOT',
                 }
             ],
+            sportsData:[
+                {
+                    id:'1',
+                    image:'@images/shopSports/1_sport.jpg',
+                    title:'Elastic sport wristband',
+                    price:"357 lolo's",
+                    label:'SUPER HOT',
+                },
+                {
+                    id:'2',
+                    image:'@images/shopSports/2_sport.jpg',
+                    title:'2.8m/75cm Sports LED Luminous Jump Skipping Ropes Handle Rope Jump Ropes Crossfit Training Boxing Fitness Equipment Random Color',
+                    price:"357 lolo's",
+                    label:'SUPER HOT',
+                },
+                {
+                    id:'3',
+                    image:'@images/shopSports/3_sport.jpg',
+                    title:'cross-fit jumping rope',
+                    price:"357 lolo's",
+                    label:'SUPER HOT',
+                },
+            ],
+
+
             index:0,
             routes: [
-                { key: '0', title: 'All' },
-                { key: '1', title: 'Gadgets' },
-                { key: '2', title: 'Mobile' },
-                { key: '3', title: 'Fashion' },
-                { key: '4', title: 'Sports'}
+                // { key: '0', title: 'All' },
+                // { key: '1', title: 'Gadgets' },
+                // { key: '2', title: 'Mobile' },
+                // { key: '3', title: 'Fashion' },
+                // { key: '4', title: 'Sports'}
+                {key:'0',title:'Sports'}
               ],
         })
         this._handleIndexChange=this._handleIndexChange.bind(this)
@@ -50,12 +76,13 @@ export default class PreviewScreen extends Component{
 
     _renderHeader = props =>{
         return(
+            
             <TabBar
             {...props}
+            scrollEnabled ={true}
             style={{ backgroundColor:'rgba(254,116,112,1)',height:50,justifyContent:'center'}}
             indicatorStyle={{backgroundColor:'#fff',height:5}}
-            labelStyle={{alignSelf:'center',opacity:1}}
-            tabStyle={{opacity:1}}
+            labelStyle={{opacity:1}}
             renderLabel = {(scene) => <Text 
                                         style={{ 
                                             fontWeight:scene.index==this.state.index? '900':'normal',
@@ -66,17 +93,20 @@ export default class PreviewScreen extends Component{
         )
     } 
 
-    _renderScane=({routes})=>{
-        console.log(routes)
+    _renderScane=({ route })=>{
+        console.log(route.key)
+        let categoryKey=route.key
         return(
-
                 <FlatList
                     style={{flex:1}}
-                    data={this.state.data}
+                    data={
+                            route.key==0?
+                            this.state.sportsData:
+                            this.state.data
+                        }
                     keyExtractor={(item,index)=>item.id}
-                    renderItem={this._renderItems}
+                    renderItem={({item,index})=>this._renderItems({item,index},categoryKey)}
                 />
-         
         )
     }
 
@@ -87,18 +117,31 @@ export default class PreviewScreen extends Component{
         console.log(index)
     }
 
-    _renderItems=({item,index})=>{
+    _renderItems=({item,index},categoryKey)=>{
+
+       console.log(item.title)
+        console.log("categoryKey"+categoryKey)
         return(
         <View style={[styles.container]}>
             <TouchableOpacity
                 onPress={()=>{
                     this.props.navigator.push({
                     screen:'app.ProductPage',
-                    animationType:"slide-horizontal"
+                    animationType:"slide-horizontal",
+                    passProps:{index:item.id,categoryKey:categoryKey,name:item.title}
                     }) 
                 }}>
                 <View style={[styles.card,{shadowOpacity:0.3,shadowRadius:2,shadowColor:'rgba(0,0,0,0.20)',shadowOffset:{width:0,height:2}}]}>
-                    <Image style={styles.productIcon} resizeMode={'stretch'} source={require('@images/Shop/image.jpg')}/>
+                    <Image style={styles.productIcon} resizeMode={'stretch'} 
+                           source={
+                                item.id=='1'?
+                                    require('@images/shopSports/1_sport.jpg'):
+                                item.id=='2'?
+                                    require('@images/shopSports/2_sport.jpg'):
+                                item.id=='3'?
+                                    require('@images/shopSports/3_sport.jpg'):
+                                    require('@images/HomePage/image.jpg')
+                               }/>
                     <View style={styles.detail}>
                         <Text style={styles.title}>
                             {item.title}

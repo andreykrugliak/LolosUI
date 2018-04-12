@@ -18,6 +18,7 @@ export default class Country extends Component{
     constructor(props){
         super(props)
         this.state={
+            disabled:true,
             cityText:'',
             color:'#CCCCCC',
             bgColor:'#F0F0F0'

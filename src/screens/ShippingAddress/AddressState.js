@@ -16,6 +16,7 @@ export default class State extends Component{
     constructor(props){
         super(props)
         this.state={
+            disabled:true,
             stateText:'',
             color:'#CCCCCC',
             bgColor:'#F0F0F0'

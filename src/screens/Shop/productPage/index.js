@@ -10,19 +10,45 @@ var WindowHeight = Dimensions.get('window').height
 import styles from './style'
 import {RNSlidingButton, SlideDirection} from 'rn-sliding-button';
 import LinearGradient from 'react-native-linear-gradient';
+
+//const ImageSource1,ImageSource2,ImageSource3=null
+
 export default class ProductPage extends Component{
 
     static navigatorStyle = {
         navBarHidden:true
     };
     render(){
+
+       // this.ImageSource=
+            if(this.props.index==1 && this.props.categoryKey==0){
+                this.ProductName=this.props.name
+                this.ImageSource1=require('@images/shopSports/1_sport.jpg')
+                this.ImageSource2=require('@images/shopSports/1_sport.jpg')
+                this.ImageSource3=require('@images/shopSports/1_sport.jpg')
+            }
+
+            if(this.props.index==2 && this.props.categoryKey==0){
+                this.ProductName=this.props.name
+                this.ImageSource1=require('@images/shopSports/2_sport.jpg')
+                this.ImageSource2=require('@images/shopSports/2.4_sport.jpg')
+                this.ImageSource3=require('@images/shopSports/2.5_sport.jpg')
+            }
+
+            if(this.props.index==3 && this.props.categoryKey==0){
+                this.ProductName=this.props.name
+                this.ImageSource1=require('@images/shopSports/3_sport.jpg')
+                this.ImageSource2=require('@images/shopSports/3.1_sport.jpg')
+                this.ImageSource3=require('@images/shopSports/3.2_sport.jpg')
+            }
+
         return(
             <ScrollView style={{backgroundColor:'#F0F0F0'}}>
                 <TouchableOpacity style={styles.back}
                                 onPress={()=>{
                                     this.props.navigator.pop({animationType:"slide-horizontal"})
                                     }}>
-                    <Image style={[ {height:24,width:12, tintColor:'#fff'}]} source={require('@images/Shop/back.png')}/>
+                    <Image style={[ {height:24,width:12, tintColor:'#000'}]} source={require('@images/Shop/back.png')} />
                 </TouchableOpacity>
                
                 {/* <Image style={styles.Image} resizeMode={'cover'}  source={require('@images/HomePage/image.jpg')}/> */}
@@ -32,13 +58,16 @@ export default class ProductPage extends Component{
                     dotStyle={{backgroundColor:'#fff',opacity:0.3,height:10,width:10,borderRadius:10}}
                     activeDotStyle={{backgroundColor:'#fff',height:10,width:10,borderRadius:10,}}>
                     <View style={{flex:1}}>
-                        <Image style={{ height:WindowWidth,width:WindowWidth,resizeMode:'stretch',flex:1}} source={require('@images/HomePage/image.jpg')}/> 
+                        <Image style={{ height:WindowWidth,width:WindowWidth,resizeMode:'stretch',flex:1}}
+                         source={this.ImageSource1}/> 
                     </View>
                     <View style={{flex:1}}>
-                        <Image style={{ height:WindowWidth,width:WindowWidth,resizeMode:'stretch',flex:1}} source={require('@images/HomePage/image.jpg')}/> 
+                        <Image style={{ height:WindowWidth,width:WindowWidth,resizeMode:'stretch',flex:1}} 
+                        source={this.ImageSource2}/> 
                     </View>
                     <View style={{flex:1}}>
-                        <Image style={{ height:WindowWidth,width:WindowWidth,resizeMode:'stretch',flex:1}} source={require('@images/HomePage/image.jpg')}/> 
+                        <Image style={{ height:WindowWidth,width:WindowWidth,resizeMode:'stretch',flex:1}}
+                        source={this.ImageSource3}/> 
                     </View>
                 </ProductSwiper>
 
@@ -52,7 +81,7 @@ export default class ProductPage extends Component{
                 <View style={styles.container}>
                     <View style={styles.titleView}>
                         <Text style={styles.title}>
-                            Binfull Mini Prortable Micro Mobile Phone USB Gadget Fans Tester 
+                            {this.ProductName} 
                         </Text>
 
                         <View style={styles.label}>
