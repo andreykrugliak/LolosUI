@@ -12,11 +12,11 @@ export default StyleSheet.create({
         //zIndex:1000,
     },
     logo:{
-        height:68,
+        height:68*0.8,
         //marginHorizontal:88,
         resizeMode:'contain',
-        marginTop:WindowHeight<= iphone5s?58:68,
-        width:200,
+        marginTop:WindowHeight<= iphone5s?45:55,
+        width:200*0.8,
         alignSelf:'center'
     },
     shoppingText:{
@@ -43,7 +43,7 @@ export default StyleSheet.create({
     },
     featureText:{
         color:'#000000',
-        fontFamily:"lato",
+        fontFamily:'Lato-Regular',
         textAlign:'center',
         fontSize:WindowHeight<= iphone5s?18:22,
         marginHorizontal:35,
@@ -82,11 +82,11 @@ export default StyleSheet.create({
         alignSelf:'center',
         resizeMode:'contain',
         bottom:WindowHeight<= iphone5s?40:78,
-        height:165
+        height:165*0.8
     },
     smiley:{
-        height:120,
-        width:120,
+        height:120*0.8,
+        width:120*0.8,
         alignSelf:'center',
         position:'absolute',
         bottom:WindowHeight<= iphone5s?80:105

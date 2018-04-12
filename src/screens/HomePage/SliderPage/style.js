@@ -79,8 +79,9 @@ export default StyleSheet.create({
     },
     emojiGroup:{
         alignSelf:'center',
-        height:180,
+        height:180*0.85,
         position:'absolute',
+        resizeMode:'contain',
         bottom:WindowHeight >=iphone7plus? 110:WindowHeight <= android?70:90,
         //marginTop:WindowHeight<= iphone5s?20:WindowHeight <= android?35:40
     },
@@ -92,7 +93,7 @@ export default StyleSheet.create({
         color: "#FF4273"
     },
     titleSWallte:{
-        marginTop:22,
+        marginTop:WindowHeight<= iphone5s?5:10,
         fontSize:WindowHeight <= android?24:34,
         fontFamily:"PatuaOne-Regular",
         textAlign:"center",
@@ -100,7 +101,7 @@ export default StyleSheet.create({
     },
         tagLine:{
         paddingHorizontal:20,
-        marginTop:WindowHeight<= iphone5s?15:22,
+       marginTop:WindowHeight<= iphone5s?5:10,
         color: "#000000",	
         textAlign:'center',
         fontFamily:'Lato-Regular',	
@@ -109,14 +110,14 @@ export default StyleSheet.create({
     giftImg:{
         marginTop:WindowHeight<= iphone5s?30:WindowHeight <= android?43:63,
         alignSelf:'center',
-        height:160,
-        width:190,
+        height:160*0.85,
+        width:190*0.85,
     },
     manImg:{
         marginTop:WindowHeight<= iphone5s?25:WindowHeight <= android?38:54,
         alignSelf:'center',
-        height:150,
-        width:130,
+        height:150*0.85,
+        width:130*0.85,
     },
     
     topImage:{
@@ -132,8 +133,9 @@ export default StyleSheet.create({
        // marginTop:WindowHeight <= android?50:90,
         marginTop:WindowHeight <= android?50:50,
         alignSelf:'center',
-        height:95,
-        width:173,
+        height:95*0.85,
+        width:173*0.85,
+        resizeMode:'contain'
     },
     baseLine:{
         marginTop:WindowHeight<= iphone5s? 30:WindowHeight <= android?45:50,
@@ -175,7 +177,8 @@ export default StyleSheet.create({
         fontSize:WindowHeight <= android?14:18,
         color:"#FF4273",
         textAlign:'center',
-        fontFamily:"Lato"
+        fontFamily:"lato-Regular",
+        fontWeight:'bold'
     },
     swipeTextView:{
        marginTop: WindowHeight <= android?90:134,
@@ -190,6 +193,7 @@ export default StyleSheet.create({
         color:'#FF4273',
         marginHorizontal:19,
         textAlign:'center',
+        fontWeight:'bold',
         fontFamily:'Lato-Regular'
     },
     leftArrow:{

@@ -43,7 +43,7 @@ export default StyleSheet.create({
     labelText:{
         fontSize:13,
         color:'#fff',
-        fontFamily:'Patua One',
+        fontFamily:"PatuaOne-Regular",
     },
     extraInfo:{
         marginTop:5,
@@ -77,7 +77,7 @@ export default StyleSheet.create({
         //paddingLeft:4,
         fontSize:10,
         color:'#000',
-        fontFamily:'Patua One',
+        fontFamily:"PatuaOne-Regular",
         marginLeft:7
      },
      header:{

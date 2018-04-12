@@ -151,7 +151,7 @@ export default class FilterShop extends Component{
                     })
                 }}
                 style={styles.btnBackground}>
-                    <Text style={styles.apply}>APPLY</Text>
+                    <Text style={styles.apply}>Apply</Text>
                 </TouchableOpacity>
             </View>
 

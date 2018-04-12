@@ -23,9 +23,11 @@ export default StyleSheet.create({
         borderBottomWidth:StyleSheet.hairlineWidth
     },
     headerText:{
-        fontSize:16,
-        fontFamily:'lato-bold',
-        color:'#000000',
+        color:"#000",
+        fontSize:16, 
+        fontFamily:'Lato-Regular',
+        fontWeight:"bold",
+        
         ...ifIphoneX({
             marginTop:56,
             textAlign:'center',
@@ -50,15 +52,16 @@ export default StyleSheet.create({
     },
     
     drawerInnerText:{
-        marginLeft:21,
+        //marginLeft:21,
         color:'#000000',
         fontFamily:'Lato-Regular',
         fontSize:16,
-        marginTop:23
+        alignSelf:'center',
+       marginTop:13
     },
     drawerContainer:{
     
-        width:windowWidth,
+       // width:windowWidth,
         backgroundColor:'white',
         ...ifIphoneX({
             height:windowHeight-106

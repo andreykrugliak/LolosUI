@@ -5,7 +5,7 @@ import Swiper from 'react-native-deck-swiper'
 var WindowWidth = Dimensions.get('window').width
 var WindowHeight = Dimensions.get('window').height
 import styles from './style'
-
+const iphone5s = 568
 
 
 export default class SliderPage extends Component{
@@ -66,7 +66,7 @@ switch(cardIndex)
         return(
 
         <View style={styles.slide1}>
-            <Text style={styles.tagLine}>you can see and manage all your lolo’s in your</Text>
+            <Text style={[styles.tagLine,{marginTop:WindowHeight<= iphone5s?15:22,}]}>you can see and manage all your lolo’s in your</Text>
             <Text style={styles.titleSWallte}>Smart Wallet</Text>
             <Image  style={[styles.emojiGroup]}
             source={require('@images/HomePage/emojis1.png')}/>

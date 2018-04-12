@@ -1,7 +1,7 @@
 import {StyleSheet,Platform,Dimensions} from 'react-native'
 let windowHeight = Dimensions.get('window').height
 console.log(windowHeight)
-const iphoneSE = 568
+const iphoneSE = 600
 export default StyleSheet.create({
     container:{
         flex:1,
@@ -13,7 +13,7 @@ export default StyleSheet.create({
         color:'#FF4273',
         fontSize:34,
         marginTop:32,
-        fontFamily:'Patua One'
+        fontFamily:"PatuaOne-Regular",
     },
     subText:{
         marginTop:20,
@@ -55,6 +55,7 @@ export default StyleSheet.create({
     buttonText:{
         color:'#FF4273',
         fontFamily:'Lato-Regular',
+        fontWeight:"bold",
         fontSize:18
     },
     searchBox:{
@@ -89,7 +90,7 @@ export default StyleSheet.create({
     contactName:{
         color:'#FF4273',
         fontSize:34,
-        fontFamily:'Patua One',
+        fontFamily:"PatuaOne-Regular",
         textAlign:'center'
     },
     image2:{
