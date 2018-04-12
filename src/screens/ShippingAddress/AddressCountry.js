@@ -34,6 +34,7 @@ export default class Country extends Component{
         }
         
         this.state={
+            disabled:true,
             inputPosition:72,
             height:WindowHeight,
             cca2,

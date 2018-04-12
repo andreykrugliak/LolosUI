@@ -1,29 +1,58 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet, Dimensions,Platform} from 'react-native';
 let window = Dimensions.get('window')
 export default StyleSheet.create({
-    container: { 
+    // container: { 
+    //     height:80,
+    //     borderBottomWidth:1,
+    //     borderBottomColor:'rgba(0,0,0,1)' 
+    // },
+    // imageContainer:{
+    //     position:'absolute',
+    //     top:32,
+    //     left:24,
+    //     height:30,
+    //     width:30
+    // },
+    // backImage:{
+    //     height:20,
+    //     width:20,
+    // },
+    // text:{
+    //     alignSelf:'center',
+    //     fontSize:16,
+    //     color:'black',
+    //     fontFamily:'Lato-Regular',
+    //     marginTop:35,
+    //     fontWeight:'bold',
+    // },
+
+    container: {
         height:80,
-        borderBottomWidth:1,
-        borderBottomColor:'rgba(0,0,0,1)' 
+        shadowOpacity:0.3,
+        shadowColor:'rgba(0,0,0,0.20)',
+        shadowOffset:{width:0,height:2},
+        justifyContent:'center',
+        backgroundColor:'#fff',
+        elevation:Platform.OS=='android'?3:0,
     },
     imageContainer:{
-        position:'absolute',
-        top:32,
         left:24,
-        height:30,
-        width:30
+        position:'absolute',
+      //  top:10,
     },
     backImage:{
         height:20,
         width:20,
+        marginTop:Platform.OS=='android'?0:10,
     },
     text:{
         alignSelf:'center',
         fontSize:16,
+        paddingTop:Platform.OS=='android'?0:10,
         color:'black',
-        fontFamily:'Lato-Regular',
-        marginTop:35,
+        fontFamily:'Lato',
         fontWeight:'bold',
+        textAlign:'center'
     },
     NotificationBox:{
         flex:1,

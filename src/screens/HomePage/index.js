@@ -40,6 +40,7 @@ const initialLayout = {
               this.props.navigator.push({
               screen:event.payload.screen,
               title:event.payload.title,
+              animationType:"slide-horizontal"
             })
 
         }
@@ -50,8 +51,10 @@ const initialLayout = {
             to:'closed'
         })
             this.props.navigator.push({
+            
             screen:event.payload.screen,
             title:event.payload.title,
+            animationType:"slide-horizontal"
           })
       }
 
@@ -60,6 +63,7 @@ const initialLayout = {
           this.props.navigator.resetTo({
           screen:event.payload.screen,
           title:event.payload.title,
+          animationType:"slide-horizontal"
         })
     }
     }

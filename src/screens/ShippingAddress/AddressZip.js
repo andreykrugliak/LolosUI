@@ -16,6 +16,7 @@ export default class Zip extends Component{
     constructor(props){
         super(props)
         this.state={
+            disabled:true,
             zipText:'',
             color:'#CCCCCC',
             bgColor:'#F0F0F0'

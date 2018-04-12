@@ -47,8 +47,6 @@ export default StyleSheet.create({
         opacity:1,
         backgroundColor:'transparent',
         alignSelf:'center'
-       
-      
     },
     wrapper:{
         borderWidth:1, 
