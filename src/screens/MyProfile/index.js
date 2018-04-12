@@ -6,8 +6,17 @@ import Swiper from 'react-native-deck-swiper'
 var WindowWidth = Dimensions.get('window').width
 var WindowHeight = Dimensions.get('window').height
 import styles from './style'
-
-
+import DatePicker from 'react-native-datepicker'
+let customStyles = {
+    dateInput: {
+    position:'absolute',
+    left:20,
+    bottom:15,
+    //borderRadius:3,
+    borderWidth: 0,
+    //height:60
+    }
+  };
 export default class MyProfile extends Component{
 
     static navigatorStyle={
@@ -20,9 +29,18 @@ export default class MyProfile extends Component{
         this.state={
             firstName:'',
             birthday:'',
+            text:'',
+            date:'',
+            dateDisabled:true,
+            color:'#F0F0F0',
+            textColor:'#CCCCCC',
+            dateVisible:false,
+            nameText:true,
+            buttonDisabled:true
         }
         this._handleavtarEdit=this._handleavtarEdit.bind(this)
     }
+  
 
     _handleavtarEdit(cropit){
         // ImagePicker.openPicker({
@@ -51,22 +69,42 @@ export default class MyProfile extends Component{
                         <Text style={styles.nameText}>
                             Full Name
                         </Text>
-                        <View style={styles.textInput}><Input value={this.state.firstName} style={{marginLeft:16}} returnKeyType='done' onChangeText={(text) => this.setState({firstName:text})}/></View>
+                        <View style={styles.textInput}><Input value={this.state.text} style={{marginLeft:16}} returnKeyType='done' onChangeText={(text) => this.setState({text,nameText:false})}/></View>
 
                         <Text style={[styles.nameText,{marginTop:20}]}>
                              Birthday
                         </Text>
-                        <View style={styles.textInput}><Input value={this.state.birthday} style={{marginLeft:16}} returnKeyType='done' onChangeText={(text) => this.setState({birthday:text})}/></View>
+                        <View style={styles.textInput}>
+                        <DatePicker
+                        style={{marginTop:25,width:WindowWidth-100}}
+                        showIcon={false}
+                        customStyles={customStyles}
+                        date={this.state.date}
+                        mode="date"
+                        placeholder=" "
+                        format="DD MMMM YYYY"
+                        minDate="01 JANUARY 1950"
+                        maxDate="31 DECEMBER 2015"
+                        confirmBtnText="confirm"
+                        cancelBtnText="cancel"
+                        onDateChange={(date) => {
+                                this.setState({date,
+                                                dateDisabled:false,
+                                                color:'#FF4273',
+                                                textColor:'white'
+                                            })
+                                        }}/>
+                                        </View>
                     </View>
 
                 </View>
-                <Button onPress={()=>{
+                <Button disabled={this.state.text.length == 0?true:this.state.dateDisabled == true?true:false} onPress={()=>{
                             this.props.navigator.push({
                                 screen:'app.HomePage',
                                 animationType:"slide-horizontal"
                             })
-                         }}style={[styles.buttonContainer]}>
-                                <Text style={[styles.buttonText]}>Apply Changes</Text>
+                         }}style={[styles.buttonContainer,{backgroundColor:this.state.text.length == 0?'#F0F0F0':this.state.dateDisabled == true?'#F0F0F0':'#FF4273'}]}>
+                                <Text style={[styles.buttonText,{color:this.state.text.length == 0?'#CCCCCC':this.state.dateDisabled == true?'#CCCCCC':'white'}]}>Apply Changes</Text>
                 </Button>
             </View>
         )

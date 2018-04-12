@@ -26,7 +26,7 @@ export default StyleSheet.create({
         fontSize:16,
         paddingTop:Platform.OS=='android'?0:10,
         color:'black',
-        fontFamily:'Lato',
+        fontFamily:'Lato-Regular',
         fontWeight:'bold',
         textAlign:'center'
     }

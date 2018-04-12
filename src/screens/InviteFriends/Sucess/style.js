@@ -33,7 +33,7 @@ export default StyleSheet.create({
         alignSelf:'center',
         textAlign:'center',
         fontSize:28,
-        fontFamily:"Lato"
+        fontFamily:'Lato-Regular',
 
     }
 })

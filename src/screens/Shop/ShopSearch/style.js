@@ -24,7 +24,7 @@ export default StyleSheet.create({
         //borderWidth:1
     },
     searchItem:{
-        fontFamily:'Lato',
+        fontFamily:'Lato-Regular',
         fontSize:16,
         fontWeight:'bold',
         color:'#000',
@@ -52,7 +52,7 @@ export default StyleSheet.create({
         flex:1,
         fontSize:18,
         color:'#000',
-        fontFamily:'lato',
+        fontFamily:'Lato-Regular',
         marginLeft:16
     },
     iconSearch:{
@@ -73,14 +73,14 @@ export default StyleSheet.create({
     },
     head:{
         color:'#000',
-        fontFamily:'lato',
+        fontFamily:'Lato-Regular',
         fontWeight:'bold',
         fontSize:18,
         marginBottom:16,
     },
     item:{
         color:'#000',
-        fontFamily:'lato',
+        fontFamily:'Lato-Regular',
         fontSize:16,
     },
     recentViewed:{
@@ -99,7 +99,7 @@ export default StyleSheet.create({
     cancel:{
         color:'#4A90E2',
         fontSize:16,
-        fontFamily:'lato',
+        fontFamily:'Lato-Regular',
         marginLeft:15
     },
 
@@ -130,7 +130,7 @@ export default StyleSheet.create({
         marginRight:10,
         fontSize:12,
         color:'#000',
-        fontFamily:'Lato',
+        fontFamily:'Lato-Regular',
     },
     label:{
         width:70,
@@ -156,7 +156,7 @@ export default StyleSheet.create({
     shippingText:{
         fontSize:10,
         color:'#9B9B9B',
-        fontFamily:'Lato',
+        fontFamily:'Lato-Regular',
         fontWeight:'bold'
     },
     extraInfoLabel:{

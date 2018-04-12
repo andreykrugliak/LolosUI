@@ -40,8 +40,8 @@ export default class ButtonExample extends Component {
        
         
       return (
-        <ImageBackground style={styles.container} source={require('@images/SplashScreen/splash.jpg')}>
-          <Image style={{position:'absolute',top:240,right:100,height:104,width:104}} source={require('@images/SplashScreen/image2.png')}></Image>
+        <ImageBackground style={styles.container} source={require('@images/SplashScreen/newsplash.jpg')}>
+
             {this._splashScreen()}
         </ImageBackground>
         

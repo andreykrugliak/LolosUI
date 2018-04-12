@@ -60,12 +60,13 @@ export default class PreviewScreen extends Component{
 
             index:0,
             routes: [
-                // { key: '0', title: 'All' },
-                // { key: '1', title: 'Gadgets' },
-                // { key: '2', title: 'Mobile' },
-                // { key: '3', title: 'Fashion' },
-                // { key: '4', title: 'Sports'}
-                {key:'0',title:'Sports'}
+                
+                
+                {key:'0',title:'Sports'},
+                { key: '1', title: 'Gadgets' },
+                { key: '2', title: 'Mobile' },
+                { key: '3', title: 'Fashion' },
+                { key: '4', title: 'Sports'},
               ],
         })
         this._handleIndexChange=this._handleIndexChange.bind(this)
@@ -87,7 +88,7 @@ export default class PreviewScreen extends Component{
                                         style={{ 
                                             fontWeight:scene.index==this.state.index? '900':'normal',
                                             color:'#fff',
-                                            fontFamily:'Lato',                
+                                            fontFamily:'Lato-Regular',               
                                         }}>{scene.route.title}</Text>}
              />
         )
@@ -100,7 +101,7 @@ export default class PreviewScreen extends Component{
                 <FlatList
                     style={{flex:1}}
                     data={
-                            route.key==0?
+                            route.key==0 || route.key==1 || route.key== 2 || route.key==3 || route.key== 4?
                             this.state.sportsData:
                             this.state.data
                         }

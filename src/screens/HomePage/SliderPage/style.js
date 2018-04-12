@@ -42,7 +42,7 @@ export default StyleSheet.create({
     },
     badgeText:{
         fontSize:9,
-        fontFamily:'lato',
+        fontFamily:'Lato-Regular',
         color:'#fff',
         opacity:1,
         backgroundColor:'transparent',
@@ -362,7 +362,7 @@ export default StyleSheet.create({
     },
     age:{
         color:'black',
-        fontFamily:'Lato',
+        fontFamily:'Lato-Regular',
         fontWeight:'900',
         fontSize:26,
         position:'absolute',

@@ -29,7 +29,7 @@ export default StyleSheet.create({
         marginRight:10,
         fontSize:12,
         color:'#000',
-        fontFamily:'Lato',
+        fontFamily:'Lato-Regular',
     },
     label:{
         width:70,
@@ -55,7 +55,7 @@ export default StyleSheet.create({
     shippingText:{
         fontSize:10,
         color:'#9B9B9B',
-        fontFamily:'Lato',
+        fontFamily:'Lato-Regular',
         fontWeight:'bold'
     },
     extraInfoLabel:{
@@ -95,7 +95,7 @@ export default StyleSheet.create({
          ...ifIphoneX({marginTop:25},{})
      },
      headerText:{
-         fontFamily:'Lato',
+        fontFamily:'Lato-Regular',
          fontSize:18,
          fontWeight:'bold',
          ...ifIphoneX({marginTop:25},{})

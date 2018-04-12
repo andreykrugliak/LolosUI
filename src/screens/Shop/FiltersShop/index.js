@@ -30,12 +30,12 @@ export default class FilterShop extends Component{
 
     render(){
         let sortRadio_props = [
-            {label: 'Low To Heigh', value: 0 },
-            {label: 'Heigh To Low', value: 1 }
+            {label: <Text style={styles.radioButtonText}>Low To Heigh</Text>, value: 0 },
+            {label: <Text style={styles.radioButtonText}>Heigh To Low</Text>, value: 1 }
           ];
         let shippingRadio_props=[
-            {label: 'Only free shipping', value: 0 },
-            {label: 'All', value: 1 }
+            {label: <Text style={styles.radioButtonText}>Only free shipping</Text>, value: 0 },
+            {label: <Text style={styles.radioButtonText}>All</Text>, value: 1 }
         ]
         let ClickersRadioButton=
             <RadioForm
@@ -130,7 +130,7 @@ export default class FilterShop extends Component{
                     <View style={styles.lowToHigh}>
                         <CheckBox
                             label='Only items ships to Israel'
-                            //labelStyle={{}}
+                            labelStyle={styles.radioButtonText}
                             checkboxStyle={this.state.checked?[{backgroundColor:'#FF4273'},styles.checkBox]:[{backgroundColor:'#fff',},styles.checkBox]}
                             checkedImage={require('@images/FilterScreen/after.png')}
                             checked={this.state.checked}

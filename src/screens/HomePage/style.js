@@ -167,7 +167,7 @@ export default StyleSheet.create({
         fontSize:WindowHeight <= android?14:18,
         color:"#FF4273",
         textAlign:'center',
-        fontFamily:"Lato"
+        fontFamily:'Lato-Regular',
     },
     swipeTextView:{
        marginTop: WindowHeight <= android?90:134,
@@ -351,7 +351,7 @@ export default StyleSheet.create({
     },
     age:{
         color:'black',
-        fontFamily:'Lato',
+        fontFamily:'Lato-Regular',
         fontWeight:'900',
         fontSize:26,
         position:'absolute',

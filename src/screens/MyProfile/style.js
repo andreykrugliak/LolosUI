@@ -28,7 +28,7 @@ export default StyleSheet.create({
       marginHorizontal:30
     },
     nameText:{
-        fontFamily:'lato',
+        fontFamily:'Lato-Regular',
         fontSize:16,
         color:'#000',
         paddingBottom:7
@@ -46,7 +46,7 @@ export default StyleSheet.create({
 
     buttonText:{
         fontSize:20,
-        color:'#CCCCCC',
+        //color:'#CCCCCC',
         fontFamily:'Lato-Regular',
         fontWeight:'900'
     },
@@ -59,7 +59,7 @@ export default StyleSheet.create({
         right:0,
         bottom:0,
        // backgroundColor:'#FF4273',
-        backgroundColor:'#F0F0F0',
+        //backgroundColor:'#F0F0F0',
         borderRadius:0
         
     }

@@ -16,7 +16,7 @@ export default class ConfirmationPage extends Component{
 
     render(){
         return(
-            <View style={{flexGrow:1}}> 
+            <View style={{flex:1}}>
             <ScrollView >
                 <ImageBackground style={styles.image} source={require('@images/HomePage/image.jpg')}>
                 <TouchableOpacity style={styles.back}
@@ -38,8 +38,13 @@ export default class ConfirmationPage extends Component{
                         <Text style={styles.send}>Pardes Hana, Bilu 11a, Israel</Text>
                     </View>
                     <View style={styles.button}>
-                    <View style={styles.line}></View>
-                    <TouchableOpacity onPress={()=>{
+                    {/* <View style={styles.line}></View> */}
+                  
+           
+                </View>
+              
+            </ScrollView>
+            <TouchableOpacity onPress={()=>{
                         this.props.navigator.push({
                             screen:'app.HomePage',
                             animationType:"slide-horizontal"
@@ -47,10 +52,7 @@ export default class ConfirmationPage extends Component{
                     }} style={styles.btnBackground}>
                         <Text style={styles.buy}>Buy</Text>
                     </TouchableOpacity>
-           
-                </View>
-            </ScrollView>
-            </View>
+            </View>  
         )
     }
 }

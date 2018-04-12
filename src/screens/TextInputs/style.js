@@ -25,7 +25,7 @@ export default StyleSheet.create({
     continueBtnText:{
         color:"#FFFFFF",
         fontSize:18,
-        fontFamily:"Lato",
+        fontFamily:'Lato-Regular',
         fontWeight:"bold",
         alignSelf:"center",
         opacity:0.9,

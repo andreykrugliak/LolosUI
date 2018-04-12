@@ -27,7 +27,7 @@ export default StyleSheet.create({
         //borderWidth:1
     },
     filter:{
-        fontFamily:'Lato',
+        fontFamily:'Lato-Regular',
         fontSize:16,
         fontWeight:'bold',
         color:'#000',
@@ -44,7 +44,7 @@ export default StyleSheet.create({
     },
     sortPriceText:{
         color:'#000',
-        fontFamily:'lato',
+        fontFamily:'Lato-Regular',
         fontWeight:'bold',
         fontSize:18,
         marginLeft:14,
@@ -85,7 +85,7 @@ export default StyleSheet.create({
         backgroundColor:'#FF4273',
     },
     selectionText:{
-        fontFamily:'lato',
+        fontFamily:'Lato-Regular',
         fontSize:16,
         marginLeft:8, 
     },
@@ -116,8 +116,13 @@ export default StyleSheet.create({
         justifyContent:'center',
     },
     apply:{
-        fontFamily:'lato',
+        fontFamily:'Lato-Regular',
         color:'#fff',
         fontWeight:'bold'
     },
+    radioButtonText:{
+        fontFamily:'Lato-Regular',
+        fontSize:16,
+        color:'black'
+    }
 })

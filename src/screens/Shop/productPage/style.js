@@ -57,7 +57,7 @@ export default StyleSheet.create({
         marginTop:22,
         lineHeight:24,
         fontSize:16,
-        fontFamily:'Lato',
+        fontFamily:'Lato-Regular',
         color:'#000'
     },
     label:{
@@ -87,7 +87,7 @@ export default StyleSheet.create({
         marginTop:15,
         fontSize:12,
         color:'#000',
-        fontFamily:'Lato',
+        fontFamily:'Lato-Regular',
     },
     down:{
         width:7.9,
@@ -96,13 +96,13 @@ export default StyleSheet.create({
     },
     shippingSubText:{
         fontSize:10,
-        fontFamily:'Lato',
+        fontFamily:'Lato-Regular',
         color:'#9B9B9B',
         marginBottom:9,
     },
     itemText:{
         marginTop:20,
-        fontFamily:'lato',
+        fontFamily:'Lato-Regular',
         fontSize:12,
         color:'#000',
         marginBottom:15,
@@ -116,14 +116,14 @@ export default StyleSheet.create({
     },
     key:{
         color:'#9B9B9B',
-        fontFamily:'lato',
+        fontFamily:'Lato-Regular',
         fontSize:10,
         paddingHorizontal:10,
      
     },
     value:{
         color:'#000',
-        fontFamily:'lato',
+        fontFamily:'Lato-Regular',
         fontSize:10,
    
     },

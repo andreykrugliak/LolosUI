@@ -7,7 +7,7 @@ export default StyleSheet.create({
         justifyContent:"center",
     },
     ShoppingText:{
-        fontFamily: "Lato",
+        fontFamily:'Lato-Regular',
         fontWeight:'900',
         fontSize:18,
         alignSelf:'center',
@@ -29,12 +29,12 @@ export default StyleSheet.create({
     },
     ButtonText:{
         color:'white',
-        fontFamily: 'Lato',
+        fontFamily:'Lato-Regular',
         fontSize: 18,
         fontWeight:'900'
     },
     ButtonText2:{
-        fontFamily: 'Lato',
+        fontFamily:'Lato-Regular',
         fontSize: 18,
         fontWeight:'900',
         color:'#9B9B9B'

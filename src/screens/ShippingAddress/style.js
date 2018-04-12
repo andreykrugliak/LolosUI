@@ -21,14 +21,14 @@ export default StyleSheet.create({
    tagline:{
        alignSelf:'center',
        color:'#9B9B9B',
-       fontFamily:'lato',
+       fontFamily:'Lato-Regular',
        fontSize:14,
        paddingTop:4,
    },
    bodyText:{
        textAlign:'center',
        marginTop:Platform.OS=='android'?99: 111,
-       fontFamily:'lato',
+       fontFamily:'Lato-Regular',
        color:'#000',
        fontSize:22,
    },

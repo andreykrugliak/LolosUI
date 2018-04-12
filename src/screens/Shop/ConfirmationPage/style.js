@@ -23,7 +23,7 @@ export default StyleSheet.create({
     },
     total:{
         marginTop:50,
-        fontFamily:'lato',
+        fontFamily:'Lato-Regular',
         fontSize:18,
         color:'#000',
         textAlign:'center',
@@ -31,7 +31,7 @@ export default StyleSheet.create({
     totalNo:{
         marginTop:15,
         color:'#FF4273',
-        fontFamily:'lato',
+        fontFamily:'Lato-Regular',
         //fontSize:20,
         fontSize:80,
        // fontSize:Platform.OS === 'ios'?80:40, 
@@ -49,7 +49,7 @@ export default StyleSheet.create({
         marginLeft:5,
     },
     footer:{
-        paddingBottom:105,
+        paddingBottom:110,
         marginTop:37,
         alignSelf:'center',
     },
@@ -57,7 +57,7 @@ export default StyleSheet.create({
         textAlign:'center',
         color:'#9B9B9B',
         fontSize:14,
-        fontFamily:'lato',  
+        fontFamily:'Lato-Regular',  
     },
     button:{
        //flex:1,
@@ -78,9 +78,13 @@ export default StyleSheet.create({
         height:70,
         alignItems:'center',
         justifyContent:'center',
+        position:'absolute',
+        bottom:0,
+        right:0,
+        left:0
     },
     buy:{
-        fontFamily:'lato',
+        fontFamily:'Lato-Regular',
         color:'#fff',
         fontWeight:'bold'
     },

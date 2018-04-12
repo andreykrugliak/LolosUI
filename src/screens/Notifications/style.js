@@ -50,7 +50,7 @@ export default StyleSheet.create({
         fontSize:16,
         paddingTop:Platform.OS=='android'?0:10,
         color:'black',
-        fontFamily:'Lato',
+        fontFamily:'Lato-Regular',
         fontWeight:'bold',
         textAlign:'center'
     },
@@ -99,13 +99,13 @@ export default StyleSheet.create({
     date:{
         marginTop:45,
         color:'#9B9B9B',
-        fontFamily:'Lato',
+        fontFamily:'Lato-Regular',
         fontSize:14,
     },
     headText:{
         fontSize:22,
         color:'#000',
-        fontFamily:'Lato',
+        fontFamily:'Lato-Regular',
     },
     bodyImage:{
         position:'absolute',
@@ -119,7 +119,7 @@ export default StyleSheet.create({
     },
     footerText:{
         color:'#4A90E2',
-        fontFamily:'Lato',
+        fontFamily:'Lato-Regular',
         fontSize:12,
         textAlign:'center',
         //top:0,
