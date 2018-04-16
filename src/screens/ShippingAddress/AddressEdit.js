@@ -17,7 +17,7 @@ export default class AddressEdit extends Component{
             <View style={styles.container}>
                 <HeaderComponent title="SHIPPING ADDRESS" navigator={this.props.navigator}/>
 
-                <Image style={[{marginTop:41,alignSelf:'center',height:108,width:96}]} source={require('@images/HomePage/lolomailman.png')}/>
+                <Image style={[{marginTop:41,alignSelf:'center',height:108*0.85,width:96*0.85}]} source={require('@images/HomePage/lolomailman.png')}/>
 
                
                 <Text  style={[styles.headText,{marginTop:25,textAlign:'center'}]}>
@@ -36,7 +36,11 @@ export default class AddressEdit extends Component{
                     West Chicago, IL60185
                 </Text>
 
-                <TouchableOpacity style={styles.editIcon}>
+                <TouchableOpacity onPress={()=>{
+                    this.props.navigator.push({
+                        screen:'app.shippingAddressCountry'
+                    })
+                }} style={styles.editIcon}>
                     <Image style={{height:22,width:22}} source={require('@images/ShippingAddress/edit.png')}/>
                 </TouchableOpacity>
             </View>

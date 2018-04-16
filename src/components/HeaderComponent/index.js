@@ -7,7 +7,7 @@ export const HeaderComponent = (props)=>{
 return(
     <Header style={styles.header}>
     <Left>
-      <Button transparent onPress={()=>{
+      <Button transparent style={{height:40,width:40}} onPress={()=>{
         props.navigator.pop({animationType:"slide-horizontal"})
         }}>
         <Icon style={styles.backArrow} name='arrow-back'/>

@@ -30,14 +30,17 @@ export default StyleSheet.create({
         fontSize:12,
         color:'#000',
         fontFamily:'Lato-Regular',
+       
     },
     label:{
         width:70,
         height:24,
         backgroundColor:'#FF4273', 
-        marginTop:7,   
+        //marginTop:7,   
         alignItems:'center',
         justifyContent:'center',
+        position:'absolute',
+        bottom:20,
         borderRadius:2,
     },
     labelText:{
@@ -46,17 +49,23 @@ export default StyleSheet.create({
         fontFamily:"PatuaOne-Regular",
     },
     extraInfo:{
-        marginTop:5,
+        //marginTop:5,
         flexDirection:'row',
         alignItems:'center',
         justifyContent:'space-between',
+        position:'absolute',
+        right:10,
+        bottom:0,
+        width:deviceWidth-156,
+
         //borderWidth:1,
     },
     shippingText:{
         fontSize:10,
         color:'#9B9B9B',
         fontFamily:'Lato-Regular',
-        fontWeight:'bold'
+        fontWeight:'bold',
+        backgroundColor:'transparent'
     },
     extraInfoLabel:{
         //borderWidth:1,
@@ -66,19 +75,22 @@ export default StyleSheet.create({
         backgroundColor:'#F0F0F0',
         alignItems:'center',
         //justifyContent:'center',
-        flexDirection:'row',   
+        flexDirection:'row',  
+        marginBottom:5 
     },
     extraInfoIcon:{
         height:16,
         width:12,
-        marginLeft:5
+        marginLeft:5,
+       
     },
     superHotText:{
         //paddingLeft:4,
         fontSize:10,
         color:'#000',
         fontFamily:"PatuaOne-Regular",
-        marginLeft:7
+        marginLeft:7,
+       
      },
      header:{
          
@@ -86,12 +98,14 @@ export default StyleSheet.create({
          alignItems:'center',
          backgroundColor:'#fff',
          flexDirection:'row',
-         paddingHorizontal:27,
+         //paddingHorizontal:17,
          justifyContent:'space-between',
      },
      leftButton:{
          height:16,
          width:16,
+         marginLeft:27,
+         paddingRight:10,
          ...ifIphoneX({marginTop:25},{})
      },
      headerText:{
@@ -104,6 +118,8 @@ export default StyleSheet.create({
 
          height:18,
          width:18,
+         marginRight:27,
+         paddingLeft:10,
          ...ifIphoneX({marginTop:25},{})
      },
      tabBar:{

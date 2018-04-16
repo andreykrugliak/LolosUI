@@ -31,15 +31,15 @@ export default class Wallet extends Component{
 
             <Right>
                 <Button transparent onPress={()=>{
-                    this.props.navigator.toggleDrawer({
-                        side:'right',
-                        to:'open'
-                    })
+                   this.props.navigator.push({
+                    screen:'app.Notifications',
+                    animationType:"slide-horizontal"
+                })
                 }}>
                     <Badge style={[styles.badgeStyle]}>
-                        <View>
+                        {/* <View>
                             <Text style={styles.badgeText}>1</Text>
-                        </View>
+                        </View> */}
                     </Badge>  
                     <Image source={require('@images/HomePage/NOTIFICATIONWhite.png')}>
                     </Image>

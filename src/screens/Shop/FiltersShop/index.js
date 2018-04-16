@@ -58,9 +58,9 @@ export default class FilterShop extends Component{
           />
         
         return(
-            <View style={{flex:1}}>
+            <View style={{flex:1,backgroundColor:'white'}}>
                 <View style={styles.header}>
-                <TouchableOpacity onPress={()=>{
+                <TouchableOpacity style={{padding:10}}  onPress={()=>{
                     this.props.navigator.pop({
                         animationType:"slide-horizontal"
                     })

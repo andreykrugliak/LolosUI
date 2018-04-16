@@ -12,13 +12,15 @@ export default StyleSheet.create({
         elevation:Platform.OS=='android'?3:0,
     },
     imageContainer:{
-        left:24,
+        left:14,
         position:'absolute',
+        width:50
       //  top:10,
     },
     backImage:{
         height:24,
         width:24,
+        marginLeft:10,
         marginTop:Platform.OS=='android'?0:10,
     },
     text:{

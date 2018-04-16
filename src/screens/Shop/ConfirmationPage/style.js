@@ -10,8 +10,8 @@ export default StyleSheet.create({
       }),
         
         left:15,
-        height:24,
-        width:12,
+        height:50,
+        width:50,
         zIndex:1,
         opacity:1,
     },

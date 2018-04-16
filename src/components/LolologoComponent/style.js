@@ -7,7 +7,9 @@ export default StyleSheet.create({
     touchable:{
         position:'absolute',
         left:12,
-        top:22
+        top:22,
+        height:50,
+        width:50
     },
     backImage:{
         height:16,

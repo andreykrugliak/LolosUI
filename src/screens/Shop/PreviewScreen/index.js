@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {Container, Header, Content, Footer, FooterTab, Button, Text, Icon, Body, Right, Left,Title, Card, Badge, CardItem} from 'native-base';
-import {View,Dimensions,Image,TouchableOpacity,FlatList} from 'react-native';
-import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
+import {View,Dimensions,Image,TouchableOpacity,FlatList,Platform} from 'react-native';
+import { TabViewAnimated,TabViewPagerPan,TabViewPagerScroll, TabBar, SceneMap } from 'react-native-tab-view';
 import Swiper from 'react-native-deck-swiper'
 var WindowWidth = Dimensions.get('window').width
 var WindowHeight = Dimensions.get('window').height
@@ -9,7 +9,7 @@ import styles from './style'
 
 
 export default class PreviewScreen extends Component{
-
+    
     static navigatorStyle = {
         navBarHidden:true
     };
@@ -144,7 +144,7 @@ export default class PreviewScreen extends Component{
                                     require('@images/HomePage/image.jpg')
                                }/>
                     <View style={styles.detail}>
-                        <Text style={styles.title}>
+                        <Text  numberOfLines={3} style={styles.title}>
                             {item.title}
                         </Text>
                         <View style={styles.label}>
@@ -152,37 +152,42 @@ export default class PreviewScreen extends Component{
                                 {item.price}
                             </Text>
                         </View>
-                        <View style={styles.extraInfo}>
+                       
+                    </View>
+                    <View style={styles.extraInfo}>
                             <Text style={styles.shippingText}>Free Shipping</Text>
                             <View style={styles.extraInfoLabel}>
                                 <Image style={styles.extraInfoIcon} source={require('@images/Shop/superhot.png')} />
                                 <Text style={styles.superHotText}>{item.label}</Text>
                             </View>
                         </View>
-                    </View>
                 </View>
+                
             </TouchableOpacity> 
         </View>
            
         )
     }
+    _renderPager = (props) => {
+        return (Platform.OS === 'ios') ? <TabViewPagerScroll {...props} /> : <TabViewPagerPan {...props} />
+       }
 
     render(){
         return(
             <View style={{backgroundColor:'#F6F6F6',flex:1}}>
                 <View style={{flex:1}}>
                     <View style={styles.header}>
-                        <TouchableOpacity onPress={()=>{
+                        <TouchableOpacity  onPress={()=>{
                             this.props.navigator.push({
                                 screen:'app.ShopSeach',
                                 animationType:"slide-horizontal"
                             })
-                        }}>
+                        }}> 
                             <Image style={styles.leftButton} source={require('@images/Shop/ic_search.png')}/>
                         </TouchableOpacity>
                         
                         <Text style={styles.headerText}>MARKET PLACE</Text>
-                        <TouchableOpacity onPress={()=>{
+                        <TouchableOpacity    onPress={()=>{
                             this.props.navigator.push({
                                 screen:'app.FiltersShop',
                                 animationType:"slide-horizontal"
@@ -198,7 +203,8 @@ export default class PreviewScreen extends Component{
                          navigationState={this.state}
                          renderHeader={this._renderHeader}
                          renderScene={this._renderScane}
-                         onIndexChange={this._handleIndexChange}/>
+                         onIndexChange={this._handleIndexChange}
+                         renderPager={this._renderPager}/>
                     </View>
                 </View>
             

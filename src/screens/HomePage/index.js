@@ -10,10 +10,10 @@ import PreviewScreen from '@screens/Shop/PreviewScreen/index'
 import SliderPage from '@screens/HomePage/SliderPage'
 import Walllet from '@screens/HomePage/Wallet'
 import styles from './style'
-const initialLayout = {
-    height: 0,
-    width: Dimensions.get('window').width,
-  };
+// const initialLayout = {
+//     height: 0,
+//     width: Dimensions.get('window').width,
+//   };
 
   const images ={
       Image1:require('@images/HomePage/ActiveCart.png'),
@@ -43,33 +43,19 @@ const initialLayout = {
               animationType:"slide-horizontal"
             })
 
-        }
-
-        if(event.link == 'Rightmenu') {
-          this.props.navigator.toggleDrawer({
-            side:'right',
-            to:'closed'
-        })
-            this.props.navigator.push({
-            
-            screen:event.payload.screen,
-            title:event.payload.title,
-            animationType:"slide-horizontal"
-          })
-      }
-
-      if(event.link == 'logOut') {
         
-          this.props.navigator.resetTo({
-          screen:event.payload.screen,
-          title:event.payload.title,
-          animationType:"slide-horizontal"
-        })
-    }
+    //   if(event.link == 'logOut') {
+        
+    //       this.props.navigator.resetTo({
+    //       screen:event.payload.screen,
+    //       title:event.payload.title,
+    //       animationType:"slide-horizontal"
+    //     })
+    // }
     }
 
 
-    }
+    }}
 
     static navigatorStyle = {
         navBarHidden:true
@@ -77,7 +63,7 @@ const initialLayout = {
       constructor(props){
         super(props)
         this.state = {
-            index: 2,
+            index: this.props.index?props.index:2,
             routes: [
                 { key: '0',icon: images.Image4, iconSelected: images.Image1 },
                 { key: '1', icon: images.Image5, iconSelected: images.Image2},
@@ -146,7 +132,7 @@ const initialLayout = {
     
   
         render() {
-        
+          
             return (
                 <View style={{height:WindowHeight,flex:1,width:WindowWidth}}>
 
@@ -156,7 +142,7 @@ const initialLayout = {
                 renderScene={this._renderScene}
                 renderFooter={this._renderHeader}
                 onIndexChange={this._handleIndexChange}
-                initialLayout={initialLayout}
+                //initialLayout={initialLayout}
                 renderPager={this._renderPager}
                 ></TabViewAnimated>
         

@@ -21,34 +21,37 @@ export default class ProductPage extends Component{
     render(){
 
        // this.ImageSource=
-            if(this.props.index==1 && this.props.categoryKey==0){
+           
                 this.ProductName=this.props.name
                 this.ImageSource1=require('@images/shopSports/1_sport.jpg')
                 this.ImageSource2=require('@images/shopSports/1_sport.jpg')
                 this.ImageSource3=require('@images/shopSports/1_sport.jpg')
-            }
+            
 
-            if(this.props.index==2 && this.props.categoryKey==0){
-                this.ProductName=this.props.name
-                this.ImageSource1=require('@images/shopSports/2_sport.jpg')
-                this.ImageSource2=require('@images/shopSports/2.4_sport.jpg')
-                this.ImageSource3=require('@images/shopSports/2.5_sport.jpg')
-            }
+            // if(this.props.index==2 && this.props.categoryKey==0){
+            //     this.ProductName=this.props.name
+            //     this.ImageSource1=require('@images/shopSports/2_sport.jpg')
+            //     this.ImageSource2=require('@images/shopSports/2.4_sport.jpg')
+            //     this.ImageSource3=require('@images/shopSports/2.5_sport.jpg')
+            // }
 
-            if(this.props.index==3 && this.props.categoryKey==0){
-                this.ProductName=this.props.name
-                this.ImageSource1=require('@images/shopSports/3_sport.jpg')
-                this.ImageSource2=require('@images/shopSports/3.1_sport.jpg')
-                this.ImageSource3=require('@images/shopSports/3.2_sport.jpg')
-            }
+            // if(this.props.index==3 && this.props.categoryKey==0){
+            //     this.ProductName=this.props.name
+            //     this.ImageSource1=require('@images/shopSports/3_sport.jpg')
+            //     this.ImageSource2=require('@images/shopSports/3.1_sport.jpg')
+            //     this.ImageSource3=require('@images/shopSports/3.2_sport.jpg')
+            // }
 
         return(
             <ScrollView style={{backgroundColor:'#F0F0F0'}}>
                 <TouchableOpacity style={styles.back}
                                 onPress={()=>{
-                                    this.props.navigator.pop({animationType:"slide-horizontal"})
+                                    this.props.navigator.pop({
+                                        animationType:"slide-horizontal"
+                                    }
+                                    )
                                     }}>
-                    <Image style={[ {height:24,width:12, tintColor:'#000'}]} source={require('@images/Shop/back.png')} />
+                    <Image style={[ {height:24,width:12}]} source={require('@images/Shop/back.png')} />
                 </TouchableOpacity>
                
                 {/* <Image style={styles.Image} resizeMode={'cover'}  source={require('@images/HomePage/image.jpg')}/> */}

@@ -25,13 +25,15 @@ export default StyleSheet.create({
         width:"auto",
     },
     badgeStyle:{
-        height:20,
-        width:20,
+        
+        height:14,
+        width:14,
+       // borderRadius:7,
         position:"absolute",
-        right:4,
-        top:4,
+        right:10,
+        top:6,
+        zIndex:1,
         backgroundColor:"#50C2A8",
-        opacity:1
     },
     cardImage:{
         height: 371,

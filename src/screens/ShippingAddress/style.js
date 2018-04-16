@@ -16,7 +16,7 @@ export default StyleSheet.create({
       alignSelf:'center',
       color:'#FF4273',
       fontSize:34,
-      fontFamily:'Patua One'
+      fontFamily:"PatuaOne-Regular",
    },
    tagline:{
        alignSelf:'center',
@@ -27,14 +27,14 @@ export default StyleSheet.create({
    },
    bodyText:{
        textAlign:'center',
-       marginTop:Platform.OS=='android'?99: 111,
+       marginTop:Platform.OS=='android'?90: 111,
        fontFamily:'Lato-Regular',
        color:'#000',
        fontSize:22,
    },
    emoj:{
-       height:108,
-       width:96,
+       height:108*0.85,
+       width:96*0.85,
        alignSelf:'center',
        position:'absolute',
        bottom:100,

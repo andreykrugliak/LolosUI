@@ -50,7 +50,7 @@ export default class DrawerScreen extends Component{
                     onPress={()=>   
                         this.props.navigator.handleDeepLink({
                         link: "sidemenu",
-                        payload: {screen:"app.shippingAddressHome",title:'SHIPPING ADDESS'}
+                        payload: {screen:"app.shippingAddressEdit",title:'SHIPPING ADDESS'}
                         })}
                     style={{paddingBottom:10}}>
                         <Text style={styles.drawerInnerText}>Shipping Address</Text>

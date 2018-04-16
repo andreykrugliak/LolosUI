@@ -44,6 +44,7 @@ export default StyleSheet.create({
         
         }),
         left:24,
+        height:40,width:30,
         position:'absolute',
     },
     leftIcon:{
@@ -52,11 +53,11 @@ export default StyleSheet.create({
     },
     
     drawerInnerText:{
-        //marginLeft:21,
+        marginLeft:21,
         color:'#000000',
         fontFamily:'Lato-Regular',
         fontSize:16,
-        alignSelf:'center',
+        
        marginTop:13
     },
     drawerContainer:{

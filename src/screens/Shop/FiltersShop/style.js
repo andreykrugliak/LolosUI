@@ -20,7 +20,7 @@ export default StyleSheet.create({
     back:{
         height:24,
         width:24,
-        marginLeft:24,
+        marginLeft:14,
         ...ifIphoneX({
             marginTop:25
         })
@@ -31,7 +31,7 @@ export default StyleSheet.create({
         fontSize:16,
         fontWeight:'bold',
         color:'#000',
-        marginLeft:(deviceWidth-24)/2-48,
+        marginLeft:(deviceWidth-24)/2-68,
         ...ifIphoneX({
             marginTop:25
         })

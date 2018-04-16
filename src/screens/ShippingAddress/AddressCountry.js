@@ -129,10 +129,7 @@ export default class Country extends Component{
                             selected:true
                         })
                      
-                        this.props.navigator.push({
-                            screen:'app.shippingAddressState',
-                            animationType:"slide-horizontal"
-                        })
+                       
                      
                     }}
                    
@@ -143,15 +140,16 @@ export default class Country extends Component{
                         </Text>
                     </CountryPicker>
                 </View>
+                <Button onPress={()=>{
+                            this.props.navigator.push({
+                                screen:'app.shippingAddressCity',
+                                animationType:"slide-horizontal"
+                            })
+                         }} disabled={this.state.Country.length>0?false:true}
+                         style={[styles.buttonContainer,{backgroundColor:this.state.Country.length>0?'#FF4273':'#F0F0F0'}]}>
+                                <Text style={[styles.buttonText,{color:this.state.Country.length>0?'#fff':'#CCCCCC'}]}>Next</Text>
+                </Button>
 
-                {/* <Button onPress={()=>{
-                    this.props.navigator.push({
-                        screen:'app.shippingAddressShow',
-                        animationType:"slide-horizontal"
-                    })}}
-                    style={[styles.buttonContainer]}>
-                        <Text style={[styles.buttonText,]}>Next</Text>
-                </Button> */}
             </View>
         )
     }

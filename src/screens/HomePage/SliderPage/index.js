@@ -158,7 +158,7 @@ switch(cardIndex)
             }}>
                 <Badge style={[styles.badgeStyle]}>
                   
-                        <Text style={styles.badgeText}>1</Text>
+                        {/* <Text style={styles.badgeText}>1</Text> */}
                 
                 </Badge>  
                 <Image source={require('@images/HomePage/NOTIFICATIONWhite.png')}>
