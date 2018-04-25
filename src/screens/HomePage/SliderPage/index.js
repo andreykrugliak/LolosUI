@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import {Container, Header, Content, Footer, FooterTab, Button, Text, Icon, Body, Right, Left,Title, Card, Badge, CardItem} from 'native-base';
 import {View,Dimensions,Image,TouchableOpacity,FlatList} from 'react-native';
 import Swiper from 'react-native-deck-swiper'
+import Sound from 'react-native-sound'
 var WindowWidth = Dimensions.get('window').width
 var WindowHeight = Dimensions.get('window').height
 import styles from './style'
@@ -10,15 +11,43 @@ const iphone5s = 568
 
 export default class SliderPage extends Component{
 
-    static navigatorStyle = {
-        navBarHidden:true
-    };
-    constructor(props){
-        super(props);
-        this.renderCard=this.renderCard.bind(this)
-       // props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+static navigatorStyle = {
+    navBarHidden:true
+};
+constructor(props){
+    super(props);
+    this.state={
+        soundFile:'left_swipe.mp3'
     }
-   
+    this.renderCard=this.renderCard.bind(this)
+    this._swipedLeft=this._swipedLeft.bind(this)
+    this._swipedRight=this._swipedRight.bind(this)
+    this.Sound=null
+    // props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+}
+async componentDidMount()
+{
+    this.SoundLeft=await new Sound('left_swipe.mp3',Sound.MAIN_BUNDLE,(error)=>{
+        if(error){
+            console.log(error)
+        }
+    })
+    this.SoundRight=await new Sound('right_swipe.mp3',Sound.MAIN_BUNDLE,(error)=>{
+        if(error){
+            console.log(error)
+        }
+    })
+}
+_swipedLeft(){
+    console.log(this.SoundLeft)
+    this.SoundLeft.play((onEnd)=>console.log("played"))
+}
+
+_swipedRight(){
+    console.log(this.SoundRight)
+    this.SoundRight.play((onEnd)=>console.log("played"))
+
+}
 
 renderCard(cardIndex){
     
@@ -179,6 +208,8 @@ switch(cardIndex)
                     backgroundColor='#f0f0f0'
                     infinite
                     onSwiped={this.onSwiped}
+                    onSwipedLeft={()=>{this._swipedLeft()}}
+                    onSwipedRight={()=>this._swipedRight()}	
                     onTapCard={this.swipeLeft}
                     cards={['1', '2', '3','4','5']}
                     cardIndex={0}

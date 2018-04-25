@@ -3,6 +3,7 @@ package com.clickers;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.zmxv.RNSound.RNSoundPackage;
 import com.rt2zz.reactnativecontacts.ReactNativeContacts;
 
 import com.BV.LinearGradient.LinearGradientPackage;
@@ -27,8 +28,8 @@ public class MainApplication extends NavigationApplication {
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
             new LinearGradientPackage(),
-            new ReactNativeContacts()
-
+            new ReactNativeContacts(),
+            new RNSoundPackage()
             
         );
     }
