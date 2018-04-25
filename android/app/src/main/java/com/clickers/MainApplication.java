@@ -3,6 +3,14 @@ package com.clickers;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.imagepicker.ImagePickerPackage;
+
+//import com.reactnativenavigation.NavigationReactPackage;
+import com.BV.LinearGradient.LinearGradientPackage;
+import com.imagepicker.ImagePickerPackage;
+//import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+//import com.learnium.RNDeviceInfo.RNDeviceInfo;
+import com.rt2zz.reactnativecontacts.ReactNativeContacts;
 import com.rt2zz.reactnativecontacts.ReactNativeContacts;
 
 import com.BV.LinearGradient.LinearGradientPackage;
@@ -27,8 +35,8 @@ public class MainApplication extends NavigationApplication {
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
             new LinearGradientPackage(),
-            new ReactNativeContacts()
-
+            new ReactNativeContacts(),
+            new ImagePickerPackage()
             
         );
     }
