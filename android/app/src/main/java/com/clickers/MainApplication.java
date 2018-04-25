@@ -4,6 +4,14 @@ import android.app.Application;
 
 import com.facebook.react.ReactApplication;
 import com.zmxv.RNSound.RNSoundPackage;
+import com.imagepicker.ImagePickerPackage;
+
+//import com.reactnativenavigation.NavigationReactPackage;
+import com.BV.LinearGradient.LinearGradientPackage;
+import com.imagepicker.ImagePickerPackage;
+//import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+//import com.learnium.RNDeviceInfo.RNDeviceInfo;
+import com.rt2zz.reactnativecontacts.ReactNativeContacts;
 import com.rt2zz.reactnativecontacts.ReactNativeContacts;
 
 import com.BV.LinearGradient.LinearGradientPackage;
@@ -29,7 +37,8 @@ public class MainApplication extends NavigationApplication {
         return Arrays.<ReactPackage>asList(
             new LinearGradientPackage(),
             new ReactNativeContacts(),
-            new RNSoundPackage()
+            new RNSoundPackage(),
+            new ImagePickerPackage()
             
         );
     }

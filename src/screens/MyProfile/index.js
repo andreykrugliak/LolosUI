@@ -7,6 +7,7 @@ var WindowWidth = Dimensions.get('window').width
 var WindowHeight = Dimensions.get('window').height
 import styles from './style'
 import DatePicker from 'react-native-datepicker'
+import ImagePicker from 'react-native-image-picker';
 let customStyles = {
     dateInput: {
     position:'absolute',
@@ -22,6 +23,7 @@ export default class MyProfile extends Component{
     static navigatorStyle={
         navBarHidden:true
     }
+    
 
     constructor(props)
     {
@@ -36,9 +38,11 @@ export default class MyProfile extends Component{
             textColor:'#CCCCCC',
             dateVisible:false,
             nameText:true,
-            buttonDisabled:true
+            buttonDisabled:true,
+            avatarSource: null,
+
         }
-        this._handleavtarEdit=this._handleavtarEdit.bind(this)
+        this.selectPhotoTapped=this.selectPhotoTapped.bind(this)
     }
   
 
@@ -51,6 +55,40 @@ export default class MyProfile extends Component{
         //     console.log(image);
         //   });
     }
+    
+  selectPhotoTapped() {
+    const options = {
+      quality: 1.0,
+      maxWidth: 500,
+      maxHeight: 500,
+      storageOptions: {
+        skipBackup: true
+      }
+    };
+
+    ImagePicker.showImagePicker(options, (response) => {
+      console.log('Response = ', response);
+
+      if (response.didCancel) {
+        console.log('User cancelled photo picker');
+      }
+      else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      }
+      else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      }
+      else {
+        let source = { uri: response.uri };
+
+
+        this.setState({
+          avatarSource: source
+        });
+      }
+    });
+  }
+
 
     render(){
         return(
@@ -58,9 +96,7 @@ export default class MyProfile extends Component{
                 <HeaderComponent title="MY PROFILE" navigator={this.props.navigator} />
                 <View style={styles.body}>
 
-                    <TouchableOpacity onPress={()=>{
-                        this._handleavtarEdit(false)
-                    }} style={styles.avtarContainer}>
+                    <TouchableOpacity  onPress={()=>{this.selectPhotoTapped()}} style={styles.avtarContainer}>
                         <Image source={require('@images/SettingMenu/avatar.png')} style={styles.avtar}></Image>
                         <Image source={require('@images/SettingMenu/add.png')} style={[styles.add,{shadowOpacity:0.5,shadowOffset:{width:3,height:0}, shadowRadius:120}]}></Image>
                     </TouchableOpacity>
