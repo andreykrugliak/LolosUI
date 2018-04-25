@@ -27,8 +27,9 @@ switch(cardIndex)
     case '1':{
         return(
             
-        <View style={[styles.slide1,{shadowOpacity:0.3,shadowRadius:2,shadowColor:'rgba(0,0,0,0.20)',shadowOffset:{width:0,height:2}}]}>
-        <Image style={[styles.topImage]}
+        <View style={[styles.slide1,{shadowOpacity:0.3, shadowRadius:2,shadowColor:'rgba(0,0,0,0.20)',shadowOffset:{width:0,height:2}}]}>
+            <Image source={require('@images/sliderImages/image1.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
+        {/* <Image style={[styles.topImage]}
             source={require('@images/HomePage/em_10.png')}/>
         <Text style={styles.titleSlide1}>Congratulations</Text>
         <Text style={[styles.tagLine]}>your first 20 lolo’s are on their way, Stay Tune…</Text>
@@ -38,7 +39,7 @@ switch(cardIndex)
             <Text style={[styles.swipeText]}>swipe</Text>
             <Image style={[styles.rightArrow]}
             source = {require('@images/HomePage/Arrow.png')}/>
-        </View>
+        </View> */}
     </View>
     
         )};
@@ -46,7 +47,9 @@ switch(cardIndex)
     case '2':{
         return(
     <View style={styles.slide1}>
-        <Text style={styles.title}>Invite Freinds</Text>
+        <Image source={require('@images/sliderImages/image2.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
+
+        {/* <Text style={styles.title}>Invite Freinds</Text>
         <Text style={[styles.tagLine]}>on each freind get rewarded with 20 lolo’s</Text>
         <Image style={[styles.freindsSmile]} 
             source={require('@images/HomePage/lolofreinds.png')}/>
@@ -58,7 +61,7 @@ switch(cardIndex)
                 })
         }}style={[styles.button]}>
             <Text style={[styles.buttonTextInvite]}>Invite Freinds</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
     </View> 
         )};
 
@@ -66,7 +69,9 @@ switch(cardIndex)
         return(
 
         <View style={styles.slide1}>
-            <Text style={[styles.tagLine,{marginTop:WindowHeight<= iphone5s?15:22,}]}>you can see and manage all your lolo’s in your</Text>
+        <Image source={require('@images/sliderImages/image3.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
+
+            {/* <Text style={[styles.tagLine,{marginTop:WindowHeight<= iphone5s?15:22,}]}>you can see and manage all your lolo’s in your</Text>
             <Text style={styles.titleSWallte}>Smart Wallet</Text>
             <Image  style={[styles.emojiGroup]}
             source={require('@images/HomePage/emojis1.png')}/>
@@ -80,14 +85,16 @@ switch(cardIndex)
             }}
                      style={[styles.button]}>
                     <Text style={[styles.buttonTextInvite]}>Take a Look</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
         </View>
         )};
 
     case '4':{
         return(
         <View style={styles.slide1}>
-            <Text style={styles.title}>Buy Online</Text>
+        <Image source={require('@images/sliderImages/image4.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
+
+            {/* <Text style={styles.title}>Buy Online</Text>
             <Text style={styles.tagLine}>just like the grownups do in our awesome marketplace </Text>
             <Image style={[styles.giftImg]}
             source={require('@images/HomePage/lologift.png')}/>
@@ -100,7 +107,7 @@ switch(cardIndex)
             
             style={[styles.button]}>
                     <Text style={[styles.buttonTextInvite]}>Check It Out</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
         </View>
 
         )};

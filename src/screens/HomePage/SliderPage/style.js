@@ -57,16 +57,16 @@ export default StyleSheet.create({
         backgroundColor:"#F6F6F6",
     },
     slide1:{
-       
+    
         borderWidth:1,
         borderColor:'#f0f0f0',  
         backgroundColor : '#fff',
         width:WindowWidth-40,
         ...Platform.OS=='ios'?{height:WindowHeight-190}:{height:WindowHeight-210},
         borderRadius:5,
-        
-        
-        overflow:"hidden"
+        overflow:"hidden",
+
+    
     },
     titleSlide1:{
         marginTop:WindowHeight<= iphone5s?125:WindowHeight <= android?120:149,
