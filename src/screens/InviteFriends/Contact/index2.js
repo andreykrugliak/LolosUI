@@ -6,6 +6,7 @@ import { HeaderComponent } from "@components/InviteFriends/HeaderComponent.js";
 import AlphabetListView from 'react-native-alphabetlistview'
 import Contacts from 'react-native-contacts'
 import {groupBy,flatMap,map,values,assign} from 'lodash'
+import index from "react-native-deck-swiper";
 let windowHeight = Dimensions.get('window').height
 
 
@@ -20,40 +21,14 @@ export default class InviteFriends extends Component{
             searchKey:'',
             contacts:[],
             search:false,
-            data: {
-                A: ['aaaa'],
-                B: ['bbbbb','bbbbb','bbbbb'],
-                C: ['ccccc','ccccc','ccccc'],
-                D: ['DDDDDD','DDDDD','DDDDD'],
-                E: ['some','entries','are here'],
-                F: ['some','entries','are here'],
-                G: ['some','entries','are here'],
-                H: ['HHHHHH','HHHHHH','HHHHHH'],
-                I: ['some','entries','are here'],
-                J: ['some','entries','are here'],
-                K: ['some','entries','are here'],
-                L: ['some','entries','are here'],
-                M: ['MMMMM','MMMMM','MMMMMM'],
-                N: ['some','entries','are here'],
-                O: ['some','entries','are here'],
-                P: ['some','entries','are here'],
-                Q: ['QQQQQQ','QQQQQQ','QQQQQQ'],
-                R: ['some','entries','are here'],
-                S: ['some','entries','are here'],
-                T: ['TTTTTT','TTTTT','TTTTTT'],
-                U: ['some','entries','are here'],
-                V: ['some','entries','are here'],
-                W: ['WWWWW','WWWWW','WWWWWW'],
-                X: ['some','entries','are here'],
-                Y: ['some','entries','are here'],
-                Z: ['ZZZZZ','ZZZZZZ','ZZZZZ'],
-            },
+            data: [],
             contactData:[],
-            
+            searchdata:[],
             sortData:undefined,
             
         }
         this.cell=this.cell.bind(this)
+        this._renderItems = this._renderItems.bind(this)
     }
 
     _handleSearch(text){
@@ -61,11 +36,19 @@ export default class InviteFriends extends Component{
             searchKey:text
         })
 
-        if(this.state.searchKey){
-            let length=this.state.searchKey.length
-            if(length>1){
-                this.setState({search:true})
-            }
+        if(text){
+            let filter = this.state.contacts
+            smallvalues = filter.filter(function(x) { 
+               console.log(text)
+                if(x.toLowerCase().includes(text.toLowerCase())){
+                    return x
+                    console.log(x)
+                } 
+               
+            });
+           
+            this.setState({searchdata:smallvalues})
+            console.log(smallvalues)
         }
 
         if(this.state.searchKey<=1){
@@ -76,11 +59,18 @@ export default class InviteFriends extends Component{
     _keyExtractor = (item, index) => index;
 
     _renderItems({item,index}){
+       
         return(
-            <View style={{height:60,justifyContent:'center',marginLeft:14,}}>
+            <TouchableOpacity 
+            onPress={()=>{
+                this.props.navigator.push({
+                screen:'app.InviteFriendsInvite',
+                animationType:"slide-horizontal",
+                passProps:{name:item}
+            })}} style={{height:60,justifyContent:'center',marginLeft:14,}}>
             <Text style={{fontSize:24,marginVertical:14}}>{item}</Text>
             <View style={{backgroundColor:'#f0f0f0',height:1,marginRight:14}}></View>
-          </View>
+          </TouchableOpacity>
         )
     }
 
@@ -88,27 +78,42 @@ export default class InviteFriends extends Component{
     {   
         let res=Contacts.getAll((err,contact) => {
             let nameArray = contact.map((data, index) => {
-
+                data.familyName?
                 this.state.contacts.push(data.givenName+" "+data.familyName)
+                :
+                this.state.contacts.push(data.givenName),
                 this.state.contactData.push(data)
             })  
-            let data = _.mapValues(_.groupBy(contact,'givenName[0]'))
+            let data = _.sortBy(contact,'givenName[0]')
+             data = _.groupBy(data,'givenName[0]')
+
             this.setState({
-                sortData:data.givenName
-            }) 
-       })
-       console.log(this.state.contactData)
+                    data
+                }) 
+            })
     }
     cell(item){
-        return (
+       
+       return (
             <View style={{height:60,justifyContent:'center',marginLeft:14,}}>
                 <TouchableOpacity onPress={()=>{
                             this.props.navigator.push({
                             screen:'app.InviteFriendsInvite',
                             animationType:"slide-horizontal",
-                            passProps:{name:item.item}
-                        })}}> 
-                    <Text style={{fontSize:24,marginVertical:14}}>{item.item}</Text>
+                            
+                            passProps: item.item.familyName == null ?
+                            {name: item.item.givenName }
+                            :
+                            {
+                                name: item.item.givenName +' '+item.item.familyName
+                            }
+                        })}}>
+                        {
+                        item.item.familyName == null ?
+                        <Text style={{fontSize:24,marginVertical:14}}>{item.item.givenName }</Text>
+                        :
+                        <Text style={{fontSize:24,marginVertical:14}}>{item.item.givenName + ' ' + item.item.familyName }</Text>
+                        }
                 </TouchableOpacity>
                 {this.props.isLast?
                 null:
@@ -125,7 +130,9 @@ export default class InviteFriends extends Component{
             <View style={{ shadowOpacity:0.3, shadowOffset:{height:1,width:0},}}>
                 <View style={styles.searchBox}>
                     <TextInput placeholder={'Search…'} 
-                               onChangeText={(text)=>this._handleSearch(text)} 
+                               onChangeText={(text)=> {
+                                   
+                                this._handleSearch(text)} }
                                 style={styles.textInput}
                                 underlineColorAndroid="transparent"/>
                     <TouchableOpacity
@@ -141,27 +148,32 @@ export default class InviteFriends extends Component{
             </View>
             <View style={{flex:1}}>
             {
-                this.state.search?
-                <FlatList
-                data={this.state.contacts}
-                keyExtractor={this._keyExtractor}
-                renderItem={this._renderItems}/>
-                :
-                this.state.data?
+                 
+                this.state.data && this.state.searchKey.length<=0?
                 <View style={{flex:1}}>
                     <AlphabetListView
+                    enableEmptySections
                     data={this.state.data}
-                    cell={(item)=>this.cell(item)}
+                    cell={(item)=>{
+                       
+                        return this.cell(item)
+                    }}
                     cellHeight={30}
                     sectionListItem={SectionListItem}
                     sectionHeaderHeight={45}
                     headerHeight={20}
                     sectionListStyle={styles.sectionList}
-                    //sectionHeader={sectionHeader}
+                   
                 />
                 </View>
                 :
-                <View></View>
+                <View style={{flex:1}}>
+                    <FlatList
+                    navigator={this.props.navigator}
+                    data={this.state.searchdata}
+                    keyExtractor={this._keyExtractor}
+                    renderItem={this._renderItems}/>
+                 </View>    
             }
             </View>            
         </View>
