@@ -22,6 +22,7 @@ constructor(props){
     this.renderCard=this.renderCard.bind(this)
     this._swipedLeft=this._swipedLeft.bind(this)
     this._swipedRight=this._swipedRight.bind(this)
+    this._handleCardTap=this._handleCardTap.bind(this)
 }
 async componentDidMount()
 {
@@ -53,10 +54,27 @@ _swipedRight(){
 
 }
 
+_handleCardTap(index){
+    console.log("handelTap:",index)
+    if(index=='9'){
+       this.props.navigator.showModal({
+            screen: 'app.VideoCard', // unique ID registered with Navigation.registerScreen
+            navigatorStyle:{tapBackgroundToDismiss:true}
+
+            // style: {
+            //     backgroundBlur: 'dark', // 'dark' / 'light' / 'xlight' / 'none' - the type of blur on the background
+            //     backgroundColor: '#fff', // tint color for the background, you can specify alpha here (optional)
+            //     tapBackgroundToDismiss: true // dismisses LightBox on background taps (optional)
+            //   }
+          });
+    }
+}
+
 renderCard(cardIndex){
-    
+
 switch(cardIndex)
 {
+    
       case '1':{
         return(
             
@@ -232,13 +250,7 @@ switch(cardIndex)
             <Text style={styles.tagLine}>just like the grownups do in our awesome marketplace </Text>
             <Image style={[styles.giftImg]}
         source={require('@images/HomePage/lologift.png')}/>*/}
-            <TouchableOpacity onPress={()=>{
-                    this.props.navigator.push({
-                    screen:'app.PreviewScreen',
-                    animationType:"slide-horizontal"
-                    // passProps:{navigator:this.props.navigator}
-                })}} 
-            
+            <TouchableOpacity 
             style={[styles.button]}>
                     <Text style={[styles.buttonTextInvite]}>Get It Now!</Text>
             </TouchableOpacity> 
@@ -263,7 +275,7 @@ switch(cardIndex)
             return(
             <View style={styles.slide1}>
                     <Image source={require('@images/sliderImages/IC_Download_App.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
-    
+                    
                 {/* <Text style={styles.title}>Help Our Mailman</Text>
                 <Text style={styles.tagLine}>set up address before you shop in our marketplace </Text>
                 <Image style={[styles.manImg]}
@@ -334,9 +346,9 @@ switch(cardIndex)
                     onSwipedRight={()=>this._swipedRight()}	
                     onSwipedTop={()=>{this._swipedLeft()}}
                     onSwipedBottom={()=>this._swipedRight()}
-                    onTapCard={this.swipeLeft}
+                    onTapCard={(index)=>{this._handleCardTap(index)}}
                     cards={['1', '2', '3','4','5','6','7','8','9','10','11']}
-                    cardIndex={0}
+                    cardIndex={9}
                     cardVerticalMargin={20}
                     //cardHorizonyalMargin={20}
                     renderCard={this.renderCard}
