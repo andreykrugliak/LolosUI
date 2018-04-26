@@ -16,14 +16,9 @@ static navigatorStyle = {
 };
 constructor(props){
     super(props);
-    this.state={
-        soundFile:'left_swipe.mp3'
-    }
     this.renderCard=this.renderCard.bind(this)
     this._swipedLeft=this._swipedLeft.bind(this)
     this._swipedRight=this._swipedRight.bind(this)
-    this.Sound=null
-    // props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
 }
 async componentDidMount()
 {
@@ -39,11 +34,13 @@ async componentDidMount()
     })
 }
 _swipedLeft(){
+    
     console.log(this.SoundLeft)
     this.SoundLeft.play((onEnd)=>console.log("played"))
 }
 
 _swipedRight(){
+
     console.log(this.SoundRight)
     this.SoundRight.play((onEnd)=>console.log("played"))
 

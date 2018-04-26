@@ -37,6 +37,8 @@
 		2D02E4C81E0B4AEC006451C7 /* libRCTWebSocket-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3E991DF850E9000B6D8A /* libRCTWebSocket-tvOS.a */; };
 		2D16E6881FA4F8E400B85C8A /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D16E6891FA4F8E400B85C8A /* libReact.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* ClickersTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ClickersTests.m */; };
+		3D0938B72091A0F90088584D /* left_swipe.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D0938B62091A0F90088584D /* left_swipe.mp3 */; };
+		3D0938B92091A1FD0088584D /* right_swipe.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D0938B82091A1FD0088584D /* right_swipe.mp3 */; };
 		4436BCB1A3A34053A7AD6C21 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2D8C3BC630B4BAFB7F0C0B7 /* libRNDeviceInfo.a */; };
 		47DEB21DA8C744D897FD7D1A /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3BA7F4099A74460CA60409A3 /* Zocial.ttf */; };
 		4941E7DF34254B81B507E16B /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2458778809A4921BDD92D0E /* FontAwesome.ttf */; };
@@ -56,8 +58,8 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8DE021A9C25941FE86716685 /* PatuaOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5310FD99A2D44EA68C0457A0 /* PatuaOne-Regular.ttf */; };
 		8FE8BEC7CEBD476D99F893B3 /* Roboto_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2316D3EB558E418EBF12831D /* Roboto_medium.ttf */; };
-		997632113BEC4818A4C12EF3 /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B7CC5372C84A1FB3ECCA74 /* libRNSound.a */; };
 		91E84323D3354094B1E9D0D4 /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4915216EDBB642EAA03AAD93 /* libRNGestureHandler.a */; };
+		997632113BEC4818A4C12EF3 /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B7CC5372C84A1FB3ECCA74 /* libRNSound.a */; };
 		A33EEBA014B74ADDBEF5BD57 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3B01EAC4684141CC894E3141 /* SimpleLineIcons.ttf */; };
 		A5DB1FFF5AD34A25A8393446 /* rubicon-icon-font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B0892123B774D849CE02141 /* rubicon-icon-font.ttf */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
@@ -189,6 +191,13 @@
 			remoteGlobalIDString = 3DBE0D0D1F3B181C0099AA32;
 			remoteInfo = "fishhook-tvOS";
 		};
+		3D093871209193830088584D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7FF9738F613D4EC5A1B8E54D /* RNSound.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19825A1E1BD4A89800EE0337;
+			remoteInfo = RNSound;
+		};
 		3D17217D207CE92600359591 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C7A5D4509B6B4965A0827301 /* RCTContacts.xcodeproj */;
@@ -202,13 +211,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 1441618E1BD0A79300FA4F59;
 			remoteInfo = RCTContacts;
-		};
-		3D97A3F5209097FB00EF14B4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7FF9738F613D4EC5A1B8E54D /* RNSound.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 19825A1E1BD4A89800EE0337;
-			remoteInfo = RNSound;
 		};
 		3DAD3E831DF850E9000B6D8A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -434,7 +436,8 @@
 		354DD9A06D194256B8C1CE18 /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/ios/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 		3B01EAC4684141CC894E3141 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/native-base/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		3BA7F4099A74460CA60409A3 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/native-base/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
-		3D97A40A20909A3200EF14B4 /* Left_Swipe.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Left_Swipe.mp3; sourceTree = "<group>"; };
+		3D0938B62091A0F90088584D /* left_swipe.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = left_swipe.mp3; path = ../android/app/src/main/res/raw/left_swipe.mp3; sourceTree = "<group>"; };
+		3D0938B82091A1FD0088584D /* right_swipe.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = right_swipe.mp3; path = ../android/app/src/main/res/raw/right_swipe.mp3; sourceTree = "<group>"; };
 		45E9CB258F104FAAAAB442B4 /* Lato-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Regular.ttf"; path = "../src/assets/fonts/Lato-Regular.ttf"; sourceTree = "<group>"; };
 		4915216EDBB642EAA03AAD93 /* libRNGestureHandler.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGestureHandler.a; sourceTree = "<group>"; };
 		52105ED8FB514C318A890300 /* Lato-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-BoldItalic.ttf"; path = "../src/assets/fonts/Lato-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -691,6 +694,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3D093842209193830088584D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3D093872209193830088584D /* libRNSound.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		3D17217A207CE92600359591 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -703,14 +714,6 @@
 			isa = PBXGroup;
 			children = (
 				3D41E05B2074AFFA00F9C367 /* libRCTContacts.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		3D97A3F2209097FB00EF14B4 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3D97A3F6209097FB00EF14B4 /* libRNSound.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -799,7 +802,8 @@
 		AC923A6E1D4C48F7A2EEB8AA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				3D97A40A20909A3200EF14B4 /* Left_Swipe.mp3 */,
+				3D0938B82091A1FD0088584D /* right_swipe.mp3 */,
+				3D0938B62091A0F90088584D /* left_swipe.mp3 */,
 				C3A6359E142543829F28F5EF /* Entypo.ttf */,
 				ABC394BD70A8479D88B53CD6 /* EvilIcons.ttf */,
 				A2458778809A4921BDD92D0E /* FontAwesome.ttf */,
@@ -1029,8 +1033,6 @@
 					ProjectRef = DA995A6A2057A795005C20FC /* ReactNativeNavigation.xcodeproj */;
 				},
 				{
-					ProductGroup = 3D97A3F2209097FB00EF14B4 /* Products */;
-					ProjectRef = 7FF9738F613D4EC5A1B8E54D /* RNSound.xcodeproj */;
 					ProductGroup = 079C1B662090A7F40011126D /* Products */;
 					ProjectRef = 354DD9A06D194256B8C1CE18 /* RNDeviceInfo.xcodeproj */;
 				},
@@ -1041,6 +1043,10 @@
 				{
 					ProductGroup = 0768D6C92090B45B006F07B7 /* Products */;
 					ProjectRef = 04EFD045D5674C18ABBC2738 /* RNImagePicker.xcodeproj */;
+				},
+				{
+					ProductGroup = 3D093842209193830088584D /* Products */;
+					ProjectRef = 7FF9738F613D4EC5A1B8E54D /* RNSound.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1159,6 +1165,13 @@
 			remoteRef = 2D16E6851FA4F8DC00B85C8A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		3D093872209193830088584D /* libRNSound.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNSound.a;
+			remoteRef = 3D093871209193830088584D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		3D17217E207CE92600359591 /* libRCTContacts.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1171,13 +1184,6 @@
 			fileType = archive.ar;
 			path = libRCTContacts.a;
 			remoteRef = 3D41E05A2074AFFA00F9C367 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3D97A3F6209097FB00EF14B4 /* libRNSound.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNSound.a;
-			remoteRef = 3D97A3F5209097FB00EF14B4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		3DAD3E841DF850E9000B6D8A /* libRCTImage-tvOS.a */ = {
@@ -1383,6 +1389,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D0938B92091A1FD0088584D /* right_swipe.mp3 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				681AC6587C87449D81E225A8 /* Entypo.ttf in Resources */,
@@ -1403,6 +1410,7 @@
 				4E8727C026BA4C39BE0DA11A /* Lato-BoldItalic.ttf in Resources */,
 				5B485333E4F94BED9C778300 /* Lato-Hairline.ttf in Resources */,
 				E9784B1A83FB4725B17BD688 /* Lato-HairlineItalic.ttf in Resources */,
+				3D0938B72091A0F90088584D /* left_swipe.mp3 in Resources */,
 				BFB479613EC14306BD728ADC /* Lato-Italic.ttf in Resources */,
 				0C393F3885D14CAE93BBF49D /* Lato-Light.ttf in Resources */,
 				7D2542E12F3344E88590038E /* Lato-LightItalic.ttf in Resources */,
