@@ -33,6 +33,7 @@
     "react-native-swipeable": "^0.6.0",
     "react-native-swiper": "^1.5.13",
     "react-native-tab-view": "0.0.74",
+    "react-native-video": "^2.0.0",
     "rn-sliding-button": "^1.1.5"
   },
   "devDependencies": {

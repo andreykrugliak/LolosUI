@@ -33,12 +33,7 @@ import ShippingAddressStreet from './ShippingAddress/AddressStreet'
 import ShippingAddressZip from './ShippingAddress/AddressZip'
 import ShippingAddressApt from './ShippingAddress/AddressApt'
 import ShippingAddressEdit from './ShippingAddress/AddressEdit'
-
-
-
-
-
-
+import VideoCard from './VideoCard'
 
 
 export function registerScreens(params){
@@ -76,7 +71,7 @@ export function registerScreens(params){
     Navigation.registerComponent("app.shippingAddressZip",()=>ShippingAddressZip)
     Navigation.registerComponent("app.shippingAddressApt",()=>ShippingAddressApt)
     Navigation.registerComponent("app.shippingAddressEdit",()=>ShippingAddressEdit)
-    
+    Navigation.registerComponent("app.VideoCard",()=>VideoCard)
     
 
     
