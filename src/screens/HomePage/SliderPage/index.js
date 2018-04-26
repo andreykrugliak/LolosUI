@@ -16,6 +16,9 @@ static navigatorStyle = {
 };
 constructor(props){
     super(props);
+    this.state={
+        played:false
+    }
     this.renderCard=this.renderCard.bind(this)
     this._swipedLeft=this._swipedLeft.bind(this)
     this._swipedRight=this._swipedRight.bind(this)
@@ -31,12 +34,16 @@ async componentDidMount()
         if(error){
             console.log(error)
         }
+        this.SoundRight.setVolume(2)
     })
 }
 _swipedLeft(){
     
     console.log(this.SoundLeft)
-    this.SoundLeft.play((onEnd)=>console.log("played"))
+    this.SoundLeft.play((onEnd)=>{
+        console.log("played")
+        this.setState({played:true})
+    })
 }
 
 _swipedRight(){
@@ -50,11 +57,112 @@ renderCard(cardIndex){
     
 switch(cardIndex)
 {
-    case '1':{
+      case '1':{
         return(
             
         <View style={[styles.slide1,{shadowOpacity:0.3, shadowRadius:2,shadowColor:'rgba(0,0,0,0.20)',shadowOffset:{width:0,height:2}}]}>
-            <Image source={require('@images/sliderImages/image1.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
+            {/* <Image source={require('@images/sliderImages/IC_Product_Sale.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/> */}
+        <Image style={[styles.topImage]}
+            source={require('@images/HomePage/em_10.png')}/>
+        <Text style={styles.titleSlide1}>Congratulations</Text>
+        <Text style={[styles.tagLine]}>your first 20 lolo’s are on their way, Stay Tune…</Text>
+        <View style={[styles.swipeTextView]}>
+            <Image style={[styles.leftArrow]} 
+            source = {require('@images/HomePage/Arrow.png')}/>
+            <Text style={[styles.swipeText]}>swipe</Text>
+            <Image style={[styles.rightArrow]}
+            source = {require('@images/HomePage/Arrow.png')}/>
+        </View>
+    </View>
+    
+        )};
+
+    case '2':{
+        return(
+    <View style={styles.slide1}>
+        {/* <Image source={require('@images/sliderImages/IC_Success_Invitation_sent.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/> */}
+
+        <Text style={styles.title}>Invite Freinds</Text>
+        <Text style={[styles.tagLine]}>on each freind get rewarded with 20 lolo’s</Text>
+        <Image style={[styles.freindsSmile]} 
+            source={require('@images/HomePage/lolofreinds.png')}/>
+        <Text style={[styles.baseLine]}>2 invites per day</Text>
+        <TouchableOpacity onPress={()=>{
+                    this.props.navigator.push({
+                    screen:'app.InviteFriendsHome',
+                    animationType:"slide-horizontal"
+                })
+        }}style={[styles.button]}>
+            <Text style={[styles.buttonTextInvite]}>Invite Freinds</Text>
+        </TouchableOpacity>
+    </View> 
+        )};
+
+    case '3':{
+        return(
+
+        <View style={styles.slide1}>
+        {/* <Image source={require('@images/sliderImages/IC_Success_purchase_item.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/> */}
+
+            <Text style={[styles.tagLine,{marginTop:WindowHeight<= iphone5s?15:22,}]}>you can see and manage all your lolo’s in your</Text>
+            <Text style={styles.titleSWallte}>Smart Wallet</Text>
+            <Image  style={[styles.emojiGroup]}
+            source={require('@images/HomePage/emojis1.png')}/>
+            <TouchableOpacity onPress={()=>{
+                this.props._handleIndexChange(1)
+
+                //     this.props.navigator.push({
+                //     screen:'app.Wallet',
+                //     // passProps:{navigator:this.props.navigator}
+                // }) 
+            }}
+                     style={[styles.button]}>
+                    <Text style={[styles.buttonTextInvite]}>Take a Look</Text>
+            </TouchableOpacity> 
+        </View>
+        )};
+
+    case '4':{
+        return(
+        <View style={styles.slide1}>
+        {/* <Image source={require('@images/sliderImages/IC_Product_plus_CTA.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/> */}
+
+         <Text style={styles.title}>Buy Online</Text>
+            <Text style={styles.tagLine}>just like the grownups do in our awesome marketplace </Text>
+            <Image style={[styles.giftImg]}
+        source={require('@images/HomePage/lologift.png')}/>
+            <TouchableOpacity onPress={()=>{
+                    this.props.navigator.push({
+                    screen:'app.PreviewScreen',
+                    animationType:"slide-horizontal"
+                    // passProps:{navigator:this.props.navigator}
+                })}} 
+            
+            style={[styles.button]}>
+                    <Text style={[styles.buttonTextInvite]}>Check It Out</Text>
+            </TouchableOpacity> 
+        </View>
+
+        )};
+    case '5':{
+        return(
+        <View style={styles.slide1}>
+                {/* <Image source={require('@images/sliderImages/IC_Video_promotion.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/> */}
+
+            <Text style={styles.title}>Help Our Mailman</Text>
+            <Text style={styles.tagLine}>set up address before you shop in our marketplace </Text>
+            <Image style={[styles.manImg]}
+                source={require('@images/HomePage/lolomailman.png')}/>
+            <TouchableOpacity style={[styles.button]}>
+                    <Text style={[styles.buttonTextInvite]}>Set Up Address</Text>
+            </TouchableOpacity> 
+        </View>
+        )};
+    case '6':{
+        return(
+            
+        <View style={[styles.slide1,{shadowOpacity:0.3, shadowRadius:2,shadowColor:'rgba(0,0,0,0.20)',shadowOffset:{width:0,height:2}}]}>
+            <Image source={require('@images/sliderImages/IC_Product_Sale.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
         {/* <Image style={[styles.topImage]}
             source={require('@images/HomePage/em_10.png')}/>
         <Text style={styles.titleSlide1}>Congratulations</Text>
@@ -70,10 +178,10 @@ switch(cardIndex)
     
         )};
 
-    case '2':{
+    case '7':{
         return(
     <View style={styles.slide1}>
-        <Image source={require('@images/sliderImages/image2.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
+        <Image source={require('@images/sliderImages/IC_Success_Invitation_sent.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
 
         {/* <Text style={styles.title}>Invite Freinds</Text>
         <Text style={[styles.tagLine]}>on each freind get rewarded with 20 lolo’s</Text>
@@ -91,11 +199,11 @@ switch(cardIndex)
     </View> 
         )};
 
-    case '3':{
+    case '8':{
         return(
 
         <View style={styles.slide1}>
-        <Image source={require('@images/sliderImages/image3.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
+        <Image source={require('@images/sliderImages/IC_Success_purchase_item.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
 
             {/* <Text style={[styles.tagLine,{marginTop:WindowHeight<= iphone5s?15:22,}]}>you can see and manage all your lolo’s in your</Text>
             <Text style={styles.titleSWallte}>Smart Wallet</Text>
@@ -115,15 +223,15 @@ switch(cardIndex)
         </View>
         )};
 
-    case '4':{
+    case '9':{
         return(
         <View style={styles.slide1}>
-        <Image source={require('@images/sliderImages/image4.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
+        <Image source={require('@images/sliderImages/IC_Product_plus_CTA.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
 
             {/* <Text style={styles.title}>Buy Online</Text>
             <Text style={styles.tagLine}>just like the grownups do in our awesome marketplace </Text>
             <Image style={[styles.giftImg]}
-            source={require('@images/HomePage/lologift.png')}/>
+        source={require('@images/HomePage/lologift.png')}/>*/}
             <TouchableOpacity onPress={()=>{
                     this.props.navigator.push({
                     screen:'app.PreviewScreen',
@@ -132,23 +240,39 @@ switch(cardIndex)
                 })}} 
             
             style={[styles.button]}>
-                    <Text style={[styles.buttonTextInvite]}>Check It Out</Text>
-            </TouchableOpacity> */}
+                    <Text style={[styles.buttonTextInvite]}>Get It Now!</Text>
+            </TouchableOpacity> 
         </View>
 
         )};
-    case '5':{
+    case '10':{
         return(
         <View style={styles.slide1}>
-            <Text style={styles.title}>Help Our Mailman</Text>
+                <Image source={require('@images/sliderImages/IC_Video_promotion.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
+
+            {/* <Text style={styles.title}>Help Our Mailman</Text>
             <Text style={styles.tagLine}>set up address before you shop in our marketplace </Text>
             <Image style={[styles.manImg]}
                 source={require('@images/HomePage/lolomailman.png')}/>
             <TouchableOpacity style={[styles.button]}>
                     <Text style={[styles.buttonTextInvite]}>Set Up Address</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
         </View>
         )};
+        case '11':{
+            return(
+            <View style={styles.slide1}>
+                    <Image source={require('@images/sliderImages/IC_Download_App.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
+    
+                {/* <Text style={styles.title}>Help Our Mailman</Text>
+                <Text style={styles.tagLine}>set up address before you shop in our marketplace </Text>
+                <Image style={[styles.manImg]}
+            source={require('@images/HomePage/lolomailman.png')}/>*/}
+                <TouchableOpacity style={[styles.button]}>
+                        <Text style={[styles.buttonTextInvite]}>Download & Play</Text>
+                </TouchableOpacity>
+            </View>
+            )};
 }}
 
 
@@ -201,14 +325,17 @@ switch(cardIndex)
     </Header>
         <View style={{flex:1}}>
             <Swiper
-                    
+                        ref={swiper => {
+                        this.swiper = swiper
+                    }}
                     backgroundColor='#f0f0f0'
                     infinite
-                    onSwiped={this.onSwiped}
                     onSwipedLeft={()=>{this._swipedLeft()}}
                     onSwipedRight={()=>this._swipedRight()}	
+                    onSwipedTop={()=>{this._swipedLeft()}}
+                    onSwipedBottom={()=>this._swipedRight()}
                     onTapCard={this.swipeLeft}
-                    cards={['1', '2', '3','4','5']}
+                    cards={['1', '2', '3','4','5','6','7','8','9','10','11']}
                     cardIndex={0}
                     cardVerticalMargin={20}
                     //cardHorizonyalMargin={20}
