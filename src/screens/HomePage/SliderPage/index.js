@@ -59,13 +59,6 @@ _handleCardTap(index){
     if(index=='9'){
        this.props.navigator.showModal({
             screen: 'app.VideoCard', // unique ID registered with Navigation.registerScreen
-            navigatorStyle:{tapBackgroundToDismiss:true}
-
-            // style: {
-            //     backgroundBlur: 'dark', // 'dark' / 'light' / 'xlight' / 'none' - the type of blur on the background
-            //     backgroundColor: '#fff', // tint color for the background, you can specify alpha here (optional)
-            //     tapBackgroundToDismiss: true // dismisses LightBox on background taps (optional)
-            //   }
           });
     }
 }
