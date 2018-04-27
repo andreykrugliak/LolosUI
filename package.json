@@ -11,6 +11,7 @@
     "prop-types": "^15.6.1",
     "react": "16.2.0",
     "react-native": "0.51.1",
+    "react-native-af-video-player": "^0.1.9",
     "react-native-alphabetlistview": "^0.2.0",
     "react-native-animatable": "^1.2.4",
     "react-native-checkbox": "^2.0.0",

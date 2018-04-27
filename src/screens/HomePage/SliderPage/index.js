@@ -254,6 +254,7 @@ switch(cardIndex)
         return(
         <View style={styles.slide1}>
                 <Image source={require('@images/sliderImages/IC_Video_promotion.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
+                {/* <Image source={{uri:'https://www.clicktorelease.com/code/gif/1.gif'}} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/> */}
 
             {/* <Text style={styles.title}>Help Our Mailman</Text>
             <Text style={styles.tagLine}>set up address before you shop in our marketplace </Text>
@@ -341,7 +342,7 @@ switch(cardIndex)
                     onSwipedBottom={()=>this._swipedRight()}
                     onTapCard={(index)=>{this._handleCardTap(index)}}
                     cards={['1', '2', '3','4','5','6','7','8','9','10','11']}
-                    cardIndex={9}
+                    cardIndex={0}
                     cardVerticalMargin={20}
                     //cardHorizonyalMargin={20}
                     renderCard={this.renderCard}

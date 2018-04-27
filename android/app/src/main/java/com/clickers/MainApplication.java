@@ -3,6 +3,11 @@ package com.clickers;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.BV.LinearGradient.LinearGradientPackage;
+import com.github.yamill.orientation.OrientationPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.corbt.keepawake.KCKeepAwakePackage;
+import com.brentvatne.react.ReactVideoPackage;
 import com.brentvatne.react.ReactVideoPackage;
 import com.zmxv.RNSound.RNSoundPackage;
 //import com.reactnativenavigation.NavigationReactPackage;
@@ -47,7 +52,9 @@ public class MainApplication extends NavigationApplication {
             new ReactNativeContacts(),
             new RNSoundPackage(),
             new ImagePickerPackage(),
-            new ReactVideoPackage()
+            new ReactVideoPackage(),
+            new KCKeepAwakePackage(),
+            new OrientationPackage()
             
         );
     }
