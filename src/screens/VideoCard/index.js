@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Image, View,Dimensions, Text,StyleSheet,TouchableOpacity} from 'react-native';
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
-import Video from 'react-native-video';
-
 
 
 export default class VideoPlayer extends Component{
@@ -15,7 +13,6 @@ export default class VideoPlayer extends Component{
         super(props)
         this.player=null
     }
-
 
     render(){
         return(
