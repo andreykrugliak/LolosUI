@@ -254,8 +254,7 @@ switch(cardIndex)
         return(
         <View style={styles.slide1}>
                 <Image source={require('@images/sliderImages/IC_Video_promotion.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
-                {/* <Image source={{uri:'https://www.clicktorelease.com/code/gif/1.gif'}} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/> */}
-
+                
             {/* <Text style={styles.title}>Help Our Mailman</Text>
             <Text style={styles.tagLine}>set up address before you shop in our marketplace </Text>
             <Image style={[styles.manImg]}
@@ -277,6 +276,35 @@ switch(cardIndex)
                 <TouchableOpacity style={[styles.button]}>
                         <Text style={[styles.buttonTextInvite]}>Download & Play</Text>
                 </TouchableOpacity>
+            </View>
+            )};
+        case '12':{
+            return(
+            <View style={styles.slide1}>
+                    <Image source={require('@images/sliderImages/giphy1.gif')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
+    
+                {/* <Text style={styles.title}>Help Our Mailman</Text>
+                <Text style={styles.tagLine}>set up address before you shop in our marketplace </Text>
+                <Image style={[styles.manImg]}
+                    source={require('@images/HomePage/lolomailman.png')}/>
+                <TouchableOpacity style={[styles.button]}>
+                        <Text style={[styles.buttonTextInvite]}>Set Up Address</Text>
+                </TouchableOpacity> */}
+            </View>
+            )};
+        case '13':{
+            return(
+            <View style={styles.slide1}>
+                    <Image source={require('@images/sliderImages/giphy2.gif')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
+                    {/* <Image source={{uri:'https://media.giphy.com/media/3oFzmoXxE7Dbj16zzW/source.gif'}} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/> */}
+                    
+                {/* <Text style={styles.title}>Help Our Mailman</Text>
+                <Text style={styles.tagLine}>set up address before you shop in our marketplace </Text>
+                <Image style={[styles.manImg]}
+                    source={require('@images/HomePage/lolomailman.png')}/>
+                <TouchableOpacity style={[styles.button]}>
+                        <Text style={[styles.buttonTextInvite]}>Set Up Address</Text>
+                </TouchableOpacity> */}
             </View>
             )};
 }}
@@ -331,8 +359,8 @@ switch(cardIndex)
     </Header>
         <View style={{flex:1}}>
             <Swiper
-                        ref={swiper => {
-                        this.swiper = swiper
+                    ref={swiper => {
+                    this.swiper = swiper
                     }}
                     backgroundColor='#f0f0f0'
                     infinite
@@ -341,15 +369,11 @@ switch(cardIndex)
                     onSwipedTop={()=>{this._swipedLeft()}}
                     onSwipedBottom={()=>this._swipedRight()}
                     onTapCard={(index)=>{this._handleCardTap(index)}}
-                    cards={['1', '2', '3','4','5','6','7','8','9','10','11']}
+                    cards={['1', '2', '3','4','5','6','7','8','9','10','11','12','13']}
                     cardIndex={0}
                     cardVerticalMargin={20}
                     //cardHorizonyalMargin={20}
                     renderCard={this.renderCard}
-                    //onSwipedAll={this.onSwipedAllCards}
-                    //stackSize={3}
-                    //stackSeparation={15}
-                    //style={styles.swiper}
                     animateOverlayLabelsOpacity={false}
                     animateCardOpacity={false}
             >

@@ -21,7 +21,7 @@ export default class InviteFriends extends Component{
             contacts:[],
             search:false,
             data: {
-                A: ['aaaa'],
+                A: ['aaaaaa'],
                 B: ['bbbbb','bbbbb','bbbbb'],
                 C: ['ccccc','ccccc','ccccc'],
                 D: ['DDDDDD','DDDDD','DDDDD'],
@@ -101,7 +101,7 @@ export default class InviteFriends extends Component{
     }
     cell(item){
         return (
-            <View style={{height:60,justifyContent:'center',marginLeft:14,}}>
+            <View style={{height:60,justifyContent:'center',marginLeft:14,marginRight:25}}>
                 <TouchableOpacity onPress={()=>{
                             this.props.navigator.push({
                             screen:'app.InviteFriendsInvite',
