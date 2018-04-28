@@ -3,7 +3,6 @@ import { Image, View,Dimensions, Text,StyleSheet,TouchableOpacity} from 'react-n
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 import Video from 'react-native-af-video-player'
-import myVideo from '@sliderVideo/mortal_combat_1.mp4'
 
 export default class VideoPlayer extends Component{
 
@@ -15,8 +14,15 @@ export default class VideoPlayer extends Component{
         this.player=null
     }
 
+    componentDidMount()
+    {
+
+    }
+
     render(){
-        const url = 'https://d3959tuydafzg6.cloudfront.net/1/travelogue2015.mp4'
+       // const url = 'https://firebasestorage.googleapis.com/v0/b/lolos-v1.appspot.com/o/Boarderline.mp4'
+       // const url ='https://firebasestorage.googleapis.com/v0/b/lolos-v1.appspot.com/o/Boarderline.mp4?alt=media&token=68305c87-6676-4bc9-8b56-02328b577d85'
+       const url = 'https://d3959tuydafzg6.cloudfront.net/1/travelogue2015.mp4'
        // const url= 'https://www.youtube.com/watch?v=g4KvogUiES0&feature=youtu.be'
         return(
            <View style={{flex:1}}> 
@@ -31,6 +37,8 @@ export default class VideoPlayer extends Component{
                             animationType: 'slide-down' 
                         })
                     }}
+                    onError={(error)=>console.log(error)}
+                    onLoad={(data)=>console.log(data)}
                     />
                 </View>   
                 <View style={{position:'absolute',right:20,top:20,}} >

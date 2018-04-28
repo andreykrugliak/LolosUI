@@ -7,11 +7,11 @@ export default StyleSheet.create({
         justifyContent:"center",
     },
     ShoppingText:{
-        fontFamily:'Lato-Regular',
+        fontFamily:"PatuaOne-Regular",
         fontWeight:'900',
-        fontSize:18,
-        alignSelf:'center',
-        color:'white'
+        fontSize:40,
+        textAlign:'center',
+        color:'#000'
     },
     linerButton:{
         height:60,
@@ -38,6 +38,17 @@ export default StyleSheet.create({
         fontSize: 18,
         fontWeight:'900',
         color:'#9B9B9B'
+    },
+    loloImage:{
+        height:38,
+        width:113,
+        alignSelf:'center',
+        marginTop:45,
+        resizeMode:'contain'
+    },
+    lolo:{
+
+        marginLeft:((windowWidth/2)-60),
     }
 
 })
