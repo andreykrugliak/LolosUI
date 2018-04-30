@@ -5,6 +5,7 @@ import styles from './style'
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 
+
 import LinearGradient from 'react-native-linear-gradient';
 export default class ButtonExample extends Component {
     

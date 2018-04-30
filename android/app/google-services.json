@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "699849391592",
+    "firebase_url": "https://lolos-v1.firebaseio.com",
+    "project_id": "lolos-v1",
+    "storage_bucket": "lolos-v1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:699849391592:android:82aeaee19547e814",
+        "android_client_info": {
+          "package_name": "com.clickers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "699849391592-lml4ama9rgvo882cn0p3pemqqt4j9k3f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.clickers",
+            "certificate_hash": "acb7c740da1d762991e187ee43237f9f5f0fef8b"
+          }
+        },
+        {
+          "client_id": "699849391592-h54983au2ph7k293fjgaod96ltknqfmo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-vusewHxDAZrPU_M2nVrMjlYa0nW2BWI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "699849391592-aubabf6skq4rl60d7cu555ef0ta9dpgm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.clickers"
+              }
+            },
+            {
+              "client_id": "699849391592-h54983au2ph7k293fjgaod96ltknqfmo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

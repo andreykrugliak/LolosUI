@@ -281,7 +281,7 @@ switch(cardIndex)
         case '12':{
             return(
             <View style={styles.slide1}>
-                    <Image source={require('@images/sliderImages/giphy1.gif')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
+                    <Image source={{uri:'https://firebasestorage.googleapis.com/v0/b/lolos-v1.appspot.com/o/giphy1.gif?alt=media&token=03c6f15e-ed55-4854-9e39-8226b6a670c3'}} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
     
                 {/* <Text style={styles.title}>Help Our Mailman</Text>
                 <Text style={styles.tagLine}>set up address before you shop in our marketplace </Text>
@@ -295,7 +295,7 @@ switch(cardIndex)
         case '13':{
             return(
             <View style={styles.slide1}>
-                    <Image source={require('@images/sliderImages/giphy2.gif')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
+                    <Image source={{uri:'https://firebasestorage.googleapis.com/v0/b/lolos-v1.appspot.com/o/giphy2.gif?alt=media&token=adc2566b-cf7e-4c23-96ed-674340c17d22'}} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
                     {/* <Image source={{uri:'https://media.giphy.com/media/3oFzmoXxE7Dbj16zzW/source.gif'}} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/> */}
                     
                 {/* <Text style={styles.title}>Help Our Mailman</Text>
