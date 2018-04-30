@@ -5,60 +5,23 @@ import styles from './style'
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 
+
 import LinearGradient from 'react-native-linear-gradient';
 export default class ButtonExample extends Component {
     
     componentWillMount(){
-
-        this.imageinitialPosition = new Animated.ValueXY({x:0 , y: 100})
-        Animated.spring(this.imageinitialPosition,{
-            toValue :{ x : 0, y : 0},
-            
-            easing:Easing.elastic 
-        }).start();
-        this.initialPosition = new Animated.ValueXY({ x : 0, y : windowHeight-150 });
-        Animated.parallel([
-                  
-        // Animated.spring(this.initialPosition,{
-        //     toValue :{ x : 0, y : ((windowHeight)-350) },
-           
-        //     easing:Easing.elastic 
-        // }),
+        this.initialPosition = new Animated.ValueXY({ x : 0, y : windowHeight-141 });
         Animated.spring(this.initialPosition,{
-            toValue :{ x : 0, y : ((windowHeight-400)) },
-            easing:Easing.elastic,
-            duration:100
-        }),
-        Animated.timing(this.initialPosition,{
-            toValue :{ x : 0, y : ((windowHeight-200)) },
-            duration:1000
-        })]).start();
+            toValue :{ x : 0, y : ((windowHeight)-220)},
+            easing:Easing.bounce
+        }).start();
     }
-    // componentDidMount(){
-    //     Animated.parallel([
-    //         Animated.timing(this.AnimatedValue1,{
-    //             toValue : 500,
-    //             duration:200
-    //         }),
-    //         Animated.spring(this.AnimatedValue2,{
-    //             toValue : 3
-    //         })
-    //     ]).start()
-    // }
-    render() {  
-        const animationStyles = {
-            transform:[
-                {translateY : this.AnimatedValue1},
-                {scale : this.AnimatedValue2}
-            ]
-        }      
+    render() {        
       return (
-         
           <Container>
-            <Animated.Image style={[this.imageinitialPosition.getLayout(),styles.loloImage]} source={require('@images/component/lolos.png')}/>
               <Animated.View style={[this.initialPosition.getLayout(),{width:windowWidth,backgroundColor:"transparent"}]}>
 
-                  <Text style={styles.ShoppingText}>Earn them, Spend them!</Text>
+                  <Text style={styles.ShoppingText}>Shopping online made fun</Text>
 
                   <LinearGradient 
                   start={{x: 1.04, y: 0.55}} end={{x: -0.04, y: 0.45}}  
@@ -71,11 +34,11 @@ export default class ButtonExample extends Component {
                   })
                   
                   }} style={styles.ButtonView}>
-                            <Text style={styles.ButtonText}>Check It Out!</Text>
+                            <Text style={styles.ButtonText}>Create Account</Text>
                         </TouchableOpacity>
                   </LinearGradient>
 
-                  {/* <Button onPress={()=>{
+                  <Button onPress={()=>{
                   this.props.navigator.push({
                     screen:'app.LoginScreen',
                     animationType:"slide-horizontal"
@@ -85,10 +48,10 @@ export default class ButtonExample extends Component {
                       <Text style={styles.ButtonText2}>
                           Log In
                       </Text>
-                  </Button> */}
+                  </Button>
               </Animated.View>
           </Container>
-       // <Container>
+        // <Container>
         //         <View style={{flex:1}}>
         //             {/* <Animated.View
         //                 style={[this.initialPosition.getLayout(),{height:50,width:50,backgroundColor:"#f00"}]}

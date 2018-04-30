@@ -3,6 +3,11 @@ package com.clickers;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import io.invertase.firebase.RNFirebasePackage;
+import io.invertase.firebase.storage.RNFirebaseStoragePackage; // <-- Add this line
+
+
+
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.github.yamill.orientation.OrientationPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -54,7 +59,12 @@ public class MainApplication extends NavigationApplication {
             new ImagePickerPackage(),
             new ReactVideoPackage(),
             new KCKeepAwakePackage(),
-            new OrientationPackage()
+            new OrientationPackage(),
+            new RNFirebasePackage(),
+            new RNFirebaseStoragePackage()
+            
+            
+            
             
         );
     }

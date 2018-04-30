@@ -11,7 +11,7 @@ export default StyleSheet.create({
         fontWeight:'900',
         fontSize:40,
         textAlign:'center',
-        color:'#000'
+        color:'#FFF'
     },
     linerButton:{
         height:60,
