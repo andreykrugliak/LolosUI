@@ -40,6 +40,9 @@ export default class ButtonExample extends Component {
        
         
       return (
+        // <View style={styles.container} >
+        //     {this._splashScreen()}
+        // </View>
         <ImageBackground style={styles.container} source={require('@images/SplashScreen/newsplash.jpg')}>
 
             {this._splashScreen()}

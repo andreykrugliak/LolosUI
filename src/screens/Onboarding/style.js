@@ -37,8 +37,9 @@ export default StyleSheet.create({
     loloText:{
         color:'#FF4273',
         fontSize:WindowHeight<= iphone5s?24:34,
-        alignSelf:'center',
+       alignSelf:'center',
         fontFamily:"PatuaOne-Regular",
+        
         marginTop:WindowHeight<= iphone5s?20:24
     },
     featureText:{
@@ -49,13 +50,17 @@ export default StyleSheet.create({
         marginHorizontal:35,
         flexWrap:'wrap'
     },
-    arrowImage:{
+    animatedImageView:{
+        position:'absolute',
+        bottom:WindowHeight<= iphone5s?140:176,
         alignSelf:'center',
+    },
+    arrowImage:{
+       
         height:24,
         width:24,
         resizeMode:'contain',
-        position:'absolute',
-        bottom:WindowHeight<= iphone5s?140:176
+       
     },
     footerImage:{
         
@@ -70,26 +75,30 @@ export default StyleSheet.create({
                 resizeMode:'contain',
                 height:0.3*WindowWidth,
             }
-        })
-        
-       
-        
+        })    
     },
-   
-    
-    wallet:{
+    animatedWalletView:{
         position:'absolute',
         alignSelf:'center',
-        resizeMode:'contain',
         bottom:WindowHeight<= iphone5s?40:78,
+    },
+    
+    wallet:{
+       
+        resizeMode:'contain',
+        
         height:165*0.8
+    },
+    animatedSmileyView:{
+        alignSelf:'center',
+        position:'absolute',
+        bottom:WindowHeight<= iphone5s?80:105
+      
     },
     smiley:{
         height:120*0.8,
         width:120*0.8,
-        alignSelf:'center',
-        position:'absolute',
-        bottom:WindowHeight<= iphone5s?80:105
+       
     },
     threeSmile:{
         height:50,
@@ -105,6 +114,11 @@ export default StyleSheet.create({
         marginTop:WindowHeight<= iphone5s?20:24
     },
     buttonView:{
+       
+        position:'absolute',
+        bottom:WindowHeight<= iphone5s?112:133
+    },
+    animatedButtonView:{
         justifyContent:'center',
         alignItems:'center',
         marginHorizontal:93,
@@ -114,8 +128,6 @@ export default StyleSheet.create({
         height:60,
         backgroundColor:'white',
         width:WindowWidth-186,
-        position:'absolute',
-        bottom:WindowHeight<= iphone5s?112:133
     },
     buttonText:{
         color:'#FF4273',
@@ -126,13 +138,16 @@ export default StyleSheet.create({
     footerTextView:{
         position:'absolute',
         bottom:30,
+       
+        
+
+    },
+    footerTextSubView:{
         flexDirection:'row',
         flexWrap:'wrap',
         //alignSelf:'center',
         justifyContent:'center',
         marginHorizontal:47,
-        
-
     },
     footerText:{
         
