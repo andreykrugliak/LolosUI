@@ -75,7 +75,7 @@ import styles from './style'
       }
     
     _renderIcon = ({route}) => {
-        return <Image  source={route.key == (this.state.index).toString()? route.iconSelected : route.icon}/>; 
+        return <Image style={route.key == (this.state.index).toString()?{height:60,width:60,marginTop:-5,borderRadius:30,borderWidth:1,borderColor:'#f0f0f0'}:''} source={route.key == (this.state.index).toString()? route.iconSelected : route.icon}/>; 
     };
     
     _handleIndexChange = index => this.setState({ index });

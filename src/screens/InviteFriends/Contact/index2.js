@@ -9,7 +9,9 @@ import {groupBy,flatMap,map,values,assign} from 'lodash'
 import index from "react-native-deck-swiper";
 let windowHeight = Dimensions.get('window').height
 
-
+Array.prototype.diff = function(a) {
+    return this.filter(function(i) {return a.indexOf(i) < 0;});
+};
 export default class InviteFriends extends Component{
     static navigatorStyle = {
         navBarHidden:true
@@ -37,18 +39,26 @@ export default class InviteFriends extends Component{
         })
 
         if(text){
-            let filter = this.state.contacts
-            smallvalues = filter.filter(function(x) { 
-               console.log(text)
-                if(x.toLowerCase().includes(text.toLowerCase())){
-                    return x
-                    console.log(x)
-                } 
-               
-            });
-           
-            this.setState({searchdata:smallvalues})
-            console.log(smallvalues)
+            let contacts = this.state.contacts
+
+
+            let firstArray = contacts.filter((contact,index) => {
+                    if(contact.startsWith(text)){
+                        
+                        return contact
+                    }
+            })
+            let arrayDifference = contacts.diff(firstArray)
+
+           let  secondArray = arrayDifference.filter(function(x) { 
+                 if(x.toLowerCase().includes(text.toLowerCase())){
+                     return x
+                 } 
+                
+             });
+
+            this.setState({searchdata:[...firstArray,...secondArray]})
+            
         }
 
         if(this.state.searchKey<=1){
@@ -154,6 +164,7 @@ export default class InviteFriends extends Component{
                     <AlphabetListView
                     enableEmptySections
                     data={this.state.data}
+                    hideSectionList={true}
                     cell={(item)=>{
                        
                         return this.cell(item)

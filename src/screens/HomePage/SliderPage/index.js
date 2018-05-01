@@ -372,6 +372,7 @@ switch(cardIndex)
                     cards={['1', '2', '3','4','5','6','7','8','9','10','11','12','13']}
                     cardIndex={0}
                     cardVerticalMargin={20}
+                   
                     //cardHorizonyalMargin={20}
                     renderCard={this.renderCard}
                     animateOverlayLabelsOpacity={false}

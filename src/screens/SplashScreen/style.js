@@ -48,7 +48,8 @@ export default StyleSheet.create({
         resizeMode:'contain'
     },
     lolo:{
-
+        height:114,
+        width:114,
         marginLeft:((windowWidth/2)-60),
     }
 

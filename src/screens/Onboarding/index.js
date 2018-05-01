@@ -127,7 +127,7 @@ export default class Onboarging extends Component {
                   
                   }} style={styles.buttonView} >
                 <Animated.View style={[this.imageinitialPosition.getLayout(),styles.animatedButtonView]}>
-                    <Text style={[styles.buttonText]}>Sign Up</Text>
+                    <Animated.Text style={[styles.buttonText]}>Sign Up</Animated.Text>
                 </Animated.View>
                 </TouchableOpacity>
                 

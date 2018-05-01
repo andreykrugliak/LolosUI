@@ -36,7 +36,7 @@ export default class ButtonExample extends Component {
         if(this.state.splash){
             return(
                 <View style={{flex:1,backgroundColor:'#fff'}} >
-                <Image style={[{resizeMode:'contain',flex:1,alignSelf:'center'} ]} source={require('@images/Assets/em.png')}/>  
+                <Image style={[{resizeMode:'contain',height:114,width:114,flex:1,alignSelf:'center'} ]} source={require('@images/Assets/em.png')}/>  
                 </View>
             )
         }

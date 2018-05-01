@@ -7,7 +7,7 @@ let windowWidth = Dimensions.get('window').width
 registerScreens();
 Navigation.startSingleScreenApp({
     screen:{
-        screen:'app.SplashScreen',
+        screen:'app.HomePage',
     },
     drawer:{
         left:{

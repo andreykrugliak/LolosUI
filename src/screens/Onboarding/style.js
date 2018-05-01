@@ -126,6 +126,7 @@ export default StyleSheet.create({
         borderRadius:3,
         borderWidth:1,
         height:60,
+       
         backgroundColor:'white',
         width:WindowWidth-186,
     },
