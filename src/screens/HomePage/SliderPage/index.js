@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React,{PureComponent} from 'react';
 import {Container, Header, Content, Footer, FooterTab, Button, Text, Icon, Body, Right, Left,Title, Card, Badge, CardItem} from 'native-base';
 import {View,Dimensions,Image,TouchableOpacity,FlatList} from 'react-native';
 import Swiper from 'react-native-deck-swiper'
@@ -9,7 +9,7 @@ import styles from './style'
 const iphone5s = 568
 
 
-export default class SliderPage extends Component{
+export default class SliderPage extends PureComponent{
 
 static navigatorStyle = {
     navBarHidden:true
@@ -40,22 +40,22 @@ async componentDidMount()
 }
 _swipedLeft(){
     
-    console.log(this.SoundLeft)
+   
     this.SoundLeft.play((onEnd)=>{
-        console.log("played")
+        
         this.setState({played:true})
     })
 }
 
 _swipedRight(){
 
-    console.log(this.SoundRight)
+    
     this.SoundRight.play((onEnd)=>console.log("played"))
 
 }
 
 _handleCardTap(index){
-    console.log("handelTap:",index)
+    
     if(index=='9'){
        this.props.navigator.showModal({
             screen: 'app.VideoCard', // unique ID registered with Navigation.registerScreen
@@ -69,6 +69,7 @@ switch(cardIndex)
 {
     
       case '1':{
+        
         return(
             
         <View style={[styles.slide1,{shadowOpacity:0.3, shadowRadius:2,shadowColor:'rgba(0,0,0,0.20)',shadowOffset:{width:0,height:2}}]}>
@@ -89,6 +90,7 @@ switch(cardIndex)
         )};
 
     case '2':{
+        
         return(
     <View style={styles.slide1}>
         {/* <Image source={require('@images/sliderImages/IC_Success_Invitation_sent.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/> */}
@@ -110,6 +112,7 @@ switch(cardIndex)
         )};
 
     case '3':{
+        
         return(
 
         <View style={styles.slide1}>
@@ -313,8 +316,6 @@ switch(cardIndex)
 
 
 
-
-
     render(){
     return(
 
@@ -361,7 +362,7 @@ switch(cardIndex)
             <Swiper
                     ref={swiper => {
                     this.swiper = swiper
-                    }}
+                    }} 
                     backgroundColor='#f0f0f0'
                     infinite
                     onSwipedLeft={()=>{this._swipedLeft()}}
@@ -377,7 +378,7 @@ switch(cardIndex)
                     renderCard={this.renderCard}
                     animateOverlayLabelsOpacity={false}
                     animateCardOpacity={false}
-            >
+                >
             
     </Swiper>
     </View>
