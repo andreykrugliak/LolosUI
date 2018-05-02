@@ -115,7 +115,7 @@ switch(cardIndex)
         
         return(
 
-        <View style={styles.slide1}>
+        <View style={[styles.slide1]}>
         {/* <Image source={require('@images/sliderImages/IC_Success_purchase_item.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/> */}
 
             <Text style={[styles.tagLine,{marginTop:WindowHeight<= iphone5s?15:22,}]}>you can see and manage all your lolo’s in your</Text>
@@ -194,7 +194,7 @@ switch(cardIndex)
 
     case '7':{
         return(
-    <View style={styles.slide1}>
+    <View style={styles.videoBackground}>
         <Image source={require('@images/sliderImages/IC_Success_Invitation_sent.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
 
         {/* <Text style={styles.title}>Invite Freinds</Text>
@@ -216,7 +216,7 @@ switch(cardIndex)
     case '8':{
         return(
 
-        <View style={styles.slide1}>
+        <View style={styles.videoBackground}>
         <Image source={require('@images/sliderImages/IC_Success_purchase_item.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
 
             {/* <Text style={[styles.tagLine,{marginTop:WindowHeight<= iphone5s?15:22,}]}>you can see and manage all your lolo’s in your</Text>
@@ -239,7 +239,7 @@ switch(cardIndex)
 
     case '9':{
         return(
-        <View style={styles.slide1}>
+        <View style={styles.videoBackground}>
         <Image source={require('@images/sliderImages/IC_Product_plus_CTA.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
 
             {/* <Text style={styles.title}>Buy Online</Text>
@@ -255,7 +255,7 @@ switch(cardIndex)
         )};
     case '10':{
         return(
-        <View style={styles.slide1}>
+        <View style={styles.videoBackground}>
                 <Image source={require('@images/sliderImages/IC_Video_promotion.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
                 
             {/* <Text style={styles.title}>Help Our Mailman</Text>
@@ -269,7 +269,7 @@ switch(cardIndex)
         )};
         case '11':{
             return(
-            <View style={styles.slide1}>
+            <View style={styles.videoBackground}>
                     <Image source={require('@images/sliderImages/IC_Download_App.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
                     
                 {/* <Text style={styles.title}>Help Our Mailman</Text>

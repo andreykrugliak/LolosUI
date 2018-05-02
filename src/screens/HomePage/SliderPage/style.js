@@ -68,6 +68,16 @@ export default StyleSheet.create({
 
     
     },
+    videoBackground:{
+        borderWidth:1,
+        borderColor:'#f0f0f0',  
+      
+        width:WindowWidth-40,
+        ...Platform.OS=='ios'?{height:WindowHeight-190}:{height:WindowHeight-210},
+        borderRadius:5,
+        overflow:"hidden",
+
+    },
     titleSlide1:{
         marginTop:WindowHeight<= iphone5s?125:WindowHeight <= android?120:149,
         fontSize:WindowHeight <= android?26:35,
@@ -167,7 +177,7 @@ export default StyleSheet.create({
         borderWidth: 2,
         alignSelf:'center',
         borderColor: "#FF4273",	
-        borderRadius:3,	
+        borderRadius:0,	
         backgroundColor: "#FFFFFF",
     },
 
