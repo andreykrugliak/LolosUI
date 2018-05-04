@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		0083D74781F743D4BD768432 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C33A13D49E464784EA583B /* libRNVectorIcons.a */; };
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
@@ -76,7 +75,7 @@
 		A33EEBA014B74ADDBEF5BD57 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3B01EAC4684141CC894E3141 /* SimpleLineIcons.ttf */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		AE6BC152209AFCF900759668 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AE6BC151209AFCF900759668 /* GoogleService-Info.plist */; };
-		AEE44B0F209C8E87008E4E23 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AEE44B09209C8E67008E4E23 /* libRNFetchBlob.a */; };
+		AE9049C4209CB487000F4F4C /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE9049BE209CB464000F4F4C /* libRNFetchBlob.a */; };
 		AEE47B79209B346200411630 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AEE47B74209B33F500411630 /* libRNFirebase.a */; };
 		BBD6A86FC13F48CE8CA91C9D /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4172F21923F451A931B70B1 /* Feather.ttf */; };
 		BFB479613EC14306BD728ADC /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7B768E050E3C462B8ED803DD /* Lato-Italic.ttf */; };
@@ -408,9 +407,9 @@
 			remoteGlobalIDString = 358F4ED71D1E81A9004DF814;
 			remoteInfo = RCTBlob;
 		};
-		AEE44B08209C8E67008E4E23 /* PBXContainerItemProxy */ = {
+		AE9049BD209CB464000F4F4C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = AEE44AD4209C8E67008E4E23 /* RNFetchBlob.xcodeproj */;
+			containerPortal = AE904989209CB464000F4F4C /* RNFetchBlob.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = A15C300E1CD25C330074CB35;
 			remoteInfo = RNFetchBlob;
@@ -567,7 +566,7 @@
 		AE003740209C4F7600A54C70 /* Clickers.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Clickers.entitlements; path = Clickers/Clickers.entitlements; sourceTree = "<group>"; };
 		AE6BC136209AF33800759668 /* rubicon-icon-font.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "rubicon-icon-font.ttf"; sourceTree = "<group>"; };
 		AE6BC151209AFCF900759668 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		AEE44AD4209C8E67008E4E23 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
+		AE904989209CB464000F4F4C /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
 		B2DDBDFE222740D589E9A3AD /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		B4172F21923F451A931B70B1 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		B8BFA34C1496468F945C2F64 /* libRNDeviceInfo-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNDeviceInfo-tvOS.a"; sourceTree = "<group>"; };
@@ -605,7 +604,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AEE44B0F209C8E87008E4E23 /* libRNFetchBlob.a in Frameworks */,
+				AE9049C4209CB487000F4F4C /* libRNFetchBlob.a in Frameworks */,
 				AEE47B79209B346200411630 /* libRNFirebase.a in Frameworks */,
 				0768D6F92090B494006F07B7 /* libRNImagePicker.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
@@ -932,7 +931,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				AEE44AD4209C8E67008E4E23 /* RNFetchBlob.xcodeproj */,
+				AE904989209CB464000F4F4C /* RNFetchBlob.xcodeproj */,
 				DA995A6A2057A795005C20FC /* ReactNativeNavigation.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -1053,10 +1052,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		AEE44AD5209C8E67008E4E23 /* Products */ = {
+		AE90498A209CB464000F4F4C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AEE44B09209C8E67008E4E23 /* libRNFetchBlob.a */,
+				AE9049BE209CB464000F4F4C /* libRNFetchBlob.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1154,7 +1153,6 @@
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
 				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
 				2D02E48E1E0B4A5D006451C7 /* Resources */,
-				D9E15327EBC96583D5D297C2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1298,8 +1296,8 @@
 					ProjectRef = 354DD9A06D194256B8C1CE18 /* RNDeviceInfo.xcodeproj */;
 				},
 				{
-					ProductGroup = AEE44AD5209C8E67008E4E23 /* Products */;
-					ProjectRef = AEE44AD4209C8E67008E4E23 /* RNFetchBlob.xcodeproj */;
+					ProductGroup = AE90498A209CB464000F4F4C /* Products */;
+					ProjectRef = AE904989209CB464000F4F4C /* RNFetchBlob.xcodeproj */;
 				},
 				{
 					ProductGroup = AEE47B40209B33F400411630 /* Products */;
@@ -1634,11 +1632,11 @@
 			remoteRef = ADBDB9261DFEBF0700ED6528 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		AEE44B09209C8E67008E4E23 /* libRNFetchBlob.a */ = {
+		AE9049BE209CB464000F4F4C /* libRNFetchBlob.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libRNFetchBlob.a;
-			remoteRef = AEE44B08209C8E67008E4E23 /* PBXContainerItemProxy */;
+			remoteRef = AE9049BD209CB464000F4F4C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		AEE47B74209B33F500411630 /* libRNFirebase.a */ = {
@@ -1889,26 +1887,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D9E15327EBC96583D5D297C2 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Clickers-tvOSTests/Pods-Clickers-tvOSTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/React/React.framework",
-				"${BUILT_PRODUCTS_DIR}/react-native-fetch-blob/react_native_fetch_blob.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/React.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_fetch_blob.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Clickers-tvOSTests/Pods-Clickers-tvOSTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

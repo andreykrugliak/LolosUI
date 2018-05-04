@@ -54,8 +54,8 @@ export default class MyProfile extends Component{
     }
   uploadImage = (uri, mime = 'application/octet-stream') => {
     
-        return new Promise((resolve, reject) => {
-            let uploadUri = Platform.OS === 'ios' ? uri.toString().replace('file://', '') : uri
+        return new Promise((resolve, reject) => {            
+            let uploadUri = Platform.OS === 'ios' ? uri.replace('file://', '') : uri
             // const uid=firebase.auth().currentUser.uid
             
             let sessionId = new Date().getTime()
@@ -68,7 +68,7 @@ export default class MyProfile extends Component{
             })
             .then((blob) => {
                 uploadBlob = blob
-                return imageRef.put(blob, { contentType: mime })
+                return imageRef.put(uploadUri, { contentType: mime })
             })
             .then(() => {
                 uploadBlob.close()
@@ -78,7 +78,7 @@ export default class MyProfile extends Component{
                 resolve(url)
             })
             .catch((error) => {
-                reject(error)
+                alert(error)
             })
         })
     }
@@ -126,7 +126,7 @@ export default class MyProfile extends Component{
             avatarurl:url
           });         
         })
-        .catch(error => alert(error))
+        .catch(error => console.log(error))
 
        
       }

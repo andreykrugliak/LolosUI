@@ -49,16 +49,12 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
-  - react-native-fetch-blob (0.10.6):
-    - React/Core
-  - React/Core (0.11.0)
 
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
-  - react-native-fetch-blob (from `../node_modules/react-native-fetch-blob`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -73,11 +69,6 @@ SPEC REPOS:
     - GTMSessionFetcher
     - leveldb-library
     - nanopb
-    - React
-
-EXTERNAL SOURCES:
-  react-native-fetch-blob:
-    :path: "../node_modules/react-native-fetch-blob"
 
 SPEC CHECKSUMS:
   Firebase: 5ec5e863d269d82d66b4bf56856726f8fb8f0fb3
@@ -91,9 +82,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  React: ab1a2e21deb34965c38328d5ec40cc7d12c6050a
-  react-native-fetch-blob: 63394b1d7b0781547b3e4463b3195790177b1222
 
-PODFILE CHECKSUM: 7b8df3d4d0092bf679295719bb737bdcb47bf748
+PODFILE CHECKSUM: d8797f686fd6e0b14b80161e478b97798e9d11a1
 
 COCOAPODS: 1.5.0
