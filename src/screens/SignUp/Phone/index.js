@@ -11,6 +11,7 @@ import CountryPicker, {
 import {Input,Button} from 'native-base'
 import styles from './style'
 import { LoloLogoComponent } from '../../../components/LolologoComponent/index';
+import firebase from 'react-native-firebase';
 const COUNTRY_LIST = ['CA','AF',"AL",'DZ','IN', 'MX', 'US','AF','AX']
 
 export default class Phone extends Component{
@@ -35,7 +36,7 @@ export default class Phone extends Component{
     } else {
       callingCode = userCountryData.callingCode
     }
-    
+    this.unsubscribe = null;
     this.state = {
       cca2,
       callingCode,
@@ -45,6 +46,25 @@ export default class Phone extends Component{
       disabled:true
     }
     
+  }
+  componentDidMount(){
+     this.unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          this.setState({ user: user.toJSON() });
+        } else {
+          // User has been signed out, reset the state
+          this.setState({
+            user: null,
+            message: '',
+            codeInput: '',
+            phoneNumber: '+44',
+            confirmResult: null,
+          });
+        }
+      });
+  }
+  componentWillUnmount() {
+    //  if (this.unsubscribe) this.unsubscribe();
   }
 
   countryPicker(){
@@ -63,6 +83,21 @@ export default class Phone extends Component{
         />
     
   }
+  phoneSignUp(){
+      let self = this
+      firebase.auth().signInWithPhoneNumber('+'+this.state.callingCode+this.state.text)
+      .then(confirmResult=>{
+        self.props.navigator.push({
+          screen:'app.OtpScreen',
+          animationType:"slide-horizontal",
+          passProps:{confirmResult: confirmResult}
+        })
+      })
+      .catch(error=>{
+        // alert(error.message)
+      })
+        
+      }
   render() {
     return (
         <View style={{flex:1,backgroundColor:'#fff'}}>
@@ -109,12 +144,7 @@ export default class Phone extends Component{
             </TouchableOpacity>
       </View>
       </View>
-      <Button onPress={()=>{
-        this.props.navigator.push({
-          screen:'app.OtpScreen',
-          animationType:"slide-horizontal"
-        })
-      }} disabled={this.state.text.length<=0?true:false} style={[styles.buttonContainer,this.state.text.length<=0?{backgroundColor:'#F0F0F0'}:{backgroundColor:'#FF4273'}]}>
+      <Button onPress={()=>this.phoneSignUp()} disabled={this.state.text.length<=0?true:false} style={[styles.buttonContainer,this.state.text.length<=0?{backgroundColor:'#F0F0F0'}:{backgroundColor:'#FF4273'}]}>
           <Text style={[styles.buttonText,this.state.text.length<=0?{color:'#CCCCCC'}:{color:'white'}]}>Next</Text>
       </Button>
       </View>

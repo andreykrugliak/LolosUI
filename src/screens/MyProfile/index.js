@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {Container, Header, Content, Footer, FooterTab, Button,Input, Icon, Body, Right, Left,Title, Card, Badge, CardItem} from 'native-base';
-import {View,Dimensions,Image,TouchableOpacity,FlatList,TextInput,Text} from 'react-native';
+import {View,Dimensions,Image,TouchableOpacity,FlatList,TextInput,Text,Platform} from 'react-native';
 import { HeaderComponent } from "@components/InviteFriends/HeaderComponent.js";
 import Swiper from 'react-native-deck-swiper'
 var WindowWidth = Dimensions.get('window').width
@@ -8,6 +8,8 @@ var WindowHeight = Dimensions.get('window').height
 import styles from './style'
 import DatePicker from 'react-native-datepicker'
 import ImagePicker from 'react-native-image-picker';
+import firebase from 'react-native-firebase';
+import RNFetchBlob from 'react-native-fetch-blob';
 let customStyles = {
     dateInput: {
     position:'absolute',
@@ -18,6 +20,12 @@ let customStyles = {
     //height:60
     }
   };
+const Blob = RNFetchBlob.polyfill.Blob
+const fs = RNFetchBlob.fs
+// window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest
+// window.Blob = Blob
+
+
 export default class MyProfile extends Component{
 
     static navigatorStyle={
@@ -44,7 +52,36 @@ export default class MyProfile extends Component{
         }
         this.selectPhotoTapped=this.selectPhotoTapped.bind(this)
     }
-  
+  uploadImage = (uri, mime = 'application/octet-stream') => {
+    
+        return new Promise((resolve, reject) => {
+            let uploadUri = Platform.OS === 'ios' ? uri.replace('file://', '') : uri
+            // const uid=firebase.auth().currentUser.uid
+            
+            let sessionId = new Date().getTime()
+            let uploadBlob = null
+            let imageRef = firebase.storage().ref('images').child(`${sessionId}`)
+
+            fs.readFile(uploadUri, 'base64')
+            .then((data) => {                
+                return Blob.build(data, { type: `${mime};BASE64` })
+            })
+            .then((blob) => {
+                uploadBlob = blob
+                return imageRef.put(blob, { contentType: mime })
+            })
+            .then(() => {
+                uploadBlob.close()
+                return imageRef.getDownloadURL()
+            })
+            .then((url) => {
+                resolve(url)
+            })
+            .catch((error) => {
+                reject(error)
+            })
+        })
+    }
 
     _handleavtarEdit(cropit){
         // ImagePicker.openPicker({
@@ -78,18 +115,39 @@ export default class MyProfile extends Component{
       else if (response.customButton) {
         console.log('User tapped custom button: ', response.customButton);
       }
-      else {
-        let source = { uri: response.uri };
+      else {        
+        this.uploadImage(response.uri)
+        .then((url) => {            
+             this.setState({
+                avatarSource: url
+                });
+        //   uid=firebase.auth().currentUser.uid
+          firebase.database().ref('users/'+11).update({
+            avatarurl:url
+          });         
+        })
+        .catch(error => alert(error))
 
-
-        this.setState({
-          avatarSource: source
-        });
+       
       }
     });
   }
 
-
+gotoHome(){
+        let uid =  firebase.auth().currentUser.uid;
+        firebase.database().ref('users/'+uid).set({
+            fullname: this.state.text,
+            birthday: this.state.date
+        })
+        .then(()=>{
+            this.props.navigator.push({
+                screen: 'app.HomePage',
+                animationType: 'slide-horizontal'
+            })
+        })
+       
+            
+    }
     render(){
         return(
             <View style={styles.container}>
@@ -97,7 +155,10 @@ export default class MyProfile extends Component{
                 <View style={styles.body}>
 
                     <TouchableOpacity  onPress={()=>{this.selectPhotoTapped()}} style={styles.avtarContainer}>
-                        <Image source={require('@images/SettingMenu/avatar.png')} style={styles.avtar}></Image>
+                        {this.state.avatarSource === null?
+                            <Image source={require('@images/SettingMenu/avatar.png')} style={styles.avtar}/>:
+                            <Image source={{uri:this.state.avatarSource}} style={[styles.avtar,{borderRadius:60}]}/>
+                        }
                         <Image source={require('@images/SettingMenu/add.png')} style={[styles.add,{shadowOpacity:0.5,shadowOffset:{width:3,height:0}, shadowRadius:120}]}></Image>
                     </TouchableOpacity>
 
@@ -134,12 +195,7 @@ export default class MyProfile extends Component{
                     </View>
 
                 </View>
-                <Button disabled={this.state.text.length == 0?true:this.state.dateDisabled == true?true:false} onPress={()=>{
-                            this.props.navigator.push({
-                                screen:'app.HomePage',
-                                animationType:"slide-horizontal"
-                            })
-                         }}style={[styles.buttonContainer,{backgroundColor:this.state.text.length == 0?'#F0F0F0':this.state.dateDisabled == true?'#F0F0F0':'#FF4273'}]}>
+                <Button disabled={this.state.text.length == 0?true:this.state.dateDisabled == true?true:false} onPress={()=>this.gotoHome()}style={[styles.buttonContainer,{backgroundColor:this.state.text.length == 0?'#F0F0F0':this.state.dateDisabled == true?'#F0F0F0':'#FF4273'}]}>
                                 <Text style={[styles.buttonText,{color:this.state.text.length == 0?'#CCCCCC':this.state.dateDisabled == true?'#CCCCCC':'white'}]}>Apply Changes</Text>
                 </Button>
             </View>

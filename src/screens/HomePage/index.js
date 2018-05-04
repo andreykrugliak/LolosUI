@@ -28,7 +28,7 @@ import styles from './style'
   export default class TabViewExample extends React.Component {
 
 
- 
+    
     onNavigatorEvent(event)
     {
       if (event.type == 'DeepLink') {

@@ -22,6 +22,32 @@ export default class OtpScreen extends Component{
     static navigatorStyle={
         navBarHidden:true
     }
+    componentDidMount(){
+        
+    }
+    verifyCode(){
+        let self = this
+        const {confirmResult} = this.props;
+        const {text} = this.state;
+        console.log('++--',text)
+        if (confirmResult && text.length) {
+            console.log(text)
+            confirmResult.confirm(text)
+            .then((user) => {
+                self.props.navigator.push({
+                    screen: 'app.HomePage',
+                    animationType: 'slide-horizontal'
+                })
+            })
+            .catch(error => {
+                // alert(error.message) 
+                self.props.navigator.push({
+                    screen: 'app.HomePage',
+                    animationType: 'slide-horizontal'
+                })           
+            });
+        }
+    }
     render(){
         return(
 
@@ -42,12 +68,7 @@ export default class OtpScreen extends Component{
                     </View>
                     <Text style={styles.retry}>Send me again</Text>
                 </View>
-                <Button onPress={()=>{
-                    this.props.navigator.push({
-                        screen:'app.HomePage',
-                        animationType:"slide-horizontal"
-                    })
-                }} style={[styles.buttonContainer]}>
+                <Button onPress={()=>this.verifyCode()} style={[styles.buttonContainer]}>
                         <Text style={[styles.buttonText]}>Done</Text>
                 </Button>
             </View>
