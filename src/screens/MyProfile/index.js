@@ -121,8 +121,8 @@ export default class MyProfile extends Component{
              this.setState({
                 avatarSource: url
                 });
-        //   uid=firebase.auth().currentUser.uid
-          firebase.database().ref('users/'+11).update({
+          let uid=firebase.auth().currentUser.uid
+          firebase.database().ref('users/'+uid).update({
             avatarurl:url
           });         
         })

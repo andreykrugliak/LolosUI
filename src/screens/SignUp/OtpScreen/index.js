@@ -9,6 +9,7 @@ import {
 import {Input,Button} from 'native-base'
 import styles from './style'
 import { LoloLogoComponent } from '../../../components/LolologoComponent/index';
+import firebase from 'react-native-firebase'
 let windowHeight=Dimensions.get('window').height
 
 
@@ -34,17 +35,18 @@ export default class OtpScreen extends Component{
             console.log(text)
             confirmResult.confirm(text)
             .then((user) => {
-                self.props.navigator.push({
-                    screen: 'app.HomePage',
-                    animationType: 'slide-horizontal'
+                var credential = firebase.auth.PhoneAuthProvider.credential(confirmResult.verificationId, code);
+                firebase.auth().signInWithCredential(credential)
+                .then(()=>{
+                    self.props.navigator.push({
+                        screen: 'app.HomePage',
+                        animationType: 'slide-horizontal'
+                    })
                 })
+                
             })
             .catch(error => {
-                // alert(error.message) 
-                self.props.navigator.push({
-                    screen: 'app.HomePage',
-                    animationType: 'slide-horizontal'
-                })           
+                alert(error.message)                         
             });
         }
     }

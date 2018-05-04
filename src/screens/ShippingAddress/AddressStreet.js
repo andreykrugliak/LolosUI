@@ -5,7 +5,8 @@ import {View,Dimensions,Image,TouchableOpacity,FlatList} from 'react-native';
 import { HeaderComponent } from "@components/InviteFriends/HeaderComponent.js";
 var WindowWidth = Dimensions.get('window').width
 var WindowHeight = Dimensions.get('window').height
-import styles from './style'
+import styles from './style';
+import firebase from 'react-native-firebase';
 
 export default class Street extends Component{
 
@@ -35,7 +36,19 @@ export default class Street extends Component{
             })
         }
     }
-
+    next(){
+        let uid = firebase.auth().currentUser.uid;
+        firebase.database().ref('users/'+uid).update({
+            street: this.state.streetText
+        })
+        .then(()=>{
+            this.props.navigator.push({
+                screen:'app.shippingAddressZip',
+                animationType:"slide-horizontal"
+            })
+        })
+            
+    }
     render(){
         return(
             <View style={styles.container}>
@@ -58,12 +71,7 @@ export default class Street extends Component{
                     </View>
                 </View>
 
-                <Button onPress={()=>{
-                            this.props.navigator.push({
-                                screen:'app.shippingAddressZip',
-                                animationType:"slide-horizontal"
-                            })
-                         }}disabled={this.state.disabled}
+                <Button onPress={()=>this.next()}disabled={this.state.disabled}
                          style={[styles.buttonContainer,{backgroundColor:this.state.bgColor}]}>
                                 <Text style={[styles.buttonText,{color:this.state.color}]}>Next</Text>
                 </Button>

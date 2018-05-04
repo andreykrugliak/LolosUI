@@ -7,7 +7,8 @@ import CountryPicker, {
 import { HeaderComponent } from "@components/InviteFriends/HeaderComponent.js";
 var WindowWidth = Dimensions.get('window').width
 var WindowHeight = Dimensions.get('window').height
-import styles from './style'
+import styles from './style';
+import firebase from 'react-native-firebase';
 const COUNTRY_LIST = ['CA','AF',"AL",'DZ','IN', 'MX', 'US','AF','AX']
 
 export default class Country extends Component{
@@ -43,6 +44,20 @@ export default class Country extends Component{
             clear:true,
             selected:false,
         }
+    }
+
+    next(){
+        let uid = firebase.auth().currentUser.uid;
+        firebase.database().ref('users/'+uid).update({
+            country: this.state.Country
+        })
+        .then(()=>{
+            this.props.navigator.push({
+                screen:'app.shippingAddressCity',
+                animationType:"slide-horizontal"
+            })
+        })
+            
     }
 
     render(){
@@ -140,12 +155,7 @@ export default class Country extends Component{
                         </Text>
                     </CountryPicker>
                 </View>
-                <Button onPress={()=>{
-                            this.props.navigator.push({
-                                screen:'app.shippingAddressCity',
-                                animationType:"slide-horizontal"
-                            })
-                         }} disabled={this.state.Country.length>0?false:true}
+                <Button onPress={()=>this.next()} disabled={this.state.Country.length>0?false:true}
                          style={[styles.buttonContainer,{backgroundColor:this.state.Country.length>0?'#FF4273':'#F0F0F0'}]}>
                                 <Text style={[styles.buttonText,{color:this.state.Country.length>0?'#fff':'#CCCCCC'}]}>Next</Text>
                 </Button>

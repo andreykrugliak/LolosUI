@@ -5,7 +5,8 @@ import {View,Dimensions,Image,TouchableOpacity,FlatList} from 'react-native';
 import { HeaderComponent } from "@components/InviteFriends/HeaderComponent.js";
 var WindowWidth = Dimensions.get('window').width
 var WindowHeight = Dimensions.get('window').height
-import styles from './style'
+import styles from './style';
+import firebase from 'react-native-firebase'
 
 export default class Zip extends Component{
 
@@ -35,6 +36,19 @@ export default class Zip extends Component{
             })
         }
     }
+    next(){
+        let uid = firebase.auth().currentUser.uid;
+        firebase.database().ref('users/'+uid).update({
+            zipcode: this.state.zipText
+        })
+        .then(()=>{
+            this.props.navigator.push({
+            screen:'app.shippingAddressApt',
+            animationType:"slide-horizontal"
+            })
+        })
+        
+    }
 
     render(){
         return(
@@ -59,12 +73,7 @@ export default class Zip extends Component{
                     </View>
                 </View>
 
-                <Button onPress={()=>{
-                            this.props.navigator.push({
-                                screen:'app.shippingAddressApt',
-                                animationType:"slide-horizontal"
-                            })
-                         }}disabled={this.state.disabled}
+                <Button onPress={()=>this.next()}disabled={this.state.disabled}
                          style={[styles.buttonContainer,{backgroundColor:this.state.bgColor}]}>
                                 <Text style={[styles.buttonText,{color:this.state.color}]}>Next</Text>
                 </Button>
