@@ -55,7 +55,7 @@ export default class MyProfile extends Component{
   uploadImage = (uri, mime = 'application/octet-stream') => {
     
         return new Promise((resolve, reject) => {
-            let uploadUri = Platform.OS === 'ios' ? uri.replace('file://', '') : uri
+            let uploadUri = Platform.OS === 'ios' ? uri.toString().replace('file://', '') : uri
             // const uid=firebase.auth().currentUser.uid
             
             let sessionId = new Date().getTime()
