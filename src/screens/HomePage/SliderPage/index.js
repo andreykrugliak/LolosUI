@@ -5,9 +5,24 @@ import Swiper from 'react-native-deck-swiper'
 import Sound from 'react-native-sound'
 var WindowWidth = Dimensions.get('window').width
 var WindowHeight = Dimensions.get('window').height
-import styles from './style'
+import styles from './style';
+import FCM, {FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType} from 'react-native-fcm';
+import {CachedImage} from 'react-native-cached-image';
+import axios from 'axios';
+import firebase from 'react-native-firebase';
+import RNFetchBlob from 'react-native-fetch-blob';
 const iphone5s = 568
 
+const {
+    fs
+} = RNFetchBlob;
+
+const baseCacheDir = fs.dirs.CacheDir + '/videocache.mp4';
+
+//call the downloadVideo function
+  
+//Function to download a file..
+const activeDownloads = {};
 
 export default class SliderPage extends PureComponent{
 
@@ -17,15 +32,83 @@ static navigatorStyle = {
 constructor(props){
     super(props);
     this.state={
-        played:false
+        played:false,
+        
     }
     this.renderCard=this.renderCard.bind(this)
     this._swipedLeft=this._swipedLeft.bind(this)
     this._swipedRight=this._swipedRight.bind(this)
     this._handleCardTap=this._handleCardTap.bind(this)
 }
+ downloadVideo(fromUrl, toFile) {
+    // use toFile as the key
+        // activeDownloads[toFile] = 
+        // new Promise((resolve, reject) => {
+            RNFetchBlob
+                .config({path: toFile})
+                .fetch('GET', fromUrl)
+                .then(res => {
+                    console.log('hehe',res)
+                    if (Math.floor(res.respInfo.status / 100) !== 2) {
+                        throw new Error('Failed to successfully download video');
+                    }
+                    // alert(res)
+                })
+                .catch(err => {
+                    alert(err)
+                })
+                // .finally(() => {
+                //     // cleanup
+                //     delete activeDownloads[toFile];
+                // });
+        // });
+    // return activeDownloads[toFile];
+}
+componentWillMount(){
+    this.downloadVideo('https://firebasestorage.googleapis.com/v0/b/lolos-v1.appspot.com/o/Clash%20Royale%20Official%20Epic%20Comeback%20Trailer.mp4?alt=media&token=81b14dfd-e6b7-4584-a4ed-f48a7f2a1121',baseCacheDir)
+    
+}
+
+
+
 async componentDidMount()
 {
+     
+    
+     FCM.requestPermissions(); 
+    FCM.getFCMToken().then(token => {      
+        const params = {
+            "to" : token,
+            "notification" : {            
+              "title" : "Welcome",
+              "text": `Welcome to LOLO'S`,
+              "badge":0, 
+              "sound":"default"
+            },
+            "priority" : "high"
+          };
+          const headers = {
+            'Authorization': 'key=AIzaSyCuFMtUH28h94Mt3ahb0vrOf-S3S55thkI',
+            'Content-Type': 'application/json'
+          };
+          
+            
+            if(this.props.createAccount){axios(
+              {
+                url: 'https://fcm.googleapis.com/fcm/send',
+                method:'post',
+                headers: headers,
+                data: params,
+                 
+            })}
+    });     
+
+    
+    this.refreshTokenListener = FCM.on(FCMEvent.RefreshToken, (token) => {
+      // console.log('refresh_token', token);
+     
+    });
+
     this.SoundLeft=await new Sound('left_swipe.mp3',Sound.MAIN_BUNDLE,(error)=>{
         if(error){
             console.log(error)
@@ -59,6 +142,7 @@ _handleCardTap(index){
     if(index=='9'){
        this.props.navigator.showModal({
             screen: 'app.VideoCard', // unique ID registered with Navigation.registerScreen
+            passProps: {videoUrl: baseCacheDir}
           });
     }
 }
@@ -72,7 +156,7 @@ switch(cardIndex)
         
         return(
             
-        <View style={[styles.slide1,{shadowOpacity:0.3, shadowRadius:2,shadowColor:'rgba(0,0,0,0.20)',shadowOffset:{width:0,height:2}}]}>
+        <View style={[styles.slide1,{shadowOpacity:0, shadowRadius:2,shadowColor:'rgba(0,0,0,0)',shadowOffset:{width:0,height:2}}]}>
             {/* <Image source={require('@images/sliderImages/IC_Product_Sale.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/> */}
         <Image style={[styles.topImage]}
             source={require('@images/HomePage/em_10.png')}/>
@@ -85,6 +169,8 @@ switch(cardIndex)
             <Image style={[styles.rightArrow]}
             source = {require('@images/HomePage/Arrow.png')}/>
         </View>
+        <CachedImage source={{uri:'https://firebasestorage.googleapis.com/v0/b/lolos-v1.appspot.com/o/giphy1.gif?alt=media&token=03c6f15e-ed55-4854-9e39-8226b6a670c3'}} style={{width:WindowWidth-40,flex:1, resizeMode:'cover',opacity:0 }}/>
+        <CachedImage source={{uri:'https://firebasestorage.googleapis.com/v0/b/lolos-v1.appspot.com/o/giphy2.gif?alt=media&token=adc2566b-cf7e-4c23-96ed-674340c17d22'}} style={{width:WindowWidth-40,flex:1, resizeMode:'cover',opacity:0 }}/>
     </View>
     
         )};
@@ -146,11 +232,13 @@ switch(cardIndex)
             <Image style={[styles.giftImg]}
         source={require('@images/HomePage/lologift.png')}/>
             <TouchableOpacity onPress={()=>{
-                    this.props.navigator.push({
+                     {/* this.props.navigator.push({
                     screen:'app.PreviewScreen',
-                    animationType:"slide-horizontal"
+                    animationType:"slide-horizontal" 
                     // passProps:{navigator:this.props.navigator}
-                })}} 
+                    }) */}
+                    this.props._handleIndexChange(0)
+                }} 
             
             style={[styles.button]}>
                     <Text style={[styles.buttonTextInvite]}>Check It Out</Text>
@@ -167,7 +255,13 @@ switch(cardIndex)
             <Text style={styles.tagLine}>set up address before you shop in our marketplace </Text>
             <Image style={[styles.manImg]}
                 source={require('@images/HomePage/lolomailman.png')}/>
-            <TouchableOpacity style={[styles.button]}>
+            <TouchableOpacity style={[styles.button]} onPress={()=>{
+                    this.props.navigator.push({
+                    screen:'app.shippingAddressEdit',
+                    animationType:"slide-horizontal" 
+                    // passProps:{navigator:this.props.navigator}
+                    }) 
+                }}>
                     <Text style={[styles.buttonTextInvite]}>Set Up Address</Text>
             </TouchableOpacity> 
         </View>
@@ -175,7 +269,7 @@ switch(cardIndex)
     case '6':{
         return(
             
-        <View style={[styles.slide1,{shadowOpacity:0.3, shadowRadius:2,shadowColor:'rgba(0,0,0,0.20)',shadowOffset:{width:0,height:2}}]}>
+        <View style={[styles.slide1,{shadowOpacity:0, shadowRadius:2,shadowColor:'rgba(0,0,0,0.20)',shadowOffset:{width:0,height:2}}]}>
             <Image source={require('@images/sliderImages/IC_Product_Sale.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
         {/* <Image style={[styles.topImage]}
             source={require('@images/HomePage/em_10.png')}/>
@@ -284,7 +378,7 @@ switch(cardIndex)
         case '12':{
             return(
             <View style={styles.slide1}>
-                    <Image source={{uri:'https://firebasestorage.googleapis.com/v0/b/lolos-v1.appspot.com/o/giphy1.gif?alt=media&token=03c6f15e-ed55-4854-9e39-8226b6a670c3'}} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
+                    <CachedImage source={{uri:'https://firebasestorage.googleapis.com/v0/b/lolos-v1.appspot.com/o/giphy1.gif?alt=media&token=03c6f15e-ed55-4854-9e39-8226b6a670c3'}} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
     
                 {/* <Text style={styles.title}>Help Our Mailman</Text>
                 <Text style={styles.tagLine}>set up address before you shop in our marketplace </Text>
@@ -298,7 +392,7 @@ switch(cardIndex)
         case '13':{
             return(
             <View style={styles.slide1}>
-                    <Image source={{uri:'https://firebasestorage.googleapis.com/v0/b/lolos-v1.appspot.com/o/giphy2.gif?alt=media&token=adc2566b-cf7e-4c23-96ed-674340c17d22'}} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
+                    <CachedImage source={{uri:'https://firebasestorage.googleapis.com/v0/b/lolos-v1.appspot.com/o/giphy2.gif?alt=media&token=adc2566b-cf7e-4c23-96ed-674340c17d22'}} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
                     {/* <Image source={{uri:'https://media.giphy.com/media/3oFzmoXxE7Dbj16zzW/source.gif'}} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/> */}
                     
                 {/* <Text style={styles.title}>Help Our Mailman</Text>

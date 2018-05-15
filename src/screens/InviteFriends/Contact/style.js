@@ -1,5 +1,6 @@
 import {StyleSheet,Platform,Dimensions} from 'react-native'
 let windowHeight = Dimensions.get('window').height
+let {width} = Dimensions.get('window')
 console.log(windowHeight)
 const iphoneSE = 600
 export default StyleSheet.create({
@@ -124,5 +125,15 @@ export default StyleSheet.create({
         paddingTop:Platform.OS === 'ios'?0:80,
        // flexWrap:'wrap',
        // height:windowHeight,
+    },
+    loadingView: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+        width: width,
+        height: windowHeight,
+        backgroundColor: 'rgba(0,0,0,0.15)'
     }
+
 })

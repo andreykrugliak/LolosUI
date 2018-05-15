@@ -4,12 +4,45 @@ import {View,Dimensions,Image,TouchableOpacity,FlatList} from 'react-native';
 import { HeaderComponent } from "@components/InviteFriends/HeaderComponent.js";
 var WindowWidth = Dimensions.get('window').width
 var WindowHeight = Dimensions.get('window').height
-import styles from './style'
+import styles from './style';
+import firebase from 'react-native-firebase';
 
 export default class AddressEdit extends Component{
+    constructor(){
+        super()
+        this.state = {
+            country: '',
+            street: '',
+            zipcode: '',
+            city: ''
+        }
+    }
+
 
     static navigatorStyle={
         navBarHidden:true
+    }
+    componentDidMount(){
+        let uid=firebase.auth().currentUser.uid;
+        let country,street,zipcode,city;
+        
+        firebase.database().ref('users/'+uid).on('value',function(snapshot){
+            country=snapshot.child('country').val();
+            street=snapshot.child('street').val();            
+            city=snapshot.child('city').val();
+            zipcode=snapshot.child('zipcode').val();
+            if(country === null) country = ''
+            if(street === null) street = ''
+            if(city === null) city = ''
+            if(zipcode === null) zipcode = ''
+           this.setState({
+               country,
+               city,
+               street,
+               zipcode
+           })
+          
+        }.bind(this));
     }
     
     render(){
@@ -28,12 +61,12 @@ export default class AddressEdit extends Component{
                 </Text>
                 
 
-                <Text style={[styles.bodyText,{marginTop:39}]}>
-                    44 Shirley Ave.
+               <Text style={[styles.bodyText,{marginTop:39}]}>
+                {this.state.street!==''?this.state.street+'.':''}
                 </Text>
                 
                 <Text style={[styles.bodyText,{marginTop:0,paddingTop:4}]}>
-                    West Chicago, IL60185
+                {this.state.city!==''?this.state.city+', ':''}{this.state.country!==''?this.state.country+', ':''}{this.state.zipcode!==''?this.state.zipcode+', ':''}
                 </Text>
 
                 <TouchableOpacity onPress={()=>{

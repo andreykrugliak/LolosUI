@@ -12,7 +12,7 @@ export default StyleSheet.create({
     //    borderWidth:6,
    },
    headText:{
-      marginTop:Platform.OS=='android'?66:86,
+      marginTop:Platform.OS=='android'?66:66,
       alignSelf:'center',
       color:'#FF4273',
       fontSize:34,
@@ -27,10 +27,11 @@ export default StyleSheet.create({
    },
    bodyText:{
        textAlign:'center',
-       marginTop:Platform.OS=='android'?90: 111,
+       marginTop:Platform.OS=='android'?90: 90,
        fontFamily:'Lato-Regular',
        color:'#000',
        fontSize:22,
+       justifyContent:'center'
    },
    emoj:{
        height:108*0.85,

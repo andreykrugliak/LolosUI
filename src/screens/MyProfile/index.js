@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {Container, Header, Content, Footer, FooterTab, Button,Input, Icon, Body, Right, Left,Title, Card, Badge, CardItem} from 'native-base';
-import {View,Dimensions,Image,TouchableOpacity,FlatList,TextInput,Text,Platform} from 'react-native';
+import {View,Dimensions,Image,TouchableOpacity,FlatList,TextInput,Text, Platform} from 'react-native';
 import { HeaderComponent } from "@components/InviteFriends/HeaderComponent.js";
 import Swiper from 'react-native-deck-swiper'
 var WindowWidth = Dimensions.get('window').width
@@ -20,12 +20,8 @@ let customStyles = {
     //height:60
     }
   };
-const Blob = RNFetchBlob.polyfill.Blob
-const fs = RNFetchBlob.fs
-// window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest
-// window.Blob = Blob
-
-
+  const Blob = RNFetchBlob.polyfill.Blob
+  const fs = RNFetchBlob.fs
 export default class MyProfile extends Component{
 
     static navigatorStyle={
@@ -52,8 +48,25 @@ export default class MyProfile extends Component{
         }
         this.selectPhotoTapped=this.selectPhotoTapped.bind(this)
     }
-  uploadImage = (uri, mime = 'application/octet-stream') => {
-    
+    componentWillMount(){
+        let uid=firebase.auth().currentUser.uid;
+        let avatarSource,text,date;
+        
+        firebase.database().ref('users/'+uid).on('value',function(snapshot){
+            avatarSource=snapshot.child('avatarurl').val();
+            text=snapshot.child('fullname').val();            
+            date=snapshot.child('birthday').val();
+            if(text===null) text = ''
+            if(date===null) date = ''         
+            if(date!=='' ) this.setState({dateDisabled:false})
+           this.setState({
+            avatarSource,text,date
+           })
+          
+        }.bind(this));
+    }
+    uploadImage = (uri, mime = 'application/octet-stream') => {
+        
         return new Promise((resolve, reject) => {            
             let uploadUri = Platform.OS === 'ios' ? uri.replace('file://', '') : uri
             // const uid=firebase.auth().currentUser.uid
@@ -78,7 +91,7 @@ export default class MyProfile extends Component{
                 resolve(url)
             })
             .catch((error) => {
-                alert(error)
+                reject(error)
             })
         })
     }
@@ -104,50 +117,43 @@ export default class MyProfile extends Component{
     };
 
     ImagePicker.showImagePicker(options, (response) => {
-      console.log('Response = ', response);
-
-      if (response.didCancel) {
-        console.log('User cancelled photo picker');
-      }
-      else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      }
-      else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
-      }
-      else {        
-        this.uploadImage(response.uri)
-        .then((url) => {            
-             this.setState({
-                avatarSource: url
-                });
-          let uid=firebase.auth().currentUser.uid
-          firebase.database().ref('users/'+uid).update({
-            avatarurl:url
-          });         
-        })
-        .catch(error => console.log(error))
-
-       
-      }
-    });
+        
+           
+           
+          this.uploadImage(response.uri)
+          .then((url) => {                         
+               this.setState({
+                  avatarSource: url
+                  });
+            let uid=firebase.auth().currentUser.uid
+            firebase.database().ref('users/'+uid).update({
+              avatarurl:url
+            });         
+          })
+          .catch(error => console.log(error))
+  
+         
+        
+      });
   }
 
-gotoHome(){
-        let uid =  firebase.auth().currentUser.uid;
-        firebase.database().ref('users/'+uid).set({
-            fullname: this.state.text,
-            birthday: this.state.date
+  gotoHome(){
+    let uid =  firebase.auth().currentUser.uid;
+    firebase.database().ref('users/'+uid).update({
+        fullname: this.state.text,
+        birthday: this.state.date
+    })
+    .then(()=>{
+        this.props.navigator.resetTo({
+            screen: 'app.HomePage',
+            animationType: 'slide-horizontal'
         })
-        .then(()=>{
-            this.props.navigator.push({
-                screen: 'app.HomePage',
-                animationType: 'slide-horizontal'
-            })
-        })
-       
-            
-    }
+    })
+   
+        
+}
+
+
     render(){
         return(
             <View style={styles.container}>
@@ -155,7 +161,7 @@ gotoHome(){
                 <View style={styles.body}>
 
                     <TouchableOpacity  onPress={()=>{this.selectPhotoTapped()}} style={styles.avtarContainer}>
-                        {this.state.avatarSource === null?
+                    {this.state.avatarSource === null?
                             <Image source={require('@images/SettingMenu/avatar.png')} style={styles.avtar}/>:
                             <Image source={{uri:this.state.avatarSource}} style={[styles.avtar,{borderRadius:60}]}/>
                         }
@@ -195,7 +201,8 @@ gotoHome(){
                     </View>
 
                 </View>
-                <Button disabled={this.state.text.length == 0?true:this.state.dateDisabled == true?true:false} onPress={()=>this.gotoHome()}style={[styles.buttonContainer,{backgroundColor:this.state.text.length == 0?'#F0F0F0':this.state.dateDisabled == true?'#F0F0F0':'#FF4273'}]}>
+                <Button disabled={this.state.text.length == 0?true:this.state.dateDisabled == true?true:false} onPress={()=>this.gotoHome()}
+                         style={[styles.buttonContainer,{backgroundColor:this.state.text.length == 0?'#F0F0F0':this.state.dateDisabled == true?'#F0F0F0':'#FF4273'}]}>
                                 <Text style={[styles.buttonText,{color:this.state.text.length == 0?'#CCCCCC':this.state.dateDisabled == true?'#CCCCCC':'white'}]}>Apply Changes</Text>
                 </Button>
             </View>

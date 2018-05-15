@@ -173,7 +173,7 @@ export default class ShopSeach extends Component{
                         this.state.match?
                         <View style={{flex:1,backgroundColor:'#F6F6F6'}}>
                             <FlatList
-                            style={{flex:1}}
+                            style={{flex:1,paddingBottom:20}}
                             data={this.state.data}
                             keyExtractor={(item,index)=>item.id}
                             renderItem={this._renderItems}

@@ -45,6 +45,20 @@ export default class Country extends Component{
             selected:false,
         }
     }
+    componentDidMount(){
+        let uid=firebase.auth().currentUser.uid;
+        let Country;
+        
+        firebase.database().ref('users/'+uid).on('value',function(snapshot){
+            Country=snapshot.child('country').val();           
+            if(Country === null) Country = ''            
+           this.setState({
+               Country,
+              
+           })
+          
+        }.bind(this));
+    }
 
     next(){
         let uid = firebase.auth().currentUser.uid;

@@ -26,6 +26,23 @@ export default class Country extends Component{
         }
     }
 
+    componentDidMount(){
+        let uid=firebase.auth().currentUser.uid;
+        let cityText;
+        
+        firebase.database().ref('users/'+uid).on('value',function(snapshot){
+                   
+            cityText=snapshot.child('city').val();          
+           
+            if(cityText === null) cityText = ''           
+            if(cityText!=='') this.setState({disabled: false,color:'#fff',bgColor:'#FF4273'})
+           this.setState({              
+               cityText              
+           })
+          
+        }.bind(this));
+    }
+
     _handleInput(text){
         this.setState({
             cityText:text

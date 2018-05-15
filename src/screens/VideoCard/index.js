@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Image, View,Dimensions, Text,StyleSheet,TouchableOpacity,ActivityIndicator} from 'react-native';
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
-import Video from 'react-native-af-video-player'
+// import Video from 'react-native-af-video-player'
+import Video from 'react-native-video'
 
 export default class VideoPlayer extends Component{
 
@@ -19,15 +20,15 @@ export default class VideoPlayer extends Component{
     }
 
     render(){
-        const url ='https://firebasestorage.googleapis.com/v0/b/lolos-v1.appspot.com/o/Boarderline.mp4?alt=media&token=68305c87-6676-4bc9-8b56-02328b577d85'
+        const url ='https://firebasestorage.googleapis.com/v0/b/lolos-v1.appspot.com/o/Clash%20Royale%20Official%20Epic%20Comeback%20Trailer.mp4?alt=media&token=81b14dfd-e6b7-4584-a4ed-f48a7f2a1121'
          return(
             <View style={{flex:1}}> 
-                 <View style={{backgroundColor:'#fff',flex:1}}>
+                 <View style={{backgroundColor:'#000',flex:1}}>
                      <Video
-                     autoPlay
+                       //autoPlay  
                      resizeMode='contain'
-                     url={url}
-                     style={{flex:1}}
+                     source={{uri:this.props.videoUrl}}
+                    style={{flex:1}}
                      onEnd={()=>{
                          this.props.navigator.dismissModal({
                              animationType: 'slide-down' 

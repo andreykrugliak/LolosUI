@@ -134,23 +134,23 @@ export default class ProductPage extends Component{
                     <LinearGradient 
                     start={{x: 1.04, y: 0.55}} end={{x: -0.04, y: 0.45}}  
                     locations={[0.00,1.00]}
-                    style={[styles.slideBuy,{ marginVertical:28,justifyContent:'center'}]} colors={['#F5317F', '#FF7C6E']} >
-                    <RNSlidingButton
-                        style={[styles.slideBuy,{backgroundColor:'transparent'},]}
-                        height={58}
-                        onSlidingSuccess={()=>{
-                            this.props.navigator.push({
-                                screen:'app.ConfirmationPage',
-                                animationType:"slide-horizontal"
-                            })
-                        }}
-                        successfulSlidePercent={40}
-                        slideDirection={SlideDirection.RIGHT}>
-                        <View style={{justifyContent:'center',alignItems:'center',height:64,width:WindowWidth/2.47,backgroundColor:'white',borderColor:'#F5317F',borderRadius:40,borderWidth:2}}>
-                            <Text style={{color:'#FF4273',fontFamily:'Lato-Bold',fontSize:14}}>SLIDE TO BUY  >></Text>
-                        </View>
+                    style={[styles.slideBuy,{ marginVertical:28,justifyContent:'center',alignSelf:'center'}]} colors={['#F5317F', '#FF7C6E']} >
+                        <RNSlidingButton
+                            style={[styles.slideBuy,{backgroundColor:'transparent'},]}
+                            height={58}
+                            onSlidingSuccess={()=>{
+                                this.props.navigator.push({
+                                    screen:'app.ConfirmationPage',
+                                    animationType:"slide-horizontal"
+                                })
+                            }}
+                            successfulSlidePercent={40}
+                            slideDirection={SlideDirection.RIGHT}>
+                            <View style={{justifyContent:'center',alignItems:'center',height:64,width:WindowWidth/2.47,backgroundColor:'white',borderColor:'#F5317F',borderRadius:40,borderWidth:2}}>
+                                <Text style={{color:'#FF4273',fontFamily:'Lato-Bold',fontSize:14}}>SLIDE TO BUY  >></Text>
+                            </View>
                         </RNSlidingButton>
-                        </LinearGradient>
+                    </LinearGradient>
                         
                     </View>
                 </View>

@@ -11,7 +11,7 @@ target 'Clickers' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
-  # pod 'FirebaseMessaging'
+  pod 'Firebase/Messaging'
   
   target 'Clickers-tvOSTests' do
     inherit! :search_paths

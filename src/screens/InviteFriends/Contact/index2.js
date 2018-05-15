@@ -87,6 +87,7 @@ export default class InviteFriends extends Component{
     componentDidMount()
     {   
         let res=Contacts.getAll((err,contact) => {
+            console.log('contacts',contact)
             let nameArray = contact.map((data, index) => {
                 data.familyName?
                 this.state.contacts.push(data.givenName+" "+data.familyName)
@@ -112,10 +113,10 @@ export default class InviteFriends extends Component{
                             animationType:"slide-horizontal",
                             
                             passProps: item.item.familyName == null ?
-                            {name: item.item.givenName }
+                            {name: item.item.givenName,phonenumber: item.item.phoneNumbers[0].number }
                             :
                             {
-                                name: item.item.givenName +' '+item.item.familyName
+                                name: item.item.givenName +' '+item.item.familyName,phonenumber: item.item.phoneNumbers[0].number 
                             }
                         })}}>
                         {

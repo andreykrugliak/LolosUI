@@ -7,7 +7,7 @@ const iphone7plus = 736
 export default StyleSheet.create({
     headerText:{
         color:"#000",
-        fontSize:16, 
+        fontSize:18, 
         fontFamily:'Lato-Regular',
         fontWeight:"bold",
     },

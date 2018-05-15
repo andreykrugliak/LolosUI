@@ -36,7 +36,7 @@ export default class Phone extends Component{
     } else {
       callingCode = userCountryData.callingCode
     }
-    this.unsubscribe = null;
+    
     this.state = {
       cca2,
       callingCode,
@@ -48,24 +48,22 @@ export default class Phone extends Component{
     
   }
   componentDidMount(){
-     this.unsubscribe = firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-          this.setState({ user: user.toJSON() });
-        } else {
-          // User has been signed out, reset the state
-          this.setState({
-            user: null,
-            message: '',
-            codeInput: '',
-            phoneNumber: '+44',
-            confirmResult: null,
-          });
-        }
-      });
-  }
-  componentWillUnmount() {
-    //  if (this.unsubscribe) this.unsubscribe();
-  }
+   console.log('++',this.props.birthday)
+    this.unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+       if (user) {
+         this.setState({ user: user.toJSON() });
+       } else {
+         // User has been signed out, reset the state
+         this.setState({
+           user: null,
+           message: '',
+           codeInput: '',
+           phoneNumber: '+44',
+           confirmResult: null,
+         });
+       }
+     });
+ }
 
   countryPicker(){
     
@@ -83,21 +81,21 @@ export default class Phone extends Component{
         />
     
   }
-  phoneSignUp(){
+  phoneSignUp(){    
       let self = this
       firebase.auth().signInWithPhoneNumber('+'+this.state.callingCode+this.state.text)
-      .then(confirmResult=>{
+      .then(confirmResult=>{        
         self.props.navigator.push({
           screen:'app.OtpScreen',
           animationType:"slide-horizontal",
-          passProps:{confirmResult: confirmResult}
+          passProps:{confirmResult: confirmResult,phonenumber: '+'+this.state.callingCode+this.state.text, birthday: self.props.birthday}
         })
       })
       .catch(error=>{
-        // alert(error.message)
+        alert(error.message)
       })
         
-      }
+  }
   render() {
     return (
         <View style={{flex:1,backgroundColor:'#fff'}}>

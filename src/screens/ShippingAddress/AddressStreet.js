@@ -23,6 +23,22 @@ export default class Street extends Component{
             bgColor:'#F0F0F0'
         }
     }
+    componentDidMount(){
+        let uid=firebase.auth().currentUser.uid;
+        let streetText;
+        
+        firebase.database().ref('users/'+uid).on('value',function(snapshot){
+           
+            streetText=snapshot.child('street').val();
+           
+            if(streetText === null) streetText = ''
+           if(streetText!=='') this.setState({ disabled:false, color:'#fff',bgColor:'#FF4273' })
+           this.setState({               
+               streetText              
+           })
+          
+        }.bind(this));
+    }
 
     _handleInput(text){
         this.setState({

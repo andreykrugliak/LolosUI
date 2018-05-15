@@ -81,7 +81,8 @@ export default class SignUp extends Component{
                     <Button onPress={()=>{
                                     this.props.navigator.push({
                                         screen:'app.Phone',
-                                        animationType:"slide-horizontal"
+                                        animationType:"slide-horizontal",
+                                        passProps: {birthday: this.state.date}
                                         })
                                     }} 
                                     disabled={this.state.disabled} 

@@ -10,6 +10,7 @@ var WindowHeight = Dimensions.get('window').height
 import styles from './style';
 import firebase from 'react-native-firebase';
 
+
 export default class Country extends Component{
 
     static navigatorStyle={
@@ -24,6 +25,23 @@ export default class Country extends Component{
             color:'#CCCCCC',
             bgColor:'#F0F0F0'
         }
+    }
+
+    componentDidMount(){
+        let uid=firebase.auth().currentUser.uid;
+        let aptText;
+        
+        firebase.database().ref('users/'+uid).on('value',function(snapshot){
+                   
+            aptText=snapshot.child('apt').val();          
+           
+            if(aptText === null) aptText = ''        
+            if(aptText!=='') this.setState({disabled:false,color:'#fff',bgColor:'#FF4273'})   
+           this.setState({              
+            aptText              
+           })
+          
+        }.bind(this));
     }
 
     _handleInput(text){

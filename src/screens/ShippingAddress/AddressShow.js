@@ -63,7 +63,7 @@ export default class ShippingAddress extends Component{
 
                 <TouchableOpacity
                 onPress={()=>{
-                            this.props.navigator.push({
+                            this.props.navigator.resetTo({
                                 screen:'app.HomePage',
                                 animationType:"slide-horizontal"
                             })

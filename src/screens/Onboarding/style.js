@@ -87,7 +87,7 @@ export default StyleSheet.create({
        
         resizeMode:'contain',
         
-        height:165*0.8
+        height:165*0.8,
     },
     animatedSmileyView:{
         alignSelf:'center',

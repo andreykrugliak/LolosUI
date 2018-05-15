@@ -23,6 +23,22 @@ export default class Zip extends Component{
             bgColor:'#F0F0F0'
         }
     }
+    componentDidMount(){
+        let uid=firebase.auth().currentUser.uid;
+        let zipText;
+        
+        firebase.database().ref('users/'+uid).on('value',function(snapshot){
+            
+            zipText=snapshot.child('zipcode').val();
+            
+            if(zipText === null) zipText = ''
+            if(zipText!=='') this.setState({ disabled:false, color:'#fff',bgColor:'#FF4273'})
+           this.setState({              
+               zipText
+           })
+          
+        }.bind(this));
+    }
 
     _handleInput(text){
         this.setState({

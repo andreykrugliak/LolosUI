@@ -27,11 +27,18 @@ export default class DrawerScreen extends Component{
 
                 <View style={styles.drawerContainer}>
                     <TouchableOpacity  style={{paddingBottom:10}}
-                    onPress={()=>   
-                        this.props.navigator.handleDeepLink({
+                    onPress={()=>  {
+                           this.props.navigator.handleDeepLink({
                         link: "sidemenu",
                         payload: {screen:"app.myProfile",title:'MY PROFILE'}
-                        })}>
+                        })   
+                         {/* this.props.navigator.push({
+                            screen: 'app.myProfile',
+                            title: 'MY PROFILE',
+                            animationType: 'fade'
+                        }) */}
+                        } 
+                        }>
                         <Text style={styles.drawerInnerText}>My Profile</Text>
                     </TouchableOpacity>
                     <View style={styles.line}></View>
@@ -57,7 +64,7 @@ export default class DrawerScreen extends Component{
                     </TouchableOpacity>
                     <View style={styles.line}></View>
 
-                    <TouchableOpacity 
+                    {/* <TouchableOpacity 
                     onPress={()=>{
                         this.props.navigator.handleDeepLink({
                             link: "sidemenu",
@@ -67,7 +74,7 @@ export default class DrawerScreen extends Component{
                     style={{paddingBottom:10}}>
                         <Text style={styles.drawerInnerText}>Log Out</Text>
                     </TouchableOpacity>
-                    <View style={styles.line}></View>
+                    <View style={styles.line}></View> */}
 
                 </View>
                 

@@ -20,7 +20,7 @@ export default class InviteFriends extends Component{
                 <Image source={require('@images/InviteFriends/two.png')} style={styles.image}/>
                 <Text style={styles.invite}>2 invites per day</Text>
                 <TouchableOpacity style={styles.button} onPress={()=>{
-                    this.props.navigator.push({
+                    this.props.navigator.resetTo({
                         screen:'app.InviteFriendsContactSearch',
                         animationType:"slide-horizontal"
                     })

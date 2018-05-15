@@ -7,6 +7,7 @@ const windowWidth = Dimensions.get('window').width;
 
 
 import LinearGradient from 'react-native-linear-gradient';
+import firebase from 'react-native-firebase';
 export default class ButtonExample extends Component {
     
     constructor(props){
@@ -18,6 +19,19 @@ export default class ButtonExample extends Component {
    
     static navigatorStyle = {
         navBarHidden :true
+    }
+    componentWillMount(){
+        let self = this
+        // firebase.auth().onAuthStateChanged(user=>{
+        //     if(user){
+        //         self.props.navigator.push({
+        //             screen: 'app.Onboarding',
+        //             animationType: 'slide-horizontal'                    
+        //         })
+        //     }else{
+                
+        //     }
+        // })
     }
 
     componentDidMount(){
@@ -31,6 +45,16 @@ export default class ButtonExample extends Component {
             this.setState({splash:false})
         },500)
         
+    }
+    next(){
+        let self = this
+        
+                self.props.navigator.push({
+                    screen:'app.Onboarding',
+                    animationType:"slide-horizontal"
+                }) 
+            
+                       
     }
     render() { 
         if(this.state.splash){
@@ -94,13 +118,7 @@ export default class ButtonExample extends Component {
                           start={{x: 1.04, y: 0.55}} end={{x: -0.04, y: 0.45}}  
                           locations={[0.00,1.00]}
                           style={styles.linerButton} colors={['#F5317F', '#FF7C6E']} >
-                                <TouchableOpacity onPress={()=>{
-                          this.props.navigator.push({
-                            screen:'app.Onboarding',
-                            animationType:"slide-horizontal"
-                          })
-                          
-                          }} style={styles.ButtonView}>
+                                <TouchableOpacity onPress={()=>this.next()} style={styles.ButtonView}>
                                     {/* <Text style={styles.ButtonText}>Create Account</Text> */}
                                     <Text style={styles.ButtonText}>Check It Out!</Text>
         

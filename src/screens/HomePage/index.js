@@ -9,7 +9,8 @@ import Carousel from 'react-native-snap-carousel';
 import PreviewScreen from '@screens/Shop/PreviewScreen/index'
 import SliderPage from '@screens/HomePage/SliderPage'
 import Walllet from '@screens/HomePage/Wallet'
-import styles from './style'
+import styles from './style';
+import firebase from 'react-native-firebase'
 // const initialLayout = {
 //     height: 0,
 //     width: Dimensions.get('window').width,
@@ -28,7 +29,16 @@ import styles from './style'
   export default class TabViewExample extends React.Component {
 
 
-    
+ componentDidMount(){
+   let self = this
+    console.log('++--',this.props.birthday)
+    let uid = firebase.auth().currentUser.uid;
+    if(this.props.birthday !== ''&& this.props.birthday!==undefined){
+        firebase.database().ref('users/'+uid).update({                    
+                    birthday: self.props.birthday
+        })
+    }
+ }
     onNavigatorEvent(event)
     {
       if (event.type == 'DeepLink') {
@@ -81,7 +91,13 @@ import styles from './style'
     _handleIndexChange = index => this.setState({ index });
 
     _renderHeader = props => <TabBar 
-        style={{backgroundColor:"#fff",height:73}}
+        style={{backgroundColor:"#fff",height:73,shadowColor: '#D3D3D3',
+                                                  shadowOffset: {
+                                                    width: 0,
+                                                    height: -2
+                                                  },
+                                                  shadowRadius: 2,
+                                                  shadowOpacity: 0.5,}}
         labelStyle={{fontSize: 10, color: '#000'}} 
         {...props} 
         renderIcon = {this._renderIcon} 
