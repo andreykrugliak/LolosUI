@@ -18,8 +18,7 @@ firebase.auth().onAuthStateChanged(user=>{
     },
     drawer:{
         left:{
-            screen:'app.DrawerScreen',
-           // fixedWidth:0.75*(windowWidth*3),
+            screen:'app.DrawerScreen',           
         },
         
         style: {
