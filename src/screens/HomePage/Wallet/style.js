@@ -26,14 +26,16 @@ export default StyleSheet.create({
     },
     badgeStyle:{
         
-        height:14,
+         height:14,
         width:14,
-       // borderRadius:7,
+       borderRadius:7,
         position:"absolute",
         right:10,
         top:6,
         zIndex:1,
-        backgroundColor:"#50C2A8",
+        backgroundColor:"#d0021b",
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     cardImage:{
         height: 371,
@@ -43,7 +45,8 @@ export default StyleSheet.create({
     badgeText:{
         fontSize:10,
         position:"absolute",
-        top:-6
+        // top:-6,
+        backgroundColor:'transparent'
     },
     wrapper:{
         borderWidth:1, 

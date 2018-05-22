@@ -43,8 +43,8 @@ export default class InviteFriends extends Component{
        let self = this      
       Composer.composeMessageWithArgs(
         {
-            'messageText':`${this.state.fullname} invited you to check out the new way to earn and spend the new teenagers virtual money .
-                            check it out for free : Link`,
+            'messageText':`${this.state.fullname} invited you to check out the new way to earn and spend the new teenagers virtual money .check it out for free : https://www.instagram.com/lolos.me `,
+                            
             'subject':'Invite',
             'recipients':[this.state.phonenumber],
           'presentAnimated': true,

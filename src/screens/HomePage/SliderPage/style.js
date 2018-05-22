@@ -27,12 +27,14 @@ export default StyleSheet.create({
     badgeStyle:{
         height:14,
         width:14,
-       // borderRadius:7,
+       borderRadius:7,
         position:"absolute",
         right:10,
         top:6,
         zIndex:1,
-        backgroundColor:"#50C2A8",
+        backgroundColor:"#d0021b",
+        justifyContent: 'center',
+        alignItems: 'center'
        // opacity:1
     },
     cardImage:{
@@ -177,8 +179,22 @@ export default StyleSheet.create({
         borderWidth: 2,
         alignSelf:'center',
         borderColor: "#FF4273",	
-        borderRadius:0,	
+        borderRadius:1,	
         backgroundColor: "#FFFFFF",
+    },
+    playbutton: {
+        position:'absolute',
+        top:60,
+        marginHorizontal:73,
+        // height:60,
+        // width:60,
+        justifyContent:'center',
+        alignItems:'center',
+        // borderWidth: 2,
+        alignSelf:'center',
+        // borderColor: "#FF4273",	
+        // borderRadius:0,	
+        // backgroundColor: "#FFFFFF",
     },
 
     buttonTextInvite:{

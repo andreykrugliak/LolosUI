@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {Container, Header, Content, Footer, FooterTab, Button,Input, Text, Icon, Body, Right, Left,Title, Card, Badge, CardItem} from 'native-base';
-import {View,Dimensions,Image,Platform, TouchableOpacity,FlatList} from 'react-native';
+import {View,Dimensions,Image,Platform, TouchableOpacity,FlatList, TouchableHighlight} from 'react-native';
 import CountryPicker, {
     getAllCountries
 } from 'react-native-country-picker-modal'
@@ -82,30 +82,35 @@ export default class Country extends Component{
                     <Text style={[styles.bodyText,{marginTop:29}]}>
                         Country
                     </Text>
+                    <TouchableHighlight onPress={()=>this.picker.openModal()} underlayColor='transparent'>
                     <View style={[styles.inputContainer,{marginTop:Platform.OS=='android'?this.state.inputPosition:72}]}>
-                        <View style={styles.input}>
-                            <Input onTouchStart={()=>{
-                                this.picker.openModal()
-                                this.setState({height:(WindowHeight/2)-45,clear:false,inputPosition:50})}} 
-                                //placeholder="United State"
-                               // placeholderTextColor="#000"
-                                value={this.state.Country} 
-                                style={{marginLeft:16}} 
-                                returnKeyType='done'
-                                />
-                                {
-                                    this.state.clear?
-                                    <TouchableOpacity style={styles.imageContainer} 
-                                    onPress={()=>{
-                                        this.setState({
-                                        Country:'',
-                                        
-                                    }) }}>
-                                    <Image style={styles.crossImage} source={require('@images/LoginScreen/cross.png')}/>     
-                                    </TouchableOpacity>:null
-                                }
-                        </View>
+                        
+                            <View style={styles.input}>
+                                {/* <Input onTouchStart={()=>{
+                                    this.picker.openModal()
+                                    this.setState({height:(WindowHeight/2)-45,clear:false,inputPosition:50})}} 
+                                    //placeholder="United State"
+                                // placeholderTextColor="#000"
+                                    value={this.state.Country} 
+                                    style={{marginLeft:16}} 
+                                    returnKeyType='done'
+                                    /> */}
+                                <Text style={{marginLeft:16}}>{this.state.Country}</Text>
+                                    {
+                                        this.state.clear?
+                                        <TouchableOpacity style={styles.imageContainer} 
+                                        onPress={()=>{
+                                            this.setState({
+                                            Country:'',
+                                            
+                                        }) }}>
+                                        <Image style={styles.crossImage} source={require('@images/LoginScreen/cross.png')}/>     
+                                        </TouchableOpacity>:null
+                                    }
+                            </View>
+                        
                     </View>
+                    </TouchableHighlight>
                 </View>
 
                 <View>

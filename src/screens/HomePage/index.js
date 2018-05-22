@@ -11,6 +11,8 @@ import SliderPage from '@screens/HomePage/SliderPage'
 import Walllet from '@screens/HomePage/Wallet'
 import styles from './style';
 import firebase from 'react-native-firebase'
+import FCM, {FCMEvent,} from 'react-native-fcm';
+import { Bubbles, DoubleBounce, Bars, Pulse } from 'react-native-loader';
 // const initialLayout = {
 //     height: 0,
 //     width: Dimensions.get('window').width,
@@ -28,17 +30,23 @@ import firebase from 'react-native-firebase'
 
   export default class TabViewExample extends React.Component {
 
+     
+    
 
  componentDidMount(){
-   let self = this
+   this.setState({splash: true});
+    
+   let self = this;
+   setTimeout(function(){self.setState({splash:false})},5000)
     console.log('++--',this.props.birthday)
     let uid = firebase.auth().currentUser.uid;
-    if(this.props.birthday !== ''&& this.props.birthday!==undefined){
+    if(this.props.birthday !== ''&& this.props.birthday!==undefined){      
         firebase.database().ref('users/'+uid).update({                    
                     birthday: self.props.birthday
         })
     }
  }
+
     onNavigatorEvent(event)
     {
       if (event.type == 'DeepLink') {
@@ -66,6 +74,9 @@ import firebase from 'react-native-firebase'
 
 
     }}
+    // splash=()=>{
+    //   this.setState({})
+    // }
 
     static navigatorStyle = {
         navBarHidden:true
@@ -79,6 +90,7 @@ import firebase from 'react-native-firebase'
                 { key: '1', icon: images.Image5, iconSelected: images.Image2},
                 { key: '2',icon: images.Image6, iconSelected: images.Image3},
             ],
+            splash: false
         };
         this._renderScene = this._renderScene.bind(this)
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
@@ -110,7 +122,7 @@ import firebase from 'react-native-firebase'
              switch(route.key){
                  case '0': return <PreviewScreen   navigator={this.props.navigator}/>
                  case '1':return <Walllet navigator={this.props.navigator} />
-                 case '2': return <SliderPage _handleIndexChange={this._handleIndexChange} navigator={this.props.navigator} /> 
+                 case '2': return <SliderPage _handleIndexChange={this._handleIndexChange} navigator={this.props.navigator} splash={this.props.splash} /> 
              }
         }
           onSwipedAllCards = () => {
@@ -148,21 +160,35 @@ import firebase from 'react-native-firebase'
     
   
         render() {
+         
+         
           
             return (
                 <View style={{height:WindowHeight,flex:1,width:WindowWidth}}>
 
-                <TabViewAnimated
-                swipeEnabled={false}
-                navigationState={this.state}
-                renderScene={this._renderScene}
-                renderFooter={this._renderHeader}
-                onIndexChange={this._handleIndexChange}
-                //initialLayout={initialLayout}
-                renderPager={this._renderPager}
-                ></TabViewAnimated>
-        
-            </View>
+                    <TabViewAnimated
+                    swipeEnabled={false}
+                    navigationState={this.state}
+                    renderScene={this._renderScene}
+                    renderFooter={this._renderHeader}
+                    onIndexChange={this._handleIndexChange}
+                    //initialLayout={initialLayout}
+                    renderPager={this._renderPager}
+                    ></TabViewAnimated>
+                    {
+                      this.state.splash?
+                      <View style={{width:WindowWidth,height:WindowHeight,justifyContent:'center',
+                            alignItems:'center',position:'absolute',backgroundColor:'white',zIndex:1000}}>
+                        <Image source={require('@images/Assets/em.png')} style={{width:80,height:80,marginBottom:60}} />
+                        <Bars size={10} color="#ffce00"  />
+                        <View style={{width:100,height:40,borderRadius:8,borderColor:'#333',borderWidth:1,
+                              justifyContent:'center',alignItems:'center',position:'absolute',bottom:80}}>
+                          <Text style={{fontSize:17,color:'#333'}}>Beta</Text>
+                        </View>
+                      </View>:null
+                    }
+            
+                </View>
                 
             );
         }

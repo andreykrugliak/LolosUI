@@ -4,12 +4,31 @@ import {View,Dimensions,Image,ScrollView,TouchableOpacity,FlatList} from 'react-
 
 var WindowWidth = Dimensions.get('window').width
 var WindowHeight = Dimensions.get('window').height
-import styles from './style'
+import styles from './style';
+import firebase from 'react-native-firebase';
+import moment from 'moment'
 
 export default class Wallet extends Component{
+    constructor(){
+        super()
+        this.state={
+            badge: 0,
+            balance: 0
+        }
+    }
     static navigatorStyle = {
         navBarHidden:true
     };
+    componentWillMount(){
+        let uid = firebase.auth().currentUser.uid, badge=0, balance=0;
+        firebase.database().ref('users/'+uid).on('value',function(snapshot){
+            badge=snapshot.child('badge').val();
+            balance=snapshot.child('balance').val();
+            if(badge===undefined||badge===null) badge = 0
+            if(balance===undefined||balance===null) balance = 0
+            this.setState({badge,loading: false, balance})
+        }.bind(this))
+    }
     render(){
     return(
         <View style={{flex:1,zIndex:0,backgroundColor:'#fff'}}>
@@ -36,11 +55,13 @@ export default class Wallet extends Component{
                     animationType:"slide-horizontal"
                 })
                 }}>
-                    <Badge style={[styles.badgeStyle]}>
-                        {/* <View>
-                            <Text style={styles.badgeText}>1</Text>
-                        </View> */}
-                    </Badge>  
+                    { this.state.badge !== 0?
+                        <Badge style={[styles.badgeStyle]}>
+                        
+                                <Text style={styles.badgeText}>{this.state.badge}</Text> 
+                        
+                        </Badge>:null
+                        }  
                     <Image source={require('@images/HomePage/NOTIFICATIONWhite.png')}>
                     </Image>
                 </Button>
@@ -50,9 +71,9 @@ export default class Wallet extends Component{
             
            
         
-            <Text style={styles.date}>12.12.17</Text>
+            <Text style={styles.date}>{moment().format('DD.MM.YYYY')}</Text>
             <Text style={styles.currentWalletText}>Current in my Wallet</Text>
-            <Text style={styles.currentWalletNum}>34</Text>
+            <Text style={styles.currentWalletNum}>{this.state.balance}</Text>
             <Image style={styles.twoSmiley} source={require('@images/InviteFriends/2smiley.png')}/>
               
                 <View style={{flexDirection:'row',marginTop:55,justifyContent:'space-between',marginHorizontal:24}}>

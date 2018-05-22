@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, View,Dimensions, Text,StyleSheet,TouchableOpacity,ActivityIndicator} from 'react-native';
+import { Image, View,Dimensions, Text,StyleSheet,TouchableOpacity,ActivityIndicator, WebView} from 'react-native';
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 // import Video from 'react-native-af-video-player'
@@ -24,7 +24,7 @@ export default class VideoPlayer extends Component{
          return(
             <View style={{flex:1}}> 
                  <View style={{backgroundColor:'#000',flex:1}}>
-                     <Video
+                     {/* <Video
                        //autoPlay  
                      resizeMode='contain'
                      source={{uri:this.props.videoUrl}}
@@ -35,7 +35,16 @@ export default class VideoPlayer extends Component{
                          })
                      }}
                      onError={(error)=>console.log(error)}
-                     onLoad={(data)=>console.log(data)}
+                     onLoad={(data)=>console.log('++--',data)}
+                     onLoadStart={(d)=>console.log('++--',d)}
+                     progressUpdateInterval={250}
+                     onPress={(d)=>console.log('++--',d)}
+                     playWhenInactive={false}
+                     /> */}
+                     <WebView
+                        javaScriptEnabled={true}
+                        domStorageEnabled={true}
+                        source={{uri: this.props.videoUrl}}
                      />
                  </View>   
                  <View style={{position:'absolute',right:20,top:20,}} >
