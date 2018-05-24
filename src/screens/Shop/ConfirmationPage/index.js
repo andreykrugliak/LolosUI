@@ -5,14 +5,44 @@ import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
 import Swiper from 'react-native-deck-swiper'
 var WindowWidth = Dimensions.get('window').width
 var WindowHeight = Dimensions.get('window').height
-import styles from './style'
+import styles from './style';
+import firebase from 'react-native-firebase'
 
 
 export default class ConfirmationPage extends Component{
 
+    constructor(){
+        super()
+        this.state = {
+            country: '',
+            street: '',
+            zipcode: '',
+            city: ''
+        }
+    }
+
     static navigatorStyle = {
         navBarHidden:true
     };
+    componentWillMount(){
+        let uid=firebase.auth().currentUser.uid;
+        let country,street,zipcode,city;
+        
+        firebase.database().ref('users/'+uid).on('value',function(snapshot){
+            country=snapshot.child('country').val();
+            street=snapshot.child('street').val();            
+            city=snapshot.child('city').val();
+            zipcode=snapshot.child('zipcode').val();
+     
+           this.setState({
+               country,
+               city,
+               street,
+               zipcode
+           })
+          
+        }.bind(this));
+    }
 
     render(){
         return(
@@ -35,7 +65,7 @@ export default class ConfirmationPage extends Component{
                     </View>
                     <View style={styles.footer}>
                         <Text style={styles.send}>Send To:</Text>
-                        <Text style={styles.send}>Pardes Hana, Bilu 11a, Israel</Text>
+                        <Text style={styles.send}>{this.state.city}, {this.state.street}, {this.state.country}</Text>
                     </View>
                     <View style={styles.button}>
                     {/* <View style={styles.line}></View> */}
@@ -47,7 +77,8 @@ export default class ConfirmationPage extends Component{
             <TouchableOpacity onPress={()=>{
                         this.props.navigator.push({
                             screen:'app.HomePage',
-                            animationType:"slide-horizontal"
+                            animationType:"slide-horizontal",
+                            passProps: {from: true}
                         })
                     }} style={styles.btnBackground}>
                         <Text style={styles.buy}>Buy</Text>

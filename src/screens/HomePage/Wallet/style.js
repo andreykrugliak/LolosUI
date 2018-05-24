@@ -44,9 +44,11 @@ export default StyleSheet.create({
     },
     badgeText:{
         fontSize:10,
-        position:"absolute",
+        // position:"absolute",
         // top:-6,
-        backgroundColor:'transparent'
+        backgroundColor:'transparent',
+        color:'white',
+        marginTop:-0.7
     },
     wrapper:{
         borderWidth:1, 

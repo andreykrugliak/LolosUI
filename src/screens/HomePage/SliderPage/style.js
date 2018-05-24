@@ -25,9 +25,9 @@ export default StyleSheet.create({
         width:"auto",
     },
     badgeStyle:{
-        height:14,
-        width:14,
-       borderRadius:7,
+        height:16,
+        width:16,
+       borderRadius:8,
         position:"absolute",
         right:10,
         top:6,
@@ -43,12 +43,17 @@ export default StyleSheet.create({
         //flex: 1
     },
     badgeText:{
-        fontSize:9,
+        fontSize:10,
         fontFamily:'Lato-Regular',
         color:'#fff',
         opacity:1,
         backgroundColor:'transparent',
-        alignSelf:'center'
+
+        // alignSelf:'center',
+        // marginBottom: 6,
+        zIndex:2,
+        marginLeft:-1
+        // lineHeight:24
     },
     wrapper:{
         borderWidth:1, 

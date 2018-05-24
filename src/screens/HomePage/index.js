@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {Container, Header, Content, Footer, FooterTab, Button, Text, Icon, Body, Right, Left,Title, Card, Badge, CardItem} from 'native-base';
-import {View,Dimensions,Image,TouchableOpacity,ScrollView,Platform} from 'react-native';
+import {View,Dimensions,Image,TouchableOpacity,ScrollView,Platform, AsyncStorage} from 'react-native';
 import { TabViewAnimated,TabViewPagerPan,TabViewPagerScroll, TabBar, SceneMap } from 'react-native-tab-view';
 import Swiper from 'react-native-deck-swiper'
 var WindowWidth = Dimensions.get('window').width
@@ -34,12 +34,21 @@ import { Bubbles, DoubleBounce, Bars, Pulse } from 'react-native-loader';
     
 
  componentDidMount(){
-   this.setState({splash: true});
+   if(!this.props.from) this.setState({splash: true});
     
    let self = this;
    setTimeout(function(){self.setState({splash:false})},5000)
-    console.log('++--',this.props.birthday)
+    // console.log('++--',this.props.birthday)
     let uid = firebase.auth().currentUser.uid;
+    AsyncStorage.getItem('birthday').then(value=>{
+      let res = JSON.parse(value);
+      
+      if(res){
+        firebase.database().ref('users/'+uid).update({                    
+          birthday: res.birthday
+        })
+      }
+    })
     if(this.props.birthday !== ''&& this.props.birthday!==undefined){      
         firebase.database().ref('users/'+uid).update({                    
                     birthday: self.props.birthday

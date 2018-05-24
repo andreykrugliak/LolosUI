@@ -3,7 +3,7 @@ import { Image, View,Dimensions, Text,StyleSheet,TouchableOpacity,ActivityIndica
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 // import Video from 'react-native-af-video-player'
-import Video from 'react-native-video'
+import Video from 'react-native-video';
 
 export default class VideoPlayer extends Component{
 
@@ -18,34 +18,29 @@ export default class VideoPlayer extends Component{
         }
         this.player=null
     }
+    onShouldStartLoadWithRequest = (navigator) => {
+        if (navigator.url.indexOf('embed') !== -1
+        ) {
+            return true;
+        } else {
+            this.videoPlayer.stopLoading(); //Some reference to your WebView to make it stop loading that URL
+            return false;
+        }    
+    }
 
     render(){
         const url ='https://firebasestorage.googleapis.com/v0/b/lolos-v1.appspot.com/o/Clash%20Royale%20Official%20Epic%20Comeback%20Trailer.mp4?alt=media&token=81b14dfd-e6b7-4584-a4ed-f48a7f2a1121'
          return(
             <View style={{flex:1}}> 
-                 <View style={{backgroundColor:'#000',flex:1}}>
-                     {/* <Video
-                       //autoPlay  
-                     resizeMode='contain'
-                     source={{uri:this.props.videoUrl}}
-                    style={{flex:1}}
-                     onEnd={()=>{
-                         this.props.navigator.dismissModal({
-                             animationType: 'slide-down' 
-                         })
-                     }}
-                     onError={(error)=>console.log(error)}
-                     onLoad={(data)=>console.log('++--',data)}
-                     onLoadStart={(d)=>console.log('++--',d)}
-                     progressUpdateInterval={250}
-                     onPress={(d)=>console.log('++--',d)}
-                     playWhenInactive={false}
-                     /> */}
-                     <WebView
+                 <View style={{backgroundColor:'#000',flex:1}}>  
+                   <WebView 
+                        ref={(ref) => { this.videoPlayer = ref;}}
+                        scalesPageToFit={true}
                         javaScriptEnabled={true}
+                        source={{ uri: `${this.props.videoUrl}?rel=0&autoplay=1&showinfo=0&controls=0` }}
                         domStorageEnabled={true}
-                        source={{uri: this.props.videoUrl}}
-                     />
+                        mediaPlaybackRequiresUserAction={false}
+                    />
                  </View>   
                  <View style={{position:'absolute',right:20,top:20,}} >
                  <TouchableOpacity onPress={()=>{
@@ -60,6 +55,6 @@ export default class VideoPlayer extends Component{
          )
        }
 
-     
+   
     
 }

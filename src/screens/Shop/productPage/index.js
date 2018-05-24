@@ -28,19 +28,6 @@ export default class ProductPage extends Component{
                 this.ImageSource3=require('@images/shopSports/1_sport.jpg')
             
 
-            // if(this.props.index==2 && this.props.categoryKey==0){
-            //     this.ProductName=this.props.name
-            //     this.ImageSource1=require('@images/shopSports/2_sport.jpg')
-            //     this.ImageSource2=require('@images/shopSports/2.4_sport.jpg')
-            //     this.ImageSource3=require('@images/shopSports/2.5_sport.jpg')
-            // }
-
-            // if(this.props.index==3 && this.props.categoryKey==0){
-            //     this.ProductName=this.props.name
-            //     this.ImageSource1=require('@images/shopSports/3_sport.jpg')
-            //     this.ImageSource2=require('@images/shopSports/3.1_sport.jpg')
-            //     this.ImageSource3=require('@images/shopSports/3.2_sport.jpg')
-            // }
 
         return(
             <ScrollView style={{backgroundColor:'#F0F0F0'}}>
@@ -60,18 +47,16 @@ export default class ProductPage extends Component{
                     style={styles.Image}
                     dotStyle={{backgroundColor:'#fff',opacity:0.3,height:10,width:10,borderRadius:10}}
                     activeDotStyle={{backgroundColor:'#fff',height:10,width:10,borderRadius:10,}}>
-                    <View style={{flex:1}}>
-                        <Image style={{ height:WindowWidth,width:WindowWidth,resizeMode:'stretch',flex:1}}
-                         source={this.ImageSource1}/> 
-                    </View>
-                    <View style={{flex:1}}>
-                        <Image style={{ height:WindowWidth,width:WindowWidth,resizeMode:'stretch',flex:1}} 
-                        source={this.ImageSource2}/> 
-                    </View>
-                    <View style={{flex:1}}>
-                        <Image style={{ height:WindowWidth,width:WindowWidth,resizeMode:'stretch',flex:1}}
-                        source={this.ImageSource3}/> 
-                    </View>
+                    {this.props.item.gallery_imgs.map(img=>{
+                        return(
+                            <View style={{flex:1}}>
+                                <Image style={{ height:WindowWidth,width:WindowWidth,resizeMode:'stretch',flex:1}}
+                                source={{uri: img}}/> 
+                            </View>
+                        )
+                    })
+                    
+                    }
                 </ProductSwiper>
 
                 
@@ -84,49 +69,89 @@ export default class ProductPage extends Component{
                 <View style={styles.container}>
                     <View style={styles.titleView}>
                         <Text style={styles.title}>
-                            {this.ProductName} 
+                            {this.props.item.Product_Name} 
                         </Text>
 
                         <View style={styles.label}>
                             <Text style={styles.labelText}>
-                            357 lolo's
+                                {this.props.item.Price_Dollar}
                             </Text>
                         </View>
                         <View style={styles.line}></View>
                         <View style={styles.shipping}>
-                            <Text style={styles.shippingText}>Free Shipping</Text>
+                            <Text style={styles.shippingText}>{this.props.item.shipping_price_USA}</Text>
                             <Image style={styles.down} source={require('@images/Shop/down-arrow.png')}/>
                         </View>
-                        <Text style={styles.shippingSubText}>To israyal via allexpress standart shipping</Text>
+                        <Text style={styles.shippingSubText}>{this.props.item.Delivery_time_USA}</Text>
                     </View>
 
                     <View style={styles.titleView}>
                         <Text style={styles.itemText}>Item Description</Text>
 
                         <View style={styles.type}>
-                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.key}>Type</Text></View>
-                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.value}>USB Fan</Text></View>
+                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.key}>Brand Name</Text></View>
+                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.value}>{this.props.item.Brand_Name}</Text></View>
                         </View>
                         
                         <View style={[styles.type,{backgroundColor:'#fff'}]}>
                             <View style={{width:(WindowWidth-50)/2}}><Text style={styles.key}>Type</Text></View>
-                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.value}>USB Fan</Text></View>
+                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.value}>{this.props.item.Type}</Text></View>
                         </View>
                         <View style={styles.type}>
-                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.key}>Type</Text></View>
-                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.value}>USB Fan</Text></View>
+                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.key}>Strap Type</Text></View>
+                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.value}>{this.props.item.Strap_Type}</Text></View>
                         </View>
-                        <View style={[styles.type,{backgroundColor:'#fff',marginBottom:24}]}>
-                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.key}>Type</Text></View>
-                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.value}>USB Fan</Text></View>
+                        <View style={[styles.type,{backgroundColor:'#fff'}]}>
+                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.key}>Material</Text></View>
+                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.value}>{this.props.item.Material}</Text></View>
                         </View>
-
+                        <View style={styles.type}>
+                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.key}>Pattern Type</Text></View>
+                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.value}>{this.props.item.Pattern_Type}</Text></View>
+                        </View>
+                        <View style={[styles.type,{backgroundColor:'#fff'}]}>
+                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.key}>Model Number</Text></View>
+                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.value}>{this.props.item.Model_Number}</Text></View>
+                        </View>
+                        <View style={styles.type}>
+                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.key}>Size</Text></View>
+                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.value}>{this.props.item.Size}</Text></View>
+                        </View>
+                        <View style={[styles.type,{backgroundColor:'#fff'}]}>
+                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.key}>Department Name</Text></View>
+                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.value}>{this.props.item.Department_Name}</Text></View>
+                        </View>
+                        <View style={styles.type}>
+                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.key}>Style</Text></View>
+                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.value}>{this.props.item.Style}</Text></View>
+                        </View>
+                        <View style={[styles.type,{backgroundColor:'#fff'}]}>
+                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.key}>Gender</Text></View>
+                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.value}>{this.props.item.Gender}</Text></View>
+                        </View>
+                        <View style={styles.type}>
+                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.key}>Season</Text></View>
+                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.value}>{this.props.item.season}</Text></View>
+                        </View>
+                        <View style={[styles.type,{backgroundColor:'#fff'}]}>
+                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.key}>Suitable Crowd</Text></View>
+                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.value}>{this.props.item.Suitable_crowd}</Text></View>
+                        </View>
+                        <View style={styles.type}>
+                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.key}>Making Method</Text></View>
+                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.value}>{this.props.item.Making_method}</Text></View>
+                        </View>
+                        <View style={[styles.type,{backgroundColor:'#fff'}]}>
+                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.key}>Cap</Text></View>
+                            <View style={{width:(WindowWidth-50)/2}}><Text style={styles.value}>{this.props.item.Cap}</Text></View>
+                        </View>
+                        
                     </View>
 
                     <View style={styles.titleView}>
-                        <Text style={[styles.itemText]}>Store Info</Text>
+                        <Text style={[styles.itemText]}>Product rating</Text>
                         <Text style={[styles.shippingSubText,{color:'#000',marginBottom:0}]}>Computer and laptop Accessories Store</Text>
-                        <Text style={[styles.shippingSubText,{marginBottom:17}]}>98.7% positive Feedback </Text>
+                        <Text style={[styles.shippingSubText,{marginBottom:17}]}>{this.props.item.Product_rating}</Text>
                     </View>
 
                     <View style={styles.titleView}>

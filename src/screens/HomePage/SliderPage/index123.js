@@ -1,6 +1,6 @@
 import React,{PureComponent} from 'react';
-import {Container, Header, Content, Footer, FooterTab, Button,  Icon, Body, Right, Left,Title, Card, Badge, CardItem} from 'native-base';
-import {View,Dimensions,Image,TouchableOpacity,FlatList, ActivityIndicator, Linking, Platform,Text} from 'react-native';
+import {Container, Header, Content, Footer, FooterTab, Button, Icon, Body, Right, Left,Title, Card, Badge, CardItem} from 'native-base';
+import {View,Dimensions,Image,TouchableOpacity,FlatList, ActivityIndicator, Linking ,Text,  Platform} from 'react-native';
 import Swiper from 'react-native-deck-swiper'
 import Sound from 'react-native-sound'
 var WindowWidth = Dimensions.get('window').width
@@ -58,7 +58,7 @@ constructor(props){
                     // alert(res)
                 })
                 .catch(err => {
-                    // alert(err)
+                    alert(err)
                 })
                 // .finally(() => {
                 //     // cleanup
@@ -67,23 +67,34 @@ constructor(props){
         // });
     // return activeDownloads[toFile];
 }
+
+componentWillUnmount(){
+    this.notificationListener.remove();
+  }
+
+showNotification(notif){
+      if(notif.fcm.title===undefined||notif.fcm.body===undefined) return
+      let uid = firebase.auth().currentUser.uid;
+      let key = new Date().getTime()
+      let badge = 0
+      firebase.database().ref('users/'+uid).once('value',function(snapshot){
+            badge=snapshot.child('badge').val();           
+            if(badge === null) badge = 0            
+           firebase.database().ref('users/'+uid).update({
+              badge: badge+1
+            })
+        });
+      let updates = {};
+      updates[key] = {title: notif.fcm.title,body: notif.fcm.body,time: key}
+      firebase.database().ref('notifications/'+uid).update(updates)   
+  }
 componentWillMount(){
     this.setState({loading: true})
     let uid = firebase.auth().currentUser.uid, badge=0;
     // this.downloadVideo('https://firebasestorage.googleapis.com/v0/b/lolos-v1.appspot.com/o/Clash%20Royale%20Official%20Epic%20Comeback%20Trailer.mp4?alt=media&token=81b14dfd-e6b7-4584-a4ed-f48a7f2a1121',baseCacheDir)
     // alert('cards')
-    let self = this;
     firebase.database().ref('cards').on('value',snapshot=>{
         console.log('++--',snapshot._value)
-        // this.setState({data: snapshot._value})
-        let data = {}
-        snapshot._value.forEach((d,i)=>{
-            // .log('++----121212',d.video)
-            if(d.video===undefined||d.video===null||d.video==='') return
-            self.downloadVideo(d.video,fs.dirs.CacheDir+`/${i}.mp4`)
-            d.video = fs.dirs.CacheDir+`/${i}.mp4`
-        })
-        console.log('++--1',snapshot._value)
         this.setState({data: snapshot._value})
     })
     firebase.database().ref('users/'+uid).on('value',function(snapshot){
@@ -91,70 +102,36 @@ componentWillMount(){
         if(badge===undefined||badge===null) badge = 0
         this.setState({badge,loading: false})
     }.bind(this))
+    
 }
-showNotification(notif){
-    if(notif.notification.title===undefined&&notif.notification.body===undefined) return
-    let uid = firebase.auth().currentUser.uid;
-    let key = new Date().getTime()
-    let badge = 0
-    firebase.database().ref('users/'+uid).once('value',function(snapshot){
-          badge=snapshot.child('badge').val();           
-          if(badge === null) badge = 0            
-         firebase.database().ref('users/'+uid).update({
-            badge: badge+1
-          })
-      });
-    let updates = {};
-    updates[key] = {title: notif.notification.title,body: notif.notification.body,time: key}
-    firebase.database().ref('notifications/'+uid).update(updates)   
-}
+
 
 
 async componentDidMount()
 {
      
-    
+    let uid = firebase.auth().currentUser.uid
      FCM.requestPermissions(); 
     FCM.getFCMToken().then(token => {      
-        const params = {
-            "to" : token,
-            "notification" : {            
-              "title" : "Welcome",
-              "text": `Welcome to LOLO'S`,
-              "badge":0, 
-              "sound":"default"
-            },
-            "priority" : "high"
-          };
-          const headers = {
-            'Authorization': 'key=AIzaSyCuFMtUH28h94Mt3ahb0vrOf-S3S55thkI',
-            'Content-Type': 'application/json'
-          };
-          
-            
-            if(this.props.createAccount){axios(
-              {
-                url: 'https://fcm.googleapis.com/fcm/send',
-                method:'post',
-                headers: headers,
-                data: params,
-                 
-            })}
+        firebase.database().ref('users/'+uid).update({
+            token: token
+        })
     });     
-    
 
     
     this.refreshTokenListener = FCM.on(FCMEvent.RefreshToken, (token) => {
-      
+      // console.log('refresh_token', token);
+     
     });
-    
+
     this.notificationListener = FCM.on(FCMEvent.Notification,  (notif) => {
-            
-        console.log('reactnative++--',notif.notification) 
+        // there are two parts of notif. notif.notification contains the notification payload, notif.data contains data payload      
+        if(notif.local_notification) return     
+        console.log('reactnative++--',notif) 
         if(notif.local_notification) return
           this.showNotification(notif)      
       })
-
+    
     this.SoundLeft=await new Sound('left_swipe.mp3',Sound.MAIN_BUNDLE,(error)=>{
         if(error){
             console.log(error)
@@ -497,21 +474,18 @@ switch(cardIndex)
                 //     to:'open',
                 //      })
             }}>
-                  { 
-                      this.state.badge !== 0?   
+                { this.state.badge !== 0?
                 <View style={[styles.badgeStyle]}>
                   
                         <Text style={styles.badgeText}>{this.state.badge}</Text> 
                 
-                </View>
-                   :null  
-                }   
+                </View>:null
+                }  
                 <Image source={require('@images/HomePage/NOTIFICATIONWhite.png')}>
                 </Image>
             </Button>
         </Right>
     </Header>
-    
         <View style={{flex:1}}>
             <Swiper
                     ref={swiper => {
@@ -544,36 +518,16 @@ switch(cardIndex)
                                 <Image source={require('@images/sliderImages/Artboard.png')} style={{width:60,height:60}} />
                                 </TouchableOpacity>:null}
                                 {Platform.OS=='ios'?
-                                    card.appstore!==undefined&&card.appstore!==null&&card.appstore!==''?
-                                        <TouchableOpacity 
-                                        style={[styles.button]} onPress={()=>Linking.openURL(card.appstore)}>
-                                                <Text style={[styles.buttonTextInvite]}>{card.buttontext}</Text>
-                                        </TouchableOpacity>:null :
-                                    card.googlestore!==undefined&&card.googlestore!==null&&card.googlestore!==''?
-                                        <TouchableOpacity 
-                                        style={[styles.button]} onPress={()=>Linking.openURL(card.googlestore)}>
-                                                <Text style={[styles.buttonTextInvite]}>{card.buttontext}</Text>
-                                        </TouchableOpacity>:null
-                                }
-                                {
-                                    card.LinkButtonText!==undefined&&card.LinkButtonText!==null&&card.LinkButtonText!==''?
-                                    <TouchableOpacity style={styles.button} onPress={()=>{
-                                            if(card.LinkButtonLink!==undefined){
-                                                this.props.navigator.push({
-                                                    screen:`${card.LinkButtonLink}`,
-                                                    animationType:"slide-horizontal"                                                 
-                                                }) 
-                                            }
-                                        }}>
-                                        <Text style={[styles.buttonTextInvite]}>{card.LinkButtonText}</Text>
-                                    </TouchableOpacity>:null
-                                }
-                                {
-                                    this.state.data.map(d=>{
-                                        return(
-                                            <CachedImage source={{uri: d.image}} style={{width:WindowWidth-40,resizeMode:'cover',opacity:0 }}/>
-                                        )
-                                    })
+                                card.appstore!==undefined&&card.appstore!==null&&card.appstore!==''?
+                                <TouchableOpacity 
+                                style={[styles.button]} onPress={()=>Linking.openURL(card.appstore)}>
+                                        <Text style={[styles.buttonTextInvite]}>{card.buttontext}</Text>
+                                </TouchableOpacity>:null :
+                                card.googlestore!==undefined&&card.googlestore!==null&&card.googlestore!==''?
+                                <TouchableOpacity 
+                                style={[styles.button]} onPress={()=>Linking.openURL(card.googlestore)}>
+                                        <Text style={[styles.buttonTextInvite]}>{card.buttontext}</Text>
+                                </TouchableOpacity>:null
                                 }
                             </View>
                         )
