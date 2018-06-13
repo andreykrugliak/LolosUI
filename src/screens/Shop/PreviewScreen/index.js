@@ -21,38 +21,25 @@ export default class PreviewScreen extends Component{
         this.state=({
             loading: true,
             data:[
-                // {
-                //     id:'1',
-                //     image:'@images/HomePage/image.jpg',
-                //     title:'Elastic sport wristband',
-                //     price:"357 lolo's",
-                //     label:'SUPER HOT',
-                // },
-                // {
-                //     id:'2',
-                //     image:'@images/HomePage/image.jpg',
-                //     title:'Binfull Mini Prortable Micro Mobile Phone USB Gadget Fans Tester For iphone 5S',
-                //     price:"357 lolo's",
-                //     label:'SUPER HOT',
-                // }
+                
             ],
             sportsData:[
                 {
-                    id:'1',
+                    id:'0',
                     image:'@images/shopSports/1_sport.jpg',
                     title:'Elastic sport wristband',
                     price:"357 lolo's",
                     label:'SUPER HOT',
                 },
                 {
-                    id:'2',
+                    id:'1',
                     image:'@images/shopSports/2_sport.jpg',
                     title:'2.8m/75cm Sports LED Luminous Jump Skipping Ropes Handle Rope Jump Ropes Crossfit Training Boxing Fitness Equipment Random Color',
                     price:"357 lolo's",
                     label:'SUPER HOT',
                 },
                 {
-                    id:'3',
+                    id:'2',
                     image:'@images/shopSports/3_sport.jpg',
                     title:'cross-fit jumping rope',
                     price:"357 lolo's",
@@ -63,8 +50,6 @@ export default class PreviewScreen extends Component{
 
             index:0,
             routes: [
-                
-                
                 {key:'0',title:'Sports'},
                 { key: '1', title: 'Gadgets' },
                 { key: '2', title: 'Mobile' },
@@ -79,15 +64,21 @@ export default class PreviewScreen extends Component{
         this._renderItems=this._renderItems.bind(this)
     }
     componentWillMount(){
+        
         this.setState({loading: true})
         let uid = firebase.auth().currentUser.uid;
         firebase.database().ref('Products').on('value',snapshot=>{
-            let data = snapshot._value;
+            
+            let data = [];
             let finalData = []
             let route = []
+            snapshot.forEach(child=>{
+                data.push(child.val())
+            })
             let DatabyCategory = Sugar.Array.groupBy(data,n=>{
                 return n.Lolos_Category
             })
+            
             let i = 0
             Sugar.Object.forEach(DatabyCategory,(val, key, index)=>{
                 let dataJson = {};
@@ -100,12 +91,9 @@ export default class PreviewScreen extends Component{
                 finalData.push(dataJson);
                 i++;
             })
-            let fashion = [];
-            fashion = snapshot._value.filter(p=>{                
-                return p.Lolos_Category=== 'Fashion'                
-            })
+            // console.log('++--DATA',finalData, route)
             this.setState({data: finalData, loading: false, routes: route})
-            console.log('+++---fashion',finalData,route)
+            
         }).bind(this)
     }
 
@@ -129,16 +117,15 @@ export default class PreviewScreen extends Component{
     } 
 
     _renderScane=({ route })=>{
-        console.log(route.key)
+        // console.log('++--ROUTE',route)
         let categoryKey=route.key
         return(
                 <FlatList
                     style={{flex:1}}
                     data={
-                        // route.key==0 || route.key==1 || route.key== 2 || route.key==3 || route.key== 4?
-                        // this.state.sportsData:
-                        // this.state.data
-                        this.selectData(route)
+                         
+                         //this.state.data
+                         this.selectData(route) 
                         }
                     keyExtractor={(item,index)=>item.id}
                     renderItem={({item,index})=>this._renderItems({item,index},categoryKey)}
@@ -147,11 +134,13 @@ export default class PreviewScreen extends Component{
     }
     selectData(route){
         if(this.state.data.length>0){
-            return(
-                this.state.data.filter(d=>{
+            // return(
+                let test=this.state.data.filter(d=>{
                     return d.category === route.title;
-                })[0].val
-            )
+                })[0]
+                // console.log('++--TEST',test.val)
+                return test.val
+            // )
         }
         return []
     }
@@ -167,6 +156,7 @@ export default class PreviewScreen extends Component{
 
     //    console.log(item.title)
     //     console.log("categoryKey"+categoryKey)
+    // console.log('++---ITEM',item)
         return(
         <View style={[styles.container]}>
             <TouchableOpacity
@@ -186,13 +176,13 @@ export default class PreviewScreen extends Component{
                         </Text>
                         <View style={styles.label}>
                             <Text style={styles.labelText}>
-                                {item.Price_Dollar}
+                                {item.Price_Lolos} lolo's
                             </Text>
                         </View>
                        
                     </View>
                     <View style={styles.extraInfo}>
-                            <Text style={styles.shippingText}>Free Shipping</Text>
+                            <Text style={[styles.shippingText,{paddingBottom:9}]}>Free Shipping</Text>
                             {/* <View style={styles.extraInfoLabel}>
                                 <Image style={styles.extraInfoIcon} source={require('@images/Shop/superhot.png')} />
                                 <Text style={styles.superHotText}>{item.label}</Text>
@@ -211,7 +201,7 @@ export default class PreviewScreen extends Component{
 
     render(){
         if(this.setState.loading) return(<View/>)
-        console.log('++-----rendering',this.state.data)
+        // console.log('++-----rendering',this.state.data)
         return(
             <View style={{backgroundColor:'#F6F6F6',flex:1}}>
                 <View style={{flex:1}}>

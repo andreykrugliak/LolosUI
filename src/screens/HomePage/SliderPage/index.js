@@ -35,7 +35,21 @@ constructor(props){
         data: [],
         badge: 0,
         loading: false,
-        splash: false
+        splash: false,
+        country:'',
+        city:'',
+        apt:'',
+        zipcode:'',
+        street:'',
+        cardIndex: !this.props.purchase?0:17,
+        hiddenCard: [],
+        hiddenCard1: [],
+        purchase: this.props.purchase,
+        invite: this.props.invite,
+        walletHidden: false,
+        marketHidden: false,
+        rewarded: this.props.reward,
+        reload: this.props.reload
     }
     
     this._swipedLeft=this._swipedLeft.bind(this)
@@ -60,6 +74,9 @@ constructor(props){
                 })
                
 }
+componentWillReceiveProps(next){    
+    this.setState({rewarded: false})
+}
 componentWillMount(){
     
     this.setState({loading: true, splash: true})
@@ -71,21 +88,39 @@ componentWillMount(){
     firebase.database().ref('cards').on('value',snapshot=>{        
         let data = []
         data = snapshot._value.sort(function(a,b){
-            
+            if(a.Order===null||b.Order===null) return false
             if(a.Order>b.Order) return 1
             if(a.Order<b.Order) return -1
             return 0
-        }).filter((d,i)=>{            
+        }).filter((d,i)=>{         
+               
             d.index = i           
             return true          
-        })        
-      
+        })                
         this.setState({data: data})
-    })
+    }).bind(this)
     firebase.database().ref('users/'+uid).on('value',function(snapshot){
         badge=snapshot.child('badge').val();
         if(badge===undefined||badge===null) badge = 0
-        this.setState({badge,loading: false})
+        let country=snapshot.child('country').val();
+        let city=snapshot.child('city').val();            
+        let street=snapshot.child('street').val();
+        let apt = snapshot.child('apt').val();
+        let zipcode = snapshot.child('zipcode').val();
+        let hiddenCard = snapshot.child('hiddenCard').val();
+        let hiddenCard1 = snapshot.child('hiddenCard1').val();
+        let walletHidden = snapshot.child('walletHidden').val();
+        let marketHidden = snapshot.child('marketHidden').val();
+        if(country===null) country=''
+        if(city===null) city=''
+        if(street===null) street=''
+        if(apt===null) apt=''
+        if(zipcode===null) zipcode=''
+        if(hiddenCard===null) hiddenCard = []
+        if(hiddenCard1===null) hiddenCard1= []
+        if(walletHidden===null) walletHidden=false
+        if(marketHidden===null) marketHidden=false
+        this.setState({badge,loading: false,country,city,apt,street,zipcode,hiddenCard,hiddenCard1,walletHidden,marketHidden})
     }.bind(this))
 }
 showNotification(notif){
@@ -178,12 +213,33 @@ _swipedRight(){
     this.SoundRight.play((onEnd)=>console.log("played"))
 
 }
+filter(i){
+    let uid = firebase.auth().currentUser.uid
+    if(i===0){
+        firebase.database().ref('users/'+uid+'/hiddenCard1').transaction(function(badge){        
+            if(badge === null) return [0]
+            else  return 
+        })
+    }
+    
+    if(i===0&&this.state.hiddenCard1.length>0){
+        
+        firebase.database().ref('users/'+uid+'/hiddenCard').transaction(function(badge){        
+            if(badge === null) return [5]
+            else  return 
+        })
+    }
+    if(i===10) this.setState({rewarded: false})
+    if(i===16) this.setState({invite: false})
+    if(i===17) this.setState({purchase: false})
+}
 
 
 
    
     render(){
         
+        const {country,city,apt,street,zipcode,reload} = this.state
         if(this.state.data.length===0||this.state.loading){
             return(
                 <View style={{flex:1,width:WindowWidth, height: WindowHeight,justifyContent:"center",alignItems:'center'}}>                
@@ -191,7 +247,28 @@ _swipedRight(){
                 </View>
             )
         }
-        let {data} = this.state;
+        let self = this
+        console.log('++---hiddenCard',this.props.purchase)
+        let data =[] 
+        if(this.state.purchase||this.state.invite||this.state.rewarded){
+            data = this.state.data.filter(d=>{
+                if(!this.state.purchase&&d.index===17) return
+                return true
+            })
+        }else{
+            data = this.state.data.filter(d=>{ 
+                if(this.state.walletHidden&&d.index===2) return
+                if(this.state.marketHidden&&d.index===3) return
+                if(country!==''&&city!==''&&apt!==''&&street!==''&&zipcode!==''&&d.index===4) return 
+                if(this.state.hiddenCard1.length>0&&d.index===0) return 
+                if(!this.state.rewarded&&d.index===10) return
+                if(!this.state.purchase&&d.index===17) return
+                if(!this.state.invite&&d.index===16)return
+                if(this.state.hiddenCard.length>0&&d.index===1) return
+            return true
+        })
+        }
+        
        
     return(
 
@@ -244,24 +321,52 @@ _swipedRight(){
                     onSwipedLeft={()=>{this._swipedLeft()}}
                     onSwipedRight={()=>this._swipedRight()}	
                     onSwipedTop={()=>{this._swipedLeft()}}
-                    onSwipedBottom={()=>this._swipedRight()}                    
-                    cards={this.state.data}                  
-                    cardVerticalMargin={20}                   
+                    onSwipedBottom={()=>this._swipedRight()}         
+                    onSwiped={(i)=>this.filter(i)}           
+                    cards={data}                  
+                    cardVerticalMargin={20}      
+                    cardIndex={!this.props.purchase?
+                                !this.props.invite?!this.props.reward?0:10:16
+                                :17}             
                     renderCard={(card)=>{
                         return(
+                            
                             <View style={[styles.videoBackground,{backgroundColor:'white'}]}>
-                                <CachedImage source={{uri: card.image}} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
+                                <CachedImage source={{uri: card.image}} style={{width:WindowWidth-40,flex:1, resizeMode:'cover',borderRadius: 5}}/>
                                 {card.video!==null&&card.video!==''&&card.video!==undefined?
-                                    <TouchableOpacity  style={styles.playbutton} onPress={()=>this.props.navigator.showModal({
+                                    <TouchableOpacity  style={styles.playbutton} onPress={()=>{
+                                                                if(card['Name of card']=== 'Asphalt 8'){
+                                                                    let uid = firebase.auth().currentUser.uid
+                                                                    firebase.database().ref('users/'+uid+'/balance').transaction(function(badge){                                                                       
+                                                                        return badge+20
+                                                                    })
+                                                                }
+                                                                this.props.navigator.showModal({
                                                                     screen: 'app.VideoCard', 
                                                                     passProps: {videoUrl: card.video}
-                                                                })}>
+                                                                })}}>
                                 <Image source={require('@images/sliderImages/Artboard.png')} style={{width:60,height:60}} />
                                 </TouchableOpacity>:null}
                                 {Platform.OS=='ios'?
                                 card.appstore!==undefined&&card.appstore!==null&&card.appstore!==''?
                                 <TouchableOpacity 
-                                style={[styles.button]} onPress={()=>Linking.openURL(card.appstore)}>
+                                style={[styles.button]} onPress={()=>{
+                                    if(card['Name of card'] === 'Monument Valley'){
+                                        this.props.navigator.push({
+                                            screen: 'app.ValleyScreen',
+                                            animationType:'slide-horizontal'
+                                        })
+                                        return
+                                    }
+                                    if(card['Name of card'] === 'Borderline'){
+                                        this.props.navigator.push({
+                                            screen: 'app.CrazyLab',
+                                            animationType:'slide-horizontal'
+                                        })
+                                        return
+                                    }
+                                    Linking.openURL(card.appstore)
+                                    }}>
                                         <Text style={[styles.buttonTextInvite]}>{card.buttontext}</Text>
                                 </TouchableOpacity>:null :
                                 card.googlestore!==undefined&&card.googlestore!==null&&card.googlestore!==''?
@@ -274,6 +379,29 @@ _swipedRight(){
                                 {
                                     card.LinkButtonText!==undefined&&card.LinkButtonText!==null&&card.LinkButtonText!==''?
                                     <TouchableOpacity style={styles.button} onPress={()=>{
+                                            if(card.LinkButtonLink === 'app.PreviewScreen'){
+                                                this.props._handleIndexChange(0);
+                                                return;
+                                            }
+                                            if(card.LinkButtonLink === 'app.Wallet'){
+                                                this.props._handleIndexChange(1);
+                                                return;
+                                            }
+                                            if(card.LinkButtonLink==='app.shippingAddress'){
+                                                
+                                                if(country!==''&&city!==''&&apt!==''&&street!==''&&zipcode!==''){
+                                                    this.props.navigator.push({
+                                                        screen: 'app.shippingAddressEdit',
+                                                        animationType:"slide-horizontal"
+                                                    })
+                                                }else{
+                                                    this.props.navigator.push({
+                                                        screen: 'app.shippingAddressHome',
+                                                        animationType:"slide-horizontal"
+                                                    })
+                                                }
+                                                return
+                                            }
                                             if(card.LinkButtonLink!==undefined){
                                                 this.props.navigator.push({
                                                     screen:`${card.LinkButtonLink}`,
@@ -284,13 +412,14 @@ _swipedRight(){
                                         <Text style={[styles.buttonTextInvite]}>{card.LinkButtonText}</Text>
                                     </TouchableOpacity>:null
                                 }
+                                
 
                                 {
                                     this.state.data.map((d,i)=>{
                                         if(card.index===0){
                                             if(i>card.index+4) return
                                         }else{
-                                            if(i<card.index+4 || i>card.index+4) return
+                                            if(i<card.index+4 || i>card.index+7) return
                                         }                                       
                                         return(
                                             <CachedImage source={{uri: d.image}} style={{width:WindowWidth-40,resizeMode:'cover',opacity:0 }}/>
@@ -302,6 +431,7 @@ _swipedRight(){
                     }}
                     animateOverlayLabelsOpacity={false}
                     animateCardOpacity={false}
+                   cardStyle={styles.videoBackground}
                 >
             
             </Swiper>

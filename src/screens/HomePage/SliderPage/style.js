@@ -82,8 +82,16 @@ export default StyleSheet.create({
         width:WindowWidth-40,
         ...Platform.OS=='ios'?{height:WindowHeight-190}:{height:WindowHeight-210},
         borderRadius:5,
-        overflow:"hidden",
-
+        // overflow:"hidden",
+        shadowColor: '#D3D3D3',
+        shadowOffset: {
+        width: 0,
+        height: 2
+        },
+        shadowRadius: 3,
+        shadowOpacity: 0.9,
+        
+        
     },
     titleSlide1:{
         marginTop:WindowHeight<= iphone5s?125:WindowHeight <= android?120:149,

@@ -3,17 +3,27 @@ import {Text,View,Image, ImageBackground, TouchableOpacity, SafeAreaView, Activi
 import styles from './style';
 import firebase from 'react-native-firebase';
 import Country from '../ShippingAddress/AddressCountry';
+import FCM, {FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType} from 'react-native-fcm';
 const {width, height} = Dimensions.get('window');
 export default class DrawerScreen extends Component{
     constructor(){
         super()
         this.state={
             loading: false,
-            already: false
+            already: false,
+            country: '',
+            street: '',
+            apt :'',
+            city: '',
+            zipcode: '',
+            state: ''
         }
     }
     static navigatorStyle={
         navBarHidden:true
+    }
+    componentDidMount(){
+        
     }
     
     render(){
@@ -55,7 +65,7 @@ export default class DrawerScreen extends Component{
                         link: "sidemenu",
                         payload: {screen:"app.InviteFriendsHome",title:'Bookmarks'}
                         })}>
-                        <Text style={styles.drawerInnerText}>Invite Freinds</Text>
+                        <Text style={styles.drawerInnerText}>Invite Friends</Text>
                     </TouchableOpacity>
                     <View style={styles.line}></View>
 
@@ -63,13 +73,26 @@ export default class DrawerScreen extends Component{
                     onPress={()=>   
                         {
                             let self = this
+                            // const {country, city, apt, street, zipcode} = this.state;        
+                            
                             this.setState({loading: true})
-                            let uid = firebase.auth().currentUser.uid;                            
-                            firebase.database().ref('users/'+uid).on('value',function(snapshot){
-                                country=snapshot.child('country').val();
-                                city=snapshot.child('city').val();            
-                                street=snapshot.child('street').val();
-                                if(country!==null&&city!==null&&street!==null){
+                           
+                            let uid = firebase.auth().currentUser.uid;    
+                                                   
+                            firebase.database().ref('users/'+uid).once('value',function(snapshot){
+                                let country=snapshot.child('country').val();
+                                let city=snapshot.child('city').val();            
+                                let street=snapshot.child('street').val();
+                                let apt = snapshot.child('apt').val();
+                                let zipcode = snapshot.child('zipcode').val();
+                                let state = snapshot.child('state').val();
+                                if(country===null) country=''
+                                if(city===null) city=''
+                                if(street===null) street=''
+                                if(apt===null) apt=''
+                                if(zipcode===null) zipcode=''
+                                if(state === null) state=''
+                                if(country!==''&&city!==''&&apt!==''&&street!==''&&zipcode!==''&&state!==''){
                                     self.props.navigator.handleDeepLink({
                                         link: "sidemenu",
                                         payload: {screen:"app.shippingAddressEdit",title:'SHIPPING ADDESS'}
@@ -80,9 +103,11 @@ export default class DrawerScreen extends Component{
                                         payload: {screen:"app.shippingAddressHome",title:'SHIPPING ADDESS'}
                                     })
                                 }
+                            })
+                                                 
+                           
+                                
                             
-                            
-                            });
                             
                             
                         }

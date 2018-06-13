@@ -14,7 +14,9 @@ export default class ShippingAddress extends Component{
             country: '',
             street: '',
             zipcode: '',
-            city: ''
+            city: '',
+            state: '',
+            apt: ''
         }
     }
     static navigatorStyle={
@@ -22,19 +24,23 @@ export default class ShippingAddress extends Component{
     }
     componentDidMount(){
         let uid=firebase.auth().currentUser.uid;
-        let country,street,zipcode,city;
+        let country,street,zipcode,city,state,apt;
         
         firebase.database().ref('users/'+uid).on('value',function(snapshot){
             country=snapshot.child('country').val();
             street=snapshot.child('street').val();            
             city=snapshot.child('city').val();
             zipcode=snapshot.child('zipcode').val();
+            state=snapshot.child('state').val();
+            apt=snapshot.child('apt').val();
      
            this.setState({
                country,
                city,
                street,
-               zipcode
+               zipcode,
+               state,
+               apt
            })
           
         }.bind(this));
@@ -44,7 +50,7 @@ export default class ShippingAddress extends Component{
         return(
 
             <View style={styles.container}>
-                <HeaderComponent title="SHIPPING ADDRESS" navigator={this.props.navigator}/>
+                <HeaderComponent title="SHIPPING ADDRESS" navigator={this.props.navigator} />
                 <Text style={[styles.headText,]}>
                     Are We Good?
                 </Text>
@@ -53,10 +59,10 @@ export default class ShippingAddress extends Component{
                 </Text>
 
                 <Text style={[styles.bodyText,]}>
-                    {this.state.street}
+                    {this.state.street}, {this.state.apt}
                 </Text>
                 <Text style={[styles.bodyText,{marginTop:0,paddingTop:4}]}>
-                    {this.state.city}, {this.state.country}, {this.state.zipcode}
+                    {this.state.city}, {this.state.state}, {this.state.country}, {this.state.zipcode}
                 </Text>
                 
                 <Image style={styles.emoj} source={require('@images/HomePage/lolomailman.png')}/>
@@ -65,7 +71,8 @@ export default class ShippingAddress extends Component{
                 onPress={()=>{
                             this.props.navigator.resetTo({
                                 screen:'app.HomePage',
-                                animationType:"slide-horizontal"
+                                animationType:"slide-horizontal",
+                                passProps: {from: true}
                             })
                          }}
                   style={styles.btnGoodContainer}>

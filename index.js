@@ -6,15 +6,9 @@ import firebase from 'react-native-firebase';
 let windowWidth = Dimensions.get('window').width
 let screen = ''
 registerScreens();
-firebase.auth().onAuthStateChanged(user=>{
-    if(user){
-        screen = 'app.HomePage'
-    }else{
-        screen = 'app.SplashScreen'
-    }
     Navigation.startSingleScreenApp({
     screen:{
-        screen:screen,
+        screen:'app.SplashScreen',
     },
     drawer:{
         left:{
@@ -36,5 +30,5 @@ firebase.auth().onAuthStateChanged(user=>{
     },
     
 })
-})
+
 

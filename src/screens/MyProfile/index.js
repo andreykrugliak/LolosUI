@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {Container, Header, Content, Footer, FooterTab, Button,Input, Icon, Body, Right, Left,Title, Card, Badge, CardItem} from 'native-base';
-import {View,Dimensions,Image,TouchableOpacity,FlatList,TextInput,Text, Platform} from 'react-native';
+import {View,Dimensions,Image,TouchableOpacity,FlatList,TextInput,Text, Platform, AsyncStorage} from 'react-native';
 import { HeaderComponent } from "@components/InviteFriends/HeaderComponent.js";
 import Swiper from 'react-native-deck-swiper'
 var WindowWidth = Dimensions.get('window').width
@@ -125,10 +125,10 @@ export default class MyProfile extends Component{
                this.setState({
                   avatarSource: url
                   });
-            let uid=firebase.auth().currentUser.uid
-            firebase.database().ref('users/'+uid).update({
-              avatarurl:url
-            });         
+            // let uid=firebase.auth().currentUser.uid
+            // firebase.database().ref('users/'+uid).update({
+            //   avatarurl:url
+            // });         
           })
           .catch(error => console.log(error))
   
@@ -138,10 +138,12 @@ export default class MyProfile extends Component{
   }
 
   gotoHome(){
+    AsyncStorage.setItem('birthday', JSON.stringify({birthday: this.state.date}))
     let uid =  firebase.auth().currentUser.uid;
     firebase.database().ref('users/'+uid).update({
         fullname: this.state.text,
-        birthday: this.state.date
+        birthday: this.state.date,
+        avatarurl: this.state.avatarSource
     })
     .then(()=>{
         this.props.navigator.resetTo({
@@ -201,9 +203,9 @@ export default class MyProfile extends Component{
                     </View>
 
                 </View>
-                <Button disabled={this.state.text.length == 0?true:this.state.dateDisabled == true?true:false} onPress={()=>this.gotoHome()}
-                         style={[styles.buttonContainer,{backgroundColor:this.state.text.length == 0?'#F0F0F0':this.state.dateDisabled == true?'#F0F0F0':'#FF4273'}]}>
-                                <Text style={[styles.buttonText,{color:this.state.text.length == 0?'#CCCCCC':this.state.dateDisabled == true?'#CCCCCC':'white'}]}>Apply Changes</Text>
+                <Button disabled={this.state.text.length>0&&this.state.avatarSource&&!this.state.dateDisabled?false:true} onPress={()=>this.gotoHome()}
+                         style={[styles.buttonContainer,{backgroundColor:this.state.text.length>0&&this.state.avatarSource&&!this.state.dateDisabled?'#FF4273':'#F0F0F0'}]}>
+                        <Text style={[styles.buttonText,{color:this.state.text.length>0&&this.state.avatarSource&&!this.state.dateDisabled?'white':'#CCCCCC'}]}>Apply Changes</Text>
                 </Button>
             </View>
         )

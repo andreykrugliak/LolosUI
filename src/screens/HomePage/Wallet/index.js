@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
-import {Container, Header, Content, Footer, FooterTab, Button, Text, Icon, Body, Right, Left,Title, Card, Badge, CardItem} from 'native-base';
-import {View,Dimensions,Image,ScrollView,TouchableOpacity,FlatList} from 'react-native';
+import {Container, Header, Content, Footer, FooterTab, Button,  Icon, Body, Right, Left,Title, Card, Badge, CardItem} from 'native-base';
+import {View,Dimensions,Image,ScrollView,TouchableOpacity,FlatList,Text} from 'react-native';
 
 var WindowWidth = Dimensions.get('window').width
 var WindowHeight = Dimensions.get('window').height
@@ -13,21 +13,39 @@ export default class Wallet extends Component{
         super()
         this.state={
             badge: 0,
-            balance: 0
+            balance: 0,
+            history:[]
         }
     }
     static navigatorStyle = {
         navBarHidden:true
     };
     componentWillMount(){
+        
         let uid = firebase.auth().currentUser.uid, badge=0, balance=0;
         firebase.database().ref('users/'+uid).on('value',function(snapshot){
             badge=snapshot.child('badge').val();
             balance=snapshot.child('balance').val();
+            
             if(badge===undefined||badge===null) badge = 0
             if(balance===undefined||balance===null) balance = 0
             this.setState({badge,loading: false, balance})
         }.bind(this))
+        firebase.database().ref('users/'+uid+'/transaction_history').on('value',function(snapshot){
+            let data = []
+            snapshot.forEach(child=>{
+                if(child===null) return
+                console.log('++--tracsactionHistory',child.val())
+                data.push(child.val());
+            })
+            this.setState({history: data})
+        }.bind(this))
+    }
+    getDiff(time){
+        let focus=moment(time).format('YYYY-MM-DD')
+        let today = moment().format('YYYY-MM-DD')
+        return focus
+
     }
     render(){
     return(
@@ -56,11 +74,11 @@ export default class Wallet extends Component{
                 })
                 }}>
                     { this.state.badge !== 0?
-                        <Badge style={[styles.badgeStyle]}>
+                        <View style={[styles.badgeStyle]}>
                         
                                 <Text style={styles.badgeText}>{this.state.badge}</Text> 
                         
-                        </Badge>:null
+                        </View>:null
                         }  
                     <Image source={require('@images/HomePage/NOTIFICATIONWhite.png')}>
                     </Image>
@@ -93,28 +111,47 @@ export default class Wallet extends Component{
 
 
                 </View> 
-                <View style={[styles.backGround,{ marginTop:25}]}>
-                    </View> 
-                <View style={{height:150}}>
-                    <Image style={styles.smileyIcon} source={require('@images/HomePage/wallet/smiley.png')}/>
-                    <Image style={styles.greenIcon} source={require('@images/HomePage/wallet/greenIcon.png')}/>
-                    <View style={styles.flexColumn}>
-                            <Text style={styles.days}>2 DAYS AGO</Text>
-                            <Text style={styles.age}>+ 18</Text>
-                            <Text style={styles.sendText}>Recived from Mom</Text>
-                    </View>
-                </View>
-                <View style={styles.backGround}>
-                    </View> 
-                <View style={{height:150}}>
-                    <Image style={styles.sadIcon} source={require('@images/HomePage/wallet/sadIcon.png')}/>
-                    <Image style={styles.redIcon} source={require('@images/HomePage/wallet/redIcon.png')}/>
-                    <View style={styles.flexColumn}>
-                            <Text  style={styles.days}>27.11.17</Text>
-                            <Text style={styles.age}>- 42</Text>
-                            <Text style={styles.sendText}>Bought Item</Text>
-                    </View>
-                </View>
+                {
+                    this.state.history.sort(function(a,b){
+                        
+                        if(a.time>b.time) return -1
+                        if(a.time<b.time) return 1
+                        return 0
+                    })
+                    .map((h,i)=>{
+                        return(
+                            h.type==='reward'?
+                            <View>
+                                <View style={[styles.backGround,{ marginTop:25}]}>
+                                    </View> 
+                                <View style={{height:150}}>
+                                    <Image style={styles.smileyIcon} source={require('@images/HomePage/wallet/smiley.png')}/>
+                                    <Image style={styles.greenIcon} source={require('@images/HomePage/wallet/greenIcon.png')}/>
+                                    <View style={styles.flexColumn}>
+                                            <Text style={styles.days}>{this.getDiff(h.time)}</Text>
+                                            <Text style={styles.age}>+ {h.balance}</Text>
+                                            <Text style={[styles.sendText,{paddingTop:15}]}>{h.description}</Text>
+                                    </View>
+                                </View>
+                            </View>:
+                            <View>
+                                    <View style={styles.backGround}>
+                                        </View> 
+                                    <View style={{height:150}}>
+                                        <Image style={styles.sadIcon} source={require('@images/HomePage/wallet/sadIcon.png')}/>
+                                        <Image style={styles.redIcon} source={require('@images/HomePage/wallet/redIcon.png')}/>
+                                        <View style={styles.flexColumn}>
+                                                <Text  style={styles.days}>{this.getDiff(h.time)}</Text>
+                                                <Text style={styles.age}>- {h.balance}</Text>
+                                                <Text style={[styles.sendText,{paddingTop:15}]}>{h.description}</Text>
+                                        </View>
+                                    </View>
+                            </View>
+                        )
+                    })
+                }
+                
+                
                 <View style={styles.backGround}>
                     </View> 
           

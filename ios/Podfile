@@ -18,6 +18,8 @@ target 'Clickers' do
     # Pods for testing
     
 
+    pod 'react-native-youtube', :path => '../node_modules/react-native-youtube'
+
   end
 
   target 'ClickersTests' do

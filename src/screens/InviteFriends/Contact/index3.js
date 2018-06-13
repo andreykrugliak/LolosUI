@@ -54,11 +54,12 @@ export default class InviteFriends extends Component{
           switch(result) {
             case Composer.Sent:
               console.log('the message has been sent');
-              // self.setState({selectedUsers:[],selectedUserNames:[]});
-              self.props.navigator.push({
+              self.props.navigator.resetTo({
                     screen:'app.HomePage',
-                    animationType:"slide-horizontal"
+                    animationType:"slide-horizontal",
+                    passProps:{from: true,invite: true}
                 })
+              
               break;
             case Composer.Cancelled:
               console.log('user cancelled sending the message');

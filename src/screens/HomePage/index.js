@@ -34,18 +34,43 @@ import { Bubbles, DoubleBounce, Bars, Pulse } from 'react-native-loader';
     
 
  componentDidMount(){
+   
    if(!this.props.from) this.setState({splash: true});
     
    let self = this;
    setTimeout(function(){self.setState({splash:false})},5000)
     // console.log('++--',this.props.birthday)
     let uid = firebase.auth().currentUser.uid;
+    firebase.database().ref('users/'+uid+'/balance').transaction(balance=>{
+      if(balance===null) {        
+        return 20
+      }
+      else return
+    })
     AsyncStorage.getItem('birthday').then(value=>{
+      let res = JSON.parse(value);      
+      if(res){
+        if(!res.registered){
+          firebase.database().ref('users/'+uid).update({                    
+            birthday: res.birthday            
+          }).then(function(){
+            AsyncStorage.setItem('birthday',JSON.stringify({registered: true}))
+             firebase.database().ref('users/'+uid+'/transaction_history').push({
+                  time: new Date().getTime(),
+                  description: 'SignUp bonus',
+                  type: 'reward',
+                  balance: 20
+            })
+          })          
+        }
+        
+      }
+    })
+    AsyncStorage.getItem('country').then((value)=>{
       let res = JSON.parse(value);
-      
       if(res){
         firebase.database().ref('users/'+uid).update({                    
-          birthday: res.birthday
+          country: res.country
         })
       }
     })
@@ -99,7 +124,8 @@ import { Bubbles, DoubleBounce, Bars, Pulse } from 'react-native-loader';
                 { key: '1', icon: images.Image5, iconSelected: images.Image2},
                 { key: '2',icon: images.Image6, iconSelected: images.Image3},
             ],
-            splash: false
+            splash: false,
+            reload: true
         };
         this._renderScene = this._renderScene.bind(this)
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
@@ -109,7 +135,23 @@ import { Bubbles, DoubleBounce, Bars, Pulse } from 'react-native-loader';
         return <Image style={route.key == (this.state.index).toString()?{height:60,width:60,marginTop:-5,borderRadius:30,borderWidth:1,borderColor:'#f0f0f0'}:''} source={route.key == (this.state.index).toString()? route.iconSelected : route.icon}/>; 
     };
     
-    _handleIndexChange = index => this.setState({ index });
+    _handleIndexChange = index => {
+      
+      let uid = firebase.auth().currentUser.uid
+      this.setState({ index, reload: false })
+      if(index===1){
+        firebase.database().ref('users/'+uid+'/walletHidden').transaction(function(badge){        
+            if(badge === null) return true
+            else  return 
+        })
+      }
+      if(index===0){
+        firebase.database().ref('users/'+uid+'/marketHidden').transaction(function(badge){        
+            if(badge === null) return true
+            else  return 
+        })
+      }
+    };
 
     _renderHeader = props => <TabBar 
         style={{backgroundColor:"#fff",height:73,shadowColor: '#D3D3D3',
@@ -123,6 +165,7 @@ import { Bubbles, DoubleBounce, Bars, Pulse } from 'react-native-loader';
         {...props} 
         renderIcon = {this._renderIcon} 
         indicatorStyle={{ height: 0 }}
+        //onTabPress={(index)=>alert(index)}
          />;
 
 
@@ -131,7 +174,8 @@ import { Bubbles, DoubleBounce, Bars, Pulse } from 'react-native-loader';
              switch(route.key){
                  case '0': return <PreviewScreen   navigator={this.props.navigator}/>
                  case '1':return <Walllet navigator={this.props.navigator} />
-                 case '2': return <SliderPage _handleIndexChange={this._handleIndexChange} navigator={this.props.navigator} splash={this.props.splash} /> 
+                 case '2': return <SliderPage _handleIndexChange={this._handleIndexChange} navigator={this.props.navigator} reload={this.props.reload}
+                 splash={this.props.splash} purchase={this.props.purchase} invite={this.props.invite} reward={this.props.reward} /> 
              }
         }
           onSwipedAllCards = () => {

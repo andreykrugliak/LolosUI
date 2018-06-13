@@ -34,6 +34,12 @@ import ShippingAddressZip from './ShippingAddress/AddressZip'
 import ShippingAddressApt from './ShippingAddress/AddressApt'
 import ShippingAddressEdit from './ShippingAddress/AddressEdit'
 import VideoCard from './VideoCard'
+import ValleyScreen from './FakeWallet/Valley'
+import ValleyCheckout from './FakeWallet/ValleyCheckout';
+import CrazyLab from './FakeWallet/CrazyLab';
+import BorderLine from './FakeWallet/BorderLine';
+import Store from './FakeWallet/Store';
+import BorderLineRefund from './FakeWallet/BorderLineRefund'
 
 
 export function registerScreens(params){
@@ -72,6 +78,14 @@ export function registerScreens(params){
     Navigation.registerComponent("app.shippingAddressApt",()=>ShippingAddressApt)
     Navigation.registerComponent("app.shippingAddressEdit",()=>ShippingAddressEdit)
     Navigation.registerComponent("app.VideoCard",()=>VideoCard)
+    Navigation.registerComponent("app.ValleyScreen",()=>ValleyScreen)
+    Navigation.registerComponent("app.ValleyCheckout",()=>ValleyCheckout)
+    Navigation.registerComponent("app.CrazyLab",()=>CrazyLab)
+    Navigation.registerComponent("app.BorderLine",()=>BorderLine)
+    Navigation.registerComponent("app.Store",()=>Store)
+    Navigation.registerComponent("app.BorderLineRefund",()=>BorderLineRefund)
+    
+
     
 
     

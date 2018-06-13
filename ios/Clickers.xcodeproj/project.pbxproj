@@ -81,6 +81,8 @@
 		AE9049C4209CB487000F4F4C /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE9049BE209CB464000F4F4C /* libRNFetchBlob.a */; };
 		AED8633320A31E6700FE26C9 /* libRNFIRMessaging.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AED8632E20A31E3C00FE26C9 /* libRNFIRMessaging.a */; };
 		AEE47B79209B346200411630 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AEE47B74209B33F500411630 /* libRNFirebase.a */; };
+		AEF5F09720D1B45000F1DBE5 /* YTPlayerView-iframe-player.html in Resources */ = {isa = PBXBuildFile; fileRef = AEF5F05C20D1B45000F1DBE5 /* YTPlayerView-iframe-player.html */; };
+		AEF5F09E20D1B72E00F1DBE5 /* libRCTYouTube.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF5F09D20D1B70E00F1DBE5 /* libRCTYouTube.a */; };
 		BBD6A86FC13F48CE8CA91C9D /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4172F21923F451A931B70B1 /* Feather.ttf */; };
 		BFB479613EC14306BD728ADC /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7B768E050E3C462B8ED803DD /* Lato-Italic.ttf */; };
 		C4B0C80CF5E24EFCAC6FA731 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 588E71C0F7CE474F88EDC494 /* Zocial.ttf */; };
@@ -453,6 +455,13 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNFirebase;
 		};
+		AEF5F09C20D1B70E00F1DBE5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AEF5F09820D1B70E00F1DBE5 /* RCTYouTube.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8BDB9BC91B4289AE00EF9FEF;
+			remoteInfo = RCTYouTube;
+		};
 		DA62AFC42053FA59005F888F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AB1499A815794FB686B90538 /* BVLinearGradient.xcodeproj */;
@@ -602,6 +611,8 @@
 		AE89563320A9D6DC00312531 /* RNMessageComposer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNMessageComposer.xcodeproj; path = "../node_modules/react-native-message-composer/RNMessageComposer.xcodeproj"; sourceTree = "<group>"; };
 		AE904989209CB464000F4F4C /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
 		AED862F720A31E3B00FE26C9 /* RNFIRMessaging.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFIRMessaging.xcodeproj; path = "../node_modules/react-native-fcm/ios/RNFIRMessaging.xcodeproj"; sourceTree = "<group>"; };
+		AEF5F05C20D1B45000F1DBE5 /* YTPlayerView-iframe-player.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "YTPlayerView-iframe-player.html"; path = "../node_modules/react-native-youtube/assets/YTPlayerView-iframe-player.html"; sourceTree = "<group>"; };
+		AEF5F09820D1B70E00F1DBE5 /* RCTYouTube.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTYouTube.xcodeproj; path = "../node_modules/react-native-youtube/RCTYouTube.xcodeproj"; sourceTree = "<group>"; };
 		B2DDBDFE222740D589E9A3AD /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		B4172F21923F451A931B70B1 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		B8BFA34C1496468F945C2F64 /* libRNDeviceInfo-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNDeviceInfo-tvOS.a"; sourceTree = "<group>"; };
@@ -639,6 +650,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEF5F09E20D1B72E00F1DBE5 /* libRCTYouTube.a in Frameworks */,
 				AE21628D20B45CE5002B9437 /* libART.a in Frameworks */,
 				AED8633320A31E6700FE26C9 /* libRNFIRMessaging.a in Frameworks */,
 				AE89567020A9D70E00312531 /* libRNMessageComposer.a in Frameworks */,
@@ -969,6 +981,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				AEF5F09820D1B70E00F1DBE5 /* RCTYouTube.xcodeproj */,
 				AE21624C20B45CC2002B9437 /* ART.xcodeproj */,
 				AE89563320A9D6DC00312531 /* RNMessageComposer.xcodeproj */,
 				AED862F720A31E3B00FE26C9 /* RNFIRMessaging.xcodeproj */,
@@ -1015,6 +1028,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				AEF5F05C20D1B45000F1DBE5 /* YTPlayerView-iframe-player.html */,
 				13B07FAE1A68108700A75B9A /* Clickers */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* ClickersTests */,
@@ -1134,6 +1148,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		AEF5F09920D1B70E00F1DBE5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AEF5F09D20D1B70E00F1DBE5 /* libRCTYouTube.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		DA62AFC02053FA58005F888F /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1241,12 +1263,12 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = 59BQU9G8ZU;
+						DevelopmentTeam = 5BQ434DB6T;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 59BQU9G8ZU;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = 5BQ434DB6T;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1355,6 +1377,10 @@
 				{
 					ProductGroup = 139FDEE71B06529A00C62182 /* Products */;
 					ProjectRef = 139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */;
+				},
+				{
+					ProductGroup = AEF5F09920D1B70E00F1DBE5 /* Products */;
+					ProjectRef = AEF5F09820D1B70E00F1DBE5 /* RCTYouTube.xcodeproj */;
 				},
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
@@ -1755,6 +1781,13 @@
 			remoteRef = AEE47B73209B33F500411630 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		AEF5F09D20D1B70E00F1DBE5 /* libRCTYouTube.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTYouTube.a;
+			remoteRef = AEF5F09C20D1B70E00F1DBE5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		DA62AFC52053FA59005F888F /* libBVLinearGradient.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1866,6 +1899,7 @@
 				55FE4F297B374BF49188F1E2 /* Foundation.ttf in Resources */,
 				3037216C269A4C539DB9C468 /* Ionicons.ttf in Resources */,
 				9A19F7AC86864090AF8BA2A3 /* MaterialCommunityIcons.ttf in Resources */,
+				AEF5F09720D1B45000F1DBE5 /* YTPlayerView-iframe-player.html in Resources */,
 				FE88FAA53A1A4FFAB33F4DFD /* MaterialIcons.ttf in Resources */,
 				7622B8204188461BB50F6EC4 /* Octicons.ttf in Resources */,
 				31A6C0009E6F4A1F825940EC /* SimpleLineIcons.ttf in Resources */,
@@ -2070,7 +2104,7 @@
 			baseConfigurationReference = C0D52FA8C351D716BD5B14C3 /* Pods-ClickersTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 59BQU9G8ZU;
+				DEVELOPMENT_TEAM = 5BQ434DB6T;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -2132,7 +2166,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = 59BQU9G8ZU;
+				DEVELOPMENT_TEAM = 5BQ434DB6T;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
@@ -2191,10 +2225,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Clickers/Clickers.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = 59BQU9G8ZU;
+				DEVELOPMENT_TEAM = 5BQ434DB6T;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)/**",
 					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
@@ -2243,8 +2277,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.clickers;
 				PRODUCT_NAME = Clickers;
-				PROVISIONING_PROFILE = "ee353890-07bc-49e2-9349-c87327f31309";
-				PROVISIONING_PROFILE_SPECIFIER = clickerDev;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -2257,9 +2291,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Clickers/Clickers.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 59BQU9G8ZU;
+				DEVELOPMENT_TEAM = 5BQ434DB6T;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)/**",
 					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
@@ -2308,8 +2342,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.clickers;
 				PRODUCT_NAME = Clickers;
-				PROVISIONING_PROFILE = "ee353890-07bc-49e2-9349-c87327f31309";
-				PROVISIONING_PROFILE_SPECIFIER = clickerDev;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};

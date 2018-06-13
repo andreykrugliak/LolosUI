@@ -44,11 +44,17 @@ export default class Zip extends Component{
         this.setState({
             zipText:text
         })
-        if(this.state.zipText){
+        if(text.length>1){
             this.setState({
                 disabled:false,
                 color:'#fff',
                 bgColor:'#FF4273'
+            })
+        }else{
+            this.setState({
+                disabled:true,
+                color:'#ccc',
+                bgColor:'#f0f0f0'
             })
         }
     }
@@ -69,7 +75,7 @@ export default class Zip extends Component{
     render(){
         return(
             <View style={styles.container}>
-                <HeaderComponent title="SHIPPING ADDRESS" navigator={this.props.navigator}/>
+                <HeaderComponent title="SHIPPING ADDRESS" navigator={this.props.navigator} goback='app.shippingAddressStreet' />
 
                 <Text style={[styles.bodyText,{marginTop:29}]}>
                     Zip/Postal Code
