@@ -48,11 +48,17 @@ export default class Country extends Component{
         this.setState({
             aptText:text
         })
-        if(this.state.aptText){
+        if(text){
             this.setState({
                 disabled:false,
                 color:'#fff',
                 bgColor:'#FF4273'
+            })
+        }else{
+            this.setState({
+                disabled:true,
+                color:'#ccc',
+                bgColor:'#f0f0f0'
             })
         }
     }
@@ -73,7 +79,7 @@ export default class Country extends Component{
     render(){
         return(
             <View style={styles.container}>
-                <HeaderComponent title="SHIPPING ADDRESS" navigator={this.props.navigator}/>
+                <HeaderComponent title="SHIPPING ADDRESS" navigator={this.props.navigator} goback='app.shippingAddressZip' />
 
                 <Text style={[styles.bodyText,{marginTop:29}]}>
                     Apt,Suite,Unit,etc...

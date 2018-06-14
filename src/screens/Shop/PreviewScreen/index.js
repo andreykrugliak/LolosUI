@@ -5,7 +5,9 @@ import { TabViewAnimated,TabViewPagerPan,TabViewPagerScroll, TabBar, SceneMap } 
 import Swiper from 'react-native-deck-swiper'
 var WindowWidth = Dimensions.get('window').width
 var WindowHeight = Dimensions.get('window').height
-import styles from './style'
+import styles from './style';
+import firebase from 'react-native-firebase';
+import Sugar from 'sugar'
 
 
 export default class PreviewScreen extends Component{
@@ -17,39 +19,27 @@ export default class PreviewScreen extends Component{
     {
         super(props)
         this.state=({
+            loading: true,
             data:[
-                {
-                    id:'1',
-                    image:'@images/HomePage/image.jpg',
-                    title:'Elastic sport wristband',
-                    price:"357 lolo's",
-                    label:'SUPER HOT',
-                },
-                {
-                    id:'2',
-                    image:'@images/HomePage/image.jpg',
-                    title:'Binfull Mini Prortable Micro Mobile Phone USB Gadget Fans Tester For iphone 5S',
-                    price:"357 lolo's",
-                    label:'SUPER HOT',
-                }
+                
             ],
             sportsData:[
                 {
-                    id:'1',
+                    id:'0',
                     image:'@images/shopSports/1_sport.jpg',
                     title:'Elastic sport wristband',
                     price:"357 lolo's",
                     label:'SUPER HOT',
                 },
                 {
-                    id:'2',
+                    id:'1',
                     image:'@images/shopSports/2_sport.jpg',
                     title:'2.8m/75cm Sports LED Luminous Jump Skipping Ropes Handle Rope Jump Ropes Crossfit Training Boxing Fitness Equipment Random Color',
                     price:"357 lolo's",
                     label:'SUPER HOT',
                 },
                 {
-                    id:'3',
+                    id:'2',
                     image:'@images/shopSports/3_sport.jpg',
                     title:'cross-fit jumping rope',
                     price:"357 lolo's",
@@ -60,19 +50,51 @@ export default class PreviewScreen extends Component{
 
             index:0,
             routes: [
-                
-                
                 {key:'0',title:'Sports'},
                 { key: '1', title: 'Gadgets' },
                 { key: '2', title: 'Mobile' },
                 { key: '3', title: 'Fashion' },
                 { key: '4', title: 'Sports'},
               ],
+            fashion: []
         })
         this._handleIndexChange=this._handleIndexChange.bind(this)
         this._renderHeader=this._renderHeader.bind(this)
         this._renderScane=this._renderScane.bind(this)
         this._renderItems=this._renderItems.bind(this)
+    }
+    componentWillMount(){
+        
+        this.setState({loading: true})
+        let uid = firebase.auth().currentUser.uid;
+        firebase.database().ref('Products').on('value',snapshot=>{
+            
+            let data = [];
+            let finalData = []
+            let route = []
+            snapshot.forEach(child=>{
+                data.push(child.val())
+            })
+            let DatabyCategory = Sugar.Array.groupBy(data,n=>{
+                return n.Lolos_Category
+            })
+            
+            let i = 0
+            Sugar.Object.forEach(DatabyCategory,(val, key, index)=>{
+                let dataJson = {};
+                let routeJson = {}
+                dataJson.category = key;
+                dataJson.val = val;
+                routeJson.key = i;
+                routeJson.title = key;
+                route.push(routeJson);
+                finalData.push(dataJson);
+                i++;
+            })
+            // console.log('++--DATA',finalData, route)
+            this.setState({data: finalData, loading: false, routes: route})
+            
+        }).bind(this)
     }
 
     _renderHeader = props =>{
@@ -95,20 +117,32 @@ export default class PreviewScreen extends Component{
     } 
 
     _renderScane=({ route })=>{
-        console.log(route.key)
+        // console.log('++--ROUTE',route)
         let categoryKey=route.key
         return(
                 <FlatList
                     style={{flex:1}}
                     data={
-                            route.key==0 || route.key==1 || route.key== 2 || route.key==3 || route.key== 4?
-                            this.state.sportsData:
-                            this.state.data
+                         
+                         //this.state.data
+                         this.selectData(route) 
                         }
                     keyExtractor={(item,index)=>item.id}
                     renderItem={({item,index})=>this._renderItems({item,index},categoryKey)}
                 />
         )
+    }
+    selectData(route){
+        if(this.state.data.length>0){
+            // return(
+                let test=this.state.data.filter(d=>{
+                    return d.category === route.title;
+                })[0]
+                // console.log('++--TEST',test.val)
+                return test.val
+            // )
+        }
+        return []
     }
 
     _handleIndexChange(index){
@@ -120,8 +154,9 @@ export default class PreviewScreen extends Component{
 
     _renderItems=({item,index},categoryKey)=>{
 
-       console.log(item.title)
-        console.log("categoryKey"+categoryKey)
+    //    console.log(item.title)
+    //     console.log("categoryKey"+categoryKey)
+    // console.log('++---ITEM',item)
         return(
         <View style={[styles.container]}>
             <TouchableOpacity
@@ -129,37 +164,29 @@ export default class PreviewScreen extends Component{
                     this.props.navigator.push({
                     screen:'app.ProductPage',
                     animationType:"slide-horizontal",
-                    passProps:{index:item.id,categoryKey:categoryKey,name:item.title}
+                    passProps:{item:item}
                     }) 
                 }}>
                 <View style={[styles.card,{shadowOpacity:0.3,shadowRadius:2,shadowColor:'rgba(0,0,0,0.20)',shadowOffset:{width:0,height:2}}]}>
                     <Image style={styles.productIcon} resizeMode={'stretch'} 
-                           source={
-                                item.id=='1'?
-                                    require('@images/shopSports/1_sport.jpg'):
-                                item.id=='2'?
-                                    require('@images/shopSports/2_sport.jpg'):
-                                item.id=='3'?
-                                    require('@images/shopSports/3_sport.jpg'):
-                                    require('@images/HomePage/image.jpg')
-                               }/>
+                           source={{uri: item.Preview_Img}}/>
                     <View style={styles.detail}>
                         <Text  numberOfLines={3} style={styles.title}>
-                            {item.title}
+                            {item.Product_Name}
                         </Text>
                         <View style={styles.label}>
                             <Text style={styles.labelText}>
-                                {item.price}
+                                {item.Price_Lolos} lolo's
                             </Text>
                         </View>
                        
                     </View>
                     <View style={styles.extraInfo}>
-                            <Text style={styles.shippingText}>Free Shipping</Text>
-                            <View style={styles.extraInfoLabel}>
+                            <Text style={[styles.shippingText,{paddingBottom:9}]}>Free Shipping</Text>
+                            {/* <View style={styles.extraInfoLabel}>
                                 <Image style={styles.extraInfoIcon} source={require('@images/Shop/superhot.png')} />
                                 <Text style={styles.superHotText}>{item.label}</Text>
-                            </View>
+                            </View> */}
                         </View>
                 </View>
                 
@@ -173,6 +200,8 @@ export default class PreviewScreen extends Component{
        }
 
     render(){
+        if(this.setState.loading) return(<View/>)
+        // console.log('++-----rendering',this.state.data)
         return(
             <View style={{backgroundColor:'#F6F6F6',flex:1}}>
                 <View style={{flex:1}}>

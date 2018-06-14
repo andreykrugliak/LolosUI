@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {Container, Header, Content, Footer, FooterTab, Button, Text, Icon, Body, Right, Left,Title, Card, Badge, CardItem} from 'native-base';
-import {View,Dimensions,Image,TouchableOpacity,ScrollView,Platform} from 'react-native';
+import {View,Dimensions,Image,TouchableOpacity,ScrollView,Platform, AsyncStorage} from 'react-native';
 import { TabViewAnimated,TabViewPagerPan,TabViewPagerScroll, TabBar, SceneMap } from 'react-native-tab-view';
 import Swiper from 'react-native-deck-swiper'
 var WindowWidth = Dimensions.get('window').width
@@ -11,6 +11,8 @@ import SliderPage from '@screens/HomePage/SliderPage'
 import Walllet from '@screens/HomePage/Wallet'
 import styles from './style';
 import firebase from 'react-native-firebase'
+import FCM, {FCMEvent,} from 'react-native-fcm';
+import { Bubbles, DoubleBounce, Bars, Pulse } from 'react-native-loader';
 // const initialLayout = {
 //     height: 0,
 //     width: Dimensions.get('window').width,
@@ -28,17 +30,57 @@ import firebase from 'react-native-firebase'
 
   export default class TabViewExample extends React.Component {
 
+     
+    
 
  componentDidMount(){
-   let self = this
-    console.log('++--',this.props.birthday)
+   
+   if(!this.props.from) this.setState({splash: true});
+    
+   let self = this;
+   setTimeout(function(){self.setState({splash:false})},5000)
+    // console.log('++--',this.props.birthday)
     let uid = firebase.auth().currentUser.uid;
-    if(this.props.birthday !== ''&& this.props.birthday!==undefined){
+    firebase.database().ref('users/'+uid+'/balance').transaction(balance=>{
+      if(balance===null) {        
+        return 20
+      }
+      else return
+    })
+    AsyncStorage.getItem('birthday').then(value=>{
+      let res = JSON.parse(value);      
+      if(res){
+        if(!res.registered){
+          firebase.database().ref('users/'+uid).update({                    
+            birthday: res.birthday            
+          }).then(function(){
+            AsyncStorage.setItem('birthday',JSON.stringify({registered: true}))
+             firebase.database().ref('users/'+uid+'/transaction_history').push({
+                  time: new Date().getTime(),
+                  description: 'SignUp bonus',
+                  type: 'reward',
+                  balance: 20
+            })
+          })          
+        }
+        
+      }
+    })
+    AsyncStorage.getItem('country').then((value)=>{
+      let res = JSON.parse(value);
+      if(res){
+        firebase.database().ref('users/'+uid).update({                    
+          country: res.country
+        })
+      }
+    })
+    if(this.props.birthday !== ''&& this.props.birthday!==undefined){      
         firebase.database().ref('users/'+uid).update({                    
                     birthday: self.props.birthday
         })
     }
  }
+
     onNavigatorEvent(event)
     {
       if (event.type == 'DeepLink') {
@@ -66,6 +108,9 @@ import firebase from 'react-native-firebase'
 
 
     }}
+    // splash=()=>{
+    //   this.setState({})
+    // }
 
     static navigatorStyle = {
         navBarHidden:true
@@ -79,6 +124,8 @@ import firebase from 'react-native-firebase'
                 { key: '1', icon: images.Image5, iconSelected: images.Image2},
                 { key: '2',icon: images.Image6, iconSelected: images.Image3},
             ],
+            splash: false,
+            reload: true
         };
         this._renderScene = this._renderScene.bind(this)
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
@@ -88,7 +135,23 @@ import firebase from 'react-native-firebase'
         return <Image style={route.key == (this.state.index).toString()?{height:60,width:60,marginTop:-5,borderRadius:30,borderWidth:1,borderColor:'#f0f0f0'}:''} source={route.key == (this.state.index).toString()? route.iconSelected : route.icon}/>; 
     };
     
-    _handleIndexChange = index => this.setState({ index });
+    _handleIndexChange = index => {
+      
+      let uid = firebase.auth().currentUser.uid
+      this.setState({ index, reload: false })
+      if(index===1){
+        firebase.database().ref('users/'+uid+'/walletHidden').transaction(function(badge){        
+            if(badge === null) return true
+            else  return 
+        })
+      }
+      if(index===0){
+        firebase.database().ref('users/'+uid+'/marketHidden').transaction(function(badge){        
+            if(badge === null) return true
+            else  return 
+        })
+      }
+    };
 
     _renderHeader = props => <TabBar 
         style={{backgroundColor:"#fff",height:73,shadowColor: '#D3D3D3',
@@ -102,6 +165,7 @@ import firebase from 'react-native-firebase'
         {...props} 
         renderIcon = {this._renderIcon} 
         indicatorStyle={{ height: 0 }}
+        //onTabPress={(index)=>alert(index)}
          />;
 
 
@@ -110,7 +174,8 @@ import firebase from 'react-native-firebase'
              switch(route.key){
                  case '0': return <PreviewScreen   navigator={this.props.navigator}/>
                  case '1':return <Walllet navigator={this.props.navigator} />
-                 case '2': return <SliderPage _handleIndexChange={this._handleIndexChange} navigator={this.props.navigator} /> 
+                 case '2': return <SliderPage _handleIndexChange={this._handleIndexChange} navigator={this.props.navigator} reload={this.props.reload}
+                 splash={this.props.splash} purchase={this.props.purchase} invite={this.props.invite} reward={this.props.reward} /> 
              }
         }
           onSwipedAllCards = () => {
@@ -148,21 +213,35 @@ import firebase from 'react-native-firebase'
     
   
         render() {
+         
+         
           
             return (
                 <View style={{height:WindowHeight,flex:1,width:WindowWidth}}>
 
-                <TabViewAnimated
-                swipeEnabled={false}
-                navigationState={this.state}
-                renderScene={this._renderScene}
-                renderFooter={this._renderHeader}
-                onIndexChange={this._handleIndexChange}
-                //initialLayout={initialLayout}
-                renderPager={this._renderPager}
-                ></TabViewAnimated>
-        
-            </View>
+                    <TabViewAnimated
+                    swipeEnabled={false}
+                    navigationState={this.state}
+                    renderScene={this._renderScene}
+                    renderFooter={this._renderHeader}
+                    onIndexChange={this._handleIndexChange}
+                    //initialLayout={initialLayout}
+                    renderPager={this._renderPager}
+                    ></TabViewAnimated>
+                    {
+                      this.state.splash?
+                      <View style={{width:WindowWidth,height:WindowHeight,justifyContent:'center',
+                            alignItems:'center',position:'absolute',backgroundColor:'white',zIndex:1000}}>
+                        <Image source={require('@images/Assets/em.png')} style={{width:80,height:80,marginBottom:60}} />
+                        <Bars size={10} color="#ffce00"  />
+                        <View style={{width:100,height:40,borderRadius:8,borderColor:'#333',borderWidth:1,
+                              justifyContent:'center',alignItems:'center',position:'absolute',bottom:80}}>
+                          <Text style={{fontSize:17,color:'#333'}}>Beta</Text>
+                        </View>
+                      </View>:null
+                    }
+            
+                </View>
                 
             );
         }

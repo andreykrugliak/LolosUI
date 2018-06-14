@@ -154,5 +154,30 @@ export default StyleSheet.create({
         
         fontFamily:'Lato-Regular',
         fontSize:14,
+    },
+    header: {
+        width: WindowWidth,
+        height: 68,
+        justifyContent: 'center',
+        backgroundColor: '#ff009d'
+    },
+    privacyTitle: {
+        fontSize: 20,
+        fontFamily: 'Lato-Regular',
+        fontWeight: 'bold',
+        alignSelf:'center',
+        color: '#ff009d',
+        marginVertical: 30
+    },
+    privacyText: {
+        fontSize: 14,
+        fontFamily: 'Lato-Regular',
+        fontWeight: '300',
+        color: 'rgba(0,0,0,0.8)',
+        alignSelf:'flex-start',
+        paddingHorizontal: 10,
+        textAlign: 'auto',
+        lineHeight: 20,
+        letterSpacing: 0.9
     }
 })

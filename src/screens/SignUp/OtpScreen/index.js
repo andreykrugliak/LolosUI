@@ -46,15 +46,15 @@ export default class OtpScreen extends Component{
             confirmResult.confirm(text)
             .then((user) => {
                 
-                var credential = firebase.auth.PhoneAuthProvider.credential(confirmResult.verificationId, text);
-                firebase.auth().signInWithCredential(credential)
-                .then(()=>{
+                // var credential = firebase.auth.PhoneAuthProvider.credential(confirmResult.verificationId, text);
+                // firebase.auth().signInWithCredential(credential)
+                // .then(()=>{
                     self.props.navigator.push({
                         screen: 'app.HomePage',
                         animationType: 'slide-horizontal',
                         passProps:{createAccount: true, birthday: self.props.birthday}
                     })
-                })
+                // })
                 
             })
             .catch(error => {

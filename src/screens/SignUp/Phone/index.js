@@ -3,7 +3,7 @@ import React,{Component} from 'react'
 import { StyleSheet,
   Text,
   View,
-  StatusBarIOS,Image,TouchableOpacity,TouchableWithoutFeedback
+  StatusBarIOS,Image,TouchableOpacity,TouchableWithoutFeedback, AsyncStorage
 } from 'react-native'
 import CountryPicker, {
   getAllCountries
@@ -43,7 +43,8 @@ export default class Phone extends Component{
       backgroundColor:'#F0F0F0',
       color:'#CCCCCC',
       text:'',
-      disabled:true
+      disabled:true,
+      country: ''
     }
     
   }
@@ -71,6 +72,7 @@ export default class Phone extends Component{
         
           
           onChange={value => {
+            AsyncStorage.setItem('country',JSON.stringify({country:value.name}))
             this.setState({ cca2: value.cca2, callingCode: value.callingCode })
             
           }}
@@ -111,7 +113,9 @@ export default class Phone extends Component{
           ref={ref => (this.picker = ref)}
           
           onChange={value => {
-            this.setState({ cca2: value.cca2, callingCode: value.callingCode })
+            AsyncStorage.setItem('country',JSON.stringify({country:value.name}))
+            this.setState({ cca2: value.cca2, callingCode: value.callingCode,  })
+            
             
           }}
           

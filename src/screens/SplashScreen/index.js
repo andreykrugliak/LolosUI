@@ -20,36 +20,35 @@ export default class ButtonExample extends Component {
     static navigatorStyle = {
         navBarHidden :true
     }
-    componentWillMount(){
-        let self = this
-        // firebase.auth().onAuthStateChanged(user=>{
-        //     if(user){
-        //         self.props.navigator.push({
-        //             screen: 'app.Onboarding',
-        //             animationType: 'slide-horizontal'                    
-        //         })
-        //     }else{
-                
-        //     }
-        // })
-    }
-
     componentDidMount(){
-      
+        let self = this
+        this.unsubscribe = firebase.auth().onAuthStateChanged(user=>{
+            if(user){
+                self.props.navigator.push({
+                    screen: 'app.HomePage',
+                    animationType: 'slide-horizontal'                    
+                })
+            }else{
+                setTimeout(()=>{
+                    this.setState({splash:false})
+                },500)
+            }
+        })
         this.imageinitialPosition = new Animated.ValueXY({x:0 , y: 80})        
         this.imageLoloInitialPosition=new Animated.ValueXY({x:0,y:1})        
         this.textInitialPosition = new Animated.ValueXY({ x : 0, y : windowHeight})
         this.initialPosition = new Animated.ValueXY({ x : 0, y : windowHeight});
         
-        setTimeout(()=>{
-            this.setState({splash:false})
-        },500)
         
+    }
+
+    componentWillUnmount(){
+        if(this.unsubscribe) this.unsubscribe()
     }
     next(){
         let self = this
         
-                self.props.navigator.push({
+                self.props.navigator.resetTo({
                     screen:'app.Onboarding',
                     animationType:"slide-horizontal"
                 }) 

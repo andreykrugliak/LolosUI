@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View , Image,Text,TouchableOpacity, ImageBackground, Dimensions,KeyboardAvoidingView} from 'react-native'
+import {View , Image,Text,TouchableOpacity, ImageBackground, Dimensions,KeyboardAvoidingView, AsyncStorage} from 'react-native'
 import {Button} from 'native-base'
 import styles from './style'
 import DatePicker from 'react-native-datepicker'
@@ -79,6 +79,7 @@ export default class SignUp extends Component{
                  
                   
                     <Button onPress={()=>{
+                                    AsyncStorage.setItem('birthday',JSON.stringify({birthday:this.state.date}))
                                     this.props.navigator.push({
                                         screen:'app.Phone',
                                         animationType:"slide-horizontal",

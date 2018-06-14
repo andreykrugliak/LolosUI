@@ -25,14 +25,16 @@ export default StyleSheet.create({
         width:"auto",
     },
     badgeStyle:{
-        height:14,
-        width:14,
-       // borderRadius:7,
+        height:16,
+        width:16,
+       borderRadius:8,
         position:"absolute",
         right:10,
         top:6,
         zIndex:1,
-        backgroundColor:"#50C2A8",
+        backgroundColor:"#d0021b",
+        justifyContent: 'center',
+        alignItems: 'center'
        // opacity:1
     },
     cardImage:{
@@ -41,12 +43,17 @@ export default StyleSheet.create({
         //flex: 1
     },
     badgeText:{
-        fontSize:9,
+        fontSize:10,
         fontFamily:'Lato-Regular',
         color:'#fff',
         opacity:1,
         backgroundColor:'transparent',
-        alignSelf:'center'
+
+        // alignSelf:'center',
+        // marginBottom: 6,
+        zIndex:2,
+        marginLeft:-1
+        // lineHeight:24
     },
     wrapper:{
         borderWidth:1, 
@@ -75,8 +82,16 @@ export default StyleSheet.create({
         width:WindowWidth-40,
         ...Platform.OS=='ios'?{height:WindowHeight-190}:{height:WindowHeight-210},
         borderRadius:5,
-        overflow:"hidden",
-
+        // overflow:"hidden",
+        shadowColor: '#D3D3D3',
+        shadowOffset: {
+        width: 0,
+        height: 2
+        },
+        shadowRadius: 3,
+        shadowOpacity: 0.9,
+        
+        
     },
     titleSlide1:{
         marginTop:WindowHeight<= iphone5s?125:WindowHeight <= android?120:149,
@@ -177,8 +192,22 @@ export default StyleSheet.create({
         borderWidth: 2,
         alignSelf:'center',
         borderColor: "#FF4273",	
-        borderRadius:0,	
+        borderRadius:1,	
         backgroundColor: "#FFFFFF",
+    },
+    playbutton: {
+        position:'absolute',
+        top:60,
+        marginHorizontal:73,
+        // height:60,
+        // width:60,
+        justifyContent:'center',
+        alignItems:'center',
+        // borderWidth: 2,
+        alignSelf:'center',
+        // borderColor: "#FF4273",	
+        // borderRadius:0,	
+        // backgroundColor: "#FFFFFF",
     },
 
     buttonTextInvite:{

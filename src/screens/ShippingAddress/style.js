@@ -135,5 +135,72 @@ export default StyleSheet.create({
         shadowOpacity:0.3,
         shadowOffset:{width:0,height:1}
     },
+    inputView:{
+        width:WindowWidth-32,
+        height:48,
+        justifyContent: 'center',
+        borderBottomColor: '#dedede',
+        alignSelf:'center',
+        borderBottomWidth: 1,
+        marginTop:15,
+        zIndex:20
+    },
+    textinput:{
+        fontSize: 16,
+        width: WindowWidth-38,
+        zIndex: 10
+        
+    },
+    header: {
+        height:80,
+        shadowOpacity:0.3,
+        shadowColor:'rgba(0,0,0,0.20)',
+        shadowOffset:{width:0,height:2},
+        justifyContent:'center',
+        backgroundColor:'#fff',
+        elevation:Platform.OS=='android'?3:0,
+    },
+    imageContainer:{
+        left:14,
+        position:'absolute',
+        width:50
+      //  top:10,
+    },
+    backImage:{
+        height:24,
+        width:24,
+        marginLeft:10,
+        marginTop:Platform.OS=='android'?0:10,
+    },
+    text:{
+        alignSelf:'center',
+        fontSize:16,
+        paddingTop:Platform.OS=='android'?0:10,
+        color:'black',
+        fontFamily:'Lato-Regular',
+        fontWeight:'bold',
+        textAlign:'center'
+    },
+    locationPreview: {
+        alignSelf: 'center',
+        width: WindowWidth-32,
+        height:42,
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderBottomColor: 'rgba(0,0,0,0.2)',
+        borderBottomWidth: 0.5,
+        backgroundColor:'white',
+        paddingLeft: 10,
+        borderRightWidth:0.5,
+        borderRightColor: 'rgba(0,0,0,0.2)',
+        borderLeftWidth: 0.5,
+        borderLeftColor: 'rgba(0,0,0,0.2)',
+    },
+    locationName: {
+        fontSize: 15,
+        color: '#212123',
+        fontWeight: '400',
+        marginLeft: 8
+    },
     
 })

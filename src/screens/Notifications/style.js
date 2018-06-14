@@ -36,7 +36,7 @@ export default StyleSheet.create({
         elevation:Platform.OS=='android'?3:0,
     },
     imageContainer:{
-        left:24,
+        right:24,
         position:'absolute',
       //  top:10,
     },

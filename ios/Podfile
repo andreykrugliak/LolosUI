@@ -12,11 +12,13 @@ target 'Clickers' do
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
   pod 'Firebase/Messaging'
-  
+  pod 'Firebase/DynamicLinks'
   target 'Clickers-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
     
+
+    pod 'react-native-youtube', :path => '../node_modules/react-native-youtube'
 
   end
 

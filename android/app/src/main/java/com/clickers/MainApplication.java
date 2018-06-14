@@ -3,6 +3,7 @@ package com.clickers;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
 import com.brentvatne.react.ReactVideoPackage;
 import com.zmxv.RNSound.RNSoundPackage;
 import com.reactnativenavigation.NavigationReactPackage;

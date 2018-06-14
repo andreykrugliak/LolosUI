@@ -5,20 +5,56 @@ import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
 import Swiper from 'react-native-deck-swiper'
 var WindowWidth = Dimensions.get('window').width
 var WindowHeight = Dimensions.get('window').height
-import styles from './style'
+import styles from './style';
+import firebase from 'react-native-firebase'
 
 
 export default class ConfirmationPage extends Component{
 
+    constructor(){
+        super()
+        this.state = {
+            country: '',
+            street: '',
+            zipcode: '',
+            city: '',
+            state: '',
+            apt: ''
+        }
+    }
+
     static navigatorStyle = {
         navBarHidden:true
     };
+    componentWillMount(){
+        let uid=firebase.auth().currentUser.uid;
+        let country,street,zipcode,city,state,apt;
+        
+        firebase.database().ref('users/'+uid).on('value',function(snapshot){
+            country=snapshot.child('country').val();
+            street=snapshot.child('street').val();            
+            city=snapshot.child('city').val();
+            zipcode=snapshot.child('zipcode').val();
+            state = snapshot.child('state').val();
+            apt = snapshot.child('apt').val();
+           this.setState({
+               country,
+               city,
+               street,
+               zipcode,
+               state,
+               apt
+           })
+          
+        }.bind(this));
+        // alert(JSON.stringify(this.props.item))
+    }
 
     render(){
         return(
             <View style={{flex:1}}>
             <ScrollView >
-                <ImageBackground style={styles.image} source={require('@images/HomePage/image.jpg')}>
+                <ImageBackground style={styles.image} source={{uri: this.props.item.Preview_Img}}>
                 <TouchableOpacity style={styles.back}
                                     onPress={()=>{
                                         this.props.navigator.pop({animationType:"slide-horizontal"})
@@ -27,15 +63,15 @@ export default class ConfirmationPage extends Component{
                 </TouchableOpacity>                
                 </ImageBackground>
 
-                    <Text style={styles.total}>Total lolo's</Text>
-                    <Text style={styles.totalNo}>127</Text>
+                    <Text style={styles.total}>Total</Text>
+                    <Text style={styles.totalNo}>{this.props.item.Price_Lolos} lolos</Text>
                     <View style={styles.emojys}>
                         <Image style={styles.emoj} source={require('@images/InviteFriends/2smiley.png')}></Image>
                         {/* <Image style={styles.emoj} source={require('@images/Assets/dead.png')}></Image> */}
                     </View>
                     <View style={styles.footer}>
                         <Text style={styles.send}>Send To:</Text>
-                        <Text style={styles.send}>Pardes Hana, Bilu 11a, Israel</Text>
+                        <Text style={styles.send}>{this.state.street}, {this.state.apt}{'\n'}{this.state.city}, {this.state.state}, {this.state.country}, {this.state.zipcode}</Text>
                     </View>
                     <View style={styles.button}>
                     {/* <View style={styles.line}></View> */}
@@ -45,10 +81,31 @@ export default class ConfirmationPage extends Component{
               
             </ScrollView>
             <TouchableOpacity onPress={()=>{
+                        let self = this
+                        let uid = firebase.auth().currentUser.uid;
+                        
+                        let item = {}
+                        item.time = new Date().getTime()
+                        item.Lolos_Category=this.props.item.Lolos_Category
+                        item.Price_Dollar=this.props.item.Price_Dollar
+                        item.Price_Lolos=this.props.item.Price_Lolos
+                        item.Product_Name=this.props.item.Product_Name
+                        console.log('++----',item)
+                        firebase.database().ref('users/'+uid+'/balance').transaction(function(balance){
+                            return balance-self.props.item.Price_Lolos
+                        })
+                        firebase.database().ref('users/'+uid+'/transaction_history').push({
+                            time: new Date().getTime(),
+                            description: 'Product purchased',
+                            type: 'purchase',
+                            balance: self.props.item.Price_Lolos
+                        })
+                        firebase.database().ref('purchased/'+uid).push(item)
                         this.props.navigator.push({
                             screen:'app.HomePage',
-                            animationType:"slide-horizontal"
-                        })
+                            animationType:"slide-horizontal",
+                            passProps: {from: true,purchase: true}
+                        }) 
                     }} style={styles.btnBackground}>
                         <Text style={styles.buy}>Buy</Text>
                     </TouchableOpacity>

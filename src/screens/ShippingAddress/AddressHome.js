@@ -23,14 +23,14 @@ export default class AddressHome extends Component{
 
                 <View>
                  <Text style={[styles.bodyText,{marginTop:20,textAlign:'center'}]}>
-                     when You buy Stuff,we need to 
+                     Let's set up your address so will know where to send all the goods 
                  </Text>
-                 <Text  style={[styles.bodyText,{marginTop:0,paddingHorizontal:40}]}>
+                 {/* <Text  style={[styles.bodyText,{marginTop:0,paddingHorizontal:40}]}>
                      make sure you get them,for
                  </Text>
                  <Text style={[styles.bodyText,{marginTop:0,paddingHorizontal:40}]}>
                      that we need your address
-                 </Text>
+                 </Text> */}
                  </View>
 
                  <Image style={[styles.emoj,{bottom:WindowWidth-52-108}]} source={require('@images/HomePage/lolomailman.png')}/>

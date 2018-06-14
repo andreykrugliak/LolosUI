@@ -1,6 +1,6 @@
 import React,{PureComponent} from 'react';
-import {Container, Header, Content, Footer, FooterTab, Button, Text, Icon, Body, Right, Left,Title, Card, Badge, CardItem} from 'native-base';
-import {View,Dimensions,Image,TouchableOpacity,FlatList} from 'react-native';
+import {Container, Header, Content, Footer, FooterTab, Button,  Icon, Body, Right, Left,Title, Card, Badge, CardItem} from 'native-base';
+import {View,Dimensions,Image,TouchableOpacity,FlatList, ActivityIndicator, Linking, Platform,Text} from 'react-native';
 import Swiper from 'react-native-deck-swiper'
 import Sound from 'react-native-sound'
 var WindowWidth = Dimensions.get('window').width
@@ -11,6 +11,7 @@ import {CachedImage} from 'react-native-cached-image';
 import axios from 'axios';
 import firebase from 'react-native-firebase';
 import RNFetchBlob from 'react-native-fetch-blob';
+import index from 'react-native-swipeable';
 const iphone5s = 568
 
 const {
@@ -19,9 +20,7 @@ const {
 
 const baseCacheDir = fs.dirs.CacheDir + '/videocache.mp4';
 
-//call the downloadVideo function
-  
-//Function to download a file..
+
 const activeDownloads = {};
 
 export default class SliderPage extends PureComponent{
@@ -33,17 +32,33 @@ constructor(props){
     super(props);
     this.state={
         played:false,
-        
+        data: [],
+        badge: 0,
+        loading: false,
+        splash: false,
+        country:'',
+        city:'',
+        apt:'',
+        zipcode:'',
+        street:'',
+        cardIndex: !this.props.purchase?0:17,
+        hiddenCard: [],
+        hiddenCard1: [],
+        purchase: this.props.purchase,
+        invite: this.props.invite,
+        walletHidden: false,
+        marketHidden: false,
+        rewarded: this.props.reward,
+        reload: this.props.reload
     }
-    this.renderCard=this.renderCard.bind(this)
+    
     this._swipedLeft=this._swipedLeft.bind(this)
     this._swipedRight=this._swipedRight.bind(this)
-    this._handleCardTap=this._handleCardTap.bind(this)
+    
 }
+
  downloadVideo(fromUrl, toFile) {
-    // use toFile as the key
-        // activeDownloads[toFile] = 
-        // new Promise((resolve, reject) => {
+   
             RNFetchBlob
                 .config({path: toFile})
                 .fetch('GET', fromUrl)
@@ -55,20 +70,75 @@ constructor(props){
                     // alert(res)
                 })
                 .catch(err => {
-                    alert(err)
+                    // alert(err)
                 })
-                // .finally(() => {
-                //     // cleanup
-                //     delete activeDownloads[toFile];
-                // });
-        // });
-    // return activeDownloads[toFile];
+               
+}
+componentWillReceiveProps(next){    
+    this.setState({rewarded: false})
 }
 componentWillMount(){
-    this.downloadVideo('https://firebasestorage.googleapis.com/v0/b/lolos-v1.appspot.com/o/Clash%20Royale%20Official%20Epic%20Comeback%20Trailer.mp4?alt=media&token=81b14dfd-e6b7-4584-a4ed-f48a7f2a1121',baseCacheDir)
     
+    this.setState({loading: true, splash: true})
+    let uid = firebase.auth().currentUser.uid, badge=0;
+    
+    let self = this;
+    setTimeout(function(){self.setState({splash: false})},5000)
+    
+    firebase.database().ref('cards').on('value',snapshot=>{        
+        let data = []
+        data = snapshot._value.sort(function(a,b){
+            if(a.Order===null||b.Order===null) return false
+            if(a.Order>b.Order) return 1
+            if(a.Order<b.Order) return -1
+            return 0
+        }).filter((d,i)=>{         
+               
+            d.index = i           
+            return true          
+        })                
+        this.setState({data: data})
+    }).bind(this)
+    firebase.database().ref('users/'+uid).on('value',function(snapshot){
+        badge=snapshot.child('badge').val();
+        if(badge===undefined||badge===null) badge = 0
+        let country=snapshot.child('country').val();
+        let city=snapshot.child('city').val();            
+        let street=snapshot.child('street').val();
+        let apt = snapshot.child('apt').val();
+        let zipcode = snapshot.child('zipcode').val();
+        let hiddenCard = snapshot.child('hiddenCard').val();
+        let hiddenCard1 = snapshot.child('hiddenCard1').val();
+        let walletHidden = snapshot.child('walletHidden').val();
+        let marketHidden = snapshot.child('marketHidden').val();
+        if(country===null) country=''
+        if(city===null) city=''
+        if(street===null) street=''
+        if(apt===null) apt=''
+        if(zipcode===null) zipcode=''
+        if(hiddenCard===null) hiddenCard = []
+        if(hiddenCard1===null) hiddenCard1= []
+        if(walletHidden===null) walletHidden=false
+        if(marketHidden===null) marketHidden=false
+        this.setState({badge,loading: false,country,city,apt,street,zipcode,hiddenCard,hiddenCard1,walletHidden,marketHidden})
+    }.bind(this))
 }
-
+showNotification(notif){
+    if(notif.notification.title===undefined||notif.notification.body===undefined) return
+    let uid = firebase.auth().currentUser.uid;
+    let key = new Date().getTime()
+    let badge = 0
+    firebase.database().ref('users/'+uid).once('value',function(snapshot){
+          badge=snapshot.child('badge').val();           
+          if(badge === null) badge = 0            
+         firebase.database().ref('users/'+uid).update({
+            badge: badge+1
+          })
+      });
+    let updates = {};
+    updates[key] = {title: notif.notification.title,body: notif.notification.body,time: key}
+    firebase.database().ref('notifications/'+uid).update(updates)   
+}
 
 
 async componentDidMount()
@@ -102,12 +172,19 @@ async componentDidMount()
                  
             })}
     });     
+    
 
     
     this.refreshTokenListener = FCM.on(FCMEvent.RefreshToken, (token) => {
-      // console.log('refresh_token', token);
+      
      
     });
+    
+    this.notificationListener = FCM.on(FCMEvent.Notification,  (notif) => {
+        
+        if(notif.local_notification) return
+          this.showNotification(notif)      
+      })
 
     this.SoundLeft=await new Sound('left_swipe.mp3',Sound.MAIN_BUNDLE,(error)=>{
         if(error){
@@ -136,284 +213,66 @@ _swipedRight(){
     this.SoundRight.play((onEnd)=>console.log("played"))
 
 }
-
-_handleCardTap(index){
-    
-    if(index=='9'){
-       this.props.navigator.showModal({
-            screen: 'app.VideoCard', // unique ID registered with Navigation.registerScreen
-            passProps: {videoUrl: baseCacheDir}
-          });
+filter(i){
+    let uid = firebase.auth().currentUser.uid
+    if(i===0){
+        firebase.database().ref('users/'+uid+'/hiddenCard1').transaction(function(badge){        
+            if(badge === null) return [0]
+            else  return 
+        })
     }
+    
+    if(i===0&&this.state.hiddenCard1.length>0){
+        
+        firebase.database().ref('users/'+uid+'/hiddenCard').transaction(function(badge){        
+            if(badge === null) return [5]
+            else  return 
+        })
+    }
+    if(i===10) this.setState({rewarded: false})
+    if(i===16) this.setState({invite: false})
+    if(i===17) this.setState({purchase: false})
 }
 
-renderCard(cardIndex){
-
-switch(cardIndex)
-{
-    
-      case '1':{
-        
-        return(
-            
-        <View style={[styles.slide1,{shadowOpacity:0, shadowRadius:2,shadowColor:'rgba(0,0,0,0)',shadowOffset:{width:0,height:2}}]}>
-            {/* <Image source={require('@images/sliderImages/IC_Product_Sale.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/> */}
-        <Image style={[styles.topImage]}
-            source={require('@images/HomePage/em_10.png')}/>
-        <Text style={styles.titleSlide1}>Congratulations</Text>
-        <Text style={[styles.tagLine]}>your first 20 lolo’s are on their way, Stay Tune…</Text>
-        <View style={[styles.swipeTextView]}>
-            <Image style={[styles.leftArrow]} 
-            source = {require('@images/HomePage/Arrow.png')}/>
-            <Text style={[styles.swipeText]}>swipe</Text>
-            <Image style={[styles.rightArrow]}
-            source = {require('@images/HomePage/Arrow.png')}/>
-        </View>
-        <CachedImage source={{uri:'https://firebasestorage.googleapis.com/v0/b/lolos-v1.appspot.com/o/giphy1.gif?alt=media&token=03c6f15e-ed55-4854-9e39-8226b6a670c3'}} style={{width:WindowWidth-40,flex:1, resizeMode:'cover',opacity:0 }}/>
-        <CachedImage source={{uri:'https://firebasestorage.googleapis.com/v0/b/lolos-v1.appspot.com/o/giphy2.gif?alt=media&token=adc2566b-cf7e-4c23-96ed-674340c17d22'}} style={{width:WindowWidth-40,flex:1, resizeMode:'cover',opacity:0 }}/>
-    </View>
-    
-        )};
-
-    case '2':{
-        
-        return(
-    <View style={styles.slide1}>
-        {/* <Image source={require('@images/sliderImages/IC_Success_Invitation_sent.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/> */}
-
-        <Text style={styles.title}>Invite Freinds</Text>
-        <Text style={[styles.tagLine]}>on each freind get rewarded with 20 lolo’s</Text>
-        <Image style={[styles.freindsSmile]} 
-            source={require('@images/HomePage/lolofreinds.png')}/>
-        <Text style={[styles.baseLine]}>2 invites per day</Text>
-        <TouchableOpacity onPress={()=>{
-                    this.props.navigator.push({
-                    screen:'app.InviteFriendsHome',
-                    animationType:"slide-horizontal"
-                })
-        }}style={[styles.button]}>
-            <Text style={[styles.buttonTextInvite]}>Invite Freinds</Text>
-        </TouchableOpacity>
-    </View> 
-        )};
-
-    case '3':{
-        
-        return(
-
-        <View style={[styles.slide1]}>
-        {/* <Image source={require('@images/sliderImages/IC_Success_purchase_item.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/> */}
-
-            <Text style={[styles.tagLine,{marginTop:WindowHeight<= iphone5s?15:22,}]}>you can see and manage all your lolo’s in your</Text>
-            <Text style={styles.titleSWallte}>Smart Wallet</Text>
-            <Image  style={[styles.emojiGroup]}
-            source={require('@images/HomePage/emojis1.png')}/>
-            <TouchableOpacity onPress={()=>{
-                this.props._handleIndexChange(1)
-
-                //     this.props.navigator.push({
-                //     screen:'app.Wallet',
-                //     // passProps:{navigator:this.props.navigator}
-                // }) 
-            }}
-                     style={[styles.button]}>
-                    <Text style={[styles.buttonTextInvite]}>Take a Look</Text>
-            </TouchableOpacity> 
-        </View>
-        )};
-
-    case '4':{
-        return(
-        <View style={styles.slide1}>
-        {/* <Image source={require('@images/sliderImages/IC_Product_plus_CTA.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/> */}
-
-         <Text style={styles.title}>Buy Online</Text>
-            <Text style={styles.tagLine}>just like the grownups do in our awesome marketplace </Text>
-            <Image style={[styles.giftImg]}
-        source={require('@images/HomePage/lologift.png')}/>
-            <TouchableOpacity onPress={()=>{
-                     {/* this.props.navigator.push({
-                    screen:'app.PreviewScreen',
-                    animationType:"slide-horizontal" 
-                    // passProps:{navigator:this.props.navigator}
-                    }) */}
-                    this.props._handleIndexChange(0)
-                }} 
-            
-            style={[styles.button]}>
-                    <Text style={[styles.buttonTextInvite]}>Check It Out</Text>
-            </TouchableOpacity> 
-        </View>
-
-        )};
-    case '5':{
-        return(
-        <View style={styles.slide1}>
-                {/* <Image source={require('@images/sliderImages/IC_Video_promotion.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/> */}
-
-            <Text style={styles.title}>Help Our Mailman</Text>
-            <Text style={styles.tagLine}>set up address before you shop in our marketplace </Text>
-            <Image style={[styles.manImg]}
-                source={require('@images/HomePage/lolomailman.png')}/>
-            <TouchableOpacity style={[styles.button]} onPress={()=>{
-                    this.props.navigator.push({
-                    screen:'app.shippingAddressEdit',
-                    animationType:"slide-horizontal" 
-                    // passProps:{navigator:this.props.navigator}
-                    }) 
-                }}>
-                    <Text style={[styles.buttonTextInvite]}>Set Up Address</Text>
-            </TouchableOpacity> 
-        </View>
-        )};
-    case '6':{
-        return(
-            
-        <View style={[styles.slide1,{shadowOpacity:0, shadowRadius:2,shadowColor:'rgba(0,0,0,0.20)',shadowOffset:{width:0,height:2}}]}>
-            <Image source={require('@images/sliderImages/IC_Product_Sale.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
-        {/* <Image style={[styles.topImage]}
-            source={require('@images/HomePage/em_10.png')}/>
-        <Text style={styles.titleSlide1}>Congratulations</Text>
-        <Text style={[styles.tagLine]}>your first 20 lolo’s are on their way, Stay Tune…</Text>
-        <View style={[styles.swipeTextView]}>
-            <Image style={[styles.leftArrow]} 
-            source = {require('@images/HomePage/Arrow.png')}/>
-            <Text style={[styles.swipeText]}>swipe</Text>
-            <Image style={[styles.rightArrow]}
-            source = {require('@images/HomePage/Arrow.png')}/>
-        </View> */}
-    </View>
-    
-        )};
-
-    case '7':{
-        return(
-    <View style={styles.videoBackground}>
-        <Image source={require('@images/sliderImages/IC_Success_Invitation_sent.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
-
-        {/* <Text style={styles.title}>Invite Freinds</Text>
-        <Text style={[styles.tagLine]}>on each freind get rewarded with 20 lolo’s</Text>
-        <Image style={[styles.freindsSmile]} 
-            source={require('@images/HomePage/lolofreinds.png')}/>
-        <Text style={[styles.baseLine]}>2 invites per day</Text>
-        <TouchableOpacity onPress={()=>{
-                    this.props.navigator.push({
-                    screen:'app.InviteFriendsHome',
-                    animationType:"slide-horizontal"
-                })
-        }}style={[styles.button]}>
-            <Text style={[styles.buttonTextInvite]}>Invite Freinds</Text>
-        </TouchableOpacity> */}
-    </View> 
-        )};
-
-    case '8':{
-        return(
-
-        <View style={styles.videoBackground}>
-        <Image source={require('@images/sliderImages/IC_Success_purchase_item.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
-
-            {/* <Text style={[styles.tagLine,{marginTop:WindowHeight<= iphone5s?15:22,}]}>you can see and manage all your lolo’s in your</Text>
-            <Text style={styles.titleSWallte}>Smart Wallet</Text>
-            <Image  style={[styles.emojiGroup]}
-            source={require('@images/HomePage/emojis1.png')}/>
-            <TouchableOpacity onPress={()=>{
-                this.props._handleIndexChange(1)
-
-                //     this.props.navigator.push({
-                //     screen:'app.Wallet',
-                //     // passProps:{navigator:this.props.navigator}
-                // }) 
-            }}
-                     style={[styles.button]}>
-                    <Text style={[styles.buttonTextInvite]}>Take a Look</Text>
-            </TouchableOpacity> */}
-        </View>
-        )};
-
-    case '9':{
-        return(
-        <View style={styles.videoBackground}>
-        <Image source={require('@images/sliderImages/IC_Product_plus_CTA.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
-
-            {/* <Text style={styles.title}>Buy Online</Text>
-            <Text style={styles.tagLine}>just like the grownups do in our awesome marketplace </Text>
-            <Image style={[styles.giftImg]}
-        source={require('@images/HomePage/lologift.png')}/>*/}
-            <TouchableOpacity 
-            style={[styles.button]}>
-                    <Text style={[styles.buttonTextInvite]}>Get It Now!</Text>
-            </TouchableOpacity> 
-        </View>
-
-        )};
-    case '10':{
-        return(
-        <View style={styles.videoBackground}>
-                <Image source={require('@images/sliderImages/IC_Video_promotion.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
-                
-            {/* <Text style={styles.title}>Help Our Mailman</Text>
-            <Text style={styles.tagLine}>set up address before you shop in our marketplace </Text>
-            <Image style={[styles.manImg]}
-                source={require('@images/HomePage/lolomailman.png')}/>
-            <TouchableOpacity style={[styles.button]}>
-                    <Text style={[styles.buttonTextInvite]}>Set Up Address</Text>
-            </TouchableOpacity> */}
-        </View>
-        )};
-        case '11':{
-            return(
-            <View style={styles.videoBackground}>
-                    <Image source={require('@images/sliderImages/IC_Download_App.png')} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
-                    
-                {/* <Text style={styles.title}>Help Our Mailman</Text>
-                <Text style={styles.tagLine}>set up address before you shop in our marketplace </Text>
-                <Image style={[styles.manImg]}
-            source={require('@images/HomePage/lolomailman.png')}/>*/}
-                <TouchableOpacity style={[styles.button]}>
-                        <Text style={[styles.buttonTextInvite]}>Download & Play</Text>
-                </TouchableOpacity>
-            </View>
-            )};
-        case '12':{
-            return(
-            <View style={styles.slide1}>
-                    <CachedImage source={{uri:'https://firebasestorage.googleapis.com/v0/b/lolos-v1.appspot.com/o/giphy1.gif?alt=media&token=03c6f15e-ed55-4854-9e39-8226b6a670c3'}} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
-    
-                {/* <Text style={styles.title}>Help Our Mailman</Text>
-                <Text style={styles.tagLine}>set up address before you shop in our marketplace </Text>
-                <Image style={[styles.manImg]}
-                    source={require('@images/HomePage/lolomailman.png')}/>
-                <TouchableOpacity style={[styles.button]}>
-                        <Text style={[styles.buttonTextInvite]}>Set Up Address</Text>
-                </TouchableOpacity> */}
-            </View>
-            )};
-        case '13':{
-            return(
-            <View style={styles.slide1}>
-                    <CachedImage source={{uri:'https://firebasestorage.googleapis.com/v0/b/lolos-v1.appspot.com/o/giphy2.gif?alt=media&token=adc2566b-cf7e-4c23-96ed-674340c17d22'}} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/>
-                    {/* <Image source={{uri:'https://media.giphy.com/media/3oFzmoXxE7Dbj16zzW/source.gif'}} style={{width:WindowWidth-40,flex:1, resizeMode:'cover' }}/> */}
-                    
-                {/* <Text style={styles.title}>Help Our Mailman</Text>
-                <Text style={styles.tagLine}>set up address before you shop in our marketplace </Text>
-                <Image style={[styles.manImg]}
-                    source={require('@images/HomePage/lolomailman.png')}/>
-                <TouchableOpacity style={[styles.button]}>
-                        <Text style={[styles.buttonTextInvite]}>Set Up Address</Text>
-                </TouchableOpacity> */}
-            </View>
-            )};
-}}
 
 
-
-
-
+   
     render(){
+        
+        const {country,city,apt,street,zipcode,reload} = this.state
+        if(this.state.data.length===0||this.state.loading){
+            return(
+                <View style={{flex:1,width:WindowWidth, height: WindowHeight,justifyContent:"center",alignItems:'center'}}>                
+                    <ActivityIndicator size='large' color='#ffb100' />
+                </View>
+            )
+        }
+        let self = this
+        console.log('++---hiddenCard',this.props.purchase)
+        let data =[] 
+        if(this.state.purchase||this.state.invite||this.state.rewarded){
+            data = this.state.data.filter(d=>{
+                if(!this.state.purchase&&d.index===17) return
+                return true
+            })
+        }else{
+            data = this.state.data.filter(d=>{ 
+                if(this.state.walletHidden&&d.index===2) return
+                if(this.state.marketHidden&&d.index===3) return
+                if(country!==''&&city!==''&&apt!==''&&street!==''&&zipcode!==''&&d.index===4) return 
+                if(this.state.hiddenCard1.length>0&&d.index===0) return 
+                if(!this.state.rewarded&&d.index===10) return
+                if(!this.state.purchase&&d.index===17) return
+                if(!this.state.invite&&d.index===16)return
+                if(this.state.hiddenCard.length>0&&d.index===1) return
+            return true
+        })
+        }
+        
+       
     return(
 
-        <View style={{flex:1,backgroundColor:'#F6F6F6'}}>
+    <View style={{flex:1,backgroundColor:'#F6F6F6'}}>
         <Header style={styles.headerStyle}>
         <Left style={styles.headerLeftSide}>
             <Button transparent onPress={()=>{
@@ -437,21 +296,21 @@ switch(cardIndex)
                     screen:'app.Notifications',
                     animationType:"slide-horizontal"
                 })
-                // this.props.navigator.toggleDrawer({
-                //     side:'right',
-                //     to:'open',
-                //      })
+              
             }}>
-                <Badge style={[styles.badgeStyle]}>
+                { this.state.badge !== 0?
+                <View style={[styles.badgeStyle]}>
                   
-                        {/* <Text style={styles.badgeText}>1</Text> */}
+                        <Text style={styles.badgeText}>{this.state.badge}</Text> 
                 
-                </Badge>  
+                </View>:null
+                }  
                 <Image source={require('@images/HomePage/NOTIFICATIONWhite.png')}>
                 </Image>
             </Button>
         </Right>
     </Header>
+    
         <View style={{flex:1}}>
             <Swiper
                     ref={swiper => {
@@ -462,19 +321,121 @@ switch(cardIndex)
                     onSwipedLeft={()=>{this._swipedLeft()}}
                     onSwipedRight={()=>this._swipedRight()}	
                     onSwipedTop={()=>{this._swipedLeft()}}
-                    onSwipedBottom={()=>this._swipedRight()}
-                    onTapCard={(index)=>{this._handleCardTap(index)}}
-                    cards={['1', '2', '3','4','5','6','7','8','9','10','11','12','13']}
-                    cardIndex={0}
-                    cardVerticalMargin={20}
-                   
-                    //cardHorizonyalMargin={20}
-                    renderCard={this.renderCard}
+                    onSwipedBottom={()=>this._swipedRight()}         
+                    onSwiped={(i)=>this.filter(i)}           
+                    cards={data}                  
+                    cardVerticalMargin={20}      
+                    cardIndex={!this.props.purchase?
+                                !this.props.invite?!this.props.reward?0:10:16
+                                :17}             
+                    renderCard={(card)=>{
+                        return(
+                            
+                            <View style={[styles.videoBackground,{backgroundColor:'white'}]}>
+                                <CachedImage source={{uri: card.image}} style={{width:WindowWidth-40,flex:1, resizeMode:'cover',borderRadius: 5}}/>
+                                {card.video!==null&&card.video!==''&&card.video!==undefined?
+                                    <TouchableOpacity  style={styles.playbutton} onPress={()=>{
+                                                                if(card['Name of card']=== 'Asphalt 8'){
+                                                                    let uid = firebase.auth().currentUser.uid
+                                                                    firebase.database().ref('users/'+uid+'/balance').transaction(function(badge){                                                                       
+                                                                        return badge+20
+                                                                    })
+                                                                }
+                                                                this.props.navigator.showModal({
+                                                                    screen: 'app.VideoCard', 
+                                                                    passProps: {videoUrl: card.video}
+                                                                })}}>
+                                <Image source={require('@images/sliderImages/Artboard.png')} style={{width:60,height:60}} />
+                                </TouchableOpacity>:null}
+                                {Platform.OS=='ios'?
+                                card.appstore!==undefined&&card.appstore!==null&&card.appstore!==''?
+                                <TouchableOpacity 
+                                style={[styles.button]} onPress={()=>{
+                                    if(card['Name of card'] === 'Monument Valley'){
+                                        this.props.navigator.push({
+                                            screen: 'app.ValleyScreen',
+                                            animationType:'slide-horizontal'
+                                        })
+                                        return
+                                    }
+                                    if(card['Name of card'] === 'Borderline'){
+                                        this.props.navigator.push({
+                                            screen: 'app.CrazyLab',
+                                            animationType:'slide-horizontal'
+                                        })
+                                        return
+                                    }
+                                    Linking.openURL(card.appstore)
+                                    }}>
+                                        <Text style={[styles.buttonTextInvite]}>{card.buttontext}</Text>
+                                </TouchableOpacity>:null :
+                                card.googlestore!==undefined&&card.googlestore!==null&&card.googlestore!==''?
+                                <TouchableOpacity 
+                                style={[styles.button]} onPress={()=>Linking.openURL(card.googlestore)}>
+                                        <Text style={[styles.buttonTextInvite]}>{card.buttontext}</Text>
+                                </TouchableOpacity>:null
+                                }
+                                   
+                                {
+                                    card.LinkButtonText!==undefined&&card.LinkButtonText!==null&&card.LinkButtonText!==''?
+                                    <TouchableOpacity style={styles.button} onPress={()=>{
+                                            if(card.LinkButtonLink === 'app.PreviewScreen'){
+                                                this.props._handleIndexChange(0);
+                                                return;
+                                            }
+                                            if(card.LinkButtonLink === 'app.Wallet'){
+                                                this.props._handleIndexChange(1);
+                                                return;
+                                            }
+                                            if(card.LinkButtonLink==='app.shippingAddress'){
+                                                
+                                                if(country!==''&&city!==''&&apt!==''&&street!==''&&zipcode!==''){
+                                                    this.props.navigator.push({
+                                                        screen: 'app.shippingAddressEdit',
+                                                        animationType:"slide-horizontal"
+                                                    })
+                                                }else{
+                                                    this.props.navigator.push({
+                                                        screen: 'app.shippingAddressHome',
+                                                        animationType:"slide-horizontal"
+                                                    })
+                                                }
+                                                return
+                                            }
+                                            if(card.LinkButtonLink!==undefined){
+                                                this.props.navigator.push({
+                                                    screen:`${card.LinkButtonLink}`,
+                                                    animationType:"slide-horizontal"                                                 
+                                                }) 
+                                            }
+                                        }}>
+                                        <Text style={[styles.buttonTextInvite]}>{card.LinkButtonText}</Text>
+                                    </TouchableOpacity>:null
+                                }
+                                
+
+                                {
+                                    this.state.data.map((d,i)=>{
+                                        if(card.index===0){
+                                            if(i>card.index+4) return
+                                        }else{
+                                            if(i<card.index+4 || i>card.index+7) return
+                                        }                                       
+                                        return(
+                                            <CachedImage source={{uri: d.image}} style={{width:WindowWidth-40,resizeMode:'cover',opacity:0 }}/>
+                                        )
+                                    })
+                                }
+                            </View>
+                        )
+                    }}
                     animateOverlayLabelsOpacity={false}
                     animateCardOpacity={false}
+                   cardStyle={styles.videoBackground}
                 >
             
-    </Swiper>
-    </View>
+            </Swiper>
+        </View>
+        
     </View>
     )}}
