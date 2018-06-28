@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {Container, Header, Content, Footer, FooterTab, Button,Input, Icon, Body, Right, Left,Title, Card, Badge, CardItem} from 'native-base';
-import {View,Dimensions,Image,TouchableOpacity,FlatList,TextInput,Text, Platform, AsyncStorage} from 'react-native';
+import {View,Dimensions,Image,TouchableOpacity,FlatList,TextInput,Text, Platform, AsyncStorage, ActivityIndicator} from 'react-native';
 import { HeaderComponent } from "@components/InviteFriends/HeaderComponent.js";
 import Swiper from 'react-native-deck-swiper'
 var WindowWidth = Dimensions.get('window').width
@@ -18,6 +18,7 @@ let customStyles = {
     //borderRadius:3,
     borderWidth: 0,
     //height:60
+    
     }
   };
   const Blob = RNFetchBlob.polyfill.Blob
@@ -44,6 +45,7 @@ export default class MyProfile extends Component{
             nameText:true,
             buttonDisabled:true,
             avatarSource: null,
+            loading: false
 
         }
         this.selectPhotoTapped=this.selectPhotoTapped.bind(this)
@@ -138,7 +140,8 @@ export default class MyProfile extends Component{
   }
 
   gotoHome(){
-    AsyncStorage.setItem('birthday', JSON.stringify({birthday: this.state.date}))
+    AsyncStorage.setItem('birthday', JSON.stringify({birthday: this.state.date, registered: true}))
+    this.setState({loading: true})
     let uid =  firebase.auth().currentUser.uid;
     firebase.database().ref('users/'+uid).update({
         fullname: this.state.text,
@@ -148,8 +151,10 @@ export default class MyProfile extends Component{
     .then(()=>{
         this.props.navigator.resetTo({
             screen: 'app.HomePage',
-            animationType: 'slide-horizontal'
+            animationType: 'slide-horizontal',
+            passProps: {from: true}
         })
+        this.setState({loading: false})
     })
    
         
@@ -203,10 +208,16 @@ export default class MyProfile extends Component{
                     </View>
 
                 </View>
-                <Button disabled={this.state.text.length>0&&this.state.avatarSource&&!this.state.dateDisabled?false:true} onPress={()=>this.gotoHome()}
-                         style={[styles.buttonContainer,{backgroundColor:this.state.text.length>0&&this.state.avatarSource&&!this.state.dateDisabled?'#FF4273':'#F0F0F0'}]}>
-                        <Text style={[styles.buttonText,{color:this.state.text.length>0&&this.state.avatarSource&&!this.state.dateDisabled?'white':'#CCCCCC'}]}>Apply Changes</Text>
+                <Button disabled={this.state.text.length>0&&!this.state.dateDisabled?false:true} onPress={()=>this.gotoHome()}
+                         style={[styles.buttonContainer,{backgroundColor:this.state.text.length>0&&!this.state.dateDisabled?'#FF4273':'#F0F0F0'}]}>
+                        <Text style={[styles.buttonText,{color:this.state.text.length>0&&!this.state.dateDisabled?'white':'#CCCCCC'}]}>Apply Changes</Text>
                 </Button>
+                 {
+                       this.state.loading?
+                       <View style={{flex:1,width:WindowWidth, height: WindowHeight,justifyContent:"center",alignItems:'center',position:'absolute'}}>                
+                            <ActivityIndicator size='large' color='#ffb100' />
+                        </View>:null
+                   }
             </View>
         )
     }

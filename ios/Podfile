@@ -3,7 +3,7 @@ platform :ios, '9.0'
 
 target 'Clickers' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
-  use_frameworks!
+  # use_frameworks!
 
   # Pods for Clickers
   #  
@@ -13,13 +13,11 @@ target 'Clickers' do
   pod 'Firebase/Storage'
   pod 'Firebase/Messaging'
   pod 'Firebase/DynamicLinks'
+  pod 'Firebase/Invites'
+  # pod 'react-native-youtube', :path => '../node_modules/react-native-youtube'
   target 'Clickers-tvOSTests' do
     inherit! :search_paths
-    # Pods for testing
-    
-
-    pod 'react-native-youtube', :path => '../node_modules/react-native-youtube'
-
+       # Pods for testing
   end
 
   target 'ClickersTests' do
@@ -28,5 +26,12 @@ target 'Clickers' do
   end
 
 end
+# post_install do |installer|
+#   installer.pods_project.targets.each do |target|
+#     if target.name == "React"
+#       target.remove_from_project
+#     end
+#   end
+# end
 
 

@@ -99,11 +99,11 @@ export default class ValleyCheckout extends Component{
             type: 'reward',
             balance: 42
         })
-        this.props.navigator.resetTo({
-            screen:'app.HomePage',
-            animationType: 'slide-horizontal',
-            passProps: {from: true,reward: true}
-        })
+        // this.props.navigator.resetTo({
+        //     screen:'app.HomePage',
+        //     animationType: 'slide-horizontal',
+        //     passProps: {from: true,reward: true}
+        // })
       }
       renderImage(){
           return(

@@ -4,7 +4,7 @@ const WindowWidth = Dimensions.get('window').width
 export default StyleSheet.create({
     container:{
         flex:1,
-        backgroundColor:'#fff'
+        backgroundColor:'rgba(0,0,0,0.02)'
     },
     header:{
         height:80,
@@ -12,15 +12,14 @@ export default StyleSheet.create({
         flexDirection:'row',
         alignItems:'center',   
         shadowOpacity:0.4,
-        shadowOffset:{width:2,height:0}
+        shadowOffset:{width:2,height:0},
+        justifyContent: 'center',
+        width: WindowWidth
     },
     back:{
         height:24,
         width:24,
-        marginLeft:24,
-        ...ifIphoneX({
-            marginTop:25
-        })
+        
         //borderWidth:1
     },
     searchItem:{
@@ -28,17 +27,14 @@ export default StyleSheet.create({
         fontSize:16,
         fontWeight:'bold',
         color:'#000',
-        ...ifIphoneX({
-            marginTop:25
-        }),
-        marginLeft:((deviceWidth-137)/2)-24,
-       // borderWidth:1,
+       
     },
     searchSection:{
         marginVertical:30,
-        alignItems:'center',
-        justifyContent:'center',
-        backgroundColor:'#fff'
+        // alignItems:'center',
+        // justifyContent:'center',
+        
+        //paddingHorizontal: 10
     },
     body:{
         height:60,
@@ -180,5 +176,94 @@ export default StyleSheet.create({
         color:'#000',
         fontFamily:'Patua One',
         marginLeft:7
+     },
+    container1:{
+        paddingTop:10,
+        paddingLeft:10,
+        paddingRight:10,   
+    },
+    card:{
+        flexDirection:'row',
+        padding:7,
+        backgroundColor:'#fff',
+        borderRadius:2,
+        
+    },
+    productIcon:{
+        height:100,
+        width:100,
+        marginRight:19,
+        //borderWidth:1,
+    },
+    detail:{
+        flexWrap: 'wrap',
+        flex:1,
+    },
+    title:{
+        marginRight:10,
+        fontSize:12,
+        color:'#000',
+        fontFamily:'Lato-Regular',
+       
+    },
+    label:{
+        width:70,
+        height:24,
+        backgroundColor:'#FF4273', 
+        //marginTop:7,   
+        alignItems:'center',
+        justifyContent:'center',
+        position:'absolute',
+        bottom:20,
+        borderRadius:2,
+    },
+    labelText:{
+        fontSize:13,
+        color:'#fff',
+        fontFamily:"PatuaOne-Regular",
+    },
+    extraInfo:{
+        //marginTop:5,
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-between',
+        position:'absolute',
+        right:10,
+        bottom:0,
+        width:deviceWidth-156,
+
+        //borderWidth:1,
+    },
+    shippingText:{
+        fontSize:10,
+        color:'#9B9B9B',
+        fontFamily:'Lato-Regular',
+        fontWeight:'bold',
+        backgroundColor:'transparent'
+    },
+    extraInfoLabel:{
+        //borderWidth:1,
+        borderRadius:20,
+        height:24,
+        width:81,
+        backgroundColor:'#F0F0F0',
+        alignItems:'center',
+        //justifyContent:'center',
+        flexDirection:'row',  
+        marginBottom:5 
+    },
+    extraInfoIcon:{
+        height:16,
+        width:12,
+        marginLeft:5,
+       
+    },
+    superHotText:{
+        //paddingLeft:4,
+        fontSize:10,
+        color:'#000',
+        fontFamily:"PatuaOne-Regular",
+        marginLeft:7,
+       
      },
 })

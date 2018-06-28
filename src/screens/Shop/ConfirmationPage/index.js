@@ -7,7 +7,7 @@ var WindowWidth = Dimensions.get('window').width
 var WindowHeight = Dimensions.get('window').height
 import styles from './style';
 import firebase from 'react-native-firebase'
-
+import DropdownAlert from 'react-native-dropdownalert';
 
 export default class ConfirmationPage extends Component{
 
@@ -90,7 +90,13 @@ export default class ConfirmationPage extends Component{
                         item.Price_Dollar=this.props.item.Price_Dollar
                         item.Price_Lolos=this.props.item.Price_Lolos
                         item.Product_Name=this.props.item.Product_Name
-                        console.log('++----',item)
+                        item.gallery_imgs = this.props.item.gallery_imgs
+                        item.Preview_Img = this.props.item.Preview_Img
+                        item.Product_rating = this.props.item.Product_rating
+                        item.Escaped_SKU = this.props.item.Escaped_SKU
+                        item.Shipping_Price_USA = this.props.item.Shipping_Price_USA
+                        item.Original_Marketplace_URL = this.props.item.Original_Marketplace_URL
+                        console.log('++----',item)                        
                         firebase.database().ref('users/'+uid+'/balance').transaction(function(balance){
                             return balance-self.props.item.Price_Lolos
                         })
@@ -101,15 +107,43 @@ export default class ConfirmationPage extends Component{
                             balance: self.props.item.Price_Lolos
                         })
                         firebase.database().ref('purchased/'+uid).push(item)
-                        this.props.navigator.push({
+                         this.props.navigator.push({
                             screen:'app.HomePage',
                             animationType:"slide-horizontal",
                             passProps: {from: true,purchase: true}
-                        }) 
+                        })  
                     }} style={styles.btnBackground}>
                         <Text style={styles.buy}>Buy</Text>
                     </TouchableOpacity>
+                    <DropdownAlert 
+                    ref={ref=>this.dropdown = ref}
+                    showCancel={false}
+                    renderImage={()=>this.renderImage()}
+                    useNativeDriver={true}
+                    onClose={()=> this.props.navigator.resetTo({
+                        screen:'app.HomePage',
+                        animationType: 'slide-horizontal',
+                        passProps: {from: true,index: 1}
+                    })}
+                    closeInterval={10000}
+                />
             </View>  
         )
     }
+    renderImage(){
+          return(
+              <Image source={require('@images/Assets/em.png')} style={{width:40,height:40}} />
+          )
+      }
+    sendNOtification(){
+       
+        this.dropdown.alertWithType('warn','Check out your wallet','You just got a reward')
+        
+        // this.props.navigator.resetTo({
+        //     screen:'app.HomePage',
+        //     animationType: 'slide-horizontal',
+        //     passProps: {from: true,reward: true}
+        // })
+      }
+
 }

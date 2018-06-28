@@ -205,25 +205,28 @@ export default class PreviewScreen extends Component{
         return(
             <View style={{backgroundColor:'#F6F6F6',flex:1}}>
                 <View style={{flex:1}}>
-                    <View style={styles.header}>
-                        <TouchableOpacity  onPress={()=>{
+                    <View style={[styles.header]}>
+                        <TouchableOpacity  
+                            style={{position:"absolute",left:27}}
+                            onPress={()=>{
                             this.props.navigator.push({
                                 screen:'app.ShopSeach',
                                 animationType:"slide-horizontal"
                             })
+                            
                         }}> 
-                            <Image style={styles.leftButton} source={require('@images/Shop/ic_search.png')}/>
+                            <Image style={styles.leftButton} source={require('@images/History.png')}/>
                         </TouchableOpacity>
                         
                         <Text style={styles.headerText}>MARKET PLACE</Text>
-                        <TouchableOpacity    onPress={()=>{
+                        {/* <TouchableOpacity    onPress={()=>{
                             this.props.navigator.push({
                                 screen:'app.FiltersShop',
                                 animationType:"slide-horizontal"
                             })
                         }}>
                             <Image  style={styles.rightButton} source={require('@images/Shop/ic_settings.png')}/>
-                        </TouchableOpacity>
+                        </TouchableOpacity> */}
                         
                     </View>
 

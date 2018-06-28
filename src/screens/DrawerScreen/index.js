@@ -92,7 +92,7 @@ export default class DrawerScreen extends Component{
                                 if(apt===null) apt=''
                                 if(zipcode===null) zipcode=''
                                 if(state === null) state=''
-                                if(country!==''&&city!==''&&apt!==''&&street!==''&&zipcode!==''&&state!==''){
+                                if(country!==''&&city!==''&&street!==''&&zipcode!==''){
                                     self.props.navigator.handleDeepLink({
                                         link: "sidemenu",
                                         payload: {screen:"app.shippingAddressEdit",title:'SHIPPING ADDESS'}
@@ -116,20 +116,45 @@ export default class DrawerScreen extends Component{
                         <Text style={styles.drawerInnerText}>Shipping Address</Text>
                     </TouchableOpacity>
                     <View style={styles.line}></View>
-
-                    {/* <TouchableOpacity 
-                    onPress={()=>{
-                        this.props.navigator.handleDeepLink({
-                            link: "sidemenu",
-                            payload: {screen:"app.LoginScreen",title:'LANDING'}
-                            })
-                    }}
-                    style={{paddingBottom:10}}>
-                        <Text style={styles.drawerInnerText}>Log Out</Text>
-                    </TouchableOpacity>
-                    <View style={styles.line}></View> */}
-
+                    <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
+                        <TouchableOpacity 
+                            onPress={()=>{
+                                this.props.navigator.handleDeepLink({
+                                    link: "sidemenu",
+                                    payload: {screen:"LifeScreen",title:'LANDING'}
+                                    }) 
+                            }}
+                            style={{paddingBottom:10}}>
+                                <Text style={styles.drawerInnerText}>Life Earnings Program</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity>
+                                <View style={{width:60, height: 25,alignItems:'center',justifyContent:'center',backgroundColor:'#ff4273',borderRadius:3,marginRight:16}}>
+                                    <Text style={{color:'white'}}>Soon</Text>
+                                </View>
+                            </TouchableOpacity>
+                    </View>
+                    <View style={styles.line}></View>
+ 
                 </View>
+                <View style={{position:'absolute',bottom: 150,alignItems: 'center',width:'100%'}}>
+                    <Text style={{fontSize:15,color:'rgba(0,0,0,0.4)'}}>Check our</Text>
+                    <Text style={{fontSize:15,color:'rgba(0,0,0,0.4)'}}>
+                        <Text style={{color:'#4d92e3'}} onPress={()=>
+                                this.props.navigator.handleDeepLink({
+                                    link: "sidemenu",
+                                    payload: {screen:"Terms",title:'LANDING'}
+                                }) 
+                            }>Terms of Use </Text>
+                         & 
+                        <Text style={{color:'#4d92e3'}} onPress={()=>
+                                this.props.navigator.handleDeepLink({
+                                    link: "sidemenu",
+                                    payload: {screen:"Privacy",title:'LANDING'}
+                                }) 
+                            }> Privary Policy</Text>
+                    </Text>
+                </View>
+               
                 
                 
             

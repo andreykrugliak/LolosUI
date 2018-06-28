@@ -99,15 +99,17 @@ export default StyleSheet.create({
          backgroundColor:'#fff',
          flexDirection:'row',
          //paddingHorizontal:17,
-         justifyContent:'space-between',
-         paddingTop: 15
+         justifyContent:'center',
+         paddingTop: 15,
+         alignItems:'center',
+         width: deviceWidth
      },
      leftButton:{
-         height:16,
-         width:16,
-         marginLeft:27,
+         height:23,
+         width:20,         
          paddingRight:10,
-         ...ifIphoneX({marginTop:25},{})
+         //...ifIphoneX({marginTop:25},{}),
+        marginBottom:-13
      },
      headerText:{
         fontFamily:'Lato-Regular',

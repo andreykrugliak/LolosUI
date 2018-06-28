@@ -17,12 +17,14 @@ export default class InviteFriends extends Component{
             name:this.props.name,
             phonenumber: this.props.phonenumber ,
             fullname: '',
-            loading: true
+            loading: true,
+            url: ''
         }
     }
     componentWillMount(){
         let uid=firebase.auth().currentUser.uid;
         let fullname='';
+        let self = this
         
         firebase.database().ref('users/'+uid).on('value',function(snapshot){            
             fullname=snapshot.child('fullname').val();
@@ -32,6 +34,18 @@ export default class InviteFriends extends Component{
            })
           
         }.bind(this));
+        const link = 
+        new firebase.links.DynamicLink('https://www.instagram.com/lolos.me', 'h54u6.app.goo.gl')
+            .android.setPackageName('com.clickers')
+            .ios.setBundleId('com.clickers');
+
+        firebase.links()
+            .createDynamicLink(link)
+            .then((url) => {
+            // ...
+                console.log(url)
+                self.setState({url})
+            });
     }
     componentDidMount(){
         console.log(this.props.name)
@@ -43,7 +57,7 @@ export default class InviteFriends extends Component{
        let self = this      
       Composer.composeMessageWithArgs(
         {
-            'messageText':`${this.state.fullname} invited you to check out the new way to earn and spend the new teenagers virtual money .check it out for free : https://www.instagram.com/lolos.me `,
+            'messageText':`${this.state.fullname} invited you to check out the new way to earn and spend the new teenagers virtual money .check it out for free : ${this.state.url} `,
                             
             'subject':'Invite',
             'recipients':[this.state.phonenumber],
@@ -54,11 +68,7 @@ export default class InviteFriends extends Component{
           switch(result) {
             case Composer.Sent:
               console.log('the message has been sent');
-              self.props.navigator.resetTo({
-                    screen:'app.HomePage',
-                    animationType:"slide-horizontal",
-                    passProps:{from: true,invite: true}
-                })
+             
               
               break;
             case Composer.Cancelled:
@@ -76,7 +86,11 @@ export default class InviteFriends extends Component{
           }
         }
       );
-        
+         self.props.navigator.resetTo({
+                    screen:'app.HomePage',
+                    animationType:"slide-horizontal",
+                    passProps:{from: true,invite: true}
+                })
         
     }
     render(){

@@ -146,8 +146,8 @@ export default class Phone extends Component{
             </TouchableOpacity>
       </View>
       </View>
-      <Button onPress={()=>this.phoneSignUp()} disabled={this.state.text.length<=0?true:false} style={[styles.buttonContainer,this.state.text.length<=0?{backgroundColor:'#F0F0F0'}:{backgroundColor:'#FF4273'}]}>
-          <Text style={[styles.buttonText,this.state.text.length<=0?{color:'#CCCCCC'}:{color:'white'}]}>Next</Text>
+      <Button onPress={()=>this.phoneSignUp()} disabled={this.state.text.length<=8?true:false} style={[styles.buttonContainer,this.state.text.length<=8?{backgroundColor:'#F0F0F0'}:{backgroundColor:'#FF4273'}]}>
+          <Text style={[styles.buttonText,this.state.text.length<=8?{color:'#CCCCCC'}:{color:'white'}]}>Next</Text>
       </Button>
       </View>
     )

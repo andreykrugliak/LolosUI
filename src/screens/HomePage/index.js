@@ -13,6 +13,7 @@ import styles from './style';
 import firebase from 'react-native-firebase'
 import FCM, {FCMEvent,} from 'react-native-fcm';
 import { Bubbles, DoubleBounce, Bars, Pulse } from 'react-native-loader';
+import DropdownAlert from 'react-native-dropdownalert';
 // const initialLayout = {
 //     height: 0,
 //     width: Dimensions.get('window').width,
@@ -36,32 +37,42 @@ import { Bubbles, DoubleBounce, Bars, Pulse } from 'react-native-loader';
  componentDidMount(){
    
    if(!this.props.from) this.setState({splash: true});
-    
+    if(this.props.purchase){
+      // this.sendNOtification()
+    }
    let self = this;
    setTimeout(function(){self.setState({splash:false})},5000)
     // console.log('++--',this.props.birthday)
     let uid = firebase.auth().currentUser.uid;
     firebase.database().ref('users/'+uid+'/balance').transaction(balance=>{
-      if(balance===null) {        
+      // alert('initial'+balance)
+      if(balance===null) {
+        
         return 20
       }
-      else return
+      
     })
+     
     AsyncStorage.getItem('birthday').then(value=>{
+      
       let res = JSON.parse(value);      
       if(res){
+        
         if(!res.registered){
+          
           firebase.database().ref('users/'+uid).update({                    
             birthday: res.birthday            
-          }).then(function(){
+          }).then(()=>{
             AsyncStorage.setItem('birthday',JSON.stringify({registered: true}))
+          }) 
+          
              firebase.database().ref('users/'+uid+'/transaction_history').push({
                   time: new Date().getTime(),
                   description: 'SignUp bonus',
                   type: 'reward',
                   balance: 20
-            })
-          })          
+            })        
+              // this.sendNOtification()
         }
         
       }
@@ -74,6 +85,15 @@ import { Bubbles, DoubleBounce, Bars, Pulse } from 'react-native-loader';
         })
       }
     })
+    AsyncStorage.getItem('url').then((value)=>{
+      let res = JSON.parse(value);
+      if(res){
+        firebase.database().ref('users/'+uid).update({                    
+          DynamicLink: res.url
+        })
+      }
+    })
+
     if(this.props.birthday !== ''&& this.props.birthday!==undefined){      
         firebase.database().ref('users/'+uid).update({                    
                     birthday: self.props.birthday
@@ -234,17 +254,39 @@ import { Bubbles, DoubleBounce, Bars, Pulse } from 'react-native-loader';
                             alignItems:'center',position:'absolute',backgroundColor:'white',zIndex:1000}}>
                         <Image source={require('@images/Assets/em.png')} style={{width:80,height:80,marginBottom:60}} />
                         <Bars size={10} color="#ffce00"  />
-                        <View style={{width:100,height:40,borderRadius:8,borderColor:'#333',borderWidth:1,
+                        {/* <View style={{width:100,height:40,borderRadius:8,borderColor:'#333',borderWidth:1,
                               justifyContent:'center',alignItems:'center',position:'absolute',bottom:80}}>
                           <Text style={{fontSize:17,color:'#333'}}>Beta</Text>
-                        </View>
+                        </View> */}
                       </View>:null
                     }
-            
+                    <DropdownAlert 
+                        ref={ref=>this.dropdown = ref}
+                        showCancel={false}
+                        renderImage={()=>this.renderImage()}
+                        useNativeDriver={true}
+                        onClose={()=> 
+                          this.props.navigator.resetTo({
+                              screen:'app.HomePage',
+                              animationType: 'slide-horizontal',
+                              passProps: {from: true,index: 1}
+                          })
+                        }
+                        closeInterval={10000}
+                    />
                 </View>
                 
             );
         }
+          renderImage(){
+          return(
+              <Image source={require('@images/Assets/em.png')} style={{width:40,height:40}} />
+          )
+      }
+    sendNOtification(){       
+        this.dropdown.alertWithType('warn','Check out your wallet','You just got a reward')       
+       
+      }
   }
 
 
