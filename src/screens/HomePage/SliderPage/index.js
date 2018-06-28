@@ -41,7 +41,7 @@ constructor(props){
         apt:'',
         zipcode:'',
         street:'',
-        cardIndex: !this.props.purchase?0:17,
+        cardIndex: 0,
         hiddenCard: [],
         hiddenCard1: [],
         purchase: this.props.purchase,
@@ -49,7 +49,8 @@ constructor(props){
         walletHidden: false,
         marketHidden: false,
         rewarded: this.props.reward,
-        reload: this.props.reload
+        reload: this.props.reload,
+        got_target: false
     }
     
     this._swipedLeft=this._swipedLeft.bind(this)
@@ -111,6 +112,7 @@ componentWillMount(){
         let hiddenCard1 = snapshot.child('hiddenCard1').val();
         let walletHidden = snapshot.child('walletHidden').val();
         let marketHidden = snapshot.child('marketHidden').val();
+        let got_target = snapshot.child('got_target').val();
         if(country===null) country=''
         if(city===null) city=''
         if(street===null) street=''
@@ -120,7 +122,8 @@ componentWillMount(){
         if(hiddenCard1===null) hiddenCard1= []
         if(walletHidden===null) walletHidden=false
         if(marketHidden===null) marketHidden=false
-        this.setState({badge,loading: false,country,city,apt,street,zipcode,hiddenCard,hiddenCard1,walletHidden,marketHidden})
+        if(got_target===null) got_target=false
+        this.setState({badge,loading: false,country,city,apt,street,zipcode,hiddenCard,hiddenCard1,walletHidden,marketHidden, got_target})
     }.bind(this))
 }
 showNotification(notif){
@@ -229,9 +232,9 @@ filter(i){
             else  return 
         })
     }
-    if(i===10) this.setState({rewarded: false})
-    if(i===16) this.setState({invite: false})
-    if(i===17) this.setState({purchase: false})
+    if(this.state.rewarded) this.setState({rewarded: false})
+    if(this.state.invite) this.setState({invite: false})
+    if(this.state.purchase) this.setState({purchase: false})
 }
 
 
@@ -248,28 +251,31 @@ filter(i){
             )
         }
         let self = this
-        console.log('++---hiddenCard',this.props.purchase)
-        let data =[] 
+        
+        let data = [...this.state.data] 
         if(this.state.purchase||this.state.invite||this.state.rewarded){
             data = this.state.data.filter(d=>{
-                if(!this.state.purchase&&d.index===17) return
+                if(!this.state.purchase&&d.index===10) return
                 return true
             })
         }else{
             data = this.state.data.filter(d=>{ 
+                if(this.state.hiddenCard1.length>0&&d.index===0) return 
+                if(this.state.hiddenCard.length>0&&d.index===1) return
                 if(this.state.walletHidden&&d.index===2) return
                 if(this.state.marketHidden&&d.index===3) return
-                if(country!==''&&city!==''&&apt!==''&&street!==''&&zipcode!==''&&d.index===4) return 
-                if(this.state.hiddenCard1.length>0&&d.index===0) return 
-                if(!this.state.rewarded&&d.index===10) return
-                if(!this.state.purchase&&d.index===17) return
-                if(!this.state.invite&&d.index===16)return
-                if(this.state.hiddenCard.length>0&&d.index===1) return
+                if(country!==''&&city!==''&&apt!==''&&street!==''&&zipcode!==''&&d.index===4) return                 
+                if(!this.state.rewarded&&d.index===5) return
+                if(!this.state.purchase&&d.index===6) return
+                if(!this.state.invite&&d.index===7)return
+                if(d.card_hidden) return
+                if(this.state.got_target&&d.index===9) return
+                
             return true
         })
         }
         
-       
+       console.log('++---hiddenCard',data)
     return(
 
     <View style={{flex:1,backgroundColor:'#F6F6F6'}}>
@@ -318,6 +324,7 @@ filter(i){
                     }} 
                     backgroundColor='#f0f0f0'
                     infinite
+                    keyExtractor={(cardData)=>console.log('++----DATA',cardData)}
                     onSwipedLeft={()=>{this._swipedLeft()}}
                     onSwipedRight={()=>this._swipedRight()}	
                     onSwipedTop={()=>{this._swipedLeft()}}
@@ -325,10 +332,15 @@ filter(i){
                     onSwiped={(i)=>this.filter(i)}           
                     cards={data}                  
                     cardVerticalMargin={20}      
-                    cardIndex={!this.props.purchase?
-                                !this.props.invite?!this.props.reward?0:10:16
-                                :17}             
+                    cardIndex={!this.state.purchase?
+                                 !this.props.invite? 
+                                    !this.props.reward?0:
+                                     5
+                                    :7
+                                :6}             
                     renderCard={(card)=>{
+                       //  console.log('++---Card',data,this.state.purchase,card) 
+                        if(!card) return
                         return(
                             
                             <View style={[styles.videoBackground,{backgroundColor:'white'}]}>
@@ -389,7 +401,7 @@ filter(i){
                                             }
                                             if(card.LinkButtonLink==='app.shippingAddress'){
                                                 
-                                                if(country!==''&&city!==''&&apt!==''&&street!==''&&zipcode!==''){
+                                                if(country!==''&&city!==''&&street!==''&&zipcode!==''){
                                                     this.props.navigator.push({
                                                         screen: 'app.shippingAddressEdit',
                                                         animationType:"slide-horizontal"

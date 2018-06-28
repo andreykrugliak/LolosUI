@@ -150,7 +150,7 @@ export default class Country extends Component{
                                 style={[styles.textinput,{color:'#212123'}]}
                             /> */}
                             {this.state.street===''?
-                                <Text style={[styles.textinput,{color:'#212123',opacity:0.4,paddingVertical:10}]}>Street address. P.O. box, etc</Text>:
+                                <Text style={[styles.textinput,{color:'rgba(33,33,33,0.25)',paddingVertical:10}]}><Text style={{color:'red',opacity:1}}>*</Text>Street address. P.O. box, etc</Text>:
                                 <Text style={[styles.textinput,{color:'#212123',paddingVertical:10}]}>{this.state.street}</Text>
                             }
                         </View>
@@ -169,7 +169,7 @@ export default class Country extends Component{
                         <View style={[styles.inputView]}>
                             
                             {this.state.Country===''?
-                                <Text style={[styles.textinput,{color:'#212123',opacity:0.4,paddingVertical:10}]}>Country</Text>:
+                                <Text style={[styles.textinput,{color:'rgba(33,33,33,0.25)',paddingVertical:10}]}><Text style={{color:'red',opacity:1}}>*</Text>Country</Text>:
                                 <Text style={[styles.textinput,{color:'#212123',paddingVertical:10}]}>{this.state.Country}</Text>
                             }
                         </View>
@@ -185,7 +185,10 @@ export default class Country extends Component{
                             onFocus={()=>this.setState({focus:'state'})}
                         />
                     </View>
-                    <View style={[styles.inputView,{borderBottomColor:this.state.focus==='city'?'#212123':'#dedede'}]}>
+                    <View style={[styles.inputView,{borderBottomColor:this.state.focus==='city'?'#212123':'#dedede',flexDirection:'row',alignItems:'center'}]}>
+                        {this.state.city===''?
+                            <Text style={{color:'red',opacity:1,marginBottom:0}}>*</Text>:null
+                        }
                         <TextInput
                             placeholder='City'
                             underlineColorAndroid='transparent'
@@ -195,7 +198,10 @@ export default class Country extends Component{
                             onFocus={()=>this.setState({focus:'city'})}
                         />
                     </View>
-                    <View style={[styles.inputView,{borderBottomColor:this.state.focus==='zip'?'#212123':'#dedede'}]}>
+                    <View style={[styles.inputView,{borderBottomColor:this.state.focus==='zip'?'#212123':'#dedede',flexDirection:'row',alignItems:'center'}]}>
+                        {this.state.zipcode===''?
+                            <Text style={{color:'red',opacity:1,marginBottom:0}}>*</Text>:null
+                        }
                         <TextInput
                             placeholder='ZIP/Postal Code'
                             underlineColorAndroid='transparent'
@@ -271,9 +277,9 @@ export default class Country extends Component{
                         </Text>
                     </CountryPicker>
                 </View>
-                <Button onPress={()=>this.next()} disabled={this.state.Country.length>0&&this.state.city.length>0&&this.state.zipcode.length>0&&this.state.apt.length>0&&this.state.street.length>0&&this.state.state.length>0?false:true}
-                         style={[styles.buttonContainer,{backgroundColor:this.state.Country.length>0&&this.state.city.length>0&&this.state.zipcode.length>0&&this.state.apt.length>0&&this.state.street.length>0&&this.state.state.length>0?'#FF4273':'#F0F0F0'}]}>
-                                <Text style={[styles.buttonText,{color:this.state.Country.length>0&&this.state.city!==''&&this.state.zipcode!==''&&this.state.apt.length>0&&this.state.street.length>0&&this.state.state.length>0?'#fff':'#CCCCCC'}]}>Save</Text>
+                <Button onPress={()=>this.next()} disabled={this.state.Country.length>0&&this.state.city.length>0&&this.state.zipcode.length>0&&this.state.street.length>0?false:true}
+                         style={[styles.buttonContainer,{backgroundColor:this.state.Country.length>0&&this.state.city.length>0&&this.state.zipcode.length>0&&this.state.street.length>0?'#FF4273':'#F0F0F0'}]}>
+                                <Text style={[styles.buttonText,{color:this.state.Country.length>0&&this.state.city!==''&&this.state.zipcode!==''&&this.state.street.length>0?'#fff':'#CCCCCC'}]}>Save</Text>
                 </Button>
                 <Modal
                     animationType={'slide'}
@@ -299,12 +305,20 @@ export default class Country extends Component{
                         </View>
                         {
                             this.state.dataSource.length>0?
-                            this.state.dataSource.map((data, index)=>{
+                            this.state.dataSource.filter(d=>{
+                                let c = this.state.Country;
+                                if(c==='United States') c='USA'
+                                return d.description.indexOf(c)>-1
+                            }).
+                            map((data, index)=>{
+                                console.log('++--Terms',data.terms[1])
+                                let city = data.description.split(',')[1]
+                                if(data.terms[1]===undefined) return
                                 return(
-                                    <TouchableOpacity onPress={()=>this.setState({streetModal: false,street:data.structured_formatting.main_text})}>
+                                    <TouchableOpacity onPress={()=>this.setState({streetModal: false,street:data.structured_formatting.main_text,city: city})}>
                                         <View style={styles.locationPreview}>
                                             <Image source={require('@images/pin.png')} style={{width:20,height:20}} />
-                                            <Text style={styles.locationName}>{data.structured_formatting.main_text}</Text>
+                                            <Text style={styles.locationName}>{data.structured_formatting.main_text}, {city}</Text>
                                         </View>
                                     </TouchableOpacity>
                                 )

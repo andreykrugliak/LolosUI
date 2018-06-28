@@ -137,9 +137,10 @@ export default class ProductPage extends Component{
                             </Text>
                         </View>
                         <View style={styles.line}></View>
-                        <View style={styles.shipping}>
-                            <Text style={styles.shippingText}>{this.props.item.shipping_price_USA}</Text>
-                            <Image style={styles.down} source={require('@images/Shop/down-arrow.png')}/>
+                        <View style={[styles.shipping]}>
+                            <Text style={[styles.itemText]}>Delivery</Text>
+                            <Text style={styles.shippingText}>{this.props.item.Shipping_Price_USA}</Text>
+                            {/* <Image style={styles.down} source={require('@images/Shop/down-arrow.png')}/> */}
                         </View>
                         <Text style={styles.shippingSubText}>{this.props.item.Delivery_time_USA}</Text>
                     </View>
@@ -178,7 +179,7 @@ export default class ProductPage extends Component{
                             style={[styles.slideBuy,{backgroundColor:'transparent'},]}
                             height={58}
                             onSlidingSuccess={()=>{
-                                if(this.state.country===''||this.state.city===''||this.state.street===''||this.state.zipcode===''||this.state.state===''||this.state.apt===''){
+                                if(this.state.country===''||this.state.city===''||this.state.street===''||this.state.zipcode===''){
                                     
                                     Alert.alert(
                                         '',

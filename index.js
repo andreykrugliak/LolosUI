@@ -5,6 +5,7 @@ import firebase from 'react-native-firebase';
 
 let windowWidth = Dimensions.get('window').width
 let screen = ''
+if(__DEV__) console.disableYellowBox = true
 registerScreens();
     Navigation.startSingleScreenApp({
     screen:{

@@ -112,7 +112,7 @@ export default class Onboarging extends Component {
         return(
             <View style={{flex:1}}>
                 <Animated.Image style={[styles.homeLogo,this.imageinitialPosition.getLayout()]} source={require('@images/Onboarding/ActiveCart.png')}/>
-                <Animated.Text style={[styles.loloText,this.imageinitialPosition.getLayout()]}>SPEND THEM</Animated.Text>
+                <Animated.Text style={[styles.loloText,this.imageinitialPosition.getLayout()]}>Spend Them</Animated.Text>
                 <Animated.Text style={[styles.featureText,this.imageinitialPosition.getLayout()]}>in our awesome marketplace</Animated.Text>
                 <View style={styles.animatedSmileyView}>
                     <Animated.Image source={require('@images/Onboarding/em_8.png')} style={[styles.smiley,this.imageinitialPosition.getLayout()]}/>

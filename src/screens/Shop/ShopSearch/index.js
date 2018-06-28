@@ -1,10 +1,13 @@
 import React,{Component} from 'react';
 import {Container, Header, Content, Footer, FooterTab, Button, Text, Icon, Body, Right, Left,Title, Card, Badge, CardItem} from 'native-base';
-import {View,Dimensions,Image,TouchableOpacity,FlatList,ScrollView,TextInput} from 'react-native';
+import {View,Dimensions,Image,TouchableOpacity,FlatList,ScrollView,TextInput,ActivityIndicator} from 'react-native';
 import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
 var WindowWidth = Dimensions.get('window').width
 var WindowHeight = Dimensions.get('window').height
-import styles from './style'
+import styles from './style';
+import firebase from 'react-native-firebase';
+import moment from 'moment';
+import Sugar from 'sugar'
 
 export default class ShopSeach extends Component{
 
@@ -17,209 +20,125 @@ export default class ShopSeach extends Component{
             searchKey:'',
             search:false,
             match:false,
-            data:[
-                {
-                    id:'1',
-                    image:'@images/HomePage/image.jpg',
-                    title:'Binfull Mini Prortable Micro Mobile Phone USB Gadget Fans Tester For iphone 5S',
-                    price:"357 lolo's",
-                    label:'SUPER HOT',
-                },
-                {
-                    id:'2',
-                    image:'@images/HomePage/image.jpg',
-                    title:'Binfull Mini Prortable Micro Mobile Phone USB Gadget Fans Tester For iphone 5S',
-                    price:"357 lolo's",
-                    label:'SUPER HOT',
-                },
-                {
-                    id:'3',
-                    image:'@images/HomePage/image.jpg',
-                    title:'Binfull Mini Prortable Micro Mobile Phone USB Gadget Fans Tester For iphone 5S',
-                    price:"357 lolo's",
-                    label:'SUPER HOT',
-                },
-                {
-                    id:'4',
-                    image:'@images/HomePage/image.jpg',
-                    title:'Binfull Mini Prortable Micro Mobile Phone USB Gadget Fans Tester For iphone 5S',
-                    price:"357 lolo's",
-                    label:'SUPER HOT',
-                }
-            ],
+            data:[],
+            loading: true
         }
     }
-
-    _handleTextInput(text){
-        console.log(text)
-        this.setState({
-            searchKey:text
-        })
-
-        if(this.state.searchKey)
-        {
-            let searchKeyLength=this.state.searchKey.length
-           
-            if(searchKeyLength>1)
-            {
-                this.setState({
-                    search:true
-                })
-            }
-            if(searchKeyLength==1)
-            {
-                this.setState({search:false,match:false})
-            }
-            console.log(searchKeyLength)
-        }else{
-            this.setState({search:false,match:false})
-           
-        }
+    componentWillMount(){
+        let self = this
+        this.setState({loading: true})
+        let uid = firebase.auth().currentUser.uid;
+        firebase.database().ref('purchased/'+uid).on('value',function(snap){
+            let data=[]
+            snap.forEach(c=>{
+                // console.log('++---purchased',c.key, moment(c.val().time).format('MM.DD.YY'))
+                c.val().date = moment(c.val().time).format('MM.DD.YY')
+                data.push(c.val())
+            })
+            self.setState({data, loading: false})
+        }).bind(this)
     }
 
-    _handleSearch(){
-        this.setState({match:true})
-    }
+    
 
-    _handleMatch(){
-        this.setState({
-            searchKey:null,
-        })
-    }
-
-    _renderItems=({item,index})=>{
-        return(
-            <View style={styles.FlatListcontainer}>
-                <View style={[styles.card,{shadowOpacity:0.3,shadowOffset:{width:0,height:1}}]}>
-                    <Image style={styles.productIcon} resizeMode={'stretch'} source={require('@images/Shop/image.jpg')}/>
-                    <View style={styles.detail}>
-                        <Text style={styles.title}>
-                            {item.title}
-                        </Text>
-                        <View style={styles.label}>
-                            <Text style={styles.labelText}>
-                                {item.price}
-                            </Text>
-                        </View>
-                        <View style={styles.extraInfo}>
-                            <Text style={styles.shippingText}>Free Shipping</Text>
-                            <View style={styles.extraInfoLabel}>
-                                <Image style={styles.extraInfoIcon} source={require('@images/Shop/superhot.png')} />
-                                <Text style={styles.superHotText}>{item.label}</Text>
-                            </View>
-                        </View>
-                    </View>
-                </View>
-            </View>
-        )
-    }
-
+    
+    
 
     render(){
+        let self = this
+        let data = []
+        data = this.state.data.sort(function(a,b){            
+            if(a.time>b.time) return -1
+            if(a.time<b.time) return 1
+            return 0
+        }).filter(d=>{
+                d.date = moment(d.time).format('DD.MM.YY')
+                return true
+            })
+        let DatabyDate = Sugar.Array.groupBy(data,n=>{
+                return n.date
+            })
+            
+            let finalData = []
+            Sugar.Object.forEach(DatabyDate,(val, key)=>{
+                let dataJson = {};                
+                dataJson.date = key;
+                dataJson.val = val;
+                finalData.push(dataJson);
+            })
+        console.log('++----purchased Data',finalData)
         return(
             <View style={styles.container}>
                 <View style={styles.header}>
-                <TouchableOpacity onPress={()=>{
-                    this.props.navigator.pop({
-                        animationType:"slide-horizontal"
-                    })
-                }}>
-                    <Image style={styles.back} source={require('@images/DrawerScreen/left.png')}/>
+                    <TouchableOpacity 
+                    style={{position: 'absolute', left: 18}}
+                    onPress={()=>{
+                        this.props.navigator.pop({
+                            animationType:"slide-horizontal"
+                        })
+                    }}>
+                        <Image style={styles.back} source={require('@images/DrawerScreen/left.png')}/>
                     </TouchableOpacity>
-                    <Text  style={styles.searchItem}>SEARCH ITEM</Text>
+                    <Text  style={styles.searchItem}>ORDER HISTORY</Text>
                 </View>
 
-                <View style={styles.searchSection}>
-                    <View style={{flexDirection:'row',alignItems:'center'}}>
-                        <View style={this.state.search?[styles.body,{width:WindowWidth-105,justifyContent:'space-between'}]:styles.body}>
-                            <TextInput
-                            style={styles.textInput}
-                            placeholder={'Search . . .'}
-                            value={this.state.searchKey}
-                            underlineColorAndroid='transparent'
-                            onChangeText={(text)=>this._handleTextInput(text)}
-                            />
-                            {
-                                this.state.search?
-                                <View>
-                                <TouchableOpacity 
-                                onPress={()=>{
-                                    this.state.match?
-                                    this._handleMatch()
-                                    :
-                                    this._handleSearch()
-                                }}>
-                                <Image style={
-                                    this.state.match?
-                                    [styles.iconSearch,{height:24,width:24,marginRight:13,marginVertical:18}]:
-                                    [styles.iconSearch,{height:50,width:50,marginRight:5,marginVertical:5}]} 
-                                    source={this.state.match?require('@images/Shop/cross.png'):require('@images/Shop/greenSearch.png')} />
-                                </TouchableOpacity>
-                                </View>:
-                                <Image style={styles.iconSearch} source={require('@images/Shop/ic_search.png')} />    
-                            }
-                            
-                        </View>
-                            {this.state.search?
-                            <TouchableOpacity onPress={()=>this._handleMatch()}><Text style={styles.cancel}>Cancel</Text></TouchableOpacity>
-                            :null}
-                    </View>
-                </View> 
-                <View style={styles.line}></View>
-                {
-                    this.state.search?
-                    <View style={[{flex:1}]}>
+                <ScrollView  contentContainerStyle={styles.searchSection}>
                     {
-                        this.state.match?
-                        <View style={{flex:1,backgroundColor:'#F6F6F6'}}>
-                            <FlatList
-                            style={{flex:1,paddingBottom:20}}
-                            data={this.state.data}
-                            keyExtractor={(item,index)=>item.id}
-                            renderItem={this._renderItems}
-                            />
-                        </View>
-                        :
-                        <View style={styles.recentSearch}>
-                            <Text style={styles.item}>item#1</Text>
-                            <Text style={styles.item}>item#1</Text>
-                            <Text style={styles.item}>item#1</Text>
-                            <Text style={styles.item}>item#1</Text>
-                        </View>
-
-                    }  
-                    </View>
-                    :
-                    <View>
-                        <View>
-                            <View style={[styles.recentSearch,{marginTop:1}]}>
-                                <Text style={styles.head}>Recent Searches</Text>
-                                <Text style={styles.item}>item#1</Text>
-                                <Text style={styles.item}>item#1</Text>
-                                <Text style={styles.item}>item#1</Text>
-                                <Text style={styles.item}>item#1</Text>
-                            </View>
-                            <View style={styles.line}></View>
-        
-                            <View style={[styles.recentViewed]}>
-                                <Text style={[styles.head,{marginLeft:30}]}> Recently Viewed</Text>
-                                <FlatList
-                                horizontal={true}
-                                keyExtractor={(item,index)=> item}
-                                style={styles.productImages}
-                                data={['1','2','16','26','17','29','10','20']}
-                                renderItem={()=>{
-                                    return( 
-                                        <Image style={styles.img} resizeMode={'stretch'} source={require('@images/HomePage/image.jpg')}/>
-                                    )
-                                }}
-                                />    
-                            </View>
-                        </View>
-                    </View>
-
+                        finalData.map(f=>{
+                            return(
+                                <View style={{backgroundColor:'transparent'}}>
+                                    <Text style={{marginLeft: 15}}>{f.date}</Text>
+                                    {
+                                        f.val.map(v=>{
+                                            return(
+                                                <View style={[styles.container1,{backgroundColor:'transparent'}]}>
+                                                    <TouchableOpacity
+                                                        onPress={()=>{
+                                                            self.props.navigator.push({
+                                                            screen:'app.ProductPage',
+                                                            animationType:"slide-horizontal",
+                                                            passProps:{item:v}
+                                                            }) 
+                                                        }}>
+                                                        <View style={[styles.card,{shadowOpacity:0.3,shadowRadius:2,shadowColor:'rgba(0,0,0,0.20)',shadowOffset:{width:0,height:2}}]}>
+                                                            <Image style={styles.productIcon} resizeMode={'stretch'} 
+                                                                source={{uri: v.Preview_Img}}/>
+                                                            <View style={styles.detail}>
+                                                                <Text  numberOfLines={3} style={styles.title}>
+                                                                    {v.Product_Name}
+                                                                </Text>
+                                                                <View style={styles.label}>
+                                                                    <Text style={styles.labelText}>
+                                                                        {v.Price_Lolos} lolo's
+                                                                    </Text>
+                                                                </View>
+                                                            
+                                                            </View>
+                                                            <View style={styles.extraInfo}>
+                                                                    <Text style={[styles.shippingText,{paddingBottom:9}]}>Free Shipping</Text>
+                                                                    {/* <View style={styles.extraInfoLabel}>
+                                                                        <Image style={styles.extraInfoIcon} source={require('@images/Shop/superhot.png')} />
+                                                                        <Text style={styles.superHotText}>{item.label}</Text>
+                                                                    </View> */}
+                                                                </View>
+                                                        </View>
+                                                        
+                                                    </TouchableOpacity> 
+                                                </View>
+                                            )
+                                        })
+                                    }
+                                </View>
+                            )
+                        })
+                    }
+                </ScrollView> 
+                {
+                this.state.loading?
+                    <View style={{flex:1,width:WindowWidth, height: WindowHeight,justifyContent:"center",alignItems:'center',position:'absolute'}}>
+                        <ActivityIndicator size='large' color='#ffb100' />
+                    </View>:null
                 }
-
             </View>
         )
     }

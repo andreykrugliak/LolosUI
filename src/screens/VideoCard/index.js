@@ -70,7 +70,7 @@ export default class VideoPlayer extends Component{
                         onError={e => this.setState({ error: e.error })}
                         onProgress={e => this.setState({ currentTime: e.currentTime, duration: e.duration })}
 
-                        style={{alignSelf: 'stretch', height: windowHeight-20, backgroundColor: 'black', marginVertical: 10}}
+                        style={{alignSelf: 'stretch', height: windowHeight-20, backgroundColor: 'black'}}
                         >
                     </Youtube> 
                    {/* <WebView 
@@ -83,13 +83,15 @@ export default class VideoPlayer extends Component{
                         mediaPlaybackRequiresUserAction={false}
                     /> */}
                  </View>   
-                 <View style={{position:'absolute',right:20,top:20,}} >
+                 <View style={{position:'absolute',right:16,top:35,}} >
                  <TouchableOpacity onPress={()=>{
                      this.props.navigator.dismissModal({
                          animationType: 'slide-down' 
                      })
                  }} > 
-                     <Image source={require('@images/sliderImages/close.png')} style={{height:20,width:20,}}/>
+                    
+                        <Image source={require('@images/close.png')} style={{height:40,width:40,}}/>
+                   
                  </TouchableOpacity>
                  </View>  
              </View>      

@@ -88,6 +88,7 @@ export default class InviteFriends extends Component{
     {   
         let res=Contacts.getAll((err,contact) => {
             console.log('contacts',contact)
+            if(contact === null) contact = []
             let nameArray = contact.map((data, index) => {
                 data.familyName?
                 this.state.contacts.push(data.givenName+" "+data.familyName)
@@ -192,22 +193,7 @@ export default class InviteFriends extends Component{
 
 )}}
 
-//  class sectionHeader extends InviteFriends{
-//         constructor(props){
-//             super(props)
-//         } 
 
-//      render(){
-//          console.log(this.props)
-//          return(
-//              <View style={{height:45}}>
-//                 <Text style={{fontSize:12,color:'#000',marginLeft:14}}>
-//                     {this.props.title}
-//                 </Text>
-//              </View>
-//          )
-//      }
-//  }
 
 
   class SectionListItem extends InviteFriends {

@@ -22,11 +22,11 @@ export default StyleSheet.create({
         textAlign:'center',
         fontFamily:'Lato-Regular',
         fontSize:22,
-        marginHorizontal:40
+        marginHorizontal:32
     },
     image:{
-        height:83,
-        width:151,
+        height:(width-80)*600/1125,
+        width:width-80,
         resizeMode:'contain',
         alignSelf:'center',
         marginTop:windowHeight<= iphoneSE? 30:73,
@@ -134,6 +134,21 @@ export default StyleSheet.create({
         width: width,
         height: windowHeight,
         backgroundColor: 'rgba(0,0,0,0.15)'
+    },
+    linkView: {
+        width: width-50,
+        height: 40,
+        backgroundColor: 'rgba(0,0,0,0.06)',
+        alignItems: 'center',
+        alignSelf: 'center',
+        justifyContent:'center',
+        marginTop: 30,
+        borderRadius: 4
+    },
+    link: {        
+        fontFamily:"lato-Regular",
+        fontSize:18,
+        width: width-70
     }
 
 })

@@ -1,6 +1,6 @@
 import {Container,Button, Content} from 'native-base';
 import React, { Component } from 'react';
-import { Image, View, Easing, Animated,TouchableWithoutFeedback,TouchableOpacity, Dimensions, Text,Platform} from 'react-native';
+import { Image, View, Easing, Animated,TouchableWithoutFeedback,TouchableOpacity, Dimensions, Text,Platform, AsyncStorage} from 'react-native';
 import styles from './style'
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
@@ -33,6 +33,10 @@ export default class ButtonExample extends Component {
                     this.setState({splash:false})
                 },500)
             }
+        })
+
+        firebase.links().getInitialLink().then(url=>{
+            if(url) AsyncStorage.setItem('url',JSON.stringify({url:url}))
         })
         this.imageinitialPosition = new Animated.ValueXY({x:0 , y: 80})        
         this.imageLoloInitialPosition=new Animated.ValueXY({x:0,y:1})        

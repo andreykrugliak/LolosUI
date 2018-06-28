@@ -80,14 +80,15 @@ export default StyleSheet.create({
         backgroundColor:'#F0F0F0'
     },
     shipping:{
-        flexDirection:'row',
+        // flexDirection:'row',
         justifyContent:'space-between',
     },
     shippingText:{
-        marginTop:15,
+        marginTop:5,
         fontSize:12,
         color:'#000',
         fontFamily:'Lato-Regular',
+        opacity: 0.6
     },
     down:{
         width:7.9,

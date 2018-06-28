@@ -40,6 +40,9 @@ import CrazyLab from './FakeWallet/CrazyLab';
 import BorderLine from './FakeWallet/BorderLine';
 import Store from './FakeWallet/Store';
 import BorderLineRefund from './FakeWallet/BorderLineRefund'
+import LifeScreen from './How/index'
+import Privacy from './How/Privacy'
+import Terms from './How/Terms'
 
 
 export function registerScreens(params){
@@ -84,6 +87,10 @@ export function registerScreens(params){
     Navigation.registerComponent("app.BorderLine",()=>BorderLine)
     Navigation.registerComponent("app.Store",()=>Store)
     Navigation.registerComponent("app.BorderLineRefund",()=>BorderLineRefund)
+    Navigation.registerComponent("LifeScreen",()=>LifeScreen)
+    Navigation.registerComponent("Privacy",()=>Privacy)
+    Navigation.registerComponent("Terms",()=>Terms)
+
     
 
     
