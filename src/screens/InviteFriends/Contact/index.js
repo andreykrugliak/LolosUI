@@ -20,14 +20,14 @@ export default class InviteFriends extends Component{
         let self = this
         let uid = firebase.auth().currentUser.uid;
         const link = 
-        new firebase.links.DynamicLink(`https://itunes.apple.com/app/id1391950519?invitedby=${uid}`, 'h54u6.app.goo.gl')
+        new firebase.links.DynamicLink(`https://h54u6.app.goo.gl/lolos?invitedby=${uid}`, 'h54u6.app.goo.gl')
             .android.setPackageName('com.clickers')
             .ios.setBundleId('5BQ434DB6T.com.clickers')
             .ios.setAppStoreId('1391950519')
 
         firebase.links()
-           .createShortDynamicLink(link, 'UNGUESSABLE')
-            // .createDynamicLink(link)
+        //    .createShortDynamicLink(link, 'UNGUESSABLE')
+            .createDynamicLink(link)
             .then((url) => {
             // ...
                 console.log(url)

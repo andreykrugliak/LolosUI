@@ -43,6 +43,8 @@ import BorderLineRefund from './FakeWallet/BorderLineRefund'
 import LifeScreen from './How/index'
 import Privacy from './How/Privacy'
 import Terms from './How/Terms'
+import Submit1 from './Shop/PreviewScreen/submit1'
+import Submit2 from './Shop/PreviewScreen/submit2'
 
 
 export function registerScreens(params){
@@ -90,6 +92,8 @@ export function registerScreens(params){
     Navigation.registerComponent("LifeScreen",()=>LifeScreen)
     Navigation.registerComponent("Privacy",()=>Privacy)
     Navigation.registerComponent("Terms",()=>Terms)
+    Navigation.registerComponent("Submit2",()=>Submit2)
+    Navigation.registerComponent("Submit1",()=>Submit1)
 
     
 

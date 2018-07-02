@@ -74,7 +74,9 @@ export default StyleSheet.create({
     walletImage: {
         resizeMode: 'contain',
         alignSelf:'center',
-        marginTop: 30
+        marginTop: 30,
+        width: windowWidth/2,
+        height: 471*(windowWidth/2)/360
     },
     walletImage1: {
         width: windowWidth-36,

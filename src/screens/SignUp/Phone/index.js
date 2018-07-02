@@ -12,6 +12,7 @@ import {Input,Button} from 'native-base'
 import styles from './style'
 import { LoloLogoComponent } from '../../../components/LolologoComponent/index';
 import firebase from 'react-native-firebase';
+import moment from 'moment'
 const COUNTRY_LIST = ['CA','AF',"AL",'DZ','IN', 'MX', 'US','AF','AX']
 
 export default class Phone extends Component{
@@ -64,6 +65,7 @@ export default class Phone extends Component{
          });
        }
      });
+   AsyncStorage.clear()
  }
 
   countryPicker(){
@@ -83,7 +85,29 @@ export default class Phone extends Component{
         />
     
   }
-  phoneSignUp(){    
+  async phoneSignUp(){    
+      
+      let Code = await AsyncStorage.getItem('CodeRequire')
+      if(Code === null) await AsyncStorage.setItem('CodeRequire',JSON.stringify([new Date().getTime()]))
+      else{
+        if(JSON.parse(Code).length<3){
+          let id = [new Date().getTime()]
+          var newIds = JSON.parse(Code).concat(id);
+          await AsyncStorage.setItem('CodeRequire', JSON.stringify(newIds));
+        } else if(JSON.parse(Code).length===3&&moment(new Date()).diff(JSON.parse(Code)[0],'minutes')>1){
+          let id = [new Date().getTime()]
+          var newIds = JSON.parse(Code).slice(1);
+          newIds.concat(id)
+          await AsyncStorage.setItem('CodeRequire', JSON.stringify(newIds));
+        }
+        else{
+          alert('Too many attemps, Please try in an hour')
+          return
+        }
+        
+      }
+      
+      
       let self = this
       firebase.auth().signInWithPhoneNumber('+'+this.state.callingCode+this.state.text)
       .then(confirmResult=>{        

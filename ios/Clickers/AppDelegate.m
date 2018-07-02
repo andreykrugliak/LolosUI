@@ -14,6 +14,7 @@
 #import "RNFIRMessaging.h"
 #import "RNFirebaseLinks.h"
 #import "RNFirebaseInvites.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 #define CUSTOM_URL @"https://www.instagram.com/lolos.me"
 @implementation AppDelegate
 
@@ -41,14 +42,15 @@ continueUserActivity:(NSUserActivity *)userActivity
 }
 
 
-- (BOOL)application:(UIApplication *)app
-            openURL:(NSURL *)url
-            options:(NSDictionary<NSString *, id> *)options {
-  return [self application:app
-                   openURL:url
-         sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
-                annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
-}
+//- (BOOL)application:(UIApplication *)app
+//            openURL:(NSURL *)url
+//            options:(NSDictionary<NSString *, id> *)options {
+//
+//  return [self application:app
+//                   openURL:url
+//         sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+//                annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
+//}
 
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
@@ -107,8 +109,26 @@ continueUserActivity:(NSUserActivity *)userActivity
   [FIROptions defaultOptions].deepLinkURLScheme = CUSTOM_URL;
   [FIRApp configure];
   [[UNUserNotificationCenter currentNotificationCenter] setDelegate:self];
-  
+  [[FBSDKApplicationDelegate sharedInstance] application:application
+                           didFinishLaunchingWithOptions:launchOptions];
   return YES;
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+  
+  BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                                openURL:url
+                                                      sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+                                                             annotation:options[UIApplicationOpenURLOptionsAnnotationKey]
+                  ];
+  // Add any custom logic here.
+  return handled;
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+  [FBSDKAppEvents activateApp];
 }
 
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler

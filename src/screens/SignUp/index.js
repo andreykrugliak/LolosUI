@@ -37,7 +37,7 @@ export default class SignUp extends Component{
             <View style={{flex:1,backgroundColor:'#fff',height:windowHeight}}>
                 <LoloLogoComponent navigator={this.props.navigator} />
                 <Text style={styles.bdayText}>What’s your birthday?</Text>
-                <Text style={styles.bdayAlert}>Your birthday won’t be shown publicly</Text>
+                <Text style={styles.bdayAlert}>You must be 13~17 years old to use Lolos, your birthday won't be shown publicly</Text>
                 
 
         <View style={styles.datePickerContainer}>
@@ -79,6 +79,14 @@ export default class SignUp extends Component{
                  
                   
                     <Button onPress={()=>{
+                                    
+                                    let birthYear = this.state.date.split(' ')[2]
+                                    let year = new Date().getFullYear()
+                                    {/* alert(year-parseInt(birthYear)); return */}
+                                    if(year-parseInt(birthYear)>17||year-parseInt(birthYear)<13) {
+                                        alert('The app is aimed for 13-17 YO teenagers. if you are under 13 or above 18 you are not allowed to sign up')
+                                        return
+                                    }
                                     AsyncStorage.setItem('birthday',JSON.stringify({birthday:this.state.date}))
                                     this.props.navigator.push({
                                         screen:'app.Phone',

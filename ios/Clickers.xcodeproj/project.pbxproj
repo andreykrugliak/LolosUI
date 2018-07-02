@@ -79,6 +79,10 @@
 		AE6BC152209AFCF900759668 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AE6BC151209AFCF900759668 /* GoogleService-Info.plist */; };
 		AE89567020A9D70E00312531 /* libRNMessageComposer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE89566D20A9D6DD00312531 /* libRNMessageComposer.a */; };
 		AE9049C4209CB487000F4F4C /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE9049BE209CB464000F4F4C /* libRNFetchBlob.a */; };
+		AECDC86820E59115000EE10A /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AECDC82C20E59114000EE10A /* Bolts.framework */; };
+		AECDC86C20E59162000EE10A /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AECDC86920E59150000EE10A /* FBSDKLoginKit.framework */; };
+		AECDC86D20E59162000EE10A /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AECDC86A20E59157000EE10A /* FBSDKShareKit.framework */; };
+		AECDC86E20E59162000EE10A /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AECDC86B20E59162000EE10A /* FBSDKCoreKit.framework */; };
 		AED8633320A31E6700FE26C9 /* libRNFIRMessaging.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AED8632E20A31E3C00FE26C9 /* libRNFIRMessaging.a */; };
 		AEE47B79209B346200411630 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AEE47B74209B33F500411630 /* libRNFirebase.a */; };
 		AEF5F09720D1B45000F1DBE5 /* YTPlayerView-iframe-player.html in Resources */ = {isa = PBXBuildFile; fileRef = AEF5F05C20D1B45000F1DBE5 /* YTPlayerView-iframe-player.html */; };
@@ -610,6 +614,10 @@
 		AE6BC151209AFCF900759668 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AE89563320A9D6DC00312531 /* RNMessageComposer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNMessageComposer.xcodeproj; path = "../node_modules/react-native-message-composer/RNMessageComposer.xcodeproj"; sourceTree = "<group>"; };
 		AE904989209CB464000F4F4C /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
+		AECDC82C20E59114000EE10A /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		AECDC86920E59150000EE10A /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		AECDC86A20E59157000EE10A /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		AECDC86B20E59162000EE10A /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		AED862F720A31E3B00FE26C9 /* RNFIRMessaging.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFIRMessaging.xcodeproj; path = "../node_modules/react-native-fcm/ios/RNFIRMessaging.xcodeproj"; sourceTree = "<group>"; };
 		AEF5F05C20D1B45000F1DBE5 /* YTPlayerView-iframe-player.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "YTPlayerView-iframe-player.html"; path = "../node_modules/react-native-youtube/assets/YTPlayerView-iframe-player.html"; sourceTree = "<group>"; };
 		AEF5F09820D1B70E00F1DBE5 /* RCTYouTube.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTYouTube.xcodeproj; path = "../node_modules/react-native-youtube/RCTYouTube.xcodeproj"; sourceTree = "<group>"; };
@@ -652,12 +660,14 @@
 			files = (
 				AEF5F09E20D1B72E00F1DBE5 /* libRCTYouTube.a in Frameworks */,
 				AE21628D20B45CE5002B9437 /* libART.a in Frameworks */,
+				AECDC86D20E59162000EE10A /* FBSDKShareKit.framework in Frameworks */,
 				AED8633320A31E6700FE26C9 /* libRNFIRMessaging.a in Frameworks */,
 				AE89567020A9D70E00312531 /* libRNMessageComposer.a in Frameworks */,
 				AE9049C4209CB487000F4F4C /* libRNFetchBlob.a in Frameworks */,
 				AEE47B79209B346200411630 /* libRNFirebase.a in Frameworks */,
 				0768D6F92090B494006F07B7 /* libRNImagePicker.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
+				AECDC86C20E59162000EE10A /* FBSDKLoginKit.framework in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
@@ -665,6 +675,7 @@
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
+				AECDC86820E59115000EE10A /* Bolts.framework in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
 				DA995A952057A7AE005C20FC /* libReactNativeNavigation.a in Frameworks */,
@@ -672,6 +683,7 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				82C7BB403D584CEEA0AA9206 /* libBVLinearGradient.a in Frameworks */,
+				AECDC86E20E59162000EE10A /* FBSDKCoreKit.framework in Frameworks */,
 				4A8011B1A5EF42599A0305A2 /* libRCTContacts.a in Frameworks */,
 				997632113BEC4818A4C12EF3 /* libRNSound.a in Frameworks */,
 				4436BCB1A3A34053A7AD6C21 /* libRNDeviceInfo.a in Frameworks */,
@@ -906,6 +918,10 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AECDC86B20E59162000EE10A /* FBSDKCoreKit.framework */,
+				AECDC86920E59150000EE10A /* FBSDKLoginKit.framework */,
+				AECDC86A20E59157000EE10A /* FBSDKShareKit.framework */,
+				AECDC82C20E59114000EE10A /* Bolts.framework */,
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
 				25B3BD8CAF1244845BEB0FA4 /* libPods-Clickers.a */,
 				1F6AAD0D75CA4FC248C3C58C /* libPods-Clickers-tvOSTests.a */,
@@ -2237,6 +2253,7 @@
 					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
 					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
 					"\"${PODS_ROOT}/FirebaseMessaging/Frameworks\"",
+					"$(PROJECT_DIR)",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2302,6 +2319,7 @@
 					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
 					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
 					"\"${PODS_ROOT}/FirebaseMessaging/Frameworks\"",
+					"$(PROJECT_DIR)",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
