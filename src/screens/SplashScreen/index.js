@@ -111,7 +111,7 @@ export default class ButtonExample extends Component {
                   <View style={{flex:1,backgroundColor:'transparent'}}>
                       <Animated.Image style={[this.imageinitialPosition.getLayout(),styles.loloImage]} source={require('@images/component/lolos.png')}/>
                       <Animated.View style={[this.textInitialPosition.getLayout(),{backgroundColor:'transparent',}]}>
-                        <Text style={styles.ShoppingText}>Earn them,{'\n'}Spend them!</Text>
+                        <Text style={styles.ShoppingText}>Your New{'\n'}Pocket Money!</Text>
                         {/* <Text  style={styles.ShoppingText}></Text> */}
                       </Animated.View>
                       <Animated.Image style={[this.imageLoloInitialPosition.getLayout(), styles.lolo]} source={require('@images/Assets/em.png')}/>  

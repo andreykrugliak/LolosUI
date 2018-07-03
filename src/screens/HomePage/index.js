@@ -20,10 +20,10 @@ import DropdownAlert from 'react-native-dropdownalert';
 //   };
 
   const images ={
-      Image1:require('@images/HomePage/ActiveCart.png'),
+      Image1:require('@images/Gift.png'),
       Image2:require('@images/HomePage/ActiveTabs.png'),
       Image3:require('@images/HomePage/ActiveHome.png'),
-      Image4:require('@images/HomePage/DeactiveCart.png'),
+      Image4:require('@images/Gift_Black.png'),
       Image5:require('@images/HomePage/DeactiveTabs.png'),
       Image6:require('@images/HomePage/DeactiveHome.png'),
   }
@@ -152,7 +152,7 @@ import DropdownAlert from 'react-native-dropdownalert';
       }
     
     _renderIcon = ({route}) => {
-        return <Image style={route.key == (this.state.index).toString()?{height:60,width:60,marginTop:-5,borderRadius:30,borderWidth:1,borderColor:'#f0f0f0'}:''} source={route.key == (this.state.index).toString()? route.iconSelected : route.icon}/>; 
+        return <Image style={route.key == (this.state.index).toString()?{marginTop:-5,borderRadius:30,borderWidth:1,borderColor:'#f0f0f0',width:60,height:60}:''} source={route.key == (this.state.index).toString()? route.iconSelected : route.icon}/>; 
     };
     
     _handleIndexChange = index => {

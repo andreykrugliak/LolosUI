@@ -99,14 +99,14 @@ export default class Wallet extends Component{
                             <Text style={styles.soonText}>Soon</Text>
                     </View>
                     <View style={styles.box}>
-                        <Text style={styles.requestText}>Request lolo's</Text>
+                        <Text style={styles.requestText}>Request Lolos</Text>
                     </View> 
                     
                     <View style={[styles.soonBox,{left:(WindowWidth/2)-7}]}>
                             <Text style={styles.soonText}>Soon</Text>
                     </View> 
                     <View style={styles.box}>
-                        <Text style={styles.requestText}>Give lolo's</Text>
+                        <Text style={styles.requestText}>Give Lolos</Text>
                     </View>  
 
 

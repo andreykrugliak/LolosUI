@@ -74,7 +74,7 @@ export default class MyProfile extends Component{
                 <HeaderComponent title="HOW IT WORKS" navigator={this.props.navigator} />
                 <ScrollView style={styles.body}>
                     <Text style={styles.LifeTimeText}>Lifetime{'\n'}Earning's Program</Text>
-                    <Image source={require('@images/Onboarding/WalletMoney.png')} style={styles.walletImage}/>
+                    <Image source={require('@images/soon.png')} style={styles.walletImage}/>
                     <Text style={{fontSize:25,alignSelf:'center',marginVertical:20,fontWeight:'500',fontFamily:'Lato'}}>what does it mean?</Text>
                     <View style={{width:WindowWidth,padding:15,backgroundColor:'rgba(33,33,33,0.07)'}}>
                         <Text style={{fontSize:17,fontWeight:'400',opacity:0.8,fontFamily:'Lato'}}>Lifetime earning program means that every user who joined by your invitation
@@ -93,12 +93,12 @@ export default class MyProfile extends Component{
                         </Text>
                     </View>
                     <TouchableOpacity style={styles.button} onPress={()=>{
-                        this.props.navigator.push({
+                        {/* this.props.navigator.push({
                             screen:'app.InviteFriendsHome',
                             animationType:"slide-horizontal"
-                        })
+                        }) */}
                     }}>
-                        <Text style={styles.buttonText}>Invite Friends</Text>
+                        <Text style={styles.buttonText}>Coming Soon</Text>
                     </TouchableOpacity>
                 </ScrollView>
                 {/* <Button disabled={this.state.text.length>0&&!this.state.dateDisabled?false:true} onPress={()=>this.gotoHome()}

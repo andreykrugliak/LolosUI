@@ -57,7 +57,7 @@ export default class Onboarging extends Component {
         return(
             <View style={{flex:1}}>
                 <Animated.Image style={[styles.homeLogo,this.imageinitialPosition.getLayout()]} source={require('@images/Onboarding/ActiveHome.png')}/>
-                <Animated.Text style={[styles.loloText,this.imageinitialPosition.getLayout()]}>Earn lolo's</Animated.Text>
+                <Animated.Text style={[styles.loloText,this.imageinitialPosition.getLayout()]}>Earn lolos</Animated.Text>
                 <Animated.Text style={[styles.featureText,this.imageinitialPosition.getLayout()]}>with special features inside app</Animated.Text>
                 <View style={styles.animatedImageView}>
                     <Animated.Image style={[styles.arrowImage,this.imageinitialPosition.getLayout()]} source={require('@images/Onboarding/ArrowImage.png')}/>
@@ -113,7 +113,7 @@ export default class Onboarging extends Component {
             <View style={{flex:1}}>
                 <Animated.Image style={[styles.homeLogo,this.imageinitialPosition.getLayout()]} source={require('@images/Onboarding/ActiveCart.png')}/>
                 <Animated.Text style={[styles.loloText,this.imageinitialPosition.getLayout()]}>Spend Them</Animated.Text>
-                <Animated.Text style={[styles.featureText,this.imageinitialPosition.getLayout()]}>in our awesome marketplace</Animated.Text>
+                <Animated.Text style={[styles.featureText,this.imageinitialPosition.getLayout()]}>on anything you want!</Animated.Text>
                 <View style={styles.animatedSmileyView}>
                     <Animated.Image source={require('@images/Onboarding/em_8.png')} style={[styles.smiley,this.imageinitialPosition.getLayout()]}/>
 
@@ -139,7 +139,7 @@ export default class Onboarging extends Component {
             <View style={{flex:1}}>
                 <Animated.Image style={[styles.threeSmile,this.imageinitialPosition.getLayout()]} source={require('@images/Onboarding/three.png')}/>
                 <Animated.Text style={[styles.startText,this.imageinitialPosition.getLayout()]}>Let’s start!</Animated.Text>
-                <Animated.Text style={[styles.featureText,this.imageinitialPosition.getLayout()]}>Sign up now and get your first 20 lolo’s</Animated.Text>
+                <Animated.Text style={[styles.featureText,this.imageinitialPosition.getLayout()]}>Sign up now and get your first 20 Lolos</Animated.Text>
                 
                 <TouchableOpacity onPress={()=>this.next()} style={styles.buttonView} >
                 <Animated.View style={[this.imageinitialPosition.getLayout(),styles.animatedButtonView]}>
