@@ -118,10 +118,7 @@ export default class MyProfile extends Component{
       }
     };
 
-    ImagePicker.showImagePicker(options, (response) => {
-        
-           
-           
+    ImagePicker.showImagePicker(options, (response) => { 
           this.uploadImage(response.uri)
           .then((url) => {                         
                this.setState({
@@ -133,9 +130,6 @@ export default class MyProfile extends Component{
             // });         
           })
           .catch(error => console.log(error))
-  
-         
-        
       });
   }
 

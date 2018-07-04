@@ -69,9 +69,9 @@ export default class Wallet extends Component{
             <Right>
                 <Button transparent onPress={()=>{
                    this.props.navigator.push({
-                    screen:'app.Notifications',
-                    animationType:"slide-horizontal"
-                })
+                        screen:'Chat',
+                        animationType:"slide-horizontal"
+                    })
                 }}>
                     { this.state.badge !== 0?
                         <View style={[styles.badgeStyle]}>
@@ -80,7 +80,7 @@ export default class Wallet extends Component{
                         
                         </View>:null
                         }  
-                    <Image source={require('@images/HomePage/NOTIFICATIONWhite.png')}>
+                    <Image source={require('@images/Chat_Icon.png')} style={{width:24,height:24}}>
                     </Image>
                 </Button>
             </Right>

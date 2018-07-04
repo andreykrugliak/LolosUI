@@ -65,7 +65,8 @@ export default class PreviewScreen extends Component{
             balance: 0,
             state: '',
             apt: '',
-            fullname:''
+            fullname:'',
+            badge: 0,
         })
         this._handleIndexChange=this._handleIndexChange.bind(this)
         this._renderHeader=this._renderHeader.bind(this)
@@ -115,6 +116,7 @@ export default class PreviewScreen extends Component{
             zipcode=snapshot.child('zipcode').val();
             state=snapshot.child('state').val();
             apt=snapshot.child('apt').val();
+            badge=snapshot.child('badge').val();
             let balance = snapshot.child('balance').val();
             let fullname=snapshot.child('fullname').val();
             if(country === null) country = ''
@@ -125,6 +127,7 @@ export default class PreviewScreen extends Component{
             if(state===null) state=''
             if(apt===null) apt=''
             if(fullname===null) fullname=''
+            if(badge===undefined||badge===null) badge = 0
             this.setState({
                country,
                city,
@@ -134,7 +137,8 @@ export default class PreviewScreen extends Component{
                balance,
                apt,
                state,
-               fullname
+               fullname,
+               badge
            })
         }).bind(this)
     }
@@ -248,17 +252,18 @@ export default class PreviewScreen extends Component{
             <View style={{backgroundColor:'#FFF',flex:1}}>
                 <View style={{flex:1}}>
                     <View style={[styles.header]}>
-                        {/* <TouchableOpacity  
+                          <TouchableOpacity  
                             style={{position:"absolute",left:27}}
                             onPress={()=>{
-                            this.props.navigator.push({
-                                screen:'app.ShopSeach',
-                                animationType:"slide-horizontal"
-                            })                            
+                            this.props.navigator.toggleDrawer({
+                                side:'left',
+                                to:'open'
+                            })                          
                         }}> 
-                            <Image style={styles.leftButton} source={require('@images/History.png')}/>
-                        </TouchableOpacity> */}                        
+                            <Image style={styles.leftButton} source={require('@images/HomePage/MenuBlack.png')}/>
+                        </TouchableOpacity>                          
                         <Text style={styles.headerText}>{!this.state.wishlist?'WISH LIST':'PRODUCT REQUEST'}</Text>
+                          {this.state.wishlist?
                           <TouchableOpacity    
                           style={{position:"absolute",right:27}}
                           onPress={()=>{
@@ -281,7 +286,25 @@ export default class PreviewScreen extends Component{
                                     )
                         }}>
                             <Icon name='trash' style={{fontSize:25,marginBottom: -14}} />
-                        </TouchableOpacity>                          
+                        </TouchableOpacity>:
+                         <TouchableOpacity  
+                            style={{position:"absolute",right:27}}
+                            onPress={()=>{
+                            this.props.navigator.push({
+                                screen:'Chat',
+                                animationType:"slide-horizontal"
+                            })                         
+                        }}> 
+                            { this.state.badge !== 0?
+                            <View style={[styles.badgeStyle]}>
+                            
+                                    <Text style={styles.badgeText}>{this.state.badge}</Text> 
+                            
+                            </View>:null
+                            }  
+                            <Image style={{width:25,height:25,marginBottom: -14}} source={require('@images/Chat_Icon.png')}/>
+                        </TouchableOpacity> 
+                          }                        
                     </View>
                     {!this.state.wishlist?
                         <View style={{flex: 1,alignItems:'center',paddingTop:25}}>

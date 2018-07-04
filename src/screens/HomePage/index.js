@@ -195,7 +195,7 @@ import DropdownAlert from 'react-native-dropdownalert';
                  case '0': return <PreviewScreen   navigator={this.props.navigator}/>
                  case '1':return <Walllet navigator={this.props.navigator} />
                  case '2': return <SliderPage _handleIndexChange={this._handleIndexChange} navigator={this.props.navigator} reload={this.props.reload}
-                 splash={this.props.splash} purchase={this.props.purchase} invite={this.props.invite} reward={this.props.reward} /> 
+                 splash={this.props.splash} purchase={this.props.purchase} invite={this.props.invite} reward={this.props.reward} request={this.props.request} /> 
              }
         }
           onSwipedAllCards = () => {

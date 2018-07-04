@@ -77,8 +77,9 @@ export default class MyProfile extends Component{
                     <Image source={require('@images/soon.png')} style={styles.walletImage}/>
                     <Text style={{fontSize:25,alignSelf:'center',marginVertical:20,fontWeight:'500',fontFamily:'Lato'}}>what does it mean?</Text>
                     <View style={{width:WindowWidth,padding:15,backgroundColor:'rgba(33,33,33,0.07)'}}>
-                        <Text style={{fontSize:17,fontWeight:'400',opacity:0.8,fontFamily:'Lato'}}>Lifetime earning program means that every user who joined by your invitation
-                            will pay a small fee to you on any reward he will earn as long as he uses Lolo's.
+                        <Text style={{fontSize:17,fontWeight:'400',opacity:0.8,fontFamily:'Lato'}}>
+                            Lifetime earning program means that You will earn 5% of all task completion fees
+                             earned by every user who joined by your invitation.
                             {'\n'}{'\n'}
                             That means that the more friends you will successfully invite to Lolo's the bigger 
                             income you will make and without lifting a finger.
@@ -89,7 +90,7 @@ export default class MyProfile extends Component{
                     <Text style={{fontSize:25,alignSelf:'center',marginVertical:20,fontWeight:'500',fontFamily:'Lato'}}>what's the next?</Text>
                     <View style={{width:WindowWidth,padding:15,backgroundColor:'rgba(33,33,33,0.07)'}}>
                         <Text style={{fontSize:17,fontWeight:'400',opacity:0.8,fontFamily:'Lato'}}>
-                            Start inviting all your friends and build your income base, that easy!
+                            Sign up for the program and we will be in touch with you, very soon...
                         </Text>
                     </View>
                     <TouchableOpacity style={styles.button} onPress={()=>{
@@ -97,9 +98,15 @@ export default class MyProfile extends Component{
                             screen:'app.InviteFriendsHome',
                             animationType:"slide-horizontal"
                         }) */}
+                        {/* alert('You must complete 10 or more successful invites') */}
+                        alert('0 successful invites rather than 10 so we could see those pages')
                     }}>
-                        <Text style={styles.buttonText}>Coming Soon</Text>
+                        <Text style={styles.buttonText}>Count Me In</Text>
                     </TouchableOpacity>
+                    <Text style={{fontSize:17,fontWeight:'400',opacity:0.8,fontFamily:'Lato',alignSelf:'center',marginBottom:30}}>
+                        *successful friend invitation does not {'\n'}considered as task for this program{'\n'}
+                        **sign up bonus does not consider a task {'\n'}for this program
+                    </Text>
                 </ScrollView>
                 {/* <Button disabled={this.state.text.length>0&&!this.state.dateDisabled?false:true} onPress={()=>this.gotoHome()}
                          style={[styles.buttonContainer,{backgroundColor:this.state.text.length>0&&!this.state.dateDisabled?'#FF4273':'#F0F0F0'}]}>

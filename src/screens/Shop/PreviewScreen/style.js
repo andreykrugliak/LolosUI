@@ -248,7 +248,28 @@ export default StyleSheet.create({
         borderBottomWidth: 1,
         alignSelf:'center',
         marginVertical: 20
-    }
+    },
+        badgeStyle:{
+        
+         height:14,
+        width:14,
+       borderRadius:7,
+        position:"absolute",
+        right:-1,
+        top:-2,
+        zIndex:1,
+        backgroundColor:"#d0021b",
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    badgeText:{
+        fontSize:10,
+        // position:"absolute",
+        // top:-6,
+        backgroundColor:'transparent',
+        color:'white',
+        marginTop:-0.7
+    },
 
 
 })

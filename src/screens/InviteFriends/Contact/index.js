@@ -55,12 +55,12 @@ export default class InviteFriends extends Component{
             <View style={[styles.container]}>
                 <HeaderComponent title="INVITE FRIENDS" navigator={this.props.navigator}/>
                 {/* <Text style={styles.headerText}>Boost Your Wallet</Text> */}
-                <Text style={styles.subText}>copy and share the link with your friends, for each successful invite earn up to 20 Lolos</Text>
+                <Text style={styles.subText}>copy and share the link with your friends, for each successful invite* earn up to 20 Lolos</Text>
                 <Image source={require('../../../images/Artboard.png')} style={styles.image}/>
                 <View style={styles.linkView}>
                     <Text numberOfLines={1} style={styles.link}>{this.state.link}</Text>
                 </View>
-                <Text style={styles.invite}>This link will expire in 48 hours</Text>
+                <Text style={styles.invite}>*Successful invite means sign up</Text>
                 <TouchableOpacity style={styles.button} onPress={()=>this.next()}>
                     <Text style={styles.buttonText} >Copy Link</Text>
                 </TouchableOpacity>

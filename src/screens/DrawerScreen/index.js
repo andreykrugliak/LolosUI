@@ -134,6 +134,7 @@ export default class DrawerScreen extends Component{
                             </TouchableOpacity>
                     </View>
                     <View style={styles.line}></View>
+                    
  
                 </View>
                 <View style={{position:'absolute',bottom: 150,alignItems: 'center',width:'100%'}}>

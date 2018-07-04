@@ -32,12 +32,12 @@ export default StyleSheet.create({
         marginTop:windowHeight<= iphoneSE? 30:73,
     },
     invite:{
-        color:'#9B9B9B',
+        color:'#9B9B99',
         fontSize:14,
         alignSelf:'center',
         fontFamily:'Lato-Regular',
         position:'absolute',
-        bottom:120
+        bottom:150
 
     },
     button:{

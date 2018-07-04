@@ -50,7 +50,8 @@ constructor(props){
         marketHidden: false,
         rewarded: this.props.reward,
         reload: this.props.reload,
-        got_target: false
+        got_target: false,
+        request: this.props.request
     }
     
     this._swipedLeft=this._swipedLeft.bind(this)
@@ -235,6 +236,7 @@ filter(i){
     if(this.state.rewarded) this.setState({rewarded: false})
     if(this.state.invite) this.setState({invite: false})
     if(this.state.purchase) this.setState({purchase: false})
+    if(this.state.request) this.setState({request: false})
 }
 
 
@@ -253,7 +255,7 @@ filter(i){
         let self = this
         
         let data = [...this.state.data] 
-        if(this.state.purchase||this.state.invite||this.state.rewarded){
+        if(this.state.purchase||this.state.invite||this.state.rewarded||this.state.request){
             data = this.state.data.filter(d=>{
                 if(!this.state.purchase&&d.index===10) return
                 return true
@@ -270,6 +272,7 @@ filter(i){
                 if(!this.state.invite&&d.index===7)return
                 if(d.card_hidden) return
                 if(this.state.got_target&&d.index===9) return
+                if(!this.state.request&&d.index===19) return
                 
             return true
         })
@@ -299,7 +302,7 @@ filter(i){
         <Right>
             <Button transparent onPress={()=>{
                 this.props.navigator.push({
-                    screen:'app.Notifications',
+                    screen:'Chat',
                     animationType:"slide-horizontal"
                 })
               
@@ -311,7 +314,7 @@ filter(i){
                 
                 </View>:null
                 }  
-                <Image source={require('@images/HomePage/NOTIFICATIONWhite.png')}>
+                <Image source={require('@images/Chat_Icon.png')} style={{width:24,height:24}}>
                 </Image>
             </Button>
         </Right>
@@ -334,7 +337,7 @@ filter(i){
                     cardVerticalMargin={20}      
                     cardIndex={!this.state.purchase?
                                  !this.props.invite? 
-                                    !this.props.reward?0:
+                                    !this.props.reward?!this.props.request?0:18:
                                      5
                                     :7
                                 :6}             

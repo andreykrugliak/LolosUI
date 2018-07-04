@@ -26,7 +26,7 @@ registerScreens();
     },
     animationType: 'slide-down',
     
-    appStyle:{
+    appStyle:{     
        orientation: 'portrait'
     },
     
